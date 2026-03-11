@@ -1,0 +1,51 @@
+Package: statAfrikR
+Title: Outils statistiques pour les Instituts Nationaux de Statistique africains
+Version: 0.0.0.9000
+Authors@R:
+    person("Prénom", "Nom",
+           role = c("aut", "cre"),
+           email = "contact@ins.org",
+           comment = c(ORCID = "0000-XXXX-XXXX-XXXX"))
+Description: Collecte, traitement, analyse et diffusion des données
+    statistiques socio-économiques dans le contexte africain. Intègre
+    des connecteurs pour les formats locaux (CSPro, KoboToolbox, ODK),
+    le calcul d'indicateurs standards (IDH, IPM, indicateurs ODD) et la
+    génération automatisée de rapports officiels selon les normes INS.
+License: GPL (>= 3)
+URL: https://github.com/VOTRE_USERNAME/statAfrikR
+BugReports: https://github.com/VOTRE_USERNAME/statAfrikR/issues
+Depends:
+    R (>= 4.2.0)
+Imports:
+    dplyr (>= 1.1.0),
+    tidyr (>= 1.3.0),
+    readr (>= 2.1.0),
+    stringr (>= 1.5.0),
+    purrr (>= 1.0.0),
+    tibble (>= 3.2.0),
+    haven (>= 2.5.0),
+    survey (>= 4.2),
+    srvyr (>= 1.2.0),
+    sf (>= 1.0),
+    ggplot2 (>= 3.4.0),
+    flextable (>= 0.9.0),
+    officer (>= 0.6.0),
+    rmarkdown (>= 2.20),
+    rlang (>= 1.1.0),
+    cli (>= 3.6.0)
+Suggests:
+    tmap (>= 3.3),
+    leaflet (>= 2.1),
+    httr2 (>= 0.2.0),
+    jsonlite (>= 1.8),
+    openxlsx2 (>= 0.8),
+    testthat (>= 3.0.0),
+    knitr,
+    covr,
+    shiny (>= 1.7.0)
+VignetteBuilder: knitr
+Encoding: UTF-8
+Language: fr
+LazyData: true
+RoxygenNote: 7.3.1
+Config/testthat/edition: 3
