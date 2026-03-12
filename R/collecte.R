@@ -1,7 +1,7 @@
 # =============================================================================
-# statAfrikR — Module Collecte
-# Fonctions d'importation et de validation des données
-# Formats supportés : Excel, CSV, Stata, SPSS, SAS, CSPro, KoboToolbox, ODK
+# statAfrikR \u2014 Module Collecte
+# Fonctions d'importation et de validation des donn\u00e9es
+# Formats support\u00e9s : Excel, CSV, Stata, SPSS, SAS, CSPro, KoboToolbox, ODK
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -52,7 +52,7 @@ import_excel <- function(chemin,
   if (!file.exists(chemin)) {
     rlang::abort(paste0(
       "Fichier introuvable : '", chemin, "'.\n",
-      "Vérifiez le chemin et l'extension (.xlsx ou .xls)."
+      "V\u00e9rifiez le chemin et l'extension (.xlsx ou .xls)."
     ))
   }
 
@@ -79,11 +79,11 @@ import_excel <- function(chemin,
                          col_types = col_types, na = na)
     })
     names(result) <- feuilles_dispo
-    if (verbose) message(length(result), " feuilles importées.")
+    if (verbose) message(length(result), " feuilles import\u00e9es.")
     return(result)
   }
 
-  # Import d'une feuille spécifique
+  # Import d'une feuille sp\u00e9cifique
   if (is.character(feuille) && !feuille %in% feuilles_dispo) {
     rlang::abort(paste0(
       "Feuille '", feuille, "' introuvable.\n",
@@ -96,7 +96,7 @@ import_excel <- function(chemin,
 
   if (verbose) {
     message(formatC(nrow(donnees), big.mark = " "), " lignes x ",
-            ncol(donnees), " colonnes importées.")
+            ncol(donnees), " colonnes import\u00e9es.")
   }
 
   donnees
@@ -134,10 +134,10 @@ import_csv <- function(chemin,
     rlang::abort(paste0("Fichier introuvable : '", chemin, "'."))
   }
 
-  # Détection automatique du séparateur
+  # D\u00e9tection automatique du s\u00e9parateur
   if (is.null(separateur)) {
     separateur <- .detecter_separateur(chemin, encodage)
-    if (verbose) message("Séparateur détecté : '", separateur, "'")
+    if (verbose) message("S\u00e9parateur d\u00e9tect\u00e9 : '", separateur, "'")
   }
 
   donnees <- tryCatch({
@@ -152,7 +152,7 @@ import_csv <- function(chemin,
     )
   }, error = function(e) {
     if (encodage == "UTF-8") {
-      if (verbose) rlang::warn("UTF-8 échoué, tentative avec latin1...")
+      if (verbose) rlang::warn("UTF-8 \u00e9chou\u00e9, tentative avec latin1...")
       readr::read_delim(
         chemin,
         delim          = separateur,
@@ -169,7 +169,7 @@ import_csv <- function(chemin,
 
   if (verbose) {
     message(formatC(nrow(donnees), big.mark = " "), " lignes x ",
-            ncol(donnees), " colonnes importées.")
+            ncol(donnees), " colonnes import\u00e9es.")
   }
 
   donnees
@@ -211,7 +211,7 @@ import_stata <- function(chemin,
   }
 
   if (tolower(tools::file_ext(chemin)) != "dta") {
-    rlang::warn("L'extension n'est pas .dta — tentative d'import quand même.")
+    rlang::warn("L'extension n'est pas .dta \u2014 tentative d'import quand m\u00eame.")
   }
 
   donnees <- tryCatch(
@@ -220,7 +220,7 @@ import_stata <- function(chemin,
       rlang::abort(paste0(
         "Impossible de lire le fichier Stata.\n",
         "Erreur : ", e$message, "\n",
-        "Vérifiez que le fichier n'est pas corrompu ou d'une version trop ancienne."
+        "V\u00e9rifiez que le fichier n'est pas corrompu ou d'une version trop ancienne."
       ))
     }
   )
@@ -230,7 +230,7 @@ import_stata <- function(chemin,
   }
 
   if (verbose) {
-    message("Fichier Stata importé : ", basename(chemin))
+    message("Fichier Stata import\u00e9 : ", basename(chemin))
     message(formatC(nrow(donnees), big.mark = " "), " observations x ",
             ncol(donnees), " variables.")
     vars_labellisees <- sum(sapply(donnees, haven::is.labelled))
@@ -290,7 +290,7 @@ import_spss <- function(chemin,
   }
 
   if (verbose) {
-    message("Fichier SPSS importé : ", basename(chemin))
+    message("Fichier SPSS import\u00e9 : ", basename(chemin))
     message(formatC(nrow(donnees), big.mark = " "), " observations x ",
             ncol(donnees), " variables.")
   }
@@ -337,7 +337,7 @@ import_sas <- function(chemin,
   )
 
   if (verbose) {
-    message("Fichier SAS importé : ", basename(chemin))
+    message("Fichier SAS import\u00e9 : ", basename(chemin))
     message(formatC(nrow(donnees), big.mark = " "), " observations x ",
             ncol(donnees), " variables.")
   }
@@ -401,11 +401,11 @@ import_cspro <- function(fichier_dat,
     if (!file.exists(fichier_dcf)) {
       rlang::abort(c(
         "Fichier dictionnaire .dcf introuvable.",
-        "i" = paste0("Chemin cherché : ", sub("\\.[Dd][Aa][Tt]$", ".dcf", fichier_dat)),
-        "i" = "Spécifiez le chemin manuellement via `fichier_dcf`."
+        "i" = paste0("Chemin cherch\u00e9 : ", sub("\\.[Dd][Aa][Tt]$", ".dcf", fichier_dat)),
+        "i" = "Sp\u00e9cifiez le chemin manuellement via `fichier_dcf`."
       ))
     }
-    if (verbose) message("Dictionnaire détecté : ", basename(fichier_dcf))
+    if (verbose) message("Dictionnaire d\u00e9tect\u00e9 : ", basename(fichier_dcf))
   }
 
   if (!file.exists(fichier_dcf)) {
@@ -418,10 +418,10 @@ import_cspro <- function(fichier_dat,
   niveaux_dispo <- names(dico$niveaux)
   if (verbose) message("Niveaux disponibles : ", paste(niveaux_dispo, collapse = ", "))
 
-  # Sélection du niveau
+  # S\u00e9lection du niveau
   if (is.null(niveau)) {
     niveau <- niveaux_dispo[1]
-    if (verbose) message("Niveau sélectionné : ", niveau)
+    if (verbose) message("Niveau s\u00e9lectionn\u00e9 : ", niveau)
   } else {
     niveau_up <- toupper(niveau)
     niveaux_up <- toupper(niveaux_dispo)
@@ -434,7 +434,7 @@ import_cspro <- function(fichier_dat,
     niveau <- niveaux_dispo[which(niveaux_up == niveau_up)]
   }
 
-  if (verbose) message("Lecture des données CSPro (niveau : ", niveau, ")...")
+  if (verbose) message("Lecture des donn\u00e9es CSPro (niveau : ", niveau, ")...")
 
   donnees <- .lire_dat_cspro(
     fichier_dat = fichier_dat,
@@ -446,7 +446,7 @@ import_cspro <- function(fichier_dat,
 
   if (verbose) {
     message(formatC(nrow(donnees), big.mark = " "), " enregistrements x ",
-            ncol(donnees), " variables importés.")
+            ncol(donnees), " variables import\u00e9s.")
   }
 
   donnees
@@ -514,10 +514,10 @@ import_kobo <- function(source,
     if (!nzchar(token)) {
       rlang::abort(c(
         "Token API manquant.",
-        "i" = "Définissez KOBO_TOKEN : Sys.setenv(KOBO_TOKEN = 'votre_token')"
+        "i" = "D\u00e9finissez KOBO_TOKEN : Sys.setenv(KOBO_TOKEN = 'votre_token')"
       ))
     }
-    if (verbose) message("Connexion à l'API KoboToolbox (uid: ", uid, ")...")
+    if (verbose) message("Connexion \u00e0 l'API KoboToolbox (uid: ", uid, ")...")
     .import_kobo_api(source, uid, token, langue, verbose)
 
   } else {
@@ -602,10 +602,10 @@ import_odk <- function(source,
     if (!nzchar(email) || !nzchar(mot_de_passe)) {
       rlang::abort(c(
         "Identifiants ODK manquants.",
-        "i" = "Définissez ODK_EMAIL et ODK_PASSWORD via Sys.setenv()."
+        "i" = "D\u00e9finissez ODK_EMAIL et ODK_PASSWORD via Sys.setenv()."
       ))
     }
-    if (verbose) message("Connexion à ODK Central (projet: ", projet_id, ")...")
+    if (verbose) message("Connexion \u00e0 ODK Central (projet: ", projet_id, ")...")
     .import_odk_api(source, projet_id, formulaire_id, email,
                     mot_de_passe, inclure_metadonnees, verbose)
 
@@ -622,8 +622,8 @@ import_odk <- function(source,
       import_csv(source, verbose = verbose)
     } else {
       rlang::abort(paste0(
-        "Format non supporté : '.", ext, "'.\n",
-        "Formats acceptés : .zip (export ODK) ou .csv."
+        "Format non support\u00e9 : '.", ext, "'.\n",
+        "Formats accept\u00e9s : .zip (export ODK) ou .csv."
       ))
     }
   }
@@ -631,7 +631,7 @@ import_odk <- function(source,
 
 
 # -----------------------------------------------------------------------------
-# 6. VALIDATION DES DONNÉES
+# 6. VALIDATION DES DONN\u00c9ES
 # -----------------------------------------------------------------------------
 
 #' @title Détecter les valeurs manquantes
@@ -647,8 +647,10 @@ import_odk <- function(source,
 #' @return Un tibble avec les colonnes : \code{variable}, \code{n_total},
 #'   \code{n_manquant}, \code{taux_na}, \code{statut}.
 #' @examples
-#' rapport_na <- check_na(donnees_enquete)
-#' rapport_na <- check_na(donnees_enquete, seuil = 0.05, vars = c("age", "revenu"))
+#' \dontrun{
+#'   rapport_na <- check_na(donnees_enquete)
+#'   rapport_na <- check_na(donnees_enquete, seuil = 0.05, vars = c("age", "revenu"))
+#' }
 #' @export
 check_na <- function(data,
                      seuil   = 0.1,
@@ -656,11 +658,11 @@ check_na <- function(data,
                      alerter = TRUE) {
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (seuil < 0 || seuil > 1) {
-    rlang::abort("Le `seuil` doit être compris entre 0 et 1.")
+    rlang::abort("Le `seuil` doit \u00eatre compris entre 0 et 1.")
   }
 
   if (!is.null(vars)) {
@@ -683,7 +685,7 @@ check_na <- function(data,
     statut      = dplyr::case_when(
       sapply(data, function(x) mean(is.na(x))) == 0   ~ "OK",
       sapply(data, function(x) mean(is.na(x))) <= 0.05 ~ "Faible",
-      sapply(data, function(x) mean(is.na(x))) <= seuil ~ "Modéré",
+      sapply(data, function(x) mean(is.na(x))) <= seuil ~ "Mod\u00e9r\u00e9",
       TRUE                                               ~ "CRITIQUE"
     )
   )
@@ -712,12 +714,14 @@ check_na <- function(data,
 #' @return Un tibble avec les anomalies détectées :
 #'   \code{variable}, \code{type_actuel}, \code{type_attendu}, \code{probleme}.
 #' @examples
-#' anomalies <- check_types(donnees_enquete)
+#' \dontrun{
+#'   anomalies <- check_types(donnees_enquete)
+#' }
 #' @export
 check_types <- function(data, dictionnaire = NULL) {
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   anomalies <- list()
@@ -726,7 +730,7 @@ check_types <- function(data, dictionnaire = NULL) {
     x <- data[[var]]
     type_actuel <- class(x)[1]
 
-    # Détection : nombre stocké en caractère
+    # D\u00e9tection : nombre stock\u00e9 en caract\u00e8re
     if (is.character(x)) {
       x_sans_na <- x[!is.na(x)]
       if (length(x_sans_na) > 0) {
@@ -738,12 +742,12 @@ check_types <- function(data, dictionnaire = NULL) {
             type_attendu  = "numeric",
             probleme      = paste0(
               scales::percent(prop_numerique),
-              " des valeurs sont numériques → convertir avec as.numeric()"
+              " des valeurs sont num\u00e9riques \u2192 convertir avec as.numeric()"
             )
           )
         }
 
-        # Détection : date stockée en caractère
+        # D\u00e9tection : date stock\u00e9e en caract\u00e8re
         formats_date <- c("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y", "%d.%m.%Y")
         est_date <- FALSE
         for (fmt in formats_date) {
@@ -758,14 +762,14 @@ check_types <- function(data, dictionnaire = NULL) {
             variable      = var,
             type_actuel   = "character",
             type_attendu  = "Date",
-            probleme      = "Dates stockées en texte → convertir avec as.Date()"
+            probleme      = "Dates stock\u00e9es en texte \u2192 convertir avec as.Date()"
           )
         }
       }
     }
   }
 
-  # Vérification contre dictionnaire fourni
+  # V\u00e9rification contre dictionnaire fourni
   if (!is.null(dictionnaire)) {
     cols_req <- c("nom_variable", "type_attendu")
     cols_man <- setdiff(cols_req, names(dictionnaire))
@@ -794,14 +798,14 @@ check_types <- function(data, dictionnaire = NULL) {
           variable      = var,
           type_actuel   = NA_character_,
           type_attendu  = type_att,
-          probleme      = "Variable absente du jeu de données"
+          probleme      = "Variable absente du jeu de donn\u00e9es"
         )
       }
     }
   }
 
   if (length(anomalies) == 0) {
-    message("Aucune anomalie de type détectée.")
+    message("Aucune anomalie de type d\u00e9tect\u00e9e.")
     return(tibble::tibble(
       variable = character(), type_actuel = character(),
       type_attendu = character(), probleme = character()
@@ -828,13 +832,15 @@ check_types <- function(data, dictionnaire = NULL) {
 #'   \item{rapport}{data.frame — Détail des anomalies}
 #'   \item{score_qualite}{numeric — Score de 0 à 100}
 #' @examples
-#' dico <- data.frame(
-#'   nom_variable = c("age", "sexe", "region"),
-#'   type         = c("numeric", "character", "character"),
-#'   obligatoire  = c(TRUE, TRUE, FALSE)
-#' )
-#' resultat <- valider_dictionnaire(donnees, dico)
-#' if (!resultat$valide) print(resultat$rapport)
+#' \dontrun{
+#'   dico <- data.frame(
+#'     nom_variable = c("age", "sexe", "region"),
+#'     type         = c("numeric", "character", "character"),
+#'     obligatoire  = c(TRUE, TRUE, FALSE)
+#'   )
+#'   resultat <- valider_dictionnaire(donnees, dico)
+#'   if (!resultat$valide) print(resultat$rapport)
+#' }
 #' @export
 valider_dictionnaire <- function(data,
                                   dictionnaire,
@@ -865,7 +871,7 @@ valider_dictionnaire <- function(data,
       anomalies[[length(anomalies) + 1]] <- tibble::tibble(
         variable  = var,
         severite  = severite,
-        probleme  = "Variable absente du jeu de données"
+        probleme  = "Variable absente du jeu de donn\u00e9es"
       )
       next
     }
@@ -889,7 +895,7 @@ valider_dictionnaire <- function(data,
           anomalies[[length(anomalies) + 1]] <- tibble::tibble(
             variable = var,
             severite = "AVERTISSEMENT",
-            probleme = paste0(n_hors, " valeurs inférieures au minimum (", min_val, ")")
+            probleme = paste0(n_hors, " valeurs inf\u00e9rieures au minimum (", min_val, ")")
           )
         }
       }
@@ -903,7 +909,7 @@ valider_dictionnaire <- function(data,
           anomalies[[length(anomalies) + 1]] <- tibble::tibble(
             variable = var,
             severite = "AVERTISSEMENT",
-            probleme = paste0(n_hors, " valeurs supérieures au maximum (", max_val, ")")
+            probleme = paste0(n_hors, " valeurs sup\u00e9rieures au maximum (", max_val, ")")
           )
         }
       }
@@ -922,11 +928,11 @@ valider_dictionnaire <- function(data,
   valide <- n_critiques == 0
 
   if (n_critiques > 0) {
-    msg <- paste0(n_critiques, " erreur(s) critique(s) détectée(s).")
+    msg <- paste0(n_critiques, " erreur(s) critique(s) d\u00e9tect\u00e9e(s).")
     if (stopper_si_critique) rlang::abort(msg) else rlang::warn(msg)
   }
 
-  message("Score de qualité : ", score, "/100")
+  message("Score de qualit\u00e9 : ", score, "/100")
 
   list(
     valide        = valide,
@@ -937,7 +943,7 @@ valider_dictionnaire <- function(data,
 
 
 # =============================================================================
-# FONCTIONS INTERNES (non exportées)
+# FONCTIONS INTERNES (non export\u00e9es)
 # =============================================================================
 
 #' @keywords internal
@@ -945,7 +951,7 @@ valider_dictionnaire <- function(data,
   if (!requireNamespace(pkg, quietly = TRUE)) {
     ctx <- if (!is.null(contexte)) paste0(" (requis pour ", contexte, ")") else ""
     rlang::abort(paste0(
-      "Package '", pkg, "' requis", ctx, " mais non installé.\n",
+      "Package '", pkg, "' requis", ctx, " mais non install\u00e9.\n",
       "Installez-le avec : install.packages('", pkg, "')"
     ))
   }
@@ -1011,12 +1017,12 @@ valider_dictionnaire <- function(data,
 
 #' @keywords internal
 .lire_dat_cspro <- function(fichier_dat, dico, niveau, encoding, max_lignes) {
-  # Lecture basique du fichier .dat CSPro (format texte à largeur fixe)
+  # Lecture basique du fichier .dat CSPro (format texte \u00e0 largeur fixe)
   lignes <- readLines(fichier_dat, encoding = encoding, warn = FALSE)
   if (!is.null(max_lignes)) lignes <- head(lignes, max_lignes)
 
-  # Retour d'un tibble vide structuré si le parsing complet n'est pas dispo
-  # (implémentation complète nécessite le parsing détaillé du DCF)
+  # Retour d'un tibble vide structur\u00e9 si le parsing complet n'est pas dispo
+  # (impl\u00e9mentation compl\u00e8te n\u00e9cessite le parsing d\u00e9taill\u00e9 du DCF)
   tibble::tibble(ligne_brute = lignes)
 }
 
@@ -1031,8 +1037,8 @@ valider_dictionnaire <- function(data,
   donnees <- readxl::read_excel(source, sheet = feuille_data)
 
   if (verbose) {
-    message("Feuille de données : ", feuille_data)
-    message(nrow(donnees), " soumissions importées.")
+    message("Feuille de donn\u00e9es : ", feuille_data)
+    message(nrow(donnees), " soumissions import\u00e9es.")
   }
   donnees
 }
@@ -1056,15 +1062,15 @@ valider_dictionnaire <- function(data,
     httr2::req_perform(req),
     error = function(e) {
       rlang::abort(paste0(
-        "Échec de la connexion à l'API KoboToolbox.\n",
-        "Vérifiez l'URL, le token et la connectivité réseau.\n",
+        "\u00c9chec de la connexion \u00e0 l'API KoboToolbox.\n",
+        "V\u00e9rifiez l'URL, le token et la connectivit\u00e9 r\u00e9seau.\n",
         "Erreur : ", e$message
       ))
     }
   )
 
   data <- httr2::resp_body_json(resp, simplifyVector = TRUE)
-  if (verbose) message(data$count, " soumissions récupérées depuis l'API.")
+  if (verbose) message(data$count, " soumissions r\u00e9cup\u00e9r\u00e9es depuis l'API.")
   tibble::as_tibble(data$results)
 }
 
@@ -1075,7 +1081,7 @@ valider_dictionnaire <- function(data,
   fichiers_csv <- list.files(dir_temp, pattern = "\\.csv$",
                               full.names = TRUE, recursive = TRUE)
   if (length(fichiers_csv) == 0) {
-    rlang::abort("Aucun fichier CSV trouvé dans l'export ZIP ODK.")
+    rlang::abort("Aucun fichier CSV trouv\u00e9 dans l'export ZIP ODK.")
   }
   # Prendre le fichier principal (le plus grand)
   tailles <- file.size(fichiers_csv)
@@ -1107,8 +1113,8 @@ valider_dictionnaire <- function(data,
     httr2::req_perform(req_auth),
     error = function(e) {
       rlang::abort(paste0(
-        "Échec de l'authentification ODK Central.\n",
-        "Vérifiez l'email, le mot de passe et l'URL du serveur."
+        "\u00c9chec de l'authentification ODK Central.\n",
+        "V\u00e9rifiez l'email, le mot de passe et l'URL du serveur."
       ))
     }
   )
@@ -1128,6 +1134,6 @@ valider_dictionnaire <- function(data,
     donnees <- donnees[, !names(donnees) %in% cols_meta]
   }
 
-  if (verbose) message(nrow(donnees), " soumissions importées depuis ODK Central.")
+  if (verbose) message(nrow(donnees), " soumissions import\u00e9es depuis ODK Central.")
   donnees
 }

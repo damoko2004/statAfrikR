@@ -1,5 +1,5 @@
 # =============================================================================
-# statAfrikR — Module Analyse
+# statAfrikR \u2014 Module Analyse
 # Fonctions d'analyse statistique, indicateurs et tableaux
 # =============================================================================
 
@@ -23,12 +23,13 @@
 #' @return Tibble ou flextable avec : n, moyenne, médiane, écart-type,
 #'   min, max, IC95.
 #' @examples
-#' # Sans pondération
-#' stat_descr(donnees, vars = c("age", "revenu"))
-#'
-#' # Avec plan de sondage
-#' plan <- appliquer_ponderations(donnees, "poids")
-#' stat_descr(plan, vars = "revenu", groupe = "region")
+#' \dontrun{
+#'   # Sans pondération
+#'   stat_descr(donnees, vars = c("age", "revenu"))
+#'   # Avec plan de sondage
+#'   plan <- appliquer_ponderations(donnees, "poids")
+#'   stat_descr(plan, vars = "revenu", groupe = "region")
+#' }
 #' @export
 stat_descr <- function(data,
                         vars,
@@ -40,10 +41,10 @@ stat_descr <- function(data,
   format_sortie <- match.arg(format_sortie)
   est_svydesign <- inherits(data, "survey.design")
 
-  # Extraction des données brutes si svydesign
+  # Extraction des donn\u00e9es brutes si svydesign
   data_brute <- if (est_svydesign) data$variables else data
 
-  # Vérification des variables
+  # V\u00e9rification des variables
   vars_absentes <- setdiff(vars, names(data_brute))
   if (length(vars_absentes) > 0) {
     rlang::abort(paste0(
@@ -54,14 +55,14 @@ stat_descr <- function(data,
   vars_non_num <- vars[!sapply(data_brute[vars], is.numeric)]
   if (length(vars_non_num) > 0) {
     rlang::warn(paste0(
-      "Variables non numériques ignorées : ",
+      "Variables non num\u00e9riques ignor\u00e9es : ",
       paste(vars_non_num, collapse = ", ")
     ))
     vars <- setdiff(vars, vars_non_num)
   }
 
   if (length(vars) == 0) {
-    rlang::abort("Aucune variable numérique valide à analyser.")
+    rlang::abort("Aucune variable num\u00e9rique valide \u00e0 analyser.")
   }
 
   resultats <- list()
@@ -117,7 +118,7 @@ stat_descr <- function(data,
       resultats[[var]] <- res
     }
   } else {
-    # Sans pondération
+    # Sans pond\u00e9ration
     for (var in vars) {
       x <- data_brute[[var]]
 
@@ -169,7 +170,7 @@ stat_descr <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 2. TABLEAU CROISÉ
+# 2. TABLEAU CROIS\u00c9
 # -----------------------------------------------------------------------------
 
 #' @title Tableau croisé pondéré avec intervalles de confiance
@@ -189,11 +190,12 @@ stat_descr <- function(data,
 #'   Défaut : "flextable".
 #' @return Tibble ou flextable du tableau croisé.
 #' @examples
-#' # Tableau simple
-#' tab_croisee(donnees, "region", "sexe")
-#'
-#' # Avec plan de sondage
-#' tab_croisee(plan_sondage, "quintile", "region")
+#' \dontrun{
+#'   # Tableau simple
+#'   tab_croisee(donnees, "region", "sexe")
+#'   # Avec plan de sondage
+#'   tab_croisee(plan_sondage, "quintile", "region")
+#' }
 #' @export
 tab_croisee <- function(data,
                          var_ligne,
@@ -209,7 +211,7 @@ tab_croisee <- function(data,
 
   data_brute <- if (est_svydesign) data$variables else data
 
-  # Vérifications
+  # V\u00e9rifications
   if (!var_ligne %in% names(data_brute)) {
     rlang::abort(paste0("Variable en ligne introuvable : '", var_ligne, "'."))
   }
@@ -307,10 +309,10 @@ tab_croisee <- function(data,
   if (format_sortie == "flextable") {
     .verifier_package("flextable", "tab_croisee (format flextable)")
     return(.formater_flextable(tableau,
-                                titre = paste0("Tableau croisé : ",
+                                titre = paste0("Tableau crois\u00e9 : ",
                                                var_ligne,
                                                if (!is.null(var_col))
-                                                 paste0(" × ", var_col))))
+                                                 paste0(" \u00d7 ", var_col))))
   }
 
   tableau
@@ -318,7 +320,7 @@ tab_croisee <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 3. RÉGRESSION
+# 3. R\u00c9GRESSION
 # -----------------------------------------------------------------------------
 
 #' @title Analyse de régression
@@ -336,12 +338,13 @@ tab_croisee <- function(data,
 #' @return Selon format_sortie : liste complète, tibble ou flextable des
 #'   coefficients avec IC et p-valeurs.
 #' @examples
-#' # Régression linéaire simple
-#' analyse_regression(revenu ~ age + sexe, donnees)
-#'
-#' # Régression logistique avec plan de sondage
-#' analyse_regression(pauvre ~ age + region + sexe, plan,
-#'                    type = "logistique")
+#' \dontrun{
+#'   # Régression linéaire simple
+#'   analyse_regression(revenu ~ age + sexe, donnees)
+#'   # Régression logistique avec plan de sondage
+#'   analyse_regression(pauvre ~ age + region + sexe, plan,
+#'                      type = "logistique")
+#' }
 #' @export
 analyse_regression <- function(formule,
                                 data,
@@ -377,7 +380,7 @@ analyse_regression <- function(formule,
     )
   }
 
-  # Construction du tableau de résultats
+  # Construction du tableau de r\u00e9sultats
   coefs   <- stats::coef(modele)
   ic_vals <- tryCatch(
     stats::confint(modele, level = niveau_confiance),
@@ -408,18 +411,18 @@ analyse_regression <- function(formule,
     )
   )
 
-  # Ajout OR/RR pour modèles log-linéaires
+  # Ajout OR/RR pour mod\u00e8les log-lin\u00e9aires
   if (type %in% c("logistique", "poisson")) {
     tableau$odds_ratio <- round(exp(tableau$estimateur), 3)
     tableau$or_ic_bas  <- round(exp(tableau$ic_bas), 3)
     tableau$or_ic_haut <- round(exp(tableau$ic_haut), 3)
   }
 
-  # Statistiques globales du modèle
+  # Statistiques globales du mod\u00e8le
   if (type == "lineaire") {
     r2 <- tryCatch(summary(modele)$r.squared, error = function(e) NA)
     if (!is.null(r2) && is.numeric(r2)) {
-      message("R² = ", round(r2, 4))
+      message("R\u00b2 = ", round(r2, 4))
     }
   }
 
@@ -434,7 +437,7 @@ analyse_regression <- function(formule,
 
   if (format_sortie == "flextable") {
     .verifier_package("flextable", "analyse_regression")
-    return(.formater_flextable(tableau, titre = paste0("Régression ",
+    return(.formater_flextable(tableau, titre = paste0("R\u00e9gression ",
                                                         type)))
   }
 
@@ -484,7 +487,7 @@ analyse_spatiale <- function(data,
   .verifier_package("sf", "analyse_spatiale")
 
   if (!var_geo_data %in% names(data)) {
-    rlang::abort(paste0("Variable géographique introuvable dans data : '",
+    rlang::abort(paste0("Variable g\u00e9ographique introuvable dans data : '",
                         var_geo_data, "'."))
   }
 
@@ -494,16 +497,16 @@ analyse_spatiale <- function(data,
       rlang::abort(paste0("Shapefile introuvable : '", shapefile, "'."))
     }
     shapefile <- sf::st_read(shapefile, quiet = TRUE)
-    message("Shapefile chargé : ", nrow(shapefile), " entités géographiques.")
+    message("Shapefile charg\u00e9 : ", nrow(shapefile), " entit\u00e9s g\u00e9ographiques.")
   }
 
   if (!inherits(shapefile, "sf")) {
-    rlang::abort("`shapefile` doit être un objet sf ou un chemin vers un fichier spatial.")
+    rlang::abort("`shapefile` doit \u00eatre un objet sf ou un chemin vers un fichier spatial.")
   }
 
   if (!var_geo_shape %in% names(shapefile)) {
     rlang::abort(paste0(
-      "Variable géographique introuvable dans le shapefile : '",
+      "Variable g\u00e9ographique introuvable dans le shapefile : '",
       var_geo_shape, "'.\n",
       "Variables disponibles : ",
       paste(names(shapefile)[names(shapefile) != "geometry"],
@@ -511,13 +514,13 @@ analyse_spatiale <- function(data,
     ))
   }
 
-  # Sélection des indicateurs
+  # S\u00e9lection des indicateurs
   if (is.null(indicateurs)) {
     indicateurs <- names(data)[sapply(data, is.numeric)]
     indicateurs <- setdiff(indicateurs, var_geo_data)
   }
 
-  # Agrégation par zone géographique
+  # Agr\u00e9gation par zone g\u00e9ographique
   data_agregee <- data |>
     dplyr::group_by(dplyr::across(dplyr::all_of(var_geo_data))) |>
     dplyr::summarise(
@@ -536,14 +539,14 @@ analyse_spatiale <- function(data,
       by = stats::setNames(var_geo_data, var_geo_shape)
     )
 
-  # Rapport des non-appariés
+  # Rapport des non-appari\u00e9s
   zones_data  <- unique(data[[var_geo_data]])
   zones_shape <- unique(shapefile[[var_geo_shape]])
   non_apparies <- setdiff(zones_data, zones_shape)
 
   if (length(non_apparies) > 0) {
     rlang::warn(paste0(
-      length(non_apparies), " zone(s) de data non appariée(s) : ",
+      length(non_apparies), " zone(s) de data non appari\u00e9e(s) : ",
       paste(head(non_apparies, 5), collapse = ", ")
     ))
   }
@@ -576,14 +579,16 @@ analyse_spatiale <- function(data,
 #' @references
 #' PNUD (2023). Technical Notes: Calculating the Human Development Indices.
 #' @examples
-#' idh <- calcul_idh(
-#'   esperance_vie   = 61.2,
-#'   annees_scol_moy = 5.4,
-#'   annees_scol_att = 9.8,
-#'   rnb_habitant    = 2350,
-#'   annee           = 2023
-#' )
-#' cat("IDH :", idh$idh, "—", idh$categorie)
+#' \dontrun{
+#'   idh <- calcul_idh(
+#'     esperance_vie   = 61.2,
+#'     annees_scol_moy = 5.4,
+#'     annees_scol_att = 9.8,
+#'     rnb_habitant    = 2350,
+#'     annee           = 2023
+#'   )
+#'   cat("IDH :", idh$idh, "—", idh$categorie)
+#' }
 #' @export
 calcul_idh <- function(esperance_vie,
                         annees_scol_moy,
@@ -604,11 +609,11 @@ calcul_idh <- function(esperance_vie,
 
   # Validation
   .valider_borne(esperance_vie,  bornes$ev_min,       bornes$ev_max,
-                 "Espérance de vie", "ans")
+                 "Esp\u00e9rance de vie", "ans")
   .valider_borne(annees_scol_moy, bornes$scol_moy_min, bornes$scol_moy_max,
-                 "Durée moyenne de scolarisation", "ans")
+                 "Dur\u00e9e moyenne de scolarisation", "ans")
   .valider_borne(annees_scol_att, bornes$scol_att_min, bornes$scol_att_max,
-                 "Durée attendue de scolarisation", "ans")
+                 "Dur\u00e9e attendue de scolarisation", "ans")
   .valider_borne(rnb_habitant,   bornes$rnb_min,      bornes$rnb_max,
                  "RNB par habitant", "USD")
 
@@ -626,19 +631,19 @@ calcul_idh <- function(esperance_vie,
   indice_revenu <- (log(rnb_habitant) - log(bornes$rnb_min)) /
     (log(bornes$rnb_max) - log(bornes$rnb_min))
 
-  # Écrêtage entre 0 et 1
+  # \u00c9cr\u00eatage entre 0 et 1
   indice_sante      <- max(0, min(1, indice_sante))
   indice_education  <- max(0, min(1, indice_education))
   indice_revenu     <- max(0, min(1, indice_revenu))
 
-  # IDH = moyenne géométrique des 3 indices
+  # IDH = moyenne g\u00e9om\u00e9trique des 3 indices
   idh <- (indice_sante * indice_education * indice_revenu) ^ (1/3)
   idh <- round(idh, 3)
 
-  # Catégorie PNUD
+  # Cat\u00e9gorie PNUD
   categorie <- dplyr::case_when(
-    idh >= 0.800 ~ "Très élevé",
-    idh >= 0.700 ~ "Élevé",
+    idh >= 0.800 ~ "Tr\u00e8s \u00e9lev\u00e9",
+    idh >= 0.700 ~ "\u00c9lev\u00e9",
     idh >= 0.550 ~ "Moyen",
     TRUE         ~ "Faible"
   )
@@ -705,46 +710,46 @@ calcul_ipm <- function(data,
                         var_poids        = NULL) {
 
   if (!is.list(indicateurs) || length(indicateurs) == 0) {
-    rlang::abort("`indicateurs` doit être une liste nommée non vide.")
+    rlang::abort("`indicateurs` doit \u00eatre une liste nomm\u00e9e non vide.")
   }
 
   if (seuil_pauvrete <= 0 || seuil_pauvrete >= 1) {
-    rlang::abort("`seuil_pauvrete` doit être entre 0 et 1 (exclu).")
+    rlang::abort("`seuil_pauvrete` doit \u00eatre entre 0 et 1 (exclu).")
   }
 
   n_dimensions <- length(indicateurs)
   noms_dim     <- names(indicateurs)
 
-  # Poids par défaut : égaux
+  # Poids par d\u00e9faut : \u00e9gaux
   if (is.null(poids_dimensions)) {
     poids_dimensions <- rep(1 / n_dimensions, n_dimensions)
   } else {
     if (length(poids_dimensions) != n_dimensions) {
       rlang::abort(paste0(
         "Le vecteur `poids_dimensions` doit avoir ", n_dimensions,
-        " éléments (un par dimension)."
+        " \u00e9l\u00e9ments (un par dimension)."
       ))
     }
     if (abs(sum(poids_dimensions) - 1) > 1e-6) {
       rlang::warn(paste0(
         "La somme des poids (", round(sum(poids_dimensions), 4),
-        ") ≠ 1. Normalisation automatique."
+        ") \u2260 1. Normalisation automatique."
       ))
       poids_dimensions <- poids_dimensions / sum(poids_dimensions)
     }
   }
 
-  # Vérification des indicateurs
+  # V\u00e9rification des indicateurs
   tous_indicateurs <- unlist(indicateurs)
   indicateurs_absents <- setdiff(tous_indicateurs, names(data))
   if (length(indicateurs_absents) > 0) {
     rlang::abort(paste0(
-      "Indicateurs introuvables dans les données : ",
+      "Indicateurs introuvables dans les donn\u00e9es : ",
       paste(indicateurs_absents, collapse = ", ")
     ))
   }
 
-  # Poids par indicateur (pondération équitable au sein de chaque dimension)
+  # Poids par indicateur (pond\u00e9ration \u00e9quitable au sein de chaque dimension)
   poids_indicateurs <- numeric(length(tous_indicateurs))
   names(poids_indicateurs) <- tous_indicateurs
 
@@ -755,15 +760,15 @@ calcul_ipm <- function(data,
     }
   }
 
-  # Score de privation pondéré par individu
+  # Score de privation pond\u00e9r\u00e9 par individu
   data_priv <- data[, tous_indicateurs, drop = FALSE]
 
-  # Conversion en numérique si nécessaire
+  # Conversion en num\u00e9rique si n\u00e9cessaire
   data_priv <- data.frame(lapply(data_priv, function(x) {
     if (is.logical(x)) as.integer(x) else as.numeric(x)
   }))
 
-  # Vérification valeurs 0/1
+  # V\u00e9rification valeurs 0/1
   vals_invalides <- sapply(data_priv, function(x) {
     any(!x %in% c(0, 1, NA))
   })
@@ -771,14 +776,14 @@ calcul_ipm <- function(data,
     rlang::warn(paste0(
       "Certains indicateurs ont des valeurs autres que 0/1 : ",
       paste(names(vals_invalides)[vals_invalides], collapse = ", "),
-      ". Ils seront traités comme : ≥ 0.5 = privation."
+      ". Ils seront trait\u00e9s comme : \u2265 0.5 = privation."
     ))
     data_priv <- data.frame(lapply(data_priv, function(x) {
       as.integer(x >= 0.5)
     }))
   }
 
-  # Score de privation pondéré
+  # Score de privation pond\u00e9r\u00e9
   score_prive <- as.matrix(data_priv) %*% poids_indicateurs
 
   # Identification des pauvres multidimensionnels
@@ -794,8 +799,8 @@ calcul_ipm <- function(data,
   H <- sum(est_pauvre * poids_pop, na.rm = TRUE)  # Incidence
   A <- if (H > 0) {
     sum(score_prive[est_pauvre] * poids_pop[est_pauvre], na.rm = TRUE) / H
-  } else 0  # Intensité
-  ipm <- H * A  # IPM = H × A
+  } else 0  # Intensit\u00e9
+  ipm <- H * A  # IPM = H \u00d7 A
 
   # Contributions par dimension
   contributions <- sapply(seq_along(indicateurs), function(i) {
@@ -808,15 +813,15 @@ calcul_ipm <- function(data,
   })
   names(contributions) <- noms_dim
 
-  # Enrichissement des données
+  # Enrichissement des donn\u00e9es
   data_enrichie <- data
   data_enrichie$.score_privation  <- round(as.numeric(score_prive), 4)
   data_enrichie$.est_pauvre_multi <- as.logical(est_pauvre)
 
-  message("=== Résultats IPM ===")
+  message("=== R\u00e9sultats IPM ===")
   message("IPM   : ", round(ipm, 4))
   message("H (incidence) : ", scales::percent(H, accuracy = 0.1))
-  message("A (intensité) : ", scales::percent(A, accuracy = 0.1))
+  message("A (intensit\u00e9) : ", scales::percent(A, accuracy = 0.1))
   message("Contributions par dimension :")
   for (dim in noms_dim) {
     message("  ", dim, " : ", contributions[dim], "%")
@@ -836,7 +841,7 @@ calcul_ipm <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 7. MESURES D'INÉGALITÉ
+# 7. MESURES D'IN\u00c9GALIT\u00c9
 # -----------------------------------------------------------------------------
 
 #' @title Décomposer les inégalités
@@ -855,11 +860,13 @@ calcul_ipm <- function(data,
 #'   Défaut : "all".
 #' @return Une liste avec les mesures d'inégalité et leur décomposition.
 #' @examples
-#' inegalites <- decomposer_inegalite(
-#'   donnees_menages,
-#'   var_revenu = "depense_totale",
-#'   var_groupe = "milieu"
-#' )
+#' \dontrun{
+#'   inegalites <- decomposer_inegalite(
+#'     donnees_menages,
+#'     var_revenu = "depense_totale",
+#'     var_groupe = "milieu"
+#'   )
+#' }
 #' @export
 decomposer_inegalite <- function(data,
                                   var_revenu,
@@ -877,14 +884,14 @@ decomposer_inegalite <- function(data,
   x <- data[[var_revenu]]
 
   if (!is.numeric(x)) {
-    rlang::abort(paste0("La variable '", var_revenu, "' doit être numérique."))
+    rlang::abort(paste0("La variable '", var_revenu, "' doit \u00eatre num\u00e9rique."))
   }
 
   if (any(x <= 0, na.rm = TRUE)) {
     n_negatif <- sum(x <= 0, na.rm = TRUE)
     rlang::warn(paste0(
-      n_negatif, " valeur(s) ≤ 0 dans '", var_revenu,
-      "' → exclues du calcul."
+      n_negatif, " valeur(s) \u2264 0 dans '", var_revenu,
+      "' \u2192 exclues du calcul."
     ))
     idx_valide <- !is.na(x) & x > 0
     x <- x[idx_valide]
@@ -897,7 +904,7 @@ decomposer_inegalite <- function(data,
     rep(1, length(x))
   }
 
-  # Indice de Gini pondéré
+  # Indice de Gini pond\u00e9r\u00e9
   gini_val <- .calcul_gini(x, poids)
 
   # Indice de Theil T
@@ -912,7 +919,7 @@ decomposer_inegalite <- function(data,
     atkinson = round(atkinson_val, 4)
   )
 
-  # Décomposition par groupe
+  # D\u00e9composition par groupe
   if (!is.null(var_groupe) && var_groupe %in% names(data)) {
     groupes <- unique(data[[var_groupe]])
     decomp <- lapply(groupes, function(g) {
@@ -931,7 +938,7 @@ decomposer_inegalite <- function(data,
     resultats$decomposition <- dplyr::bind_rows(decomp)
   }
 
-  message("=== Mesures d'inégalité ===")
+  message("=== Mesures d'in\u00e9galit\u00e9 ===")
   message("Gini     : ", resultats$gini)
   message("Theil T  : ", resultats$theil)
   message("Atkinson : ", resultats$atkinson)
@@ -941,7 +948,7 @@ decomposer_inegalite <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 8. SCORE DE QUALITÉ DES DONNÉES
+# 8. SCORE DE QUALIT\u00c9 DES DONN\u00c9ES
 # -----------------------------------------------------------------------------
 
 #' @title Valider la qualité globale d'un jeu de données
@@ -954,25 +961,27 @@ decomposer_inegalite <- function(data,
 #'   Défaut : NULL.
 #' @return Une liste avec \code{score_global} et le détail par dimension.
 #' @examples
-#' qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
-#' cat("Score de qualité :", qualite$score_global, "/100")
+#' \dontrun{
+#'   qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
+#'   cat("Score de qualité :", qualite$score_global, "/100")
+#' }
 #' @export
 valider_qualite_donnees <- function(data,
                                      seuil_na  = 0.1,
                                      vars_cles = NULL) {
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   scores <- list()
 
-  # 1. Complétude
+  # 1. Compl\u00e9tude
   taux_na_global <- mean(is.na(data))
   scores$completude <- round(max(0, (1 - taux_na_global / seuil_na) * 25), 1)
   scores$completude <- min(25, scores$completude)
 
-  # 2. Unicité
+  # 2. Unicit\u00e9
   if (!is.null(vars_cles)) {
     vars_cles_dispo <- intersect(vars_cles, names(data))
     if (length(vars_cles_dispo) > 0) {
@@ -987,7 +996,7 @@ valider_qualite_donnees <- function(data,
     scores$unicite <- round(n_uniques / nrow(data) * 25, 1)
   }
 
-  # 3. Cohérence des types
+  # 3. Coh\u00e9rence des types
   n_vars <- ncol(data)
   n_coherents <- sum(sapply(data, function(x) {
     if (is.character(x)) {
@@ -998,7 +1007,7 @@ valider_qualite_donnees <- function(data,
   }))
   scores$coherence <- round(n_coherents / n_vars * 25, 1)
 
-  # 4. Plausibilité (valeurs hors plage)
+  # 4. Plausibilit\u00e9 (valeurs hors plage)
   vars_num <- names(data)[sapply(data, is.numeric)]
   if (length(vars_num) > 0) {
     n_plausibles <- sum(sapply(data[vars_num], function(x) {
@@ -1015,11 +1024,11 @@ valider_qualite_donnees <- function(data,
 
   score_global <- sum(unlist(scores))
 
-  message("=== Score de qualité des données ===")
-  message("Complétude   : ", scores$completude, "/25")
-  message("Unicité      : ", scores$unicite, "/25")
-  message("Cohérence    : ", scores$coherence, "/25")
-  message("Plausibilité : ", scores$plausibilite, "/25")
+  message("=== Score de qualit\u00e9 des donn\u00e9es ===")
+  message("Compl\u00e9tude   : ", scores$completude, "/25")
+  message("Unicit\u00e9      : ", scores$unicite, "/25")
+  message("Coh\u00e9rence    : ", scores$coherence, "/25")
+  message("Plausibilit\u00e9 : ", scores$plausibilite, "/25")
   message("SCORE GLOBAL : ", score_global, "/100")
 
   list(
@@ -1042,12 +1051,12 @@ valider_qualite_donnees <- function(data,
 #' @keywords internal
 .valider_borne <- function(valeur, min_val, max_val, nom, unite = "") {
   if (is.na(valeur) || !is.numeric(valeur)) {
-    rlang::abort(paste0(nom, " doit être un nombre."))
+    rlang::abort(paste0(nom, " doit \u00eatre un nombre."))
   }
   if (valeur < min_val || valeur > max_val) {
     rlang::warn(paste0(
       nom, " hors plage PNUD [", min_val, "-", max_val, "] ",
-      unite, " : ", valeur, ". Résultat écrêté."
+      unite, " : ", valeur, ". R\u00e9sultat \u00e9cr\u00eat\u00e9."
     ))
   }
 }
@@ -1062,10 +1071,10 @@ valider_qualite_donnees <- function(data,
   poids_norm <- poids / sum(poids)
   cum_poids  <- cumsum(poids_norm)
   cum_rev    <- cumsum(x * poids_norm) / sum(x * poids_norm)
-  # Méthode trapèze
+  # M\u00e9thode trap\u00e8ze
   gini <- 1 - 2 * sum(cum_rev * poids_norm) +
     sum(x * poids_norm) / sum(x * poids_norm)
-  # Formule simplifiée
+  # Formule simplifi\u00e9e
   gini <- 1 - sum((cum_rev[-n] + cum_rev[-1]) *
                     diff(cum_poids))
   max(0, min(1, gini))
@@ -1111,7 +1120,7 @@ valider_qualite_donnees <- function(data,
   if (!requireNamespace(pkg, quietly = TRUE)) {
     ctx <- if (!is.null(contexte)) paste0(" (requis pour ", contexte, ")") else ""
     rlang::abort(paste0(
-      "Package '", pkg, "' requis", ctx, " mais non installé.\n",
+      "Package '", pkg, "' requis", ctx, " mais non install\u00e9.\n",
       "Installez-le avec : install.packages('", pkg, "')"
     ))
   }

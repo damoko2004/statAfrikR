@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR — Module Visualisation
+# statAfrikR \u2014 Module Visualisation
 # Fonctions de visualisation statistique pour INS africains
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. THÈME INS
+# 1. TH\u00c8ME INS
 # -----------------------------------------------------------------------------
 
 #' @title Thème ggplot2 officiel INS
@@ -18,10 +18,12 @@
 #' @param grille_mineure logical — Afficher la grille mineure. Défaut : FALSE.
 #' @return Un objet \code{theme} ggplot2.
 #' @examples
-#' library(ggplot2)
-#' ggplot(mtcars, aes(wt, mpg)) +
-#'   geom_point() +
-#'   theme_ins()
+#' \dontrun{
+#'   library(ggplot2)
+#'   ggplot(mtcars, aes(wt, mpg)) +
+#'     geom_point() +
+#'     theme_ins()
+#' }
 #' @export
 theme_ins <- function(base_size     = 11,
                        base_family   = "sans",
@@ -76,7 +78,7 @@ theme_ins <- function(base_size     = 11,
         linewidth = 0.4
       ),
 
-      # Légende
+      # L\u00e9gende
       legend.title       = ggplot2::element_text(
         size  = base_size * 0.9,
         face  = "bold",
@@ -142,7 +144,9 @@ theme_ins <- function(base_size     = 11,
 #'   \code{"divergent"}. Défaut : "categoriel".
 #' @return Vecteur de codes couleurs hexadécimaux.
 #' @examples
-#' couleurs <- palette_ins(4)
+#' \dontrun{
+#'   couleurs <- palette_ins(4)
+#' }
 #' @export
 palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")) {
   type <- match.arg(type)
@@ -166,7 +170,7 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
   if (n > length(pal)) {
     rlang::warn(paste0(
       "Seulement ", length(pal), " couleurs disponibles pour la palette '",
-      type, "'. ", n - length(pal), " couleur(s) répétée(s)."
+      type, "'. ", n - length(pal), " couleur(s) r\u00e9p\u00e9t\u00e9e(s)."
     ))
     pal <- rep(pal, ceiling(n / length(pal)))[seq_len(n)]
   }
@@ -176,7 +180,7 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
 
 
 # -----------------------------------------------------------------------------
-# 2. PYRAMIDE DES ÂGES
+# 2. PYRAMIDE DES \u00c2GES
 # -----------------------------------------------------------------------------
 
 #' @title Pyramide des âges
@@ -198,20 +202,22 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
 #' @param couleur_femme character — Couleur femmes. Défaut : "#E8872A".
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' pyramide_ages(
-#'   donnees_rgph,
-#'   var_age   = "age",
-#'   var_sexe  = "sexe",
-#'   var_poids = "poids",
-#'   titre     = "Pyramide des âges — RGPH 2023"
-#' )
+#' \dontrun{
+#'   pyramide_ages(
+#'     donnees_rgph,
+#'     var_age   = "age",
+#'     var_sexe  = "sexe",
+#'     var_poids = "poids",
+#'     titre     = "Pyramide des âges — RGPH 2023"
+#'   )
+#' }
 #' @export
 pyramide_ages <- function(data,
                            var_age,
                            var_sexe,
                            var_poids       = NULL,
                            modalite_homme  = "Masculin",
-                           modalite_femme  = "Féminin",
+                           modalite_femme  = "F\u00e9minin",
                            largeur_classe  = 5L,
                            age_max         = 80L,
                            titre           = NULL,
@@ -227,14 +233,14 @@ pyramide_ages <- function(data,
     rlang::abort(paste0("Variables introuvables : ", paste(vars_abs, collapse = ", ")))
   }
 
-  # Pondération
+  # Pond\u00e9ration
   if (!is.null(var_poids) && var_poids %in% names(data)) {
     poids <- data[[var_poids]]
   } else {
     poids <- rep(1, nrow(data))
   }
 
-  # Construction des classes d'âge
+  # Construction des classes d'\u00e2ge
   breaks <- seq(0, age_max + largeur_classe, by = largeur_classe)
   labels <- paste0(
     seq(0, age_max, by = largeur_classe), "-",
@@ -252,7 +258,7 @@ pyramide_ages <- function(data,
     include.lowest = TRUE
   )
 
-  # Agrégation
+  # Agr\u00e9gation
   data_agg <- data_calc |>
     dplyr::filter(
       !is.na(.data[[var_sexe]]),
@@ -279,7 +285,7 @@ pyramide_ages <- function(data,
     label_x <- "Effectif"
   }
 
-  # Hommes à gauche (négatif)
+  # Hommes \u00e0 gauche (n\u00e9gatif)
   data_agg <- data_agg |>
     dplyr::mutate(
       valeur_plot = dplyr::case_when(
@@ -311,7 +317,7 @@ pyramide_ages <- function(data,
     ggplot2::labs(
       title    = titre,
       x        = label_x,
-      y        = "Groupe d'âge",
+      y        = "Groupe d'\u00e2ge",
       fill     = NULL,
       caption  = paste0(
         "Source : statAfrikR | N = ",
@@ -354,13 +360,15 @@ pyramide_ages <- function(data,
 #' @param trier logical — Trier les barres par valeur décroissante. Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' resultats <- tab_croisee(donnees, "region", format_sortie = "tibble")
-#' graphique_barres(
-#'   resultats,
-#'   var_x   = "region",
-#'   var_y   = "pourcentage",
-#'   titre   = "Répartition par région"
-#' )
+#' \dontrun{
+#'   resultats <- tab_croisee(donnees, "region", format_sortie = "tibble")
+#'   graphique_barres(
+#'     resultats,
+#'     var_x   = "region",
+#'     var_y   = "pourcentage",
+#'     titre   = "Répartition par région"
+#'   )
+#' }
 #' @export
 graphique_barres <- function(data,
                               var_x,
@@ -393,7 +401,7 @@ graphique_barres <- function(data,
       )
   }
 
-  # Mapping esthétique
+  # Mapping esth\u00e9tique
   aes_base <- if (!is.null(var_groupe)) {
     ggplot2::aes(
       x    = .data[[var_x]],
@@ -479,12 +487,14 @@ graphique_barres <- function(data,
 #' @param lisser logical — Ajouter une courbe lissée (loess). Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' graphique_tendance(
-#'   data            = evolution_pib,
-#'   var_temps       = "annee",
-#'   vars_indicateurs = c("pib_reel", "pib_nominal"),
-#'   titre           = "Évolution du PIB 2000-2023"
-#' )
+#' \dontrun{
+#'   graphique_tendance(
+#'     data            = evolution_pib,
+#'     var_temps       = "annee",
+#'     vars_indicateurs = c("pib_reel", "pib_nominal"),
+#'     titre           = "Évolution du PIB 2000-2023"
+#'   )
+#' }
 #' @export
 graphique_tendance <- function(data,
                                 var_temps,
@@ -503,7 +513,7 @@ graphique_tendance <- function(data,
     rlang::abort(paste0("Variable temporelle introuvable : '", var_temps, "'."))
   }
 
-  # Conversion format large → long si nécessaire
+  # Conversion format large \u2192 long si n\u00e9cessaire
   if (!is.null(vars_indicateurs)) {
     vars_abs <- setdiff(vars_indicateurs, names(data))
     if (length(vars_abs) > 0) {
@@ -521,7 +531,7 @@ graphique_tendance <- function(data,
     data_long <- data
   } else {
     rlang::abort(paste0(
-      "Spécifiez soit `vars_indicateurs` (format large) soit ",
+      "Sp\u00e9cifiez soit `vars_indicateurs` (format large) soit ",
       "`var_valeur` + `var_indicateur` (format long)."
     ))
   }
@@ -577,7 +587,7 @@ graphique_tendance <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 5. CARTE THÉMATIQUE
+# 5. CARTE TH\u00c9MATIQUE
 # -----------------------------------------------------------------------------
 
 #' @title Carte thématique choroplèthe
@@ -629,11 +639,11 @@ carte_thematique <- function(data_sf        = NULL,
 
   palette <- match.arg(palette)
 
-  # Préparation de l'objet sf
+  # Pr\u00e9paration de l'objet sf
   if (is.null(data_sf)) {
     if (is.null(shapefile) || is.null(data)) {
       rlang::abort(
-        "Fournissez soit `data_sf`, soit `shapefile` + `data` + clés de jointure."
+        "Fournissez soit `data_sf`, soit `shapefile` + `data` + cl\u00e9s de jointure."
       )
     }
     if (is.character(shapefile)) {
@@ -645,7 +655,7 @@ carte_thematique <- function(data_sf        = NULL,
   }
 
   if (!inherits(data_sf, "sf")) {
-    rlang::abort("`data_sf` doit être un objet sf.")
+    rlang::abort("`data_sf` doit \u00eatre un objet sf.")
   }
 
   if (!var_couleur %in% names(data_sf)) {
@@ -730,7 +740,7 @@ exporter_graphique <- function(graphique,
   .verifier_package("ggplot2", "exporter_graphique")
 
   if (!inherits(graphique, "gg")) {
-    rlang::abort("`graphique` doit être un objet ggplot.")
+    rlang::abort("`graphique` doit \u00eatre un objet ggplot.")
   }
 
   if (missing(chemin) || !nzchar(chemin)) {
@@ -742,16 +752,16 @@ exporter_graphique <- function(graphique,
 
   if (!ext %in% formats_valides) {
     rlang::abort(paste0(
-      "Format non supporté : '.", ext, "'.\n",
+      "Format non support\u00e9 : '.", ext, "'.\n",
       "Formats valides : ", paste(formats_valides, collapse = ", ")
     ))
   }
 
-  # Création du répertoire si nécessaire
+  # Cr\u00e9ation du r\u00e9pertoire si n\u00e9cessaire
   dir_sortie <- dirname(chemin)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
-    message("Répertoire créé : ", dir_sortie)
+    message("R\u00e9pertoire cr\u00e9\u00e9 : ", dir_sortie)
   }
 
   ggplot2::ggsave(
@@ -771,7 +781,7 @@ exporter_graphique <- function(graphique,
     TRUE         ~ paste0(taille, " octets")
   )
 
-  message("Graphique exporté : ", chemin, " (", taille_fmt, ")")
+  message("Graphique export\u00e9 : ", chemin, " (", taille_fmt, ")")
   invisible(chemin)
 }
 
@@ -785,7 +795,7 @@ exporter_graphique <- function(graphique,
   if (!requireNamespace(pkg, quietly = TRUE)) {
     ctx <- if (!is.null(contexte)) paste0(" (requis pour ", contexte, ")") else ""
     rlang::abort(paste0(
-      "Package '", pkg, "' requis", ctx, " mais non installé.\n",
+      "Package '", pkg, "' requis", ctx, " mais non install\u00e9.\n",
       "Installez-le avec : install.packages('", pkg, "')"
     ))
   }

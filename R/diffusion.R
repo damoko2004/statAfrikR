@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR — Module Diffusion
-# Fonctions de production, anonymisation et diffusion des données
+# statAfrikR \u2014 Module Diffusion
+# Fonctions de production, anonymisation et diffusion des donn\u00e9es
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. GÉNÉRATION DE RAPPORT
+# 1. G\u00c9N\u00c9RATION DE RAPPORT
 # -----------------------------------------------------------------------------
 
 #' @title Générer un rapport statistique officiel
@@ -49,10 +49,10 @@ generer_rapport <- function(donnees,
   .verifier_package("rmarkdown", "generer_rapport")
 
   if (!is.data.frame(donnees)) {
-    rlang::abort("`donnees` doit être un data.frame ou tibble.")
+    rlang::abort("`donnees` doit \u00eatre un data.frame ou tibble.")
   }
 
-  # Résolution du template
+  # R\u00e9solution du template
   templates_integres <- c("bulletin_mensuel", "rapport_annuel", "fiche_pays")
 
   if (template %in% templates_integres) {
@@ -62,7 +62,7 @@ generer_rapport <- function(donnees,
       package = "statAfrikR"
     )
     if (!nzchar(chemin_template) || !file.exists(chemin_template)) {
-      # Template de secours généré à la volée
+      # Template de secours g\u00e9n\u00e9r\u00e9 \u00e0 la vol\u00e9e
       chemin_template <- .creer_template_secours(template, metadonnees)
     }
   } else {
@@ -79,17 +79,17 @@ generer_rapport <- function(donnees,
     fichier_sortie <- paste0("rapport_", template, "_", horodatage, ext)
   }
 
-  # Création du répertoire de sortie si nécessaire
+  # Cr\u00e9ation du r\u00e9pertoire de sortie si n\u00e9cessaire
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
   }
 
-  # Paramètres pour le Rmd
+  # Param\u00e8tres pour le Rmd
   params_rmd <- list(
     donnees     = donnees,
     metadonnees = metadonnees %||% list(
-      titre       = paste0("Rapport statistique — ", template),
+      titre       = paste0("Rapport statistique \u2014 ", template),
       auteur      = "statAfrikR",
       pays        = "Afrique",
       annee       = format(Sys.Date(), "%Y"),
@@ -124,18 +124,18 @@ generer_rapport <- function(donnees,
     )
   }, error = function(e) {
     rlang::abort(paste0(
-      "Erreur lors de la génération du rapport : ", conditionMessage(e),
-      "\nVérifiez que le template est valide et que les packages nécessaires ",
-      "sont installés."
+      "Erreur lors de la g\u00e9n\u00e9ration du rapport : ", conditionMessage(e),
+      "\nV\u00e9rifiez que le template est valide et que les packages n\u00e9cessaires ",
+      "sont install\u00e9s."
     ))
   })
 
   if (!file.exists(fichier_sortie)) {
-    rlang::abort("Le rapport n'a pas été généré. Vérifiez le template.")
+    rlang::abort("Le rapport n'a pas \u00e9t\u00e9 g\u00e9n\u00e9r\u00e9. V\u00e9rifiez le template.")
   }
 
   taille <- file.size(fichier_sortie)
-  message("Rapport généré : ", fichier_sortie,
+  message("Rapport g\u00e9n\u00e9r\u00e9 : ", fichier_sortie,
           " (", round(taille / 1024, 1), " Ko)")
 
   if (ouvrir) {
@@ -150,7 +150,7 @@ generer_rapport <- function(donnees,
 
 
 # -----------------------------------------------------------------------------
-# 2. ANONYMISATION DES DONNÉES
+# 2. ANONYMISATION DES DONN\u00c9ES
 # -----------------------------------------------------------------------------
 
 #' @title Anonymiser un jeu de données
@@ -174,14 +174,16 @@ generer_rapport <- function(donnees,
 #' @return Si \code{rapport = FALSE} : tibble anonymisé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' resultat <- anonymiser_donnees(
-#'   donnees_enquete,
-#'   vars_supprimer  = c("nom", "prenom", "telephone"),
-#'   vars_masquer    = c("id_menage", "id_individu"),
-#'   vars_perturber  = c("revenu_mensuel"),
-#'   vars_generaliser = list(age = 5)
-#' )
-#' donnees_anon <- resultat$donnees
+#' \dontrun{
+#'   resultat <- anonymiser_donnees(
+#'     donnees_enquete,
+#'     vars_supprimer  = c("nom", "prenom", "telephone"),
+#'     vars_masquer    = c("id_menage", "id_individu"),
+#'     vars_perturber  = c("revenu_mensuel"),
+#'     vars_generaliser = list(age = 5)
+#'   )
+#'   donnees_anon <- resultat$donnees
+#' }
 #' @export
 anonymiser_donnees <- function(data,
                                 vars_supprimer   = NULL,
@@ -193,7 +195,7 @@ anonymiser_donnees <- function(data,
                                 rapport          = TRUE) {
 
   if (!is.data.frame(data)) {
-    rlang::abort("`data` doit être un data.frame ou tibble.")
+    rlang::abort("`data` doit \u00eatre un data.frame ou tibble.")
   }
 
   set.seed(graine)
@@ -206,14 +208,14 @@ anonymiser_donnees <- function(data,
     vars_ko <- setdiff(vars_supprimer, names(data_anon))
     if (length(vars_ko) > 0) {
       rlang::warn(paste0(
-        "Variables à supprimer introuvables (ignorées) : ",
+        "Variables \u00e0 supprimer introuvables (ignor\u00e9es) : ",
         paste(vars_ko, collapse = ", ")
       ))
     }
     if (length(vars_ok) > 0) {
       data_anon <- data_anon[, !names(data_anon) %in% vars_ok, drop = FALSE]
       operations[["suppression"]] <- vars_ok
-      message("Supprimées : ", paste(vars_ok, collapse = ", "))
+      message("Supprim\u00e9es : ", paste(vars_ok, collapse = ", "))
     }
   }
 
@@ -223,7 +225,7 @@ anonymiser_donnees <- function(data,
     vars_ko <- setdiff(vars_masquer, names(data_anon))
     if (length(vars_ko) > 0) {
       rlang::warn(paste0(
-        "Variables à masquer introuvables : ",
+        "Variables \u00e0 masquer introuvables : ",
         paste(vars_ko, collapse = ", ")
       ))
     }
@@ -241,7 +243,7 @@ anonymiser_donnees <- function(data,
       operations[["masquage"]] <- c(operations[["masquage"]], var)
     }
     if (length(vars_ok) > 0) {
-      message("Masquées (pseudonymisées) : ", paste(vars_ok, collapse = ", "))
+      message("Masqu\u00e9es (pseudonymis\u00e9es) : ", paste(vars_ok, collapse = ", "))
     }
   }
 
@@ -251,7 +253,7 @@ anonymiser_donnees <- function(data,
     vars_ko <- setdiff(vars_perturber, names(data_anon))
     if (length(vars_ko) > 0) {
       rlang::warn(paste0(
-        "Variables à perturber introuvables : ",
+        "Variables \u00e0 perturber introuvables : ",
         paste(vars_ko, collapse = ", ")
       ))
     }
@@ -259,7 +261,7 @@ anonymiser_donnees <- function(data,
       x <- data_anon[[var]]
       if (!is.numeric(x)) {
         rlang::warn(paste0(
-          "Variable '", var, "' non numérique — perturbation ignorée."
+          "Variable '", var, "' non num\u00e9rique \u2014 perturbation ignor\u00e9e."
         ))
         next
       }
@@ -269,26 +271,26 @@ anonymiser_donnees <- function(data,
       operations[["perturbation"]] <- c(operations[["perturbation"]], var)
     }
     if (length(vars_ok) > 0) {
-      message("Perturbées (bruit ", niveau_bruit * 100, "% σ) : ",
+      message("Perturb\u00e9es (bruit ", niveau_bruit * 100, "% \u03c3) : ",
               paste(vars_ok, collapse = ", "))
     }
   }
 
-  # 4. Généralisation (regroupement en classes)
+  # 4. G\u00e9n\u00e9ralisation (regroupement en classes)
   if (!is.null(vars_generaliser)) {
     if (!is.list(vars_generaliser)) {
-      rlang::abort("`vars_generaliser` doit être une liste nommée.")
+      rlang::abort("`vars_generaliser` doit \u00eatre une liste nomm\u00e9e.")
     }
     for (var in names(vars_generaliser)) {
       if (!var %in% names(data_anon)) {
-        rlang::warn(paste0("Variable à généraliser introuvable : '", var, "'."))
+        rlang::warn(paste0("Variable \u00e0 g\u00e9n\u00e9raliser introuvable : '", var, "'."))
         next
       }
       x       <- data_anon[[var]]
       largeur <- vars_generaliser[[var]]
       if (!is.numeric(x)) {
         rlang::warn(paste0(
-          "Variable '", var, "' non numérique — généralisation ignorée."
+          "Variable '", var, "' non num\u00e9rique \u2014 g\u00e9n\u00e9ralisation ignor\u00e9e."
         ))
         next
       }
@@ -307,7 +309,7 @@ anonymiser_donnees <- function(data,
         operations[["generalisation"]], var
       )
     }
-    message("Généralisées : ",
+    message("G\u00e9n\u00e9ralis\u00e9es : ",
             paste(names(vars_generaliser), collapse = ", "))
   }
 
@@ -318,7 +320,7 @@ anonymiser_donnees <- function(data,
     n_variables  = sapply(operations, length)
   )
 
-  message("Anonymisation terminée : ",
+  message("Anonymisation termin\u00e9e : ",
           nrow(data_anon), " lignes x ",
           ncol(data_anon), " colonnes.")
 
@@ -373,7 +375,7 @@ exporter_sdmx <- function(data,
                             version         = "2.1") {
 
   if (!is.data.frame(data)) {
-    rlang::abort("`data` doit être un data.frame ou tibble.")
+    rlang::abort("`data` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (missing(flux_donnees) || !nzchar(flux_donnees)) {
@@ -384,7 +386,7 @@ exporter_sdmx <- function(data,
     rlang::abort("`fichier_sortie` est obligatoire.")
   }
 
-  # Vérification des variables
+  # V\u00e9rification des variables
   toutes_vars <- c(vars_dimensions, vars_mesures,
                    if (!is.null(vars_attributs)) vars_attributs)
   vars_abs    <- setdiff(toutes_vars, names(data))
@@ -414,7 +416,7 @@ exporter_sdmx <- function(data,
     .before  = 1
   )
 
-  # Séparation OBS_VALUE pour chaque mesure (format SDMX long)
+  # S\u00e9paration OBS_VALUE pour chaque mesure (format SDMX long)
   data_long <- data_sdmx |>
     tidyr::pivot_longer(
       cols      = dplyr::all_of(toupper(vars_mesures)),
@@ -422,14 +424,14 @@ exporter_sdmx <- function(data,
       values_to = "OBS_VALUE"
     )
 
-  # Création du répertoire si nécessaire
+  # Cr\u00e9ation du r\u00e9pertoire si n\u00e9cessaire
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
   }
 
-  # Écriture : header + données
-  # Écriture du header SDMX puis des données
+  # \u00c9criture : header + donn\u00e9es
+  # \u00c9criture du header SDMX puis des donn\u00e9es
   con <- file(fichier_sortie, open = "wt", encoding = "UTF-8")
   writeLines(header_sdmx, con = con)
   close(con)
@@ -458,7 +460,7 @@ exporter_sdmx <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 4. MÉTADONNÉES DDI
+# 4. M\u00c9TADONN\u00c9ES DDI
 # -----------------------------------------------------------------------------
 
 #' @title Générer une fiche de métadonnées DDI
@@ -489,24 +491,24 @@ exporter_sdmx <- function(data,
 #' }
 #' @export
 generer_metadonnees_ddi <- function(data,
-                                     titre,
-                                     pays,
-                                     annee,
-                                     institution,
+                                     titre          = NULL,
+                                     pays           = NULL,
+                                     annee          = NULL,
+                                     institution    = NULL,
                                      auteurs        = NULL,
                                      description    = NULL,
-                                     fichier_sortie,
+                                     fichier_sortie = NULL,
                                      langue         = "fr") {
 
   if (!is.data.frame(data)) {
-    rlang::abort("`data` doit être un data.frame ou tibble.")
+    rlang::abort("`data` doit \u00eatre un data.frame ou tibble.")
   }
 
-  if (!nzchar(as.character(titre)))        rlang::abort("`titre` est obligatoire.")
-  if (!nzchar(as.character(pays)))         rlang::abort("`pays` est obligatoire.")
-  if (!nzchar(as.character(annee)))        rlang::abort("`annee` est obligatoire.")
-  if (!nzchar(as.character(institution)))  rlang::abort("`institution` est obligatoire.")
-  if (!nzchar(as.character(fichier_sortie))) rlang::abort("`fichier_sortie` est obligatoire.")
+  if (is.null(titre)         || !nzchar(as.character(titre)))         rlang::abort("`titre` est obligatoire.")
+  if (is.null(pays)          || !nzchar(as.character(pays)))          rlang::abort("`pays` est obligatoire.")
+  if (is.null(annee)         || !nzchar(as.character(annee)))         rlang::abort("`annee` est obligatoire.")
+  if (is.null(institution)   || !nzchar(as.character(institution)))   rlang::abort("`institution` est obligatoire.")
+  if (is.null(fichier_sortie)|| !nzchar(as.character(fichier_sortie)))rlang::abort("`fichier_sortie` est obligatoire.")
 
   # Statistiques sur les variables
   stats_vars <- lapply(names(data), function(var) {
@@ -546,7 +548,7 @@ generer_metadonnees_ddi <- function(data,
     '<docDscr>',
     '<citation>',
     paste0('<titlStmt><titl>', .echapper_xml(titre),
-           ' — Documentation</titl></titlStmt>'),
+           ' \u2014 Documentation</titl></titlStmt>'),
     paste0('<prodStmt><producer>', .echapper_xml(institution),
            '</producer>'),
     paste0('<prodDate>', date_prod, '</prodDate></prodStmt>'),
@@ -576,12 +578,12 @@ generer_metadonnees_ddi <- function(data,
     '<stdyInfo>',
     paste0('<subject>'),
     paste0('  <keyword>statistiques officielles</keyword>'),
-    paste0('  <keyword>enquête ménage</keyword>'),
+    paste0('  <keyword>enqu\u00eate m\u00e9nage</keyword>'),
     paste0('  <keyword>', .echapper_xml(pays), '</keyword>'),
     '</subject>',
     paste0('<abstract>',
            if (!is.null(description)) .echapper_xml(description)
-           else paste0("Enquête statistique — ", pays, " ", annee),
+           else paste0("Enqu\u00eate statistique \u2014 ", pays, " ", annee),
            '</abstract>'),
     '</stdyInfo>',
 
@@ -596,8 +598,8 @@ generer_metadonnees_ddi <- function(data,
     '<dataAccs>',
     '<useStmt>',
     paste0('<restrctn>',
-           'Données produites par ', .echapper_xml(institution),
-           '. Utilisation soumise à autorisation.',
+           'Donn\u00e9es produites par ', .echapper_xml(institution),
+           '. Utilisation soumise \u00e0 autorisation.',
            '</restrctn>'),
     '</useStmt>',
     '</dataAccs>',
@@ -634,7 +636,7 @@ generer_metadonnees_ddi <- function(data,
 
   lignes_xml <- c(lignes_xml, '</dataDscr>', '</codeBook>')
 
-  # Écriture du fichier
+  # \u00c9criture du fichier
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
@@ -642,9 +644,9 @@ generer_metadonnees_ddi <- function(data,
 
   writeLines(lignes_xml, con = fichier_sortie, useBytes = FALSE)
 
-  message("Métadonnées DDI générées : ", fichier_sortie)
-  message("  Étude : ", id_etude)
-  message("  Variables documentées : ", ncol(data))
+  message("M\u00e9tadonn\u00e9es DDI g\u00e9n\u00e9r\u00e9es : ", fichier_sortie)
+  message("  \u00c9tude : ", id_etude)
+  message("  Variables document\u00e9es : ", ncol(data))
 
   invisible(fichier_sortie)
 }
@@ -693,7 +695,7 @@ compresser_package_diffusion <- function(donnees,
                                           metadonnees              = NULL) {
 
   if (!is.data.frame(donnees)) {
-    rlang::abort("`donnees` doit être un data.frame ou tibble.")
+    rlang::abort("`donnees` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (missing(repertoire_sortie) || !nzchar(repertoire_sortie)) {
@@ -704,7 +706,7 @@ compresser_package_diffusion <- function(donnees,
     rlang::abort("`nom_package` est obligatoire.")
   }
 
-  # Création du répertoire temporaire de staging
+  # Cr\u00e9ation du r\u00e9pertoire temporaire de staging
   dir_temp <- file.path(
     tempdir(),
     paste0(nom_package, "_", format(Sys.time(), "%Y%m%d%H%M%S"))
@@ -714,21 +716,21 @@ compresser_package_diffusion <- function(donnees,
 
   fichiers_inclus <- character(0)
 
-  # Données CSV
+  # Donn\u00e9es CSV
   if (inclure_csv) {
     chemin_csv <- file.path(dir_temp, paste0(nom_package, ".csv"))
     utils::write.csv(donnees, chemin_csv, row.names = FALSE,
                      fileEncoding = "UTF-8")
     fichiers_inclus <- c(fichiers_inclus, chemin_csv)
-    message("  + Données CSV : ", basename(chemin_csv))
+    message("  + Donn\u00e9es CSV : ", basename(chemin_csv))
   }
 
-  # Données RDS
+  # Donn\u00e9es RDS
   if (inclure_rds) {
     chemin_rds <- file.path(dir_temp, paste0(nom_package, ".rds"))
     saveRDS(donnees, chemin_rds)
     fichiers_inclus <- c(fichiers_inclus, chemin_rds)
-    message("  + Données RDS : ", basename(chemin_rds))
+    message("  + Donn\u00e9es RDS : ", basename(chemin_rds))
   }
 
   # README automatique
@@ -737,7 +739,7 @@ compresser_package_diffusion <- function(donnees,
   writeLines(readme_contenu, chemin_readme)
   fichiers_inclus <- c(fichiers_inclus, chemin_readme)
 
-  # Fichiers supplémentaires
+  # Fichiers suppl\u00e9mentaires
   if (!is.null(fichiers_supplementaires)) {
     for (fich in fichiers_supplementaires) {
       if (file.exists(fich)) {
@@ -746,12 +748,12 @@ compresser_package_diffusion <- function(donnees,
         fichiers_inclus <- c(fichiers_inclus, dest)
         message("  + Fichier : ", basename(fich))
       } else {
-        rlang::warn(paste0("Fichier introuvable (ignoré) : '", fich, "'."))
+        rlang::warn(paste0("Fichier introuvable (ignor\u00e9) : '", fich, "'."))
       }
     }
   }
 
-  # Création du répertoire de sortie
+  # Cr\u00e9ation du r\u00e9pertoire de sortie
   if (!dir.exists(repertoire_sortie)) {
     dir.create(repertoire_sortie, recursive = TRUE)
   }
@@ -770,7 +772,7 @@ compresser_package_diffusion <- function(donnees,
   )
 
   if (!file.exists(chemin_zip)) {
-    rlang::abort("Échec de la création de l'archive ZIP.")
+    rlang::abort("\u00c9chec de la cr\u00e9ation de l'archive ZIP.")
   }
 
   taille <- file.size(chemin_zip)
@@ -780,7 +782,7 @@ compresser_package_diffusion <- function(donnees,
     paste0(round(taille / 1e3, 1), " Ko")
   }
 
-  message("Package de diffusion créé : ", chemin_zip)
+  message("Package de diffusion cr\u00e9\u00e9 : ", chemin_zip)
   message("  Fichiers inclus : ", length(fichiers_inclus))
   message("  Taille : ", taille_fmt)
 
@@ -809,8 +811,8 @@ compresser_package_diffusion <- function(donnees,
   c(
     paste0("# ", nom_package),
     "",
-    paste0("**Date de création :** ", format(Sys.Date(), "%d %B %Y")),
-    paste0("**Généré par :** statAfrikR (package R)"),
+    paste0("**Date de cr\u00e9ation :** ", format(Sys.Date(), "%d %B %Y")),
+    paste0("**G\u00e9n\u00e9r\u00e9 par :** statAfrikR (package R)"),
     "",
     "## Contenu",
     "",
@@ -832,7 +834,7 @@ compresser_package_diffusion <- function(donnees,
     "```",
     "",
     "---",
-    "_Package statAfrikR — INS africains_"
+    "_Package statAfrikR \u2014 INS africains_"
   )
 }
 
@@ -840,7 +842,7 @@ compresser_package_diffusion <- function(donnees,
 .creer_template_secours <- function(nom_template, metadonnees = NULL) {
   tmp <- tempfile(fileext = ".Rmd")
   meta <- metadonnees %||% list(
-    titre       = paste0("Rapport — ", nom_template),
+    titre       = paste0("Rapport \u2014 ", nom_template),
     auteur      = "statAfrikR",
     institution = "INS",
     annee       = format(Sys.Date(), "%Y")
@@ -862,7 +864,7 @@ compresser_package_diffusion <- function(donnees,
     "knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)",
     "```",
     "",
-    "## Résumé",
+    "## R\u00e9sum\u00e9",
     "",
     "```{r resume}",
     "if (!is.null(params$donnees)) {",
@@ -891,7 +893,7 @@ compresser_package_diffusion <- function(donnees,
   if (!requireNamespace(pkg, quietly = TRUE)) {
     ctx <- if (!is.null(contexte)) paste0(" (requis pour ", contexte, ")") else ""
     rlang::abort(paste0(
-      "Package '", pkg, "' requis", ctx, " mais non installé.\n",
+      "Package '", pkg, "' requis", ctx, " mais non install\u00e9.\n",
       "Installez-le avec : install.packages('", pkg, "')"
     ))
   }

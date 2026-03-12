@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR — Module Traitement
-# Fonctions de nettoyage, transformation et préparation des données
+# statAfrikR \u2014 Module Traitement
+# Fonctions de nettoyage, transformation et pr\u00e9paration des donn\u00e9es
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. NETTOYAGE DES LIBELLÉS
+# 1. NETTOYAGE DES LIBELL\u00c9S
 # -----------------------------------------------------------------------------
 
 #' @title Nettoyer les libellés de variables textuelles
@@ -26,12 +26,14 @@
 #' @param encodage character — Encodage cible. Défaut : "UTF-8".
 #' @return Un tibble avec les variables textuelles nettoyées.
 #' @examples
-#' donnees_propres <- nettoyer_libelles(donnees_enquete)
-#' donnees_propres <- nettoyer_libelles(
-#'   donnees_enquete,
-#'   vars  = c("region", "commune"),
-#'   casse = "majuscule"
-#' )
+#' \dontrun{
+#'   donnees_propres <- nettoyer_libelles(donnees_enquete)
+#'   donnees_propres <- nettoyer_libelles(
+#'     donnees_enquete,
+#'     vars  = c("region", "commune"),
+#'     casse = "majuscule"
+#'   )
+#' }
 #' @export
 nettoyer_libelles <- function(data,
                                vars                 = NULL,
@@ -44,14 +46,14 @@ nettoyer_libelles <- function(data,
   casse <- match.arg(casse)
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
-  # Sélection des variables à traiter
+  # S\u00e9lection des variables \u00e0 traiter
   if (is.null(vars)) {
     vars <- names(data)[sapply(data, is.character)]
     if (length(vars) == 0) {
-      rlang::warn("Aucune variable de type character trouvée dans les données.")
+      rlang::warn("Aucune variable de type character trouv\u00e9e dans les donn\u00e9es.")
       return(data)
     }
   } else {
@@ -90,19 +92,19 @@ nettoyer_libelles <- function(data,
     # Comptage des modifications
     n_modif <- sum(x != x_original, na.rm = TRUE)
     if (n_modif > 0) {
-      journal[[var]] <- paste0(n_modif, " valeur(s) modifiée(s)")
+      journal[[var]] <- paste0(n_modif, " valeur(s) modifi\u00e9e(s)")
     }
 
     data[[var]] <- x
   }
 
   if (length(journal) > 0) {
-    message("Nettoyage effectué sur ", length(journal), " variable(s) :")
+    message("Nettoyage effectu\u00e9 sur ", length(journal), " variable(s) :")
     for (var in names(journal)) {
       message("  - ", var, " : ", journal[[var]])
     }
   } else {
-    message("Aucune modification nécessaire.")
+    message("Aucune modification n\u00e9cessaire.")
   }
 
   data
@@ -110,7 +112,7 @@ nettoyer_libelles <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 2. HARMONISATION DES RÉGIONS
+# 2. HARMONISATION DES R\u00c9GIONS
 # -----------------------------------------------------------------------------
 
 #' @title Harmoniser les noms de régions/provinces
@@ -133,11 +135,13 @@ nettoyer_libelles <- function(data,
 #' @return Le tibble avec une colonne \code{var_sortie} ajoutée contenant
 #'   les régions standardisées.
 #' @examples
-#' donnees <- harmoniser_regions(
-#'   data       = donnees_enquete,
-#'   var_region = "region",
-#'   pays       = "BJ"
-#' )
+#' \dontrun{
+#'   donnees <- harmoniser_regions(
+#'     data       = donnees_enquete,
+#'     var_region = "region",
+#'     pays       = "BJ"
+#'   )
+#' }
 #' @export
 harmoniser_regions <- function(data,
                                 var_region,
@@ -147,10 +151,10 @@ harmoniser_regions <- function(data,
                                 signaler_non_trouves  = TRUE) {
 
   if (!var_region %in% names(data)) {
-    rlang::abort(paste0("Variable '", var_region, "' introuvable dans les données."))
+    rlang::abort(paste0("Variable '", var_region, "' introuvable dans les donn\u00e9es."))
   }
 
-  # Référentiels intégrés par pays
+  # R\u00e9f\u00e9rentiels int\u00e9gr\u00e9s par pays
   referentiels <- .charger_referentiels_regions()
 
   if (!is.null(pays)) {
@@ -158,7 +162,7 @@ harmoniser_regions <- function(data,
     if (!pays_up %in% names(referentiels)) {
       pays_dispo <- paste(names(referentiels), collapse = ", ")
       rlang::warn(paste0(
-        "Pays '", pays, "' non disponible dans les référentiels intégrés.\n",
+        "Pays '", pays, "' non disponible dans les r\u00e9f\u00e9rentiels int\u00e9gr\u00e9s.\n",
         "Pays disponibles : ", pays_dispo, "\n",
         "Fournissez une `table_correspondance` manuelle."
       ))
@@ -172,7 +176,7 @@ harmoniser_regions <- function(data,
   valeurs_uniques <- unique(valeurs[!is.na(valeurs)])
 
   if (!is.null(table_correspondance)) {
-    # Vérification de la table de correspondance
+    # V\u00e9rification de la table de correspondance
     cols_req <- c("original", "standardise")
     cols_man <- setdiff(cols_req, names(table_correspondance))
     if (length(cols_man) > 0) {
@@ -182,7 +186,7 @@ harmoniser_regions <- function(data,
       ))
     }
 
-    # Correspondance insensible à la casse et aux espaces
+    # Correspondance insensible \u00e0 la casse et aux espaces
     table_norm <- table_correspondance
     table_norm$original_norm <- stringr::str_squish(
       stringr::str_to_lower(table_norm$original)
@@ -195,20 +199,20 @@ harmoniser_regions <- function(data,
     ]
 
   } else {
-    # Sans référentiel : copie simple + normalisation basique
+    # Sans r\u00e9f\u00e9rentiel : copie simple + normalisation basique
     data[[var_sortie]] <- stringr::str_to_title(
       stringr::str_squish(valeurs)
     )
   }
 
-  # Rapport des non-trouvés
+  # Rapport des non-trouv\u00e9s
   if (signaler_non_trouves) {
     non_trouves <- valeurs_uniques[is.na(data[[var_sortie]][
       match(valeurs_uniques, valeurs)
     ])]
     if (length(non_trouves) > 0) {
       rlang::warn(paste0(
-        length(non_trouves), " valeur(s) de région non reconnue(s) : ",
+        length(non_trouves), " valeur(s) de r\u00e9gion non reconnue(s) : ",
         paste(head(non_trouves, 10), collapse = ", "),
         if (length(non_trouves) > 10) paste0(" (et ", length(non_trouves) - 10, " autres)")
       ))
@@ -217,14 +221,14 @@ harmoniser_regions <- function(data,
 
   taux_harmonise <- mean(!is.na(data[[var_sortie]]), na.rm = TRUE)
   message("Harmonisation : ", scales::percent(taux_harmonise),
-          " des valeurs standardisées.")
+          " des valeurs standardis\u00e9es.")
 
   data
 }
 
 
 # -----------------------------------------------------------------------------
-# 3. PONDÉRATIONS
+# 3. POND\u00c9RATIONS
 # -----------------------------------------------------------------------------
 
 #' @title Appliquer les pondérations d'enquête
@@ -244,12 +248,14 @@ harmoniser_regions <- function(data,
 #'   soit égale à l'effectif de l'échantillon. Défaut : FALSE.
 #' @return Un objet \code{svydesign} du package \code{survey}.
 #' @examples
-#' plan <- appliquer_ponderations(
-#'   data       = donnees_menages,
-#'   var_poids  = "poids_final",
-#'   var_strate = "strate",
-#'   var_grappe = "grappe_id"
-#' )
+#' \dontrun{
+#'   plan <- appliquer_ponderations(
+#'     data       = donnees_menages,
+#'     var_poids  = "poids_final",
+#'     var_strate = "strate",
+#'     var_grappe = "grappe_id"
+#'   )
+#' }
 #' @seealso \code{\link{tab_croisee}}, \code{\link{stat_descr}}
 #' @export
 appliquer_ponderations <- function(data,
@@ -263,14 +269,14 @@ appliquer_ponderations <- function(data,
 
   if (!var_poids %in% names(data)) {
     rlang::abort(paste0(
-      "Variable de pondération introuvable : '", var_poids, "'.\n",
+      "Variable de pond\u00e9ration introuvable : '", var_poids, "'.\n",
       "Variables disponibles : ", paste(names(data), collapse = ", ")
     ))
   }
 
   poids_vals <- data[[var_poids]]
 
-  # Contrôles sur les valeurs des poids
+  # Contr\u00f4les sur les valeurs des poids
   if (any(is.na(poids_vals))) {
     n_na <- sum(is.na(poids_vals))
     rlang::warn(paste0(
@@ -284,11 +290,11 @@ appliquer_ponderations <- function(data,
   if (any(poids_vals <= 0)) {
     lignes_pb <- which(poids_vals <= 0)
     rlang::abort(paste0(
-      "Poids nuls ou négatifs détectés aux lignes : ",
+      "Poids nuls ou n\u00e9gatifs d\u00e9tect\u00e9s aux lignes : ",
       paste(head(lignes_pb, 10), collapse = ", "),
       if (length(lignes_pb) > 10)
         paste0(" (et ", length(lignes_pb) - 10, " autres)"),
-      ".\nLes poids doivent être strictement positifs."
+      ".\nLes poids doivent \u00eatre strictement positifs."
     ))
   }
 
@@ -297,7 +303,7 @@ appliquer_ponderations <- function(data,
     n <- nrow(data)
     somme_poids <- sum(poids_vals)
     data[[var_poids]] <- poids_vals * (n / somme_poids)
-    message("Poids normalisés : somme = ", n)
+    message("Poids normalis\u00e9s : somme = ", n)
   }
 
   # Construction de la formule
@@ -328,7 +334,7 @@ appliquer_ponderations <- function(data,
     data    = data
   )
 
-  message("Plan de sondage créé :")
+  message("Plan de sondage cr\u00e9\u00e9 :")
   message("  - Observations : ", formatC(nrow(data), big.mark = " "))
   if (!is.null(var_strate)) {
     n_strates <- length(unique(data[[var_strate]]))
@@ -365,12 +371,14 @@ appliquer_ponderations <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble imputé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' resultat <- imputer_valeurs(
-#'   data    = donnees_enquete,
-#'   vars    = c("revenu_mensuel", "age"),
-#'   methode = "mediane"
-#' )
-#' donnees_propres <- resultat$donnees
+#' \dontrun{
+#'   resultat <- imputer_valeurs(
+#'     data    = donnees_enquete,
+#'     vars    = c("revenu_mensuel", "age"),
+#'     methode = "mediane"
+#'   )
+#'   donnees_propres <- resultat$donnees
+#' }
 #' @export
 imputer_valeurs <- function(data,
                              vars              = NULL,
@@ -383,21 +391,21 @@ imputer_valeurs <- function(data,
   methode <- match.arg(methode)
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (methode == "regression" && is.null(vars_auxiliaires)) {
     rlang::abort(c(
-      "La méthode 'regression' nécessite des variables auxiliaires.",
-      "i" = "Spécifiez `vars_auxiliaires = c('var1', 'var2')`."
+      "La m\u00e9thode 'regression' n\u00e9cessite des variables auxiliaires.",
+      "i" = "Sp\u00e9cifiez `vars_auxiliaires = c('var1', 'var2')`."
     ))
   }
 
-  # Sélection des variables avec NA
+  # S\u00e9lection des variables avec NA
   if (is.null(vars)) {
     vars <- names(data)[sapply(data, function(x) any(is.na(x)))]
     if (length(vars) == 0) {
-      message("Aucune valeur manquante détectée. Aucune imputation nécessaire.")
+      message("Aucune valeur manquante d\u00e9tect\u00e9e. Aucune imputation n\u00e9cessaire.")
       if (rapport) return(list(donnees = data,
                                rapport = tibble::tibble()))
       return(data)
@@ -441,7 +449,7 @@ imputer_valeurs <- function(data,
     )
 
     message("  ", var, " : ", n_na_avant - n_na_apres, "/", n_na_avant,
-            " valeurs imputées (méthode : ", methode, ")")
+            " valeurs imput\u00e9es (m\u00e9thode : ", methode, ")")
   }
 
   rapport_final <- dplyr::bind_rows(rapport_imp)
@@ -473,9 +481,11 @@ imputer_valeurs <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble dédupliqué.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
-#' donnees_propres <- resultat$donnees
-#' cat("Doublons supprimés :", nrow(resultat$rapport))
+#' \dontrun{
+#'   resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
+#'   donnees_propres <- resultat$donnees
+#'   cat("Doublons supprimés :", nrow(resultat$rapport))
+#' }
 #' @export
 supprimer_doublons <- function(data,
                                 cles    = NULL,
@@ -485,14 +495,14 @@ supprimer_doublons <- function(data,
   garder <- match.arg(garder)
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (!is.null(cles)) {
     cles_absentes <- setdiff(cles, names(data))
     if (length(cles_absentes) > 0) {
       rlang::abort(paste0(
-        "Clés introuvables : ", paste(cles_absentes, collapse = ", ")
+        "Cl\u00e9s introuvables : ", paste(cles_absentes, collapse = ", ")
       ))
     }
   } else {
@@ -514,7 +524,7 @@ supprimer_doublons <- function(data,
   rapport_doublons <- data[doublons_idx, ]
   n_doublons <- length(doublons_idx)
 
-  # Dédoublonnage
+  # D\u00e9doublonnage
   data_dedup <- switch(garder,
     "premier" = data |>
       dplyr::distinct(dplyr::across(dplyr::all_of(cles)), .keep_all = TRUE),
@@ -532,10 +542,10 @@ supprimer_doublons <- function(data,
   n_supprimes <- n_avant - n_apres
 
   if (n_supprimes == 0) {
-    message("Aucun doublon détecté.")
+    message("Aucun doublon d\u00e9tect\u00e9.")
   } else {
-    message(n_supprimes, " doublon(s) supprimé(s) sur ", n_avant,
-            " enregistrements (", n_apres, " conservés).")
+    message(n_supprimes, " doublon(s) supprim\u00e9(s) sur ", n_avant,
+            " enregistrements (", n_apres, " conserv\u00e9s).")
   }
 
   if (rapport) {
@@ -564,18 +574,19 @@ supprimer_doublons <- function(data,
 #'   table de recodage. Défaut : TRUE.
 #' @return Le tibble avec la variable recodée.
 #' @examples
-#' # Recodage des classes d'âge
-#' table_age <- data.frame(
-#'   avant = c("15-24", "25-34", "35-49", "50+"),
-#'   apres = c("Jeune", "Adulte", "Adulte", "Senior")
-#' )
-#' donnees <- recoder_variable(donnees, "classe_age", table_age)
-#'
-#' # Recodage avec vecteur nommé
-#' donnees <- recoder_variable(
-#'   donnees, "sexe",
-#'   table_recodage = c("1" = "Masculin", "2" = "Féminin")
-#' )
+#' \dontrun{
+#'   # Recodage des classes d'âge
+#'   table_age <- data.frame(
+#'     avant = c("15-24", "25-34", "35-49", "50+"),
+#'     apres = c("Jeune", "Adulte", "Adulte", "Senior")
+#'   )
+#'   donnees <- recoder_variable(donnees, "classe_age", table_age)
+#'   # Recodage avec vecteur nommé
+#'   donnees <- recoder_variable(
+#'     donnees, "sexe",
+#'     table_recodage = c("1" = "Masculin", "2" = "Féminin")
+#'   )
+#' }
 #' @export
 recoder_variable <- function(data,
                               var,
@@ -584,10 +595,10 @@ recoder_variable <- function(data,
                               na_si_absent  = TRUE) {
 
   if (!var %in% names(data)) {
-    rlang::abort(paste0("Variable '", var, "' introuvable dans les données."))
+    rlang::abort(paste0("Variable '", var, "' introuvable dans les donn\u00e9es."))
   }
 
-  # Conversion en data.frame si vecteur nommé
+  # Conversion en data.frame si vecteur nomm\u00e9
   if (is.vector(table_recodage) && !is.null(names(table_recodage))) {
     table_recodage <- data.frame(
       avant = names(table_recodage),
@@ -616,7 +627,7 @@ recoder_variable <- function(data,
     if (n_non_recodes > 0) {
       valeurs_manquantes <- unique(x[is.na(x_recode) & !is.na(x)])
       rlang::warn(paste0(
-        n_non_recodes, " valeur(s) absente(s) de la table de recodage → NA : ",
+        n_non_recodes, " valeur(s) absente(s) de la table de recodage \u2192 NA : ",
         paste(head(valeurs_manquantes, 5), collapse = ", ")
       ))
     }
@@ -627,14 +638,14 @@ recoder_variable <- function(data,
   data[[nom_sortie]] <- x_recode
 
   n_recodes <- sum(!is.na(x_recode))
-  message(n_recodes, " valeur(s) recodée(s) dans '", nom_sortie, "'.")
+  message(n_recodes, " valeur(s) recod\u00e9e(s) dans '", nom_sortie, "'.")
 
   data
 }
 
 
 # -----------------------------------------------------------------------------
-# 7. STANDARDISATION DES ÂGES
+# 7. STANDARDISATION DES \u00c2GES
 # -----------------------------------------------------------------------------
 
 #' @title Standardiser les âges déclarés
@@ -655,8 +666,10 @@ recoder_variable <- function(data,
 #'   \item{indice_myers}{numeric — Indice de Myers (0 = parfait)}
 #'   \item{diagnostic}{character — Évaluation de la qualité}
 #' @examples
-#' resultat <- standardiser_ages(donnees_rgph, "age")
-#' cat("Indice de Whipple :", resultat$indice_whipple)
+#' \dontrun{
+#'   resultat <- standardiser_ages(donnees_rgph, "age")
+#'   cat("Indice de Whipple :", resultat$indice_whipple)
+#' }
 #' @export
 standardiser_ages <- function(data,
                                var_age  = "age",
@@ -674,15 +687,15 @@ standardiser_ages <- function(data,
   ages <- data[[var_age]]
 
   if (!is.numeric(ages)) {
-    rlang::abort(paste0("La variable '", var_age, "' doit être numérique."))
+    rlang::abort(paste0("La variable '", var_age, "' doit \u00eatre num\u00e9rique."))
   }
 
-  # Détection des valeurs hors plage
+  # D\u00e9tection des valeurs hors plage
   n_hors_plage <- sum(ages < age_min | ages > age_max, na.rm = TRUE)
   if (n_hors_plage > 0) {
     rlang::warn(paste0(
-      n_hors_plage, " âge(s) hors plage [", age_min, "-", age_max,
-      "] détecté(s) → seront mis à NA."
+      n_hors_plage, " \u00e2ge(s) hors plage [", age_min, "-", age_max,
+      "] d\u00e9tect\u00e9(s) \u2192 seront mis \u00e0 NA."
     ))
     ages[ages < age_min | ages > age_max] <- NA
   }
@@ -696,7 +709,7 @@ standardiser_ages <- function(data,
     round((n_multiples_5 / n_total_wh) / 0.2, 3)
   } else NA
 
-  # Calcul de l'indice de Myers (simplifié)
+  # Calcul de l'indice de Myers (simplifi\u00e9)
   ages_10_89 <- ages[ages >= 10 & ages <= 89 & !is.na(ages)]
   blended <- sapply(0:9, function(d) {
     sum(ages_10_89 %% 10 == d)
@@ -708,22 +721,22 @@ standardiser_ages <- function(data,
   # Diagnostic
   diagnostic <- dplyr::case_when(
     is.na(indice_whipple)      ~ "Indisponible (effectif insuffisant)",
-    indice_whipple <= 1.05     ~ "Excellente qualité",
-    indice_whipple <= 1.10     ~ "Bonne qualité",
-    indice_whipple <= 1.25     ~ "Qualité acceptable",
-    indice_whipple <= 1.75     ~ "Qualité médiocre — heap effect détecté",
-    TRUE                        ~ "Qualité très mauvaise — correction fortement recommandée"
+    indice_whipple <= 1.05     ~ "Excellente qualit\u00e9",
+    indice_whipple <= 1.10     ~ "Bonne qualit\u00e9",
+    indice_whipple <= 1.25     ~ "Qualit\u00e9 acceptable",
+    indice_whipple <= 1.75     ~ "Qualit\u00e9 m\u00e9diocre \u2014 heap effect d\u00e9tect\u00e9",
+    TRUE                        ~ "Qualit\u00e9 tr\u00e8s mauvaise \u2014 correction fortement recommand\u00e9e"
   )
 
-  message("=== Diagnostic qualité des âges ===")
+  message("=== Diagnostic qualit\u00e9 des \u00e2ges ===")
   message("Indice de Whipple : ", indice_whipple,
           " (", diagnostic, ")")
   message("Indice de Myers   : ", myers_idx)
 
-  # Correction si demandée
+  # Correction si demand\u00e9e
   if (methode != "aucune") {
     data[[var_age]] <- .corriger_ages(ages, methode)
-    message("Correction appliquée : méthode '", methode, "'")
+    message("Correction appliqu\u00e9e : m\u00e9thode '", methode, "'")
   }
 
   list(
@@ -756,18 +769,19 @@ standardiser_ages <- function(data,
 #'   d'une fusion horizontale. Défaut : c("_1", "_2").
 #' @return Un tibble fusionné.
 #' @examples
-#' # Empilement de deux vagues d'enquête
-#' donnees_total <- fusion_datasets(
-#'   liste_data = list(vague1 = emop_2022, vague2 = emop_2023),
-#'   type       = "vertical"
-#' )
-#'
-#' # Jointure ménages + individus
-#' donnees_merged <- fusion_datasets(
-#'   liste_data = list(menages = df_menages, individus = df_individus),
-#'   type       = "horizontal",
-#'   cle        = "id_menage"
-#' )
+#' \dontrun{
+#'   # Empilement de deux vagues d'enquête
+#'   donnees_total <- fusion_datasets(
+#'     liste_data = list(vague1 = emop_2022, vague2 = emop_2023),
+#'     type       = "vertical"
+#'   )
+#'   # Jointure ménages + individus
+#'   donnees_merged <- fusion_datasets(
+#'     liste_data = list(menages = df_menages, individus = df_individus),
+#'     type       = "horizontal",
+#'     cle        = "id_menage"
+#'   )
+#' }
 #' @export
 fusion_datasets <- function(liste_data,
                              type      = c("vertical", "horizontal"),
@@ -779,20 +793,20 @@ fusion_datasets <- function(liste_data,
   jointure <- match.arg(jointure)
 
   if (!is.list(liste_data) || length(liste_data) < 2) {
-    rlang::abort("`liste_data` doit être une liste d'au moins 2 data.frames.")
+    rlang::abort("`liste_data` doit \u00eatre une liste d'au moins 2 data.frames.")
   }
 
-  # Vérification que tous les éléments sont des data.frames
+  # V\u00e9rification que tous les \u00e9l\u00e9ments sont des data.frames
   non_df <- names(liste_data)[!sapply(liste_data, is.data.frame)]
   if (length(non_df) > 0) {
     rlang::abort(paste0(
-      "Éléments non reconnus comme data.frames : ",
+      "\u00c9l\u00e9ments non reconnus comme data.frames : ",
       paste(non_df, collapse = ", ")
     ))
   }
 
   if (type == "vertical") {
-    # Vérification de la compatibilité des colonnes
+    # V\u00e9rification de la compatibilit\u00e9 des colonnes
     cols_premier <- names(liste_data[[1]])
     for (i in seq_along(liste_data)[-1]) {
       cols_i <- names(liste_data[[i]])
@@ -801,7 +815,7 @@ fusion_datasets <- function(liste_data,
       if (length(cols_manquantes) > 0) {
         rlang::warn(paste0(
           "Dataset '", names(liste_data)[i], "' : ",
-          length(cols_manquantes), " colonne(s) manquante(s) → remplies avec NA : ",
+          length(cols_manquantes), " colonne(s) manquante(s) \u2192 remplies avec NA : ",
           paste(head(cols_manquantes, 5), collapse = ", ")
         ))
       }
@@ -814,15 +828,15 @@ fusion_datasets <- function(liste_data,
     # Fusion horizontale
     if (is.null(cle)) {
       rlang::abort(c(
-        "La fusion horizontale requiert une clé.",
-        "i" = "Spécifiez `cle = 'nom_variable'`."
+        "La fusion horizontale requiert une cl\u00e9.",
+        "i" = "Sp\u00e9cifiez `cle = 'nom_variable'`."
       ))
     }
 
     for (i in seq_along(liste_data)) {
       if (!all(cle %in% names(liste_data[[i]]))) {
         rlang::abort(paste0(
-          "Clé '", paste(cle, collapse = ", "), "' absente du dataset '",
+          "Cl\u00e9 '", paste(cle, collapse = ", "), "' absente du dataset '",
           names(liste_data)[i], "'."
         ))
       }
@@ -865,21 +879,21 @@ fusion_datasets <- function(liste_data,
 #'   (ex: paramètres utilisés). Défaut : NULL.
 #' @return Une liste mise à jour avec \code{$donnees} et \code{$journal}.
 #' @examples
-#' # Initialiser le journal
-#' etape1 <- tracer_flux_traitement(
-#'   data    = donnees_brutes,
-#'   action  = "Import depuis fichier Excel"
-#' )
-#'
-#' # Ajouter une étape
-#' etape2 <- tracer_flux_traitement(
-#'   data    = donnees_nettoyees,
-#'   action  = "Nettoyage des libellés",
-#'   journal = etape1$journal
-#' )
-#'
-#' # Afficher le journal
-#' print(etape2$journal)
+#' \dontrun{
+#'   # Initialiser le journal
+#'   etape1 <- tracer_flux_traitement(
+#'     data    = donnees_brutes,
+#'     action  = "Import depuis fichier Excel"
+#'   )
+#'   # Ajouter une étape
+#'   etape2 <- tracer_flux_traitement(
+#'     data    = donnees_nettoyees,
+#'     action  = "Nettoyage des libellés",
+#'     journal = etape1$journal
+#'   )
+#'   # Afficher le journal
+#'   print(etape2$journal)
+#' }
 #' @export
 tracer_flux_traitement <- function(data,
                                     action,
@@ -887,7 +901,7 @@ tracer_flux_traitement <- function(data,
                                     details = NULL) {
 
   if (!is.data.frame(data)) {
-    rlang::abort("L'argument `data` doit être un data.frame ou tibble.")
+    rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
   if (missing(action) || !nzchar(action)) {
@@ -906,7 +920,7 @@ tracer_flux_traitement <- function(data,
     journal_maj <- nouvelle_entree
   } else {
     if (!is.data.frame(journal)) {
-      rlang::abort("`journal` doit être un data.frame (retourné par une étape précédente).")
+      rlang::abort("`journal` doit \u00eatre un data.frame (retourn\u00e9 par une \u00e9tape pr\u00e9c\u00e9dente).")
     }
     journal_maj <- dplyr::bind_rows(journal, nouvelle_entree)
   }
@@ -928,10 +942,10 @@ tracer_flux_traitement <- function(data,
     BJ = data.frame(
       original    = c("Alibori", "Atacora", "Atlantique", "Borgou",
                       "Collines", "Couffo", "Donga", "Littoral",
-                      "Mono", "Ouémé", "Plateau", "Zou"),
+                      "Mono", "Ou\u00e9m\u00e9", "Plateau", "Zou"),
       standardise = c("Alibori", "Atacora", "Atlantique", "Borgou",
                       "Collines", "Couffo", "Donga", "Littoral",
-                      "Mono", "Ouémé", "Plateau", "Zou"),
+                      "Mono", "Ou\u00e9m\u00e9", "Plateau", "Zou"),
       stringsAsFactors = FALSE
     ),
     BF = data.frame(
@@ -947,23 +961,23 @@ tracer_flux_traitement <- function(data,
     ),
     SN = data.frame(
       original    = c("Dakar", "Diourbel", "Fatick", "Kaffrine",
-                      "Kaolack", "Kédougou", "Kolda", "Louga",
-                      "Matam", "Saint-Louis", "Sédhiou", "Tambacounda",
-                      "Thiès", "Ziguinchor"),
+                      "Kaolack", "K\u00e9dougou", "Kolda", "Louga",
+                      "Matam", "Saint-Louis", "S\u00e9dhiou", "Tambacounda",
+                      "Thi\u00e8s", "Ziguinchor"),
       standardise = c("Dakar", "Diourbel", "Fatick", "Kaffrine",
-                      "Kaolack", "Kédougou", "Kolda", "Louga",
-                      "Matam", "Saint-Louis", "Sédhiou", "Tambacounda",
-                      "Thiès", "Ziguinchor"),
+                      "Kaolack", "K\u00e9dougou", "Kolda", "Louga",
+                      "Matam", "Saint-Louis", "S\u00e9dhiou", "Tambacounda",
+                      "Thi\u00e8s", "Ziguinchor"),
       stringsAsFactors = FALSE
     ),
     CI = data.frame(
-      original    = c("Abidjan", "Bas-Sassandra", "Comoé", "Denguelé",
-                      "Gôh-Djiboua", "Lacs", "Lagunes", "Montagnes",
-                      "Sassandra-Marahoué", "Savanes", "Vallée du Bandama",
+      original    = c("Abidjan", "Bas-Sassandra", "Como\u00e9", "Denguel\u00e9",
+                      "G\u00f4h-Djiboua", "Lacs", "Lagunes", "Montagnes",
+                      "Sassandra-Marahou\u00e9", "Savanes", "Vall\u00e9e du Bandama",
                       "Woroba", "Yamoussoukro", "Zanzan"),
-      standardise = c("Abidjan", "Bas-Sassandra", "Comoé", "Denguelé",
-                      "Gôh-Djiboua", "Lacs", "Lagunes", "Montagnes",
-                      "Sassandra-Marahoué", "Savanes", "Vallée du Bandama",
+      standardise = c("Abidjan", "Bas-Sassandra", "Como\u00e9", "Denguel\u00e9",
+                      "G\u00f4h-Djiboua", "Lacs", "Lagunes", "Montagnes",
+                      "Sassandra-Marahou\u00e9", "Savanes", "Vall\u00e9e du Bandama",
                       "Woroba", "Yamoussoukro", "Zanzan"),
       stringsAsFactors = FALSE
     )
@@ -1011,8 +1025,8 @@ tracer_flux_traitement <- function(data,
   x <- data[[var]]
   if (!is.numeric(x)) {
     rlang::warn(paste0(
-      "Imputation par régression non disponible pour variable non numérique '",
-      var, "'. Méthode médiane utilisée à la place."
+      "Imputation par r\u00e9gression non disponible pour variable non num\u00e9rique '",
+      var, "'. M\u00e9thode m\u00e9diane utilis\u00e9e \u00e0 la place."
     ))
     return(.imputer_mediane(x))
   }
@@ -1072,7 +1086,7 @@ jsonlite_safe <- function(x) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     ctx <- if (!is.null(contexte)) paste0(" (requis pour ", contexte, ")") else ""
     rlang::abort(paste0(
-      "Package '", pkg, "' requis", ctx, " mais non installé.\n",
+      "Package '", pkg, "' requis", ctx, " mais non install\u00e9.\n",
       "Installez-le avec : install.packages('", pkg, "')"
     ))
   }
