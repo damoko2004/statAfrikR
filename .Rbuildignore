@@ -5,3 +5,5 @@
 ^pkgdown$
 ^\.github$
 ^verifier_cran\.R$
+^inst/doc/.*\.Rmd$
+^inst/doc/.*\.html$
