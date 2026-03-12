@@ -1,0 +1,175 @@
+# statAfrikR
+
+> Package R open source pour les Instituts Nationaux de Statistique
+> (INS) africains
+
+## Objectif
+
+**statAfrikR** couvre l’ensemble du cycle de la donnée statistique :
+collecte, traitement, analyse, visualisation et diffusion — en tenant
+compte des réalités africaines (connectivité limitée, formats locaux,
+multilinguisme, ressources IT contraintes).
+
+## Installation
+
+``` r
+# Version de développement depuis GitHub
+# install.packages("remotes")
+remotes::install_github("VOTRE_USERNAME/statAfrikR")
+```
+
+## Modules
+
+| Module               | Fonctions clés                                                                                                                                                                                                                                                                                                                                                           | Statut              |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| 📥 **Collecte**      | [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md), [`import_kobo()`](https://damoko2004.github.io/statAfrikR/reference/import_kobo.md), [`import_excel()`](https://damoko2004.github.io/statAfrikR/reference/import_excel.md), [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md) | 🔧 En développement |
+| 🔧 **Traitement**    | [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md), [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md), [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)                                                                | 🔧 En développement |
+| 📊 **Analyse**       | [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md), [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md), [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md), [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)                             | 🔧 En développement |
+| 🗺️ **Visualisation** | [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md), [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md), [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)                                                                                                  | 🔧 En développement |
+| 📄 **Diffusion**     | [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md), [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md), [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md)                                                                                  | 🔧 En développement |
+
+## Exemple rapide
+
+``` r
+library(statAfrikR)
+
+# Importer des données Excel
+donnees <- import_excel("mon_enquete.xlsx")
+
+# Vérifier la qualité
+check_na(donnees)
+
+# Créer le plan de sondage
+plan <- appliquer_ponderations(donnees, var_poids = "poids_final",
+                                var_strate = "strate", var_grappe = "grappe")
+
+# Tableau croisé pondéré
+tab_croisee(plan, var_ligne = "region", var_col = "sexe")
+
+# Générer un rapport automatisé
+generer_rapport(template = "bulletin_mensuel", donnees = list(data = donnees),
+                format = "pdf", langue = "fr")
+```
+
+## Contexte africain
+
+Ce package tient compte de : - 🌐 **Connectivité limitée** → fonctionne
+100% offline après installation - 📋 **Formats locaux** → CSPro (RGPH),
+KoboToolbox, ODK - 🌍 **Multilinguisme** → Français, Anglais,
+Portugais - 💻 **Windows-first** → testé et optimisé pour Windows
+(majoritaire dans les INS) - 🔒 **Souveraineté des données** → aucune
+dépendance cloud obligatoire
+
+## Documentation
+
+- 📖 [Document de
+  cadrage](https://damoko2004.github.io/statAfrikR/docs/cadrage/document_cadrage.md)
+- 📐 [Spécifications
+  techniques](https://damoko2004.github.io/statAfrikR/docs/specifications/specifications_techniques.md)
+- 🌐 Site de documentation (disponible après déploiement pkgdown)
+
+## Contribuer
+
+Consultez
+[CONTRIBUTING.md](https://damoko2004.github.io/statAfrikR/CONTRIBUTING.md).
+Les contributions des INS africains sont particulièrement bienvenues.
+
+## Licence
+
+GPL-3.0 © Institut National de la Statistique
+
+# Package index
+
+## All functions
+
+- [`analyse_regression()`](https://damoko2004.github.io/statAfrikR/reference/analyse_regression.md)
+  : Analyse de régression
+- [`analyse_spatiale()`](https://damoko2004.github.io/statAfrikR/reference/analyse_spatiale.md)
+  : Analyse spatiale — jointure et indicateurs par zone
+- [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md)
+  : Anonymiser un jeu de données
+- [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md)
+  : Appliquer les pondérations d'enquête
+- [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md)
+  : Calculer l'Indice de Développement Humain (IDH)
+- [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
+  : Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
+- [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md)
+  : Carte thématique choroplèthe
+- [`check_na()`](https://damoko2004.github.io/statAfrikR/reference/check_na.md)
+  : Détecter les valeurs manquantes
+- [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)
+  : Vérifier les types de variables
+- [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
+  : Compresser un package de diffusion
+- [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
+  : Décomposer les inégalités
+- [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
+  : Exporter un graphique en haute résolution
+- [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md)
+  : Exporter des données au format SDMX
+- [`fusion_datasets()`](https://damoko2004.github.io/statAfrikR/reference/fusion_datasets.md)
+  : Fusionner plusieurs jeux de données
+- [`generer_metadonnees_ddi()`](https://damoko2004.github.io/statAfrikR/reference/generer_metadonnees_ddi.md)
+  : Générer une fiche de métadonnées DDI
+- [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md)
+  : Générer un rapport statistique officiel
+- [`graphique_barres()`](https://damoko2004.github.io/statAfrikR/reference/graphique_barres.md)
+  : Graphique en barres pondéré
+- [`graphique_tendance()`](https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.md)
+  : Graphique de tendance temporelle
+- [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
+  : Harmoniser les noms de régions/provinces
+- [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md)
+  : Importer des données CSPro
+- [`import_csv()`](https://damoko2004.github.io/statAfrikR/reference/import_csv.md)
+  : Importer un fichier CSV
+- [`import_excel()`](https://damoko2004.github.io/statAfrikR/reference/import_excel.md)
+  : Importer un fichier Excel
+- [`import_kobo()`](https://damoko2004.github.io/statAfrikR/reference/import_kobo.md)
+  : Importer des données depuis KoboToolbox
+- [`import_odk()`](https://damoko2004.github.io/statAfrikR/reference/import_odk.md)
+  : Importer des données ODK Central
+- [`import_sas()`](https://damoko2004.github.io/statAfrikR/reference/import_sas.md)
+  : Importer un fichier SAS
+- [`import_spss()`](https://damoko2004.github.io/statAfrikR/reference/import_spss.md)
+  : Importer un fichier SPSS
+- [`import_stata()`](https://damoko2004.github.io/statAfrikR/reference/import_stata.md)
+  : Importer un fichier Stata
+- [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md)
+  : Imputer les valeurs manquantes
+- [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
+  : Nettoyer les libellés de variables textuelles
+- [`palette_ins()`](https://damoko2004.github.io/statAfrikR/reference/palette_ins.md)
+  : Palette de couleurs INS
+- [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
+  : Pyramide des âges
+- [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
+  : Recoder une variable
+- [`standardiser_ages()`](https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.md)
+  : Standardiser les âges déclarés
+- [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)
+  : Statistiques descriptives pondérées
+- [`supprimer_doublons()`](https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.md)
+  : Détecter et supprimer les doublons
+- [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
+  : Tableau croisé pondéré avec intervalles de confiance
+- [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
+  : Thème ggplot2 officiel INS
+- [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)
+  : Tracer le flux de traitement
+- [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
+  : Valider la cohérence données / dictionnaire
+- [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)
+  : Valider la qualité globale d'un jeu de données
+
+# Articles
+
+### All vignettes
+
+- [Démarrage rapide avec
+  statAfrikR](https://damoko2004.github.io/statAfrikR/articles/01-demarrage-rapide.md):
+- [Analyse d'une enquête pondérée
+  complète](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.md):
+- [Calcul des indicateurs ODD : IDH, IPM et
+  inégalités](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.md):
