@@ -20,4 +20,4 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Dickers Samoko <damoko2004@gmail.com>
+**Maintainer**: Dikers Amoko <diamoko@gmail.com>
