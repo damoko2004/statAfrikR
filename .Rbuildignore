@@ -5,7 +5,3 @@
 ^pkgdown$
 ^\.github$
 ^verifier_cran\.R$
-^inst/doc$
-^vignettes$
-^doc$
-^Meta$
