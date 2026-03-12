@@ -49,3 +49,5 @@ po/*~
 rsconnect/
 docs
 docs/
+/doc/
+/Meta/
