@@ -1,14 +1,13 @@
 Package: statAfrikR
 Title: Outils Statistiques pour les Instituts Nationaux de Statistique Africains
 Version: 0.1.0
-Authors@R: 
-    person(
-      given   = "Dickers",
-      family  = "Samoko",
-      role    = c("aut", "cre"),
-      email   = "damoko2004@gmail.com",
-      comment = c(ORCID = "")
-    )
+Authors@R: person(
+    given   = "Dikers",
+    family  = "Amoko",
+    role    = c("aut", "cre"),
+    email   = "diamoko@gmail.com",
+    comment = c(ORCID = "")
+  )
 Description: Boîte à outils statistiques complète pour les Instituts Nationaux
     de Statistique (INS) africains. Fournit des fonctions pour l'import de
     données d'enquêtes (KoboToolbox, ODK, CSPro, Excel, Stata, SPSS), le

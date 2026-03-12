@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Dickers Samoko \email{damoko2004@gmail.com}
+\strong{Maintainer}: Dikers Amoko \email{diamoko@gmail.com}
 
 }
 \keyword{internal}
