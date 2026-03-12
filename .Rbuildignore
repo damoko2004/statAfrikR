@@ -7,3 +7,5 @@
 ^verifier_cran\.R$
 ^doc$
 ^Meta$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
