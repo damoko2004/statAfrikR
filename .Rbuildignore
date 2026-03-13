@@ -11,3 +11,4 @@
 ^cran-comments\.md$
 ^data-raw$
 ^docs$
+^build_cran\.R$
