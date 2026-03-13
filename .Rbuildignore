@@ -9,5 +9,5 @@
 ^Meta$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
-^doc/.*\.Rmd$
-^doc/.*\.html$
+^data-raw$
+^docs$
