@@ -1,3 +1,31 @@
 url: https://damoko2004.github.io/statAfrikR/
 template:
   bootstrap: 5
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [discord, github]
+  components:
+    discord:
+      icon: fab fa-discord
+      href: https://discord.gg/x9u5sXQB2V
+      aria-label: Discord
+    github:
+      icon: fab fa-github
+      href: https://github.com/damoko2004/statAfrikR
+      aria-label: GitHub
+
+home:
+  links:
+  - text: "💬 Rejoindre la communauté Discord"
+    href: https://discord.gg/x9u5sXQB2V
+  - text: "🌍 AFRISTAT"
+    href: https://afristat.org
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
+  components:
+    developed_by: "Développé pour les INS africains · [Discord](https://discord.gg/x9u5sXQB2V)"
