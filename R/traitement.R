@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR \u2014 Module Traitement
-# Fonctions de nettoyage, transformation et pr\u00e9paration des donn\u00e9es
+# statAfrikR — Module Traitement
+# Fonctions de nettoyage, transformation et préparation des données
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. NETTOYAGE DES LIBELL\u00c9S
+# 1. NETTOYAGE DES LIBELLÉS
 # -----------------------------------------------------------------------------
 
 #' @title Nettoyer les libellés de variables textuelles
@@ -49,7 +49,7 @@ nettoyer_libelles <- function(data,
     rlang::abort("L'argument `data` doit \u00eatre un data.frame ou tibble.")
   }
 
-  # S\u00e9lection des variables \u00e0 traiter
+  # Sélection des variables à traiter
   if (is.null(vars)) {
     vars <- names(data)[sapply(data, is.character)]
     if (length(vars) == 0) {
@@ -112,7 +112,7 @@ nettoyer_libelles <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 2. HARMONISATION DES R\u00c9GIONS
+# 2. HARMONISATION DES RÉGIONS
 # -----------------------------------------------------------------------------
 
 #' @title Harmoniser les noms de régions/provinces
@@ -154,7 +154,7 @@ harmoniser_regions <- function(data,
     rlang::abort(paste0("Variable '", var_region, "' introuvable dans les donn\u00e9es."))
   }
 
-  # R\u00e9f\u00e9rentiels int\u00e9gr\u00e9s par pays
+  # Référentiels intégrés par pays
   referentiels <- .charger_referentiels_regions()
 
   if (!is.null(pays)) {
@@ -176,7 +176,7 @@ harmoniser_regions <- function(data,
   valeurs_uniques <- unique(valeurs[!is.na(valeurs)])
 
   if (!is.null(table_correspondance)) {
-    # V\u00e9rification de la table de correspondance
+    # Vérification de la table de correspondance
     cols_req <- c("original", "standardise")
     cols_man <- setdiff(cols_req, names(table_correspondance))
     if (length(cols_man) > 0) {
@@ -186,7 +186,7 @@ harmoniser_regions <- function(data,
       ))
     }
 
-    # Correspondance insensible \u00e0 la casse et aux espaces
+    # Correspondance insensible à la casse et aux espaces
     table_norm <- table_correspondance
     table_norm$original_norm <- stringr::str_squish(
       stringr::str_to_lower(table_norm$original)
@@ -199,13 +199,13 @@ harmoniser_regions <- function(data,
     ]
 
   } else {
-    # Sans r\u00e9f\u00e9rentiel : copie simple + normalisation basique
+    # Sans référentiel : copie simple + normalisation basique
     data[[var_sortie]] <- stringr::str_to_title(
       stringr::str_squish(valeurs)
     )
   }
 
-  # Rapport des non-trouv\u00e9s
+  # Rapport des non-trouvés
   if (signaler_non_trouves) {
     non_trouves <- valeurs_uniques[is.na(data[[var_sortie]][
       match(valeurs_uniques, valeurs)
@@ -228,7 +228,7 @@ harmoniser_regions <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 3. POND\u00c9RATIONS
+# 3. PONDÉRATIONS
 # -----------------------------------------------------------------------------
 
 #' @title Appliquer les pondérations d'enquête
@@ -276,7 +276,7 @@ appliquer_ponderations <- function(data,
 
   poids_vals <- data[[var_poids]]
 
-  # Contr\u00f4les sur les valeurs des poids
+  # Contrôles sur les valeurs des poids
   if (any(is.na(poids_vals))) {
     n_na <- sum(is.na(poids_vals))
     rlang::warn(paste0(
@@ -401,7 +401,7 @@ imputer_valeurs <- function(data,
     ))
   }
 
-  # S\u00e9lection des variables avec NA
+  # Sélection des variables avec NA
   if (is.null(vars)) {
     vars <- names(data)[sapply(data, function(x) any(is.na(x)))]
     if (length(vars) == 0) {
@@ -524,7 +524,7 @@ supprimer_doublons <- function(data,
   rapport_doublons <- data[doublons_idx, ]
   n_doublons <- length(doublons_idx)
 
-  # D\u00e9doublonnage
+  # Dédoublonnage
   data_dedup <- switch(garder,
     "premier" = data |>
       dplyr::distinct(dplyr::across(dplyr::all_of(cles)), .keep_all = TRUE),
@@ -598,7 +598,7 @@ recoder_variable <- function(data,
     rlang::abort(paste0("Variable '", var, "' introuvable dans les donn\u00e9es."))
   }
 
-  # Conversion en data.frame si vecteur nomm\u00e9
+  # Conversion en data.frame si vecteur nommé
   if (is.vector(table_recodage) && !is.null(names(table_recodage))) {
     table_recodage <- data.frame(
       avant = names(table_recodage),
@@ -645,7 +645,7 @@ recoder_variable <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 7. STANDARDISATION DES \u00c2GES
+# 7. STANDARDISATION DES ÂGES
 # -----------------------------------------------------------------------------
 
 #' @title Standardiser les âges déclarés
@@ -690,7 +690,7 @@ standardiser_ages <- function(data,
     rlang::abort(paste0("La variable '", var_age, "' doit \u00eatre num\u00e9rique."))
   }
 
-  # D\u00e9tection des valeurs hors plage
+  # Détection des valeurs hors plage
   n_hors_plage <- sum(ages < age_min | ages > age_max, na.rm = TRUE)
   if (n_hors_plage > 0) {
     rlang::warn(paste0(
@@ -709,7 +709,7 @@ standardiser_ages <- function(data,
     round((n_multiples_5 / n_total_wh) / 0.2, 3)
   } else NA
 
-  # Calcul de l'indice de Myers (simplifi\u00e9)
+  # Calcul de l'indice de Myers (simplifié)
   ages_10_89 <- ages[ages >= 10 & ages <= 89 & !is.na(ages)]
   blended <- sapply(0:9, function(d) {
     sum(ages_10_89 %% 10 == d)
@@ -733,7 +733,7 @@ standardiser_ages <- function(data,
           " (", diagnostic, ")")
   message("Indice de Myers   : ", myers_idx)
 
-  # Correction si demand\u00e9e
+  # Correction si demandée
   if (methode != "aucune") {
     data[[var_age]] <- .corriger_ages(ages, methode)
     message("Correction appliqu\u00e9e : m\u00e9thode '", methode, "'")
@@ -796,7 +796,7 @@ fusion_datasets <- function(liste_data,
     rlang::abort("`liste_data` doit \u00eatre une liste d'au moins 2 data.frames.")
   }
 
-  # V\u00e9rification que tous les \u00e9l\u00e9ments sont des data.frames
+  # Vérification que tous les éléments sont des data.frames
   non_df <- names(liste_data)[!sapply(liste_data, is.data.frame)]
   if (length(non_df) > 0) {
     rlang::abort(paste0(
@@ -806,7 +806,7 @@ fusion_datasets <- function(liste_data,
   }
 
   if (type == "vertical") {
-    # V\u00e9rification de la compatibilit\u00e9 des colonnes
+    # Vérification de la compatibilité des colonnes
     cols_premier <- names(liste_data[[1]])
     for (i in seq_along(liste_data)[-1]) {
       cols_i <- names(liste_data[[i]])

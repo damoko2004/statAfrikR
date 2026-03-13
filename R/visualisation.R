@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR \u2014 Module Visualisation
+# statAfrikR — Module Visualisation
 # Fonctions de visualisation statistique pour INS africains
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. TH\u00c8ME INS
+# 1. THÈME INS
 # -----------------------------------------------------------------------------
 
 #' @title Thème ggplot2 officiel INS
@@ -78,7 +78,7 @@ theme_ins <- function(base_size     = 11,
         linewidth = 0.4
       ),
 
-      # L\u00e9gende
+      # Légende
       legend.title       = ggplot2::element_text(
         size  = base_size * 0.9,
         face  = "bold",
@@ -180,7 +180,7 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
 
 
 # -----------------------------------------------------------------------------
-# 2. PYRAMIDE DES \u00c2GES
+# 2. PYRAMIDE DES ÂGES
 # -----------------------------------------------------------------------------
 
 #' @title Pyramide des âges
@@ -233,14 +233,14 @@ pyramide_ages <- function(data,
     rlang::abort(paste0("Variables introuvables : ", paste(vars_abs, collapse = ", ")))
   }
 
-  # Pond\u00e9ration
+  # Pondération
   if (!is.null(var_poids) && var_poids %in% names(data)) {
     poids <- data[[var_poids]]
   } else {
     poids <- rep(1, nrow(data))
   }
 
-  # Construction des classes d'\u00e2ge
+  # Construction des classes d'âge
   breaks <- seq(0, age_max + largeur_classe, by = largeur_classe)
   labels <- paste0(
     seq(0, age_max, by = largeur_classe), "-",
@@ -258,7 +258,7 @@ pyramide_ages <- function(data,
     include.lowest = TRUE
   )
 
-  # Agr\u00e9gation
+  # Agrégation
   data_agg <- data_calc |>
     dplyr::filter(
       !is.na(.data[[var_sexe]]),
@@ -285,7 +285,7 @@ pyramide_ages <- function(data,
     label_x <- "Effectif"
   }
 
-  # Hommes \u00e0 gauche (n\u00e9gatif)
+  # Hommes à gauche (négatif)
   data_agg <- data_agg |>
     dplyr::mutate(
       valeur_plot = dplyr::case_when(
@@ -401,7 +401,7 @@ graphique_barres <- function(data,
       )
   }
 
-  # Mapping esth\u00e9tique
+  # Mapping esthétique
   aes_base <- if (!is.null(var_groupe)) {
     ggplot2::aes(
       x    = .data[[var_x]],
@@ -513,7 +513,7 @@ graphique_tendance <- function(data,
     rlang::abort(paste0("Variable temporelle introuvable : '", var_temps, "'."))
   }
 
-  # Conversion format large \u2192 long si n\u00e9cessaire
+  # Conversion format large → long si nécessaire
   if (!is.null(vars_indicateurs)) {
     vars_abs <- setdiff(vars_indicateurs, names(data))
     if (length(vars_abs) > 0) {
@@ -587,7 +587,7 @@ graphique_tendance <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 5. CARTE TH\u00c9MATIQUE
+# 5. CARTE THÉMATIQUE
 # -----------------------------------------------------------------------------
 
 #' @title Carte thématique choroplèthe
@@ -639,7 +639,7 @@ carte_thematique <- function(data_sf        = NULL,
 
   palette <- match.arg(palette)
 
-  # Pr\u00e9paration de l'objet sf
+  # Préparation de l'objet sf
   if (is.null(data_sf)) {
     if (is.null(shapefile) || is.null(data)) {
       rlang::abort(
@@ -757,7 +757,7 @@ exporter_graphique <- function(graphique,
     ))
   }
 
-  # Cr\u00e9ation du r\u00e9pertoire si n\u00e9cessaire
+  # Création du répertoire si nécessaire
   dir_sortie <- dirname(chemin)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)

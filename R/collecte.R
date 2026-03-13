@@ -1,7 +1,7 @@
 # =============================================================================
-# statAfrikR \u2014 Module Collecte
-# Fonctions d'importation et de validation des donn\u00e9es
-# Formats support\u00e9s : Excel, CSV, Stata, SPSS, SAS, CSPro, KoboToolbox, ODK
+# statAfrikR — Module Collecte
+# Fonctions d'importation et de validation des données
+# Formats supportés : Excel, CSV, Stata, SPSS, SAS, CSPro, KoboToolbox, ODK
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -83,7 +83,7 @@ import_excel <- function(chemin,
     return(result)
   }
 
-  # Import d'une feuille sp\u00e9cifique
+  # Import d'une feuille spécifique
   if (is.character(feuille) && !feuille %in% feuilles_dispo) {
     rlang::abort(paste0(
       "Feuille '", feuille, "' introuvable.\n",
@@ -134,7 +134,7 @@ import_csv <- function(chemin,
     rlang::abort(paste0("Fichier introuvable : '", chemin, "'."))
   }
 
-  # D\u00e9tection automatique du s\u00e9parateur
+  # Détection automatique du séparateur
   if (is.null(separateur)) {
     separateur <- .detecter_separateur(chemin, encodage)
     if (verbose) message("S\u00e9parateur d\u00e9tect\u00e9 : '", separateur, "'")
@@ -418,7 +418,7 @@ import_cspro <- function(fichier_dat,
   niveaux_dispo <- names(dico$niveaux)
   if (verbose) message("Niveaux disponibles : ", paste(niveaux_dispo, collapse = ", "))
 
-  # S\u00e9lection du niveau
+  # Sélection du niveau
   if (is.null(niveau)) {
     niveau <- niveaux_dispo[1]
     if (verbose) message("Niveau s\u00e9lectionn\u00e9 : ", niveau)
@@ -631,7 +631,7 @@ import_odk <- function(source,
 
 
 # -----------------------------------------------------------------------------
-# 6. VALIDATION DES DONN\u00c9ES
+# 6. VALIDATION DES DONNÉES
 # -----------------------------------------------------------------------------
 
 #' @title Détecter les valeurs manquantes
@@ -730,7 +730,7 @@ check_types <- function(data, dictionnaire = NULL) {
     x <- data[[var]]
     type_actuel <- class(x)[1]
 
-    # D\u00e9tection : nombre stock\u00e9 en caract\u00e8re
+    # Détection : nombre stocké en caractère
     if (is.character(x)) {
       x_sans_na <- x[!is.na(x)]
       if (length(x_sans_na) > 0) {
@@ -747,7 +747,7 @@ check_types <- function(data, dictionnaire = NULL) {
           )
         }
 
-        # D\u00e9tection : date stock\u00e9e en caract\u00e8re
+        # Détection : date stockée en caractère
         formats_date <- c("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y", "%d.%m.%Y")
         est_date <- FALSE
         for (fmt in formats_date) {
@@ -769,7 +769,7 @@ check_types <- function(data, dictionnaire = NULL) {
     }
   }
 
-  # V\u00e9rification contre dictionnaire fourni
+  # Vérification contre dictionnaire fourni
   if (!is.null(dictionnaire)) {
     cols_req <- c("nom_variable", "type_attendu")
     cols_man <- setdiff(cols_req, names(dictionnaire))
@@ -943,7 +943,7 @@ valider_dictionnaire <- function(data,
 
 
 # =============================================================================
-# FONCTIONS INTERNES (non export\u00e9es)
+# FONCTIONS INTERNES (non exportées)
 # =============================================================================
 
 #' @keywords internal
@@ -1017,12 +1017,12 @@ valider_dictionnaire <- function(data,
 
 #' @keywords internal
 .lire_dat_cspro <- function(fichier_dat, dico, niveau, encoding, max_lignes) {
-  # Lecture basique du fichier .dat CSPro (format texte \u00e0 largeur fixe)
+  # Lecture basique du fichier .dat CSPro (format texte à largeur fixe)
   lignes <- readLines(fichier_dat, encoding = encoding, warn = FALSE)
   if (!is.null(max_lignes)) lignes <- head(lignes, max_lignes)
 
-  # Retour d'un tibble vide structur\u00e9 si le parsing complet n'est pas dispo
-  # (impl\u00e9mentation compl\u00e8te n\u00e9cessite le parsing d\u00e9taill\u00e9 du DCF)
+  # Retour d'un tibble vide structuré si le parsing complet n'est pas dispo
+  # (implémentation complète nécessite le parsing détaillé du DCF)
   tibble::tibble(ligne_brute = lignes)
 }
 

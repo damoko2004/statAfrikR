@@ -1,5 +1,5 @@
 # =============================================================================
-# statAfrikR \u2014 Module Analyse
+# statAfrikR — Module Analyse
 # Fonctions d'analyse statistique, indicateurs et tableaux
 # =============================================================================
 
@@ -41,10 +41,10 @@ stat_descr <- function(data,
   format_sortie <- match.arg(format_sortie)
   est_svydesign <- inherits(data, "survey.design")
 
-  # Extraction des donn\u00e9es brutes si svydesign
+  # Extraction des données brutes si svydesign
   data_brute <- if (est_svydesign) data$variables else data
 
-  # V\u00e9rification des variables
+  # Vérification des variables
   vars_absentes <- setdiff(vars, names(data_brute))
   if (length(vars_absentes) > 0) {
     rlang::abort(paste0(
@@ -118,7 +118,7 @@ stat_descr <- function(data,
       resultats[[var]] <- res
     }
   } else {
-    # Sans pond\u00e9ration
+    # Sans pondération
     for (var in vars) {
       x <- data_brute[[var]]
 
@@ -170,7 +170,7 @@ stat_descr <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 2. TABLEAU CROIS\u00c9
+# 2. TABLEAU CROISÉ
 # -----------------------------------------------------------------------------
 
 #' @title Tableau croisé pondéré avec intervalles de confiance
@@ -211,7 +211,7 @@ tab_croisee <- function(data,
 
   data_brute <- if (est_svydesign) data$variables else data
 
-  # V\u00e9rifications
+  # Vérifications
   if (!var_ligne %in% names(data_brute)) {
     rlang::abort(paste0("Variable en ligne introuvable : '", var_ligne, "'."))
   }
@@ -320,7 +320,7 @@ tab_croisee <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 3. R\u00c9GRESSION
+# 3. RÉGRESSION
 # -----------------------------------------------------------------------------
 
 #' @title Analyse de régression
@@ -380,7 +380,7 @@ analyse_regression <- function(formule,
     )
   }
 
-  # Construction du tableau de r\u00e9sultats
+  # Construction du tableau de résultats
   coefs   <- stats::coef(modele)
   ic_vals <- tryCatch(
     stats::confint(modele, level = niveau_confiance),
@@ -411,14 +411,14 @@ analyse_regression <- function(formule,
     )
   )
 
-  # Ajout OR/RR pour mod\u00e8les log-lin\u00e9aires
+  # Ajout OR/RR pour modèles log-linéaires
   if (type %in% c("logistique", "poisson")) {
     tableau$odds_ratio <- round(exp(tableau$estimateur), 3)
     tableau$or_ic_bas  <- round(exp(tableau$ic_bas), 3)
     tableau$or_ic_haut <- round(exp(tableau$ic_haut), 3)
   }
 
-  # Statistiques globales du mod\u00e8le
+  # Statistiques globales du modèle
   if (type == "lineaire") {
     r2 <- tryCatch(summary(modele)$r.squared, error = function(e) NA)
     if (!is.null(r2) && is.numeric(r2)) {
@@ -514,13 +514,13 @@ analyse_spatiale <- function(data,
     ))
   }
 
-  # S\u00e9lection des indicateurs
+  # Sélection des indicateurs
   if (is.null(indicateurs)) {
     indicateurs <- names(data)[sapply(data, is.numeric)]
     indicateurs <- setdiff(indicateurs, var_geo_data)
   }
 
-  # Agr\u00e9gation par zone g\u00e9ographique
+  # Agrégation par zone géographique
   data_agregee <- data |>
     dplyr::group_by(dplyr::across(dplyr::all_of(var_geo_data))) |>
     dplyr::summarise(
@@ -539,7 +539,7 @@ analyse_spatiale <- function(data,
       by = stats::setNames(var_geo_data, var_geo_shape)
     )
 
-  # Rapport des non-appari\u00e9s
+  # Rapport des non-appariés
   zones_data  <- unique(data[[var_geo_data]])
   zones_shape <- unique(shapefile[[var_geo_shape]])
   non_apparies <- setdiff(zones_data, zones_shape)
@@ -631,16 +631,16 @@ calcul_idh <- function(esperance_vie,
   indice_revenu <- (log(rnb_habitant) - log(bornes$rnb_min)) /
     (log(bornes$rnb_max) - log(bornes$rnb_min))
 
-  # \u00c9cr\u00eatage entre 0 et 1
+  # Écrêtage entre 0 et 1
   indice_sante      <- max(0, min(1, indice_sante))
   indice_education  <- max(0, min(1, indice_education))
   indice_revenu     <- max(0, min(1, indice_revenu))
 
-  # IDH = moyenne g\u00e9om\u00e9trique des 3 indices
+  # IDH = moyenne géométrique des 3 indices
   idh <- (indice_sante * indice_education * indice_revenu) ^ (1/3)
   idh <- round(idh, 3)
 
-  # Cat\u00e9gorie PNUD
+  # Catégorie PNUD
   categorie <- dplyr::case_when(
     idh >= 0.800 ~ "Tr\u00e8s \u00e9lev\u00e9",
     idh >= 0.700 ~ "\u00c9lev\u00e9",
@@ -720,7 +720,7 @@ calcul_ipm <- function(data,
   n_dimensions <- length(indicateurs)
   noms_dim     <- names(indicateurs)
 
-  # Poids par d\u00e9faut : \u00e9gaux
+  # Poids par défaut : égaux
   if (is.null(poids_dimensions)) {
     poids_dimensions <- rep(1 / n_dimensions, n_dimensions)
   } else {
@@ -739,7 +739,7 @@ calcul_ipm <- function(data,
     }
   }
 
-  # V\u00e9rification des indicateurs
+  # Vérification des indicateurs
   tous_indicateurs <- unlist(indicateurs)
   indicateurs_absents <- setdiff(tous_indicateurs, names(data))
   if (length(indicateurs_absents) > 0) {
@@ -749,7 +749,7 @@ calcul_ipm <- function(data,
     ))
   }
 
-  # Poids par indicateur (pond\u00e9ration \u00e9quitable au sein de chaque dimension)
+  # Poids par indicateur (pondération équitable au sein de chaque dimension)
   poids_indicateurs <- numeric(length(tous_indicateurs))
   names(poids_indicateurs) <- tous_indicateurs
 
@@ -760,15 +760,15 @@ calcul_ipm <- function(data,
     }
   }
 
-  # Score de privation pond\u00e9r\u00e9 par individu
+  # Score de privation pondéré par individu
   data_priv <- data[, tous_indicateurs, drop = FALSE]
 
-  # Conversion en num\u00e9rique si n\u00e9cessaire
+  # Conversion en numérique si nécessaire
   data_priv <- data.frame(lapply(data_priv, function(x) {
     if (is.logical(x)) as.integer(x) else as.numeric(x)
   }))
 
-  # V\u00e9rification valeurs 0/1
+  # Vérification valeurs 0/1
   vals_invalides <- sapply(data_priv, function(x) {
     any(!x %in% c(0, 1, NA))
   })
@@ -783,7 +783,7 @@ calcul_ipm <- function(data,
     }))
   }
 
-  # Score de privation pond\u00e9r\u00e9
+  # Score de privation pondéré
   score_prive <- as.matrix(data_priv) %*% poids_indicateurs
 
   # Identification des pauvres multidimensionnels
@@ -813,7 +813,7 @@ calcul_ipm <- function(data,
   })
   names(contributions) <- noms_dim
 
-  # Enrichissement des donn\u00e9es
+  # Enrichissement des données
   data_enrichie <- data
   data_enrichie$.score_privation  <- round(as.numeric(score_prive), 4)
   data_enrichie$.est_pauvre_multi <- as.logical(est_pauvre)
@@ -841,7 +841,7 @@ calcul_ipm <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 7. MESURES D'IN\u00c9GALIT\u00c9
+# 7. MESURES D'INÉGALITÉ
 # -----------------------------------------------------------------------------
 
 #' @title Décomposer les inégalités
@@ -904,7 +904,7 @@ decomposer_inegalite <- function(data,
     rep(1, length(x))
   }
 
-  # Indice de Gini pond\u00e9r\u00e9
+  # Indice de Gini pondéré
   gini_val <- .calcul_gini(x, poids)
 
   # Indice de Theil T
@@ -919,7 +919,7 @@ decomposer_inegalite <- function(data,
     atkinson = round(atkinson_val, 4)
   )
 
-  # D\u00e9composition par groupe
+  # Décomposition par groupe
   if (!is.null(var_groupe) && var_groupe %in% names(data)) {
     groupes <- unique(data[[var_groupe]])
     decomp <- lapply(groupes, function(g) {
@@ -948,7 +948,7 @@ decomposer_inegalite <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 8. SCORE DE QUALIT\u00c9 DES DONN\u00c9ES
+# 8. SCORE DE QUALITÉ DES DONNÉES
 # -----------------------------------------------------------------------------
 
 #' @title Valider la qualité globale d'un jeu de données
@@ -976,12 +976,12 @@ valider_qualite_donnees <- function(data,
 
   scores <- list()
 
-  # 1. Compl\u00e9tude
+  # 1. Complétude
   taux_na_global <- mean(is.na(data))
   scores$completude <- round(max(0, (1 - taux_na_global / seuil_na) * 25), 1)
   scores$completude <- min(25, scores$completude)
 
-  # 2. Unicit\u00e9
+  # 2. Unicité
   if (!is.null(vars_cles)) {
     vars_cles_dispo <- intersect(vars_cles, names(data))
     if (length(vars_cles_dispo) > 0) {
@@ -996,7 +996,7 @@ valider_qualite_donnees <- function(data,
     scores$unicite <- round(n_uniques / nrow(data) * 25, 1)
   }
 
-  # 3. Coh\u00e9rence des types
+  # 3. Cohérence des types
   n_vars <- ncol(data)
   n_coherents <- sum(sapply(data, function(x) {
     if (is.character(x)) {
@@ -1007,7 +1007,7 @@ valider_qualite_donnees <- function(data,
   }))
   scores$coherence <- round(n_coherents / n_vars * 25, 1)
 
-  # 4. Plausibilit\u00e9 (valeurs hors plage)
+  # 4. Plausibilité (valeurs hors plage)
   vars_num <- names(data)[sapply(data, is.numeric)]
   if (length(vars_num) > 0) {
     n_plausibles <- sum(sapply(data[vars_num], function(x) {
@@ -1071,10 +1071,10 @@ valider_qualite_donnees <- function(data,
   poids_norm <- poids / sum(poids)
   cum_poids  <- cumsum(poids_norm)
   cum_rev    <- cumsum(x * poids_norm) / sum(x * poids_norm)
-  # M\u00e9thode trap\u00e8ze
+  # Méthode trapèze
   gini <- 1 - 2 * sum(cum_rev * poids_norm) +
     sum(x * poids_norm) / sum(x * poids_norm)
-  # Formule simplifi\u00e9e
+  # Formule simplifiée
   gini <- 1 - sum((cum_rev[-n] + cum_rev[-1]) *
                     diff(cum_poids))
   max(0, min(1, gini))

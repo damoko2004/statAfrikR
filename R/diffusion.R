@@ -1,10 +1,10 @@
 # =============================================================================
-# statAfrikR \u2014 Module Diffusion
-# Fonctions de production, anonymisation et diffusion des donn\u00e9es
+# statAfrikR — Module Diffusion
+# Fonctions de production, anonymisation et diffusion des données
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 1. G\u00c9N\u00c9RATION DE RAPPORT
+# 1. GÉNÉRATION DE RAPPORT
 # -----------------------------------------------------------------------------
 
 #' @title Générer un rapport statistique officiel
@@ -52,7 +52,7 @@ generer_rapport <- function(donnees,
     rlang::abort("`donnees` doit \u00eatre un data.frame ou tibble.")
   }
 
-  # R\u00e9solution du template
+  # Résolution du template
   templates_integres <- c("bulletin_mensuel", "rapport_annuel", "fiche_pays")
 
   if (template %in% templates_integres) {
@@ -62,7 +62,7 @@ generer_rapport <- function(donnees,
       package = "statAfrikR"
     )
     if (!nzchar(chemin_template) || !file.exists(chemin_template)) {
-      # Template de secours g\u00e9n\u00e9r\u00e9 \u00e0 la vol\u00e9e
+      # Template de secours généré à la volée
       chemin_template <- .creer_template_secours(template, metadonnees)
     }
   } else {
@@ -79,13 +79,13 @@ generer_rapport <- function(donnees,
     fichier_sortie <- paste0("rapport_", template, "_", horodatage, ext)
   }
 
-  # Cr\u00e9ation du r\u00e9pertoire de sortie si n\u00e9cessaire
+  # Création du répertoire de sortie si nécessaire
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
   }
 
-  # Param\u00e8tres pour le Rmd
+  # Paramètres pour le Rmd
   params_rmd <- list(
     donnees     = donnees,
     metadonnees = metadonnees %||% list(
@@ -150,7 +150,7 @@ generer_rapport <- function(donnees,
 
 
 # -----------------------------------------------------------------------------
-# 2. ANONYMISATION DES DONN\u00c9ES
+# 2. ANONYMISATION DES DONNÉES
 # -----------------------------------------------------------------------------
 
 #' @title Anonymiser un jeu de données
@@ -276,7 +276,7 @@ anonymiser_donnees <- function(data,
     }
   }
 
-  # 4. G\u00e9n\u00e9ralisation (regroupement en classes)
+  # 4. Généralisation (regroupement en classes)
   if (!is.null(vars_generaliser)) {
     if (!is.list(vars_generaliser)) {
       rlang::abort("`vars_generaliser` doit \u00eatre une liste nomm\u00e9e.")
@@ -386,7 +386,7 @@ exporter_sdmx <- function(data,
     rlang::abort("`fichier_sortie` est obligatoire.")
   }
 
-  # V\u00e9rification des variables
+  # Vérification des variables
   toutes_vars <- c(vars_dimensions, vars_mesures,
                    if (!is.null(vars_attributs)) vars_attributs)
   vars_abs    <- setdiff(toutes_vars, names(data))
@@ -416,7 +416,7 @@ exporter_sdmx <- function(data,
     .before  = 1
   )
 
-  # S\u00e9paration OBS_VALUE pour chaque mesure (format SDMX long)
+  # Séparation OBS_VALUE pour chaque mesure (format SDMX long)
   data_long <- data_sdmx |>
     tidyr::pivot_longer(
       cols      = dplyr::all_of(toupper(vars_mesures)),
@@ -424,14 +424,14 @@ exporter_sdmx <- function(data,
       values_to = "OBS_VALUE"
     )
 
-  # Cr\u00e9ation du r\u00e9pertoire si n\u00e9cessaire
+  # Création du répertoire si nécessaire
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
   }
 
-  # \u00c9criture : header + donn\u00e9es
-  # \u00c9criture du header SDMX puis des donn\u00e9es
+  # Écriture : header + données
+  # Écriture du header SDMX puis des données
   con <- file(fichier_sortie, open = "wt", encoding = "UTF-8")
   writeLines(header_sdmx, con = con)
   close(con)
@@ -460,7 +460,7 @@ exporter_sdmx <- function(data,
 
 
 # -----------------------------------------------------------------------------
-# 4. M\u00c9TADONN\u00c9ES DDI
+# 4. MÉTADONNÉES DDI
 # -----------------------------------------------------------------------------
 
 #' @title Générer une fiche de métadonnées DDI
@@ -636,7 +636,7 @@ generer_metadonnees_ddi <- function(data,
 
   lignes_xml <- c(lignes_xml, '</dataDscr>', '</codeBook>')
 
-  # \u00c9criture du fichier
+  # Écriture du fichier
   dir_sortie <- dirname(fichier_sortie)
   if (!dir.exists(dir_sortie) && dir_sortie != ".") {
     dir.create(dir_sortie, recursive = TRUE)
@@ -706,7 +706,7 @@ compresser_package_diffusion <- function(donnees,
     rlang::abort("`nom_package` est obligatoire.")
   }
 
-  # Cr\u00e9ation du r\u00e9pertoire temporaire de staging
+  # Création du répertoire temporaire de staging
   dir_temp <- file.path(
     tempdir(),
     paste0(nom_package, "_", format(Sys.time(), "%Y%m%d%H%M%S"))
@@ -716,7 +716,7 @@ compresser_package_diffusion <- function(donnees,
 
   fichiers_inclus <- character(0)
 
-  # Donn\u00e9es CSV
+  # Données CSV
   if (inclure_csv) {
     chemin_csv <- file.path(dir_temp, paste0(nom_package, ".csv"))
     utils::write.csv(donnees, chemin_csv, row.names = FALSE,
@@ -725,7 +725,7 @@ compresser_package_diffusion <- function(donnees,
     message("  + Donn\u00e9es CSV : ", basename(chemin_csv))
   }
 
-  # Donn\u00e9es RDS
+  # Données RDS
   if (inclure_rds) {
     chemin_rds <- file.path(dir_temp, paste0(nom_package, ".rds"))
     saveRDS(donnees, chemin_rds)
@@ -739,7 +739,7 @@ compresser_package_diffusion <- function(donnees,
   writeLines(readme_contenu, chemin_readme)
   fichiers_inclus <- c(fichiers_inclus, chemin_readme)
 
-  # Fichiers suppl\u00e9mentaires
+  # Fichiers supplémentaires
   if (!is.null(fichiers_supplementaires)) {
     for (fich in fichiers_supplementaires) {
       if (file.exists(fich)) {
@@ -753,7 +753,7 @@ compresser_package_diffusion <- function(donnees,
     }
   }
 
-  # Cr\u00e9ation du r\u00e9pertoire de sortie
+  # Création du répertoire de sortie
   if (!dir.exists(repertoire_sortie)) {
     dir.create(repertoire_sortie, recursive = TRUE)
   }
