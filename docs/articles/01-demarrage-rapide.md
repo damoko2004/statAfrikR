@@ -1,0 +1,163 @@
+# Démarrage rapide avec statAfrikR
+
+## Introduction
+
+**statAfrikR** est une boîte à outils R conçue spécifiquement pour les
+Instituts Nationaux de Statistique (INS) africains. Ce guide vous permet
+de réaliser une analyse complète en moins de 30 minutes.
+
+``` r
+library(statAfrikR)
+```
+
+## 1. Import des données
+
+### Depuis Excel
+
+``` r
+donnees <- import_excel(
+  chemin    = "enquete_menages_2023.xlsx",
+  feuille   = "Données",
+  na_values = c("", "NA", "N/A", "9999", ".")
+)
+```
+
+### Depuis Stata
+
+``` r
+donnees <- import_stata(
+  chemin           = "emop_2023.dta",
+  convertir_labels = TRUE
+)
+```
+
+### Depuis KoboToolbox
+
+``` r
+donnees <- import_kobo(
+  chemin = "enquete_kobo_export.xlsx"
+)
+```
+
+## 2. Validation des données
+
+``` r
+# Vérifier les valeurs manquantes
+rapport_na <- check_na(donnees, seuil = 0.1)
+print(rapport_na)
+
+# Valider par rapport à un dictionnaire
+dict <- readr::read_csv("dictionnaire_variables.csv")
+score <- valider_dictionnaire(donnees, dict)
+cat("Score de qualité :", score$score_qualite, "/100\n")
+```
+
+## 3. Nettoyage et traitement
+
+``` r
+# Nettoyage des libellés textuels
+donnees <- nettoyer_libelles(
+  donnees,
+  vars  = c("region", "commune"),
+  casse = "titre"
+)
+
+# Suppression des doublons
+resultat <- supprimer_doublons(donnees, cles = "id_menage")
+donnees  <- resultat$donnees
+cat("Doublons supprimés :", nrow(resultat$rapport), "\n")
+
+# Imputation des valeurs manquantes
+donnees <- imputer_valeurs(
+  donnees,
+  vars    = c("revenu_mensuel", "depense_alimentaire"),
+  methode = "mediane",
+  rapport = FALSE
+)
+```
+
+## 4. Application des pondérations
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees,
+  var_poids  = "poids_final",
+  var_strate = "strate",
+  var_grappe = "grappe_id"
+)
+```
+
+## 5. Analyse statistique
+
+``` r
+# Statistiques descriptives pondérées
+stats <- stat_descr(
+  plan,
+  vars   = c("revenu_mensuel", "depense_alimentaire"),
+  ic     = TRUE
+)
+print(stats)
+
+# Tableau croisé
+tableau <- tab_croisee(
+  plan,
+  var_ligne   = "quintile_vie",
+  var_col     = "milieu",
+  pourcentage = "colonne"
+)
+print(tableau)
+```
+
+## 6. Visualisation
+
+``` r
+library(ggplot2)
+
+# Pyramide des âges
+p <- pyramide_ages(
+  donnees,
+  var_age   = "age",
+  var_sexe  = "sexe",
+  var_poids = "poids_final",
+  titre     = "Pyramide des âges — Enquête 2023"
+)
+print(p)
+
+# Exporter
+exporter_graphique(p, "outputs/pyramide_ages_2023.png", dpi = 300L)
+```
+
+## 7. Diffusion
+
+``` r
+# Anonymiser avant diffusion
+donnees_anon <- anonymiser_donnees(
+  donnees,
+  vars_supprimer   = c("nom", "prenom", "telephone", "adresse"),
+  vars_masquer     = c("id_menage", "id_individu"),
+  vars_generaliser = list(age = 5),
+  rapport          = FALSE
+)
+
+# Créer le package de diffusion
+compresser_package_diffusion(
+  donnees           = donnees_anon,
+  repertoire_sortie = "diffusion/",
+  nom_package       = "EMOP_BEN_2023_v1",
+  metadonnees       = list(
+    titre       = "EMOP Bénin 2023",
+    institution = "INSAE",
+    version     = "1.0"
+  )
+)
+```
+
+## Résumé du flux de travail
+
+    Import → Validation → Nettoyage → Pondération → Analyse → Visualisation → Diffusion
+
+Pour aller plus loin, consultez les vignettes :
+
+- **Enquête pondérée complète** : analyse EDS avec plan de sondage
+  complexe
+- **Indicateurs ODD** : calcul IDH, IPM et mesures d’inégalité
