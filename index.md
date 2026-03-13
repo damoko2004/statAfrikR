@@ -81,3 +81,16 @@ GitHub](https://github.com/damoko2004/statAfrikR/issues).
 ## Licence
 
 GPL-3.0 © Dikers Amoko
+
+## 💬 Communauté
+
+[![Discord](https://img.shields.io/discord/1482000033158135920?color=00C853&label=Discord&logo=discord&logoColor=white)](https://discord.gg/x9u5sXQB2V)
+
+Rejoins la communauté officielle **statAfrikR** sur Discord !
+
+- 🌍 Statisticiens et analystes des INS africains
+- 💻 Développeurs R contributeurs
+- 📊 Support technique et entraide
+- 🎓 Formations et ressources
+
+👉 [Rejoindre le serveur Discord](https://discord.gg/x9u5sXQB2V)
