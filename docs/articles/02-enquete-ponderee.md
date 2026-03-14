@@ -7,6 +7,7 @@ Démographique et de Santé (EDS) ou d’une Enquête sur les Conditions de
 Vie (EMOP/EMICOV), avec pondération complexe (strates + grappes).
 
 ``` r
+
 library(statAfrikR)
 library(dplyr)
 ```
@@ -14,6 +15,7 @@ library(dplyr)
 ## 1. Données simulées d’une enquête ménages
 
 ``` r
+
 set.seed(2024)
 n <- 5000
 
@@ -50,6 +52,7 @@ cat("Régions :", length(unique(donnees_eds$region)), "\n")
 ## 2. Validation de la qualité
 
 ``` r
+
 qualite <- valider_qualite_donnees(
   donnees_eds,
   vars_cles = "id_menage",
@@ -60,6 +63,7 @@ qualite <- valider_qualite_donnees(
 ## 3. Nettoyage et harmonisation
 
 ``` r
+
 # Harmonisation des régions
 donnees_eds <- harmoniser_regions(
   donnees_eds,
@@ -79,6 +83,7 @@ etape <- tracer_flux_traitement(
 ## 4. Plan de sondage complexe
 
 ``` r
+
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   var_poids  = "poids_final",
@@ -90,6 +95,7 @@ plan <- appliquer_ponderations(
 ## 5. Statistiques descriptives pondérées
 
 ``` r
+
 stats <- stat_descr(
   plan,
   vars = c("depense_totale", "taille_menage", "age_chef"),
@@ -104,11 +110,12 @@ knitr::kable(stats, caption = "Statistiques descriptives pondérées")
 | taille_menage | 5000 | 4.82 | 5.0 | 2.28 | 3.0 | 6 | 1.00 | 12 | 4.75 | 4.89 |
 | age_chef | 5000 | 50.23 | 50.0 | 14.81 | 38.0 | 63 | 25.00 | 75 | 49.77 | 50.69 |
 
-Statistiques descriptives pondérées
+Statistiques descriptives pondérées {.table style="width:100%;"}
 
 ## 6. Tableaux croisés
 
 ``` r
+
 tab <- tab_croisee(
   plan,
   var_ligne   = "milieu",
@@ -141,11 +148,12 @@ knitr::kable(
 | Rural  | Littoral   |  0.5818214 |        58.2 | 683.9561 |
 | Urbain | Littoral   |  0.4181786 |        41.8 | 491.5869 |
 
-Répartition par milieu et région (%)
+Répartition par milieu et région (%) {.table}
 
 ## 7. Calcul des indicateurs de pauvreté
 
 ``` r
+
 indicateurs_ipm <- list(
   sante      = c("acces_eau"),
   education  = c("scolarisation"),
@@ -163,6 +171,7 @@ resultat_ipm <- calcul_ipm(
 ## 8. Mesures d’inégalité
 
 ``` r
+
 inegalites <- decomposer_inegalite(
   donnees_eds,
   var_revenu = "depense_totale",
@@ -183,11 +192,12 @@ knitr::kable(
 | Rural  | 3005 | 852312.3 |       0.2710 |   0.5971 |      0.5948 |
 | Urbain | 1995 | 860348.6 |       0.2694 |   0.4029 |      0.4052 |
 
-Décomposition des inégalités par milieu
+Décomposition des inégalités par milieu {.table}
 
 ## 9. Visualisation
 
 ``` r
+
 library(ggplot2)
 pyramide_ages(
   donnees_eds,
@@ -205,6 +215,7 @@ ménage](02-enquete-ponderee_files/figure-html/pyramide-1.png)
 Pyramide des âges des chefs de ménage
 
 ``` r
+
 stats_region <- stat_descr(
   donnees_eds,
   vars   = "depense_totale",
@@ -232,6 +243,7 @@ Dépense moyenne par région
 ## 10. Régression
 
 ``` r
+
 # Déterminants de la dépense
 modele <- analyse_regression(
   log(depense_totale) ~ age_chef + taille_menage + electricite + acces_eau,
@@ -255,11 +267,12 @@ knitr::kable(
 | electricite   |     0.0196 | -0.0230 |  0.0622 |   0.3667 |              |
 | acces_eau     |    -0.0003 | -0.0447 |  0.0441 |   0.9894 |              |
 
-Déterminants de la dépense des ménages
+Déterminants de la dépense des ménages {.table}
 
 ## 11. Export et diffusion
 
 ``` r
+
 # Anonymisation
 donnees_anon <- anonymiser_donnees(
   donnees_eds,

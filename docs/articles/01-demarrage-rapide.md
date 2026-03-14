@@ -7,6 +7,7 @@ Instituts Nationaux de Statistique (INS) africains. Ce guide vous permet
 de réaliser une analyse complète en moins de 30 minutes.
 
 ``` r
+
 library(statAfrikR)
 ```
 
@@ -15,6 +16,7 @@ library(statAfrikR)
 ### Depuis Excel
 
 ``` r
+
 donnees <- import_excel(
   chemin    = "enquete_menages_2023.xlsx",
   feuille   = "Données",
@@ -25,6 +27,7 @@ donnees <- import_excel(
 ### Depuis Stata
 
 ``` r
+
 donnees <- import_stata(
   chemin           = "emop_2023.dta",
   convertir_labels = TRUE
@@ -34,6 +37,7 @@ donnees <- import_stata(
 ### Depuis KoboToolbox
 
 ``` r
+
 donnees <- import_kobo(
   chemin = "enquete_kobo_export.xlsx"
 )
@@ -42,6 +46,7 @@ donnees <- import_kobo(
 ## 2. Validation des données
 
 ``` r
+
 # Vérifier les valeurs manquantes
 rapport_na <- check_na(donnees, seuil = 0.1)
 print(rapport_na)
@@ -55,6 +60,7 @@ cat("Score de qualité :", score$score_qualite, "/100\n")
 ## 3. Nettoyage et traitement
 
 ``` r
+
 # Nettoyage des libellés textuels
 donnees <- nettoyer_libelles(
   donnees,
@@ -79,6 +85,7 @@ donnees <- imputer_valeurs(
 ## 4. Application des pondérations
 
 ``` r
+
 plan <- appliquer_ponderations(
   data       = donnees,
   var_poids  = "poids_final",
@@ -90,6 +97,7 @@ plan <- appliquer_ponderations(
 ## 5. Analyse statistique
 
 ``` r
+
 # Statistiques descriptives pondérées
 stats <- stat_descr(
   plan,
@@ -111,6 +119,7 @@ print(tableau)
 ## 6. Visualisation
 
 ``` r
+
 library(ggplot2)
 
 # Pyramide des âges
@@ -130,6 +139,7 @@ exporter_graphique(p, "outputs/pyramide_ages_2023.png", dpi = 300L)
 ## 7. Diffusion
 
 ``` r
+
 # Anonymiser avant diffusion
 donnees_anon <- anonymiser_donnees(
   donnees,

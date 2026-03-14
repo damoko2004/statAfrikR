@@ -8,3 +8,5 @@
   complète](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.md):
 - [Calcul des indicateurs ODD : IDH, IPM et
   inégalités](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.md):
+- [🏆
+  Contributeurs](https://damoko2004.github.io/statAfrikR/articles/contributeurs.md):

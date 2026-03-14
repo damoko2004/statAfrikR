@@ -7,6 +7,7 @@ humain conformes aux méthodologies internationales PNUD/OPHI,
 directement utilisables pour les rapports nationaux sur les ODD.
 
 ``` r
+
 library(statAfrikR)
 library(dplyr)
 library(ggplot2)
@@ -17,6 +18,7 @@ library(ggplot2)
 ### Calcul national
 
 ``` r
+
 idh_benin <- calcul_idh(
   esperance_vie   = 61.8,
   annees_scol_moy = 4.5,
@@ -42,6 +44,7 @@ cat("  Catégorie     :", idh_benin$categorie, "\n")
 ### Comparaison régionale
 
 ``` r
+
 pays_afrique <- tibble::tibble(
   pays            = c("Bénin", "Burkina Faso", "Sénégal",
                        "Côte d'Ivoire", "Mali", "Niger",
@@ -86,9 +89,10 @@ knitr::kable(
 | Niger         | 0.445 | Faible    |        0.652 |       0.345 |         0.392 |
 | Mali          | 0.433 | Faible    |        0.605 |       0.288 |         0.467 |
 
-IDH — Comparaison régionale Afrique de l’Ouest
+IDH — Comparaison régionale Afrique de l’Ouest {.table}
 
 ``` r
+
 idh_long <- idh_regional |>
   tidyr::pivot_longer(
     cols      = c(indice_sante, indice_educ, indice_revenu),
@@ -123,6 +127,7 @@ IDH et composantes — Afrique de l’Ouest
 ## 2. Indice de Pauvreté Multidimensionnelle (IPM)
 
 ``` r
+
 set.seed(2024)
 n <- 3000
 donnees_menages <- tibble::tibble(
@@ -148,6 +153,7 @@ donnees_menages <- tibble::tibble(
 ```
 
 ``` r
+
 # Définition des dimensions IPM standard OPHI
 indicateurs_ipm <- list(
   sante      = c("malnutrition", "mortalite_enf"),
@@ -165,6 +171,7 @@ resultat_ipm <- calcul_ipm(
 ```
 
 ``` r
+
 contrib_df <- tibble::tibble(
   dimension    = names(resultat_ipm$contributions),
   contribution = resultat_ipm$contributions
@@ -183,11 +190,12 @@ knitr::kable(
 | education  |            39.06 |
 | niveau_vie |            35.52 |
 
-Contributions des dimensions à l’IPM
+Contributions des dimensions à l’IPM {.table}
 
 ### IPM par région
 
 ``` r
+
 donnees_enrichies <- resultat_ipm$donnees_enrichies
 
 ipm_region <- donnees_enrichies |>
@@ -214,11 +222,12 @@ knitr::kable(
 | Sud    |     753 |              46.9 |       0.309 |
 | Est    |     716 |              45.8 |       0.303 |
 
-Pauvreté multidimensionnelle par région
+Pauvreté multidimensionnelle par région {.table}
 
 ## 3. Inégalités
 
 ``` r
+
 set.seed(2024)
 donnees_revenus <- tibble::tibble(
   menage         = 1:2000,
@@ -231,6 +240,7 @@ donnees_revenus <- tibble::tibble(
 ```
 
 ``` r
+
 inegalites <- decomposer_inegalite(
   donnees_revenus,
   var_revenu = "depense_totale",
@@ -240,6 +250,7 @@ inegalites <- decomposer_inegalite(
 ```
 
 ``` r
+
 knitr::kable(
   inegalites$decomposition,
   caption = "Décomposition des inégalités par milieu",
@@ -252,9 +263,10 @@ knitr::kable(
 | Urbain |  795 | 686206.9 |        0.437 |    0.392 |       0.395 |
 | Rural  | 1205 | 677273.3 |        0.421 |    0.608 |       0.605 |
 
-Décomposition des inégalités par milieu
+Décomposition des inégalités par milieu {.table}
 
 ``` r
+
 # Construction manuelle de la courbe de Lorenz
 x_sorted <- sort(donnees_revenus$depense_totale)
 n         <- length(x_sorted)
@@ -286,6 +298,7 @@ Courbe de Lorenz — Dépenses des ménages
 ## Synthèse
 
 ``` r
+
 tibble::tibble(
   Indicateur = c("IDH Bénin 2023", "IPM (H × A)", "Incidence (H)",
                   "Intensité (A)", "Gini"),
@@ -319,4 +332,4 @@ knitr::kable(caption = "Tableau de bord des indicateurs ODD")
 | Intensité (A)  | 0.4400 | 44% de privations en moyenne |
 | Gini           | 0.4277 | Inégalités élevées           |
 
-Tableau de bord des indicateurs ODD
+Tableau de bord des indicateurs ODD {.table}

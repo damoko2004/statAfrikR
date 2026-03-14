@@ -13,6 +13,7 @@ multilinguisme, ressources IT contraintes).
 ## Installation
 
 ``` r
+
 # Version stable depuis le CRAN
 install.packages("statAfrikR")
 
@@ -34,6 +35,7 @@ remotes::install_github("damoko2004/statAfrikR")
 ## Exemple rapide
 
 ``` r
+
 library(statAfrikR)
 
 # Vérifier la qualité des données

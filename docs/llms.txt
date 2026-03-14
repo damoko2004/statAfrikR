@@ -13,6 +13,7 @@ multilinguisme, ressources IT contraintes).
 ## Installation
 
 ``` r
+
 # Version stable depuis le CRAN
 install.packages("statAfrikR")
 
@@ -34,6 +35,7 @@ remotes::install_github("damoko2004/statAfrikR")
 ## Exemple rapide
 
 ``` r
+
 library(statAfrikR)
 
 # Vérifier la qualité des données
@@ -190,3 +192,5 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   complète](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.md):
 - [Calcul des indicateurs ODD : IDH, IPM et
   inégalités](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.md):
+- [🏆
+  Contributeurs](https://damoko2004.github.io/statAfrikR/articles/contributeurs.md):
