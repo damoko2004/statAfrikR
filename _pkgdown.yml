@@ -4,9 +4,12 @@ template:
 
 navbar:
   structure:
-    left: [intro, reference, articles]
+    left: [intro, reference, articles, contributors]
     right: [discord, github]
   components:
+    contributors:
+      text: "🏆 Contributeurs"
+      href: articles/contributeurs.html
     discord:
       icon: fab fa-discord
       href: https://discord.gg/x9u5sXQB2V
