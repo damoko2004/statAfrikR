@@ -1,5 +1,5 @@
 Package: statAfrikR
-Title: Outils Statistiques pour les Instituts Nationaux de Statistique Africains
+Title: Statistical Tools for African National Statistics Institutes
 Version: 0.1.0
 Authors@R: person(
     given   = "Dikers",
@@ -8,16 +8,17 @@ Authors@R: person(
     email   = "diamoko@gmail.com",
     comment = c(ORCID = "")
   )
-Description: Boîte à outils statistiques complète pour les Instituts Nationaux
-    de Statistique (INS) africains. Fournit des fonctions pour l'import de
-    données d'enquêtes (KoboToolbox, ODK, CSPro, Excel, Stata, SPSS), le
-    traitement et la validation, l'analyse statistique pondérée (statistiques
-    descriptives, tableaux croisés, régression, IDH, IPM, inégalités), la
-    visualisation (pyramides des âges, cartes thématiques, graphiques officiels)
-    et la diffusion (rapports Word/PDF, anonymisation, export SDMX, métadonnées
-    DDI). Conçu pour fonctionner en environnement à ressources limitées,
-    hors ligne et en français.
-License: GPL (>= 3) | file LICENSE
+Description: A comprehensive statistical toolbox for National Statistics
+    Institutes (INS) in Africa. Provides functions for survey data import
+    ('KoboToolbox', 'ODK', 'CSPro', 'Excel', 'Stata', 'SPSS'), data
+    processing and validation, weighted statistical analysis (descriptive
+    statistics, cross-tabulations, regression, Human Development Index (HDI),
+    Multidimensional Poverty Index (MPI) following Alkire and Foster (2011)
+    <doi:10.1093/oep/gpr051>, inequalities), visualization (age pyramids,
+    thematic maps, official charts) and dissemination ('SDMX' export, 'DDI'
+    metadata, anonymization, Word/PDF reports). Designed to work in
+    resource-constrained environments, offline and in French.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
