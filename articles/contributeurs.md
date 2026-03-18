@@ -27,7 +27,7 @@ Ce package est développé **pour et avec** les INS africains.
     Discussions](https://github.com/damoko2004/statAfrikR/discussions)
 3.  **Soumettre du code** → Fork + Pull Request
 4.  **Rejoindre la communauté** →
-    [Discord](https://discord.gg/x9u5sXQB2V)
+    [Discord](https://discord.com/invite/x9u5sXQB2V)
 
 ## 🏆 Devenez contributeur !
 
@@ -36,5 +36,5 @@ Ce package est développé **pour et avec** les INS africains.
 - 🌍 Traductions et documentation
 - 🧪 Tests et retours utilisateurs INS
 
-👉 [Rejoindre le Discord](https://discord.gg/x9u5sXQB2V) pour commencer
-!
+👉 [Rejoindre le Discord](https://discord.com/invite/x9u5sXQB2V) pour
+commencer !
