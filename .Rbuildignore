@@ -12,3 +12,5 @@
 ^data-raw$
 ^docs$
 ^build_cran\.R$
+^CONTRIBUTORS\.md$
+^CONTRIBUTORS\.md$

@@ -82,7 +82,7 @@ GPL-3.0 © Dikers Amoko
 
 ## 💬 Communauté
 
-[![Discord](https://img.shields.io/discord/1482000033158135920?color=00C853&label=Discord&logo=discord&logoColor=white)](https://discord.gg/x9u5sXQB2V)
+[![Discord](https://img.shields.io/discord/1482000033158135920?color=00C853&label=Discord&logo=discord&logoColor=white)](https://discord.com/invite/x9u5sXQB2V)
 
 Rejoins la communauté officielle **statAfrikR** sur Discord !
 
@@ -91,4 +91,4 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - 📊 Support technique et entraide
 - 🎓 Formations et ressources
 
-👉 [Rejoindre le serveur Discord](https://discord.gg/x9u5sXQB2V)
+👉 [Rejoindre le serveur Discord](https://discord.com/invite/x9u5sXQB2V)
