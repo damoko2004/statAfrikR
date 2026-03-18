@@ -24,7 +24,7 @@
 #' @param ouvrir logical — Ouvrir le rapport après génération. Défaut : FALSE.
 #' @return Chemin du fichier généré (invisible).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   generer_rapport(
 #'     donnees        = resultats_enquete,
 #'     template       = "bulletin_mensuel",
@@ -76,7 +76,7 @@ generer_rapport <- function(donnees,
   ext <- if (format_sortie == "word") ".docx" else ".pdf"
   if (is.null(fichier_sortie)) {
     horodatage     <- format(Sys.time(), "%Y%m%d_%H%M%S")
-    fichier_sortie <- paste0("rapport_", template, "_", horodatage, ext)
+    fichier_sortie <- file.path(tempdir(), paste0("rapport_", template, "_", horodatage, ext))
   }
 
   # Création du répertoire de sortie si nécessaire
@@ -174,7 +174,7 @@ generer_rapport <- function(donnees,
 #' @return Si \code{rapport = FALSE} : tibble anonymisé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   resultat <- anonymiser_donnees(
 #'     donnees_enquete,
 #'     vars_supprimer  = c("nom", "prenom", "telephone"),
@@ -354,14 +354,14 @@ anonymiser_donnees <- function(data,
 #' @param version character — Version SDMX. Défaut : "2.1".
 #' @return Chemin du fichier exporté (invisible).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   exporter_sdmx(
 #'     data            = indicateurs_regionaux,
 #'     flux_donnees    = "BEN_IDH_2023",
 #'     agence          = "INSAE",
 #'     vars_dimensions = c("region", "annee"),
 #'     vars_mesures    = c("idh", "taux_pauvrete"),
-#'     fichier_sortie  = "outputs/indicateurs_sdmx.csv"
+#'     fichier_sortie  = file.path(tempdir(), "indicateurs_sdmx.csv")
 #'   )
 #' }
 #' @export
@@ -479,14 +479,14 @@ exporter_sdmx <- function(data,
 #' @param langue character — Langue principale. Défaut : "fr".
 #' @return Chemin du fichier généré (invisible).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   generer_metadonnees_ddi(
 #'     data        = donnees_emop,
 #'     titre       = "Enquête Modulaire sur les Conditions de Vie — 2023",
 #'     pays        = "Bénin",
 #'     annee       = 2023,
 #'     institution = "INSAE",
-#'     fichier_sortie = "outputs/emop_2023_ddi.xml"
+#'     fichier_sortie = file.path(tempdir(), "emop_2023_ddi.xml")
 #'   )
 #' }
 #' @export
@@ -671,13 +671,13 @@ generer_metadonnees_ddi <- function(data,
 #'   README automatique. Défaut : NULL.
 #' @return Chemin de l'archive ZIP (invisible).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   compresser_package_diffusion(
 #'     donnees              = donnees_emop_anon,
 #'     repertoire_sortie    = "diffusion/",
 #'     nom_package          = "EMOP_BEN_2023_v1",
-#'     fichiers_supplementaires = c("outputs/rapport.docx",
-#'                                   "outputs/emop_ddi.xml"),
+#'     fichiers_supplementaires = c(file.path(tempdir(), "rapport.docx"),
+#'                                   file.path(tempdir(), "emop_ddi.xml")),
 #'     metadonnees = list(
 #'       titre       = "EMOP Bénin 2023",
 #'       institution = "INSAE",

@@ -26,7 +26,7 @@
 #' @param encodage character — Encodage cible. Défaut : "UTF-8".
 #' @return Un tibble avec les variables textuelles nettoyées.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   donnees_propres <- nettoyer_libelles(donnees_enquete)
 #'   donnees_propres <- nettoyer_libelles(
 #'     donnees_enquete,
@@ -135,7 +135,7 @@ nettoyer_libelles <- function(data,
 #' @return Le tibble avec une colonne \code{var_sortie} ajoutée contenant
 #'   les régions standardisées.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   donnees <- harmoniser_regions(
 #'     data       = donnees_enquete,
 #'     var_region = "region",
@@ -248,7 +248,7 @@ harmoniser_regions <- function(data,
 #'   soit égale à l'effectif de l'échantillon. Défaut : FALSE.
 #' @return Un objet \code{svydesign} du package \code{survey}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   plan <- appliquer_ponderations(
 #'     data       = donnees_menages,
 #'     var_poids  = "poids_final",
@@ -371,7 +371,7 @@ appliquer_ponderations <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble imputé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   resultat <- imputer_valeurs(
 #'     data    = donnees_enquete,
 #'     vars    = c("revenu_mensuel", "age"),
@@ -481,7 +481,7 @@ imputer_valeurs <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble dédupliqué.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
 #'   donnees_propres <- resultat$donnees
 #'   cat("Doublons supprimés :", nrow(resultat$rapport))
@@ -574,7 +574,7 @@ supprimer_doublons <- function(data,
 #'   table de recodage. Défaut : TRUE.
 #' @return Le tibble avec la variable recodée.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Recodage des classes d'âge
 #'   table_age <- data.frame(
 #'     avant = c("15-24", "25-34", "35-49", "50+"),
@@ -666,7 +666,7 @@ recoder_variable <- function(data,
 #'   \item{indice_myers}{numeric — Indice de Myers (0 = parfait)}
 #'   \item{diagnostic}{character — Évaluation de la qualité}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   resultat <- standardiser_ages(donnees_rgph, "age")
 #'   cat("Indice de Whipple :", resultat$indice_whipple)
 #' }
@@ -769,7 +769,7 @@ standardiser_ages <- function(data,
 #'   d'une fusion horizontale. Défaut : c("_1", "_2").
 #' @return Un tibble fusionné.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Empilement de deux vagues d'enquête
 #'   donnees_total <- fusion_datasets(
 #'     liste_data = list(vague1 = emop_2022, vague2 = emop_2023),
@@ -879,7 +879,7 @@ fusion_datasets <- function(liste_data,
 #'   (ex: paramètres utilisés). Défaut : NULL.
 #' @return Une liste mise à jour avec \code{$donnees} et \code{$journal}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Initialiser le journal
 #'   etape1 <- tracer_flux_traitement(
 #'     data    = donnees_brutes,

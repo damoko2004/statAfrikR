@@ -23,7 +23,7 @@
 #' @return Tibble ou flextable avec : n, moyenne, médiane, écart-type,
 #'   min, max, IC95.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Sans pondération
 #'   stat_descr(donnees, vars = c("age", "revenu"))
 #'   # Avec plan de sondage
@@ -190,7 +190,7 @@ stat_descr <- function(data,
 #'   Défaut : "flextable".
 #' @return Tibble ou flextable du tableau croisé.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Tableau simple
 #'   tab_croisee(donnees, "region", "sexe")
 #'   # Avec plan de sondage
@@ -338,7 +338,7 @@ tab_croisee <- function(data,
 #' @return Selon format_sortie : liste complète, tibble ou flextable des
 #'   coefficients avec IC et p-valeurs.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Régression linéaire simple
 #'   analyse_regression(revenu ~ age + sexe, donnees)
 #'   # Régression logistique avec plan de sondage
@@ -464,7 +464,7 @@ analyse_regression <- function(formule,
 #'   Défaut : \code{list(moyenne = mean, n = length)}.
 #' @return Un objet \code{sf} avec les indicateurs calculés par zone.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   carte <- analyse_spatiale(
 #'     data          = donnees_enquete,
 #'     shapefile     = "data/shapefiles/regions.shp",
@@ -579,7 +579,7 @@ analyse_spatiale <- function(data,
 #' @references
 #' PNUD (2023). Technical Notes: Calculating the Human Development Indices.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   idh <- calcul_idh(
 #'     esperance_vie   = 61.2,
 #'     annees_scol_moy = 5.4,
@@ -692,7 +692,7 @@ calcul_idh <- function(esperance_vie,
 #' Alkire, S. & Foster, J. (2011). Counting and multidimensional poverty
 #' measurement. Journal of Public Economics, 95(7-8), 476-487.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   indicateurs_ipm <- list(
 #'     sante     = c("malnutrition", "mortalite_enfant"),
 #'     education = c("annees_scolarisation", "enfants_scolarises"),
@@ -860,7 +860,7 @@ calcul_ipm <- function(data,
 #'   Défaut : "all".
 #' @return Une liste avec les mesures d'inégalité et leur décomposition.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   inegalites <- decomposer_inegalite(
 #'     donnees_menages,
 #'     var_revenu = "depense_totale",
@@ -961,7 +961,7 @@ decomposer_inegalite <- function(data,
 #'   Défaut : NULL.
 #' @return Une liste avec \code{score_global} et le détail par dimension.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
 #'   cat("Score de qualité :", qualite$score_global, "/100")
 #' }

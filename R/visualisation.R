@@ -18,7 +18,7 @@
 #' @param grille_mineure logical — Afficher la grille mineure. Défaut : FALSE.
 #' @return Un objet \code{theme} ggplot2.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   library(ggplot2)
 #'   ggplot(mtcars, aes(wt, mpg)) +
 #'     geom_point() +
@@ -144,7 +144,7 @@ theme_ins <- function(base_size     = 11,
 #'   \code{"divergent"}. Défaut : "categoriel".
 #' @return Vecteur de codes couleurs hexadécimaux.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   couleurs <- palette_ins(4)
 #' }
 #' @export
@@ -202,7 +202,7 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
 #' @param couleur_femme character — Couleur femmes. Défaut : "#E8872A".
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   pyramide_ages(
 #'     donnees_rgph,
 #'     var_age   = "age",
@@ -360,7 +360,7 @@ pyramide_ages <- function(data,
 #' @param trier logical — Trier les barres par valeur décroissante. Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   resultats <- tab_croisee(donnees, "region", format_sortie = "tibble")
 #'   graphique_barres(
 #'     resultats,
@@ -487,7 +487,7 @@ graphique_barres <- function(data,
 #' @param lisser logical — Ajouter une courbe lissée (loess). Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   graphique_tendance(
 #'     data            = evolution_pib,
 #'     var_temps       = "annee",
@@ -613,7 +613,7 @@ graphique_tendance <- function(data,
 #' @param na_couleur character — Couleur pour les NA. Défaut : "#cccccc".
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   carte_thematique(
 #'     data_sf      = regions_sf_enrichi,
 #'     var_couleur  = "taux_pauvrete_moyenne",
@@ -725,9 +725,9 @@ carte_thematique <- function(data_sf        = NULL,
 #' @param fond character — Couleur de fond. Défaut : "white".
 #' @return Chemin du fichier exporté (invisible).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   p <- pyramide_ages(donnees_rgph, "age", "sexe")
-#'   exporter_graphique(p, "outputs/pyramide_ages_2023.png")
+#'   exporter_graphique(p, file.path(tempdir(), "pyramide_ages_2023.png"))
 #' }
 #' @export
 exporter_graphique <- function(graphique,

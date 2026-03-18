@@ -61,4 +61,4 @@
 #### Documentation
 * 3 vignettes : démarrage rapide, enquête pondérée, indicateurs ODD
 * Documentation roxygen2 complète pour toutes les fonctions exportées
-## Test intégration GitHub-Discord
+
