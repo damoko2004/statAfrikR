@@ -200,7 +200,7 @@ pyramide_ages(
 ```
 
 ![Pyramide des âges des chefs de
-ménage](02-enquete-ponderee_files/figure-html/pyramide-1.png)
+ménage](enquete-ponderee_files/figure-html/pyramide-1.png)
 
 Pyramide des âges des chefs de ménage
 
@@ -225,7 +225,7 @@ graphique_barres(
 ```
 
 ![Dépense moyenne par
-région](02-enquete-ponderee_files/figure-html/barres-1.png)
+région](enquete-ponderee_files/figure-html/barres-1.png)
 
 Dépense moyenne par région
 

@@ -116,7 +116,7 @@ graphique_barres(
 ```
 
 ![IDH et composantes — Afrique de
-l'Ouest](03-indicateurs-odd_files/figure-html/idh-graphique-1.png)
+l'Ouest](indicateurs-odd_files/figure-html/idh-graphique-1.png)
 
 IDH et composantes — Afrique de l’Ouest
 
@@ -279,7 +279,7 @@ ggplot2::ggplot(lorenz_df, ggplot2::aes(pop_cumulee, rev_cumulee)) +
 ```
 
 ![Courbe de Lorenz — Dépenses des
-ménages](03-indicateurs-odd_files/figure-html/courbe-lorenz-1.png)
+ménages](indicateurs-odd_files/figure-html/courbe-lorenz-1.png)
 
 Courbe de Lorenz — Dépenses des ménages
 

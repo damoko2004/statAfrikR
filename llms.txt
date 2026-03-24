@@ -184,11 +184,11 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 
 ### All vignettes
 
-- [Démarrage rapide avec
-  statAfrikR](https://damoko2004.github.io/statAfrikR/articles/01-demarrage-rapide.md):
-- [Analyse d'une enquête pondérée
-  complète](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.md):
-- [Calcul des indicateurs ODD : IDH, IPM et
-  inégalités](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.md):
 - [🏆
   Contributeurs](https://damoko2004.github.io/statAfrikR/articles/contributeurs.md):
+- [Démarrage rapide avec
+  statAfrikR](https://damoko2004.github.io/statAfrikR/articles/demarrage-rapide.md):
+- [Analyse d'une enquête pondérée
+  complète](https://damoko2004.github.io/statAfrikR/articles/enquete-ponderee.md):
+- [Calcul des indicateurs ODD : IDH, IPM et
+  inégalités](https://damoko2004.github.io/statAfrikR/articles/indicateurs-odd.md):
