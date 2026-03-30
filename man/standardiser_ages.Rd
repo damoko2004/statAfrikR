@@ -39,8 +39,8 @@ ronds) fréquent dans les enquêtes africaines où les âges sont déclarés.
 Calcule l'indice de Whipple et l'indice de Myers pour évaluer la qualité.
 }
 \examples{
-\dontrun{
-  resultat <- standardiser_ages(donnees_rgph, "age")
-  cat("Indice de Whipple :", resultat$indice_whipple)
+\donttest{
+  donnees <- data.frame(age = sample(0:80, 200, replace=TRUE))
+  standardiser_ages(donnees, var_age="age")
 }
 }

@@ -54,13 +54,8 @@ Génère une pyramide des âges pondérée à partir de données
 individuelles ou agrégées. Adapté aux recensements et enquêtes démographiques.
 }
 \examples{
-\dontrun{
-  pyramide_ages(
-    donnees_rgph,
-    var_age   = "age",
-    var_sexe  = "sexe",
-    var_poids = "poids",
-    titre     = "Pyramide des âges — RGPH 2023"
-  )
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
+  pyramide_ages(donnees, var_age="age", var_sexe="sexe")
 }
 }

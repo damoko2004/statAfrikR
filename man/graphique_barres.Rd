@@ -57,13 +57,8 @@ Génère un graphique en barres avec intervalles de confiance
 optionnels, adapté aux résultats d'enquêtes pondérées.
 }
 \examples{
-\dontrun{
-  resultats <- tab_croisee(donnees, "region", format_sortie = "tibble")
-  graphique_barres(
-    resultats,
-    var_x   = "region",
-    var_y   = "pourcentage",
-    titre   = "Répartition par région"
-  )
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  df <- data.frame(region=c("Nord","Sud","Est","Ouest"), valeur=c(35.2,28.7,41.1,22.5))
+  graphique_barres(df, var_x="region", var_y="valeur", titre="Indicateur")
 }
 }

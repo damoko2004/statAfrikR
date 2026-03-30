@@ -23,7 +23,7 @@ types attendus. Détecte les problèmes courants : dates stockées en
 caractères, nombres stockés en texte, variables binaires incohérentes.
 }
 \examples{
-\dontrun{
+\donttest{
   anomalies <- check_types(donnees_enquete)
 }
 }

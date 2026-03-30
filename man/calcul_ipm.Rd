@@ -39,15 +39,21 @@ Supporte les dimensions standard (santé, éducation, niveau de vie) et
 des dimensions personnalisées.
 }
 \examples{
-\dontrun{
-  indicateurs_ipm <- list(
-    sante     = c("malnutrition", "mortalite_enfant"),
-    education = c("annees_scolarisation", "enfants_scolarises"),
-    niveau_vie = c("electricite", "eau_potable", "assainissement",
-                   "combustible", "actifs", "logement")
+\donttest{
+  donnees <- data.frame(
+    malnutrition         = sample(0:1, 50, replace = TRUE),
+    mortalite_enfant     = sample(0:1, 50, replace = TRUE),
+    annees_scolarisation = sample(0:1, 50, replace = TRUE),
+    enfants_scolarises   = sample(0:1, 50, replace = TRUE),
+    electricite          = sample(0:1, 50, replace = TRUE),
+    eau_potable          = sample(0:1, 50, replace = TRUE)
   )
-  resultat <- calcul_ipm(donnees_menages, indicateurs_ipm)
-  cat("IPM :", resultat$ipm)
+  indicateurs <- list(
+    sante      = c("malnutrition", "mortalite_enfant"),
+    education  = c("annees_scolarisation", "enfants_scolarises"),
+    niveau_vie = c("electricite", "eau_potable")
+  )
+  calcul_ipm(donnees, indicateurs)
 }
 }
 \references{

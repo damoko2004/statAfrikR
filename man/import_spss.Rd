@@ -32,7 +32,7 @@ Importe un fichier SPSS (.sav ou .zsav) avec préservation
 des labels de variables et de valeurs SPSS.
 }
 \examples{
-\dontrun{
+\donttest{
   mics <- import_spss("data/mics6_enfants.sav")
 }
 }

@@ -43,7 +43,7 @@ intelligente des types de colonnes. Optimisé pour les formats courants
 des INS africains.
 }
 \examples{
-\dontrun{
+\donttest{
   # Import de la première feuille
   donnees <- import_excel("data/enquete_menage.xlsx")
 

@@ -35,7 +35,7 @@ explicite. Supporte le recodage numérique (classes d'âge, quintiles)
 et textuel (modalités). Traçabilité complète des transformations.
 }
 \examples{
-\dontrun{
+\donttest{
   # Recodage des classes d'âge
   table_age <- data.frame(
     avant = c("15-24", "25-34", "35-49", "50+"),

@@ -24,11 +24,8 @@
 #'   min, max, IC95.
 #' @examples
 #' \donttest{
-#'   # Sans pondération
-#'   stat_descr(donnees, vars = c("age", "revenu"))
-#'   # Avec plan de sondage
-#'   plan <- appliquer_ponderations(donnees, "poids")
-#'   stat_descr(plan, vars = "revenu", groupe = "region")
+#'   donnees <- data.frame(age=c(25,34,45), revenu=c(150000,200000,180000))
+#'   stat_descr(donnees, vars=c("age","revenu"))
 #' }
 #' @export
 stat_descr <- function(data,
@@ -191,10 +188,11 @@ stat_descr <- function(data,
 #' @return Tibble ou flextable du tableau croisé.
 #' @examples
 #' \donttest{
-#'   # Tableau simple
+#'   donnees <- data.frame(
+#'     region = sample(c("Nord", "Sud", "Est"), 50, replace = TRUE),
+#'     sexe   = sample(c("H", "F"), 50, replace = TRUE)
+#'   )
 #'   tab_croisee(donnees, "region", "sexe")
-#'   # Avec plan de sondage
-#'   tab_croisee(plan_sondage, "quintile", "region")
 #' }
 #' @export
 tab_croisee <- function(data,
@@ -339,11 +337,12 @@ tab_croisee <- function(data,
 #'   coefficients avec IC et p-valeurs.
 #' @examples
 #' \donttest{
-#'   # Régression linéaire simple
+#'   donnees <- data.frame(
+#'     revenu = rnorm(100, 200000, 50000),
+#'     age    = sample(20:65, 100, replace=TRUE),
+#'     sexe   = sample(c("H","F"), 100, replace=TRUE)
+#'   )
 #'   analyse_regression(revenu ~ age + sexe, donnees)
-#'   # Régression logistique avec plan de sondage
-#'   analyse_regression(pauvre ~ age + region + sexe, plan,
-#'                      type = "logistique")
 #' }
 #' @export
 analyse_regression <- function(formule,
@@ -579,16 +578,14 @@ analyse_spatiale <- function(data,
 #' @references
 #' PNUD (2023). Technical Notes: Calculating the Human Development Indices.
 #' @examples
-#' \donttest{
-#'   idh <- calcul_idh(
-#'     esperance_vie   = 61.2,
-#'     annees_scol_moy = 5.4,
-#'     annees_scol_att = 9.8,
-#'     rnb_habitant    = 2350,
-#'     annee           = 2023
-#'   )
-#'   cat("IDH :", idh$idh, "—", idh$categorie)
-#' }
+#' idh <- calcul_idh(
+#'   esperance_vie   = 61.2,
+#'   annees_scol_moy = 5.4,
+#'   annees_scol_att = 9.8,
+#'   rnb_habitant    = 2350,
+#'   annee           = 2023
+#' )
+#' cat("IDH :", idh$idh)
 #' @export
 calcul_idh <- function(esperance_vie,
                         annees_scol_moy,
@@ -693,14 +690,20 @@ calcul_idh <- function(esperance_vie,
 #' measurement. Journal of Public Economics, 95(7-8), 476-487.
 #' @examples
 #' \donttest{
-#'   indicateurs_ipm <- list(
-#'     sante     = c("malnutrition", "mortalite_enfant"),
-#'     education = c("annees_scolarisation", "enfants_scolarises"),
-#'     niveau_vie = c("electricite", "eau_potable", "assainissement",
-#'                    "combustible", "actifs", "logement")
+#'   donnees <- data.frame(
+#'     malnutrition         = sample(0:1, 50, replace = TRUE),
+#'     mortalite_enfant     = sample(0:1, 50, replace = TRUE),
+#'     annees_scolarisation = sample(0:1, 50, replace = TRUE),
+#'     enfants_scolarises   = sample(0:1, 50, replace = TRUE),
+#'     electricite          = sample(0:1, 50, replace = TRUE),
+#'     eau_potable          = sample(0:1, 50, replace = TRUE)
 #'   )
-#'   resultat <- calcul_ipm(donnees_menages, indicateurs_ipm)
-#'   cat("IPM :", resultat$ipm)
+#'   indicateurs <- list(
+#'     sante      = c("malnutrition", "mortalite_enfant"),
+#'     education  = c("annees_scolarisation", "enfants_scolarises"),
+#'     niveau_vie = c("electricite", "eau_potable")
+#'   )
+#'   calcul_ipm(donnees, indicateurs)
 #' }
 #' @export
 calcul_ipm <- function(data,
@@ -861,11 +864,11 @@ calcul_ipm <- function(data,
 #' @return Une liste avec les mesures d'inégalité et leur décomposition.
 #' @examples
 #' \donttest{
-#'   inegalites <- decomposer_inegalite(
-#'     donnees_menages,
-#'     var_revenu = "depense_totale",
-#'     var_groupe = "milieu"
+#'   donnees <- data.frame(
+#'     depense_totale = rnorm(100, 250000, 80000),
+#'     milieu = sample(c("urbain", "rural"), 100, replace = TRUE)
 #'   )
+#'   decomposer_inegalite(donnees, var_revenu="depense_totale", var_groupe="milieu")
 #' }
 #' @export
 decomposer_inegalite <- function(data,
@@ -962,8 +965,12 @@ decomposer_inegalite <- function(data,
 #' @return Une liste avec \code{score_global} et le détail par dimension.
 #' @examples
 #' \donttest{
-#'   qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
-#'   cat("Score de qualité :", qualite$score_global, "/100")
+#'   donnees <- data.frame(
+#'     id_menage = 1:50,
+#'     age       = c(sample(20:70, 45, replace = TRUE), rep(NA, 5)),
+#'     revenu    = c(rnorm(48, 200000, 50000), NA, NA)
+#'   )
+#'   valider_qualite_donnees(donnees, vars_cles="id_menage")
 #' }
 #' @export
 valider_qualite_donnees <- function(data,

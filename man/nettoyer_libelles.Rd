@@ -42,12 +42,8 @@ correction des encodages. Préserve les caractères accentués africains
 et francophones.
 }
 \examples{
-\dontrun{
-  donnees_propres <- nettoyer_libelles(donnees_enquete)
-  donnees_propres <- nettoyer_libelles(
-    donnees_enquete,
-    vars  = c("region", "commune"),
-    casse = "majuscule"
-  )
+\donttest{
+  donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
+  nettoyer_libelles(donnees, vars = c("region", "commune"))
 }
 }

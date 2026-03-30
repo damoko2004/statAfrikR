@@ -41,12 +41,8 @@ spécifiée. Supporte l'imputation simple (statistiques descriptives),
 hot-deck et par régression. Produit un rapport de traçabilité.
 }
 \examples{
-\dontrun{
-  resultat <- imputer_valeurs(
-    data    = donnees_enquete,
-    vars    = c("revenu_mensuel", "age"),
-    methode = "mediane"
-  )
-  donnees_propres <- resultat$donnees
+\donttest{
+  donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
+  imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
 }
 }

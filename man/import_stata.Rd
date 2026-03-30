@@ -34,7 +34,7 @@ de variables et de valeurs. Compatible avec toutes les versions Stata
 (Stata 8 à Stata 18).
 }
 \examples{
-\dontrun{
+\donttest{
   eds <- import_stata("data/eds_2021.dta")
   eds_facteurs <- import_stata("data/eds_2021.dta", convertir_labels = TRUE)
 }

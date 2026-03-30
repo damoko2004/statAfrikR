@@ -50,12 +50,8 @@ indicateurs sur une période temporelle. Adapté au suivi des indicateurs
 ODD et des indicateurs macroéconomiques.
 }
 \examples{
-\dontrun{
-  graphique_tendance(
-    data            = evolution_pib,
-    var_temps       = "annee",
-    vars_indicateurs = c("pib_reel", "pib_nominal"),
-    titre           = "Évolution du PIB 2000-2023"
-  )
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  df <- data.frame(annee=2015:2023, pib=c(45,48,51,49,53,55,52,58,61))
+  graphique_tendance(df, var_temps="annee", vars_indicateurs="pib", titre="PIB")
 }
 }

@@ -20,7 +20,5 @@ Retourne une palette de couleurs officielle pour les
 graphiques INS, compatible daltonisme.
 }
 \examples{
-\dontrun{
-  couleurs <- palette_ins(4)
-}
+palette_ins(4)
 }

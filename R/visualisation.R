@@ -18,11 +18,9 @@
 #' @param grille_mineure logical — Afficher la grille mineure. Défaut : FALSE.
 #' @return Un objet \code{theme} ggplot2.
 #' @examples
-#' \donttest{
-#'   library(ggplot2)
-#'   ggplot(mtcars, aes(wt, mpg)) +
-#'     geom_point() +
-#'     theme_ins()
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+#'     ggplot2::geom_point() + theme_ins()
 #' }
 #' @export
 theme_ins <- function(base_size     = 11,
@@ -144,9 +142,7 @@ theme_ins <- function(base_size     = 11,
 #'   \code{"divergent"}. Défaut : "categoriel".
 #' @return Vecteur de codes couleurs hexadécimaux.
 #' @examples
-#' \donttest{
-#'   couleurs <- palette_ins(4)
-#' }
+#' palette_ins(4)
 #' @export
 palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")) {
   type <- match.arg(type)
@@ -202,14 +198,9 @@ palette_ins <- function(n = 6, type = c("categoriel", "sequentiel", "divergent")
 #' @param couleur_femme character — Couleur femmes. Défaut : "#E8872A".
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \donttest{
-#'   pyramide_ages(
-#'     donnees_rgph,
-#'     var_age   = "age",
-#'     var_sexe  = "sexe",
-#'     var_poids = "poids",
-#'     titre     = "Pyramide des âges — RGPH 2023"
-#'   )
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
+#'   pyramide_ages(donnees, var_age="age", var_sexe="sexe")
 #' }
 #' @export
 pyramide_ages <- function(data,
@@ -360,14 +351,9 @@ pyramide_ages <- function(data,
 #' @param trier logical — Trier les barres par valeur décroissante. Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \donttest{
-#'   resultats <- tab_croisee(donnees, "region", format_sortie = "tibble")
-#'   graphique_barres(
-#'     resultats,
-#'     var_x   = "region",
-#'     var_y   = "pourcentage",
-#'     titre   = "Répartition par région"
-#'   )
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   df <- data.frame(region=c("Nord","Sud","Est","Ouest"), valeur=c(35.2,28.7,41.1,22.5))
+#'   graphique_barres(df, var_x="region", var_y="valeur", titre="Indicateur")
 #' }
 #' @export
 graphique_barres <- function(data,
@@ -487,13 +473,9 @@ graphique_barres <- function(data,
 #' @param lisser logical — Ajouter une courbe lissée (loess). Défaut : FALSE.
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \donttest{
-#'   graphique_tendance(
-#'     data            = evolution_pib,
-#'     var_temps       = "annee",
-#'     vars_indicateurs = c("pib_reel", "pib_nominal"),
-#'     titre           = "Évolution du PIB 2000-2023"
-#'   )
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   df <- data.frame(annee=2015:2023, pib=c(45,48,51,49,53,55,52,58,61))
+#'   graphique_tendance(df, var_temps="annee", vars_indicateurs="pib", titre="PIB")
 #' }
 #' @export
 graphique_tendance <- function(data,
@@ -617,7 +599,7 @@ graphique_tendance <- function(data,
 #'   carte_thematique(
 #'     data_sf      = regions_sf_enrichi,
 #'     var_couleur  = "taux_pauvrete_moyenne",
-#'     titre        = "Taux de pauvreté par région"
+#'     titre        = "Taux de pauvrete par region"
 #'   )
 #' }
 #' @export
@@ -726,8 +708,9 @@ carte_thematique <- function(data_sf        = NULL,
 #' @return Chemin du fichier exporté (invisible).
 #' @examples
 #' \donttest{
-#'   p <- pyramide_ages(donnees_rgph, "age", "sexe")
-#'   exporter_graphique(p, file.path(tempdir(), "pyramide_ages_2023.png"))
+#'   donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
+#'   p <- pyramide_ages(donnees, "age", "sexe")
+#'   exporter_graphique(p, file.path(tempdir(), "pyramide.png"))
 #' }
 #' @export
 exporter_graphique <- function(graphique,

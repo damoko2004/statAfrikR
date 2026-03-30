@@ -40,13 +40,17 @@ ergonomique autour de \code{survey::svydesign()} avec validation
 complète des poids et messages d'erreur en français.
 }
 \examples{
-\dontrun{
-  plan <- appliquer_ponderations(
-    data       = donnees_menages,
-    var_poids  = "poids_final",
-    var_strate = "strate",
-    var_grappe = "grappe_id"
+if (requireNamespace("survey", quietly = TRUE)) {
+  donnees <- data.frame(
+    revenu      = rnorm(50, 200000, 50000),
+    poids_final = runif(50, 0.5, 3),
+    strate      = sample(1:4, 50, replace = TRUE),
+    grappe_id   = sample(1:10, 50, replace = TRUE)
   )
+  appliquer_ponderations(donnees,
+    var_poids = "poids_final",
+    var_strate = "strate",
+    var_grappe = "grappe_id")
 }
 }
 \seealso{

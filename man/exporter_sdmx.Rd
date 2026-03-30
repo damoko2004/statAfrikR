@@ -45,14 +45,14 @@ conforme aux standards SDMX 2.1 pour l'échange de données statistiques
 avec les organisations internationales (FMI, BM, OCDE, etc.).
 }
 \examples{
-\dontrun{
+\donttest{
   exporter_sdmx(
     data            = indicateurs_regionaux,
     flux_donnees    = "BEN_IDH_2023",
     agence          = "INSAE",
     vars_dimensions = c("region", "annee"),
     vars_mesures    = c("idh", "taux_pauvrete"),
-    fichier_sortie  = "outputs/indicateurs_sdmx.csv"
+    fichier_sortie  = file.path(tempdir(), "indicateurs_sdmx.csv")
   )
 }
 }

@@ -29,7 +29,7 @@ modalités attendues. Produit un rapport de validation structuré avec
 un score de qualité global.
 }
 \examples{
-\dontrun{
+\donttest{
   dico <- data.frame(
     nom_variable = c("age", "sexe", "region"),
     type         = c("numeric", "character", "character"),

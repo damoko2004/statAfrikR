@@ -4,9 +4,9 @@
 \name{statAfrikR-package}
 \alias{statAfrikR}
 \alias{statAfrikR-package}
-\title{statAfrikR: Outils Statistiques pour les Instituts Nationaux de Statistique Africains}
+\title{statAfrikR: Statistical Tools for African National Statistics Institutes}
 \description{
-Boîte à outils statistiques complète pour les Instituts Nationaux de Statistique (INS) africains. Fournit des fonctions pour l'import de données d'enquêtes (KoboToolbox, ODK, CSPro, Excel, Stata, SPSS), le traitement et la validation, l'analyse statistique pondérée (statistiques descriptives, tableaux croisés, régression, IDH, IPM, inégalités), la visualisation (pyramides des âges, cartes thématiques, graphiques officiels) et la diffusion (rapports Word/PDF, anonymisation, export SDMX, métadonnées DDI). Conçu pour fonctionner en environnement à ressources limitées, hors ligne et en français.
+A comprehensive statistical toolbox for National Statistics Institutes (INS) in Africa. Provides functions for survey data import ('KoboToolbox', 'ODK', 'CSPro', 'Excel', 'Stata', 'SPSS'), data processing and validation, weighted statistical analysis (descriptive statistics, cross-tabulations, regression, Human Development Index (HDI), Multidimensional Poverty Index (MPI) following Alkire and Foster (2011) \doi{10.1093/oep/gpr051}, inequalities), visualization (age pyramids, thematic maps, official charts) and dissemination ('SDMX' export, 'DDI' metadata, anonymization, Word/PDF reports). Designed to work in resource-constrained environments, offline and in French.
 }
 \seealso{
 Useful links:

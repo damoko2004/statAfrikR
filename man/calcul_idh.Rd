@@ -37,16 +37,14 @@ revenu) selon la méthodologie officielle PNUD post-2010. Applicable
 au niveau national ou infranational.
 }
 \examples{
-\dontrun{
-  idh <- calcul_idh(
-    esperance_vie   = 61.2,
-    annees_scol_moy = 5.4,
-    annees_scol_att = 9.8,
-    rnb_habitant    = 2350,
-    annee           = 2023
-  )
-  cat("IDH :", idh$idh, "—", idh$categorie)
-}
+idh <- calcul_idh(
+  esperance_vie   = 61.2,
+  annees_scol_moy = 5.4,
+  annees_scol_att = 9.8,
+  rnb_habitant    = 2350,
+  annee           = 2023
+)
+cat("IDH :", idh$idh)
 }
 \references{
 PNUD (2023). Technical Notes: Calculating the Human Development Indices.

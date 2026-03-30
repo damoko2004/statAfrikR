@@ -36,11 +36,12 @@ Poisson avec prise en compte optionnelle du plan de sondage complexe.
 Produit un tableau de résultats formaté avec OR/RR si approprié.
 }
 \examples{
-\dontrun{
-  # Régression linéaire simple
+\donttest{
+  donnees <- data.frame(
+    revenu = rnorm(100, 200000, 50000),
+    age    = sample(20:65, 100, replace=TRUE),
+    sexe   = sample(c("H","F"), 100, replace=TRUE)
+  )
   analyse_regression(revenu ~ age + sexe, donnees)
-  # Régression logistique avec plan de sondage
-  analyse_regression(pauvre ~ age + region + sexe, plan,
-                     type = "logistique")
 }
 }

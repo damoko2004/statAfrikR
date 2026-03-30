@@ -42,10 +42,11 @@ avec prise en compte optionnelle de la pondération et du plan de sondage
 complexe. Résultat formaté pour publication directe.
 }
 \examples{
-\dontrun{
-  # Tableau simple
+\donttest{
+  donnees <- data.frame(
+    region = sample(c("Nord", "Sud", "Est"), 50, replace = TRUE),
+    sexe   = sample(c("H", "F"), 50, replace = TRUE)
+  )
   tab_croisee(donnees, "region", "sexe")
-  # Avec plan de sondage
-  tab_croisee(plan_sondage, "quintile", "region")
 }
 }

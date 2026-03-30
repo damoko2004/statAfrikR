@@ -37,11 +37,11 @@ leur décomposition inter/intra-groupe pour une variable de revenu ou
 de dépense.
 }
 \examples{
-\dontrun{
-  inegalites <- decomposer_inegalite(
-    donnees_menages,
-    var_revenu = "depense_totale",
-    var_groupe = "milieu"
+\donttest{
+  donnees <- data.frame(
+    depense_totale = rnorm(100, 250000, 80000),
+    milieu = sample(c("urbain", "rural"), 100, replace = TRUE)
   )
+  decomposer_inegalite(donnees, var_revenu="depense_totale", var_groupe="milieu")
 }
 }

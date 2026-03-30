@@ -27,12 +27,8 @@
 #' @return Un tibble avec les variables textuelles nettoyées.
 #' @examples
 #' \donttest{
-#'   donnees_propres <- nettoyer_libelles(donnees_enquete)
-#'   donnees_propres <- nettoyer_libelles(
-#'     donnees_enquete,
-#'     vars  = c("region", "commune"),
-#'     casse = "majuscule"
-#'   )
+#'   donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
+#'   nettoyer_libelles(donnees, vars = c("region", "commune"))
 #' }
 #' @export
 nettoyer_libelles <- function(data,
@@ -136,11 +132,8 @@ nettoyer_libelles <- function(data,
 #'   les régions standardisées.
 #' @examples
 #' \donttest{
-#'   donnees <- harmoniser_regions(
-#'     data       = donnees_enquete,
-#'     var_region = "region",
-#'     pays       = "BJ"
-#'   )
+#'   donnees <- data.frame(region = c("Littoral","Atlantique","Borgou"))
+#'   harmoniser_regions(donnees, var_region = "region", pays = "BJ")
 #' }
 #' @export
 harmoniser_regions <- function(data,
@@ -248,13 +241,17 @@ harmoniser_regions <- function(data,
 #'   soit égale à l'effectif de l'échantillon. Défaut : FALSE.
 #' @return Un objet \code{svydesign} du package \code{survey}.
 #' @examples
-#' \donttest{
-#'   plan <- appliquer_ponderations(
-#'     data       = donnees_menages,
-#'     var_poids  = "poids_final",
-#'     var_strate = "strate",
-#'     var_grappe = "grappe_id"
+#' if (requireNamespace("survey", quietly = TRUE)) {
+#'   donnees <- data.frame(
+#'     revenu      = rnorm(50, 200000, 50000),
+#'     poids_final = runif(50, 0.5, 3),
+#'     strate      = sample(1:4, 50, replace = TRUE),
+#'     grappe_id   = sample(1:10, 50, replace = TRUE)
 #'   )
+#'   appliquer_ponderations(donnees,
+#'     var_poids = "poids_final",
+#'     var_strate = "strate",
+#'     var_grappe = "grappe_id")
 #' }
 #' @seealso \code{\link{tab_croisee}}, \code{\link{stat_descr}}
 #' @export
@@ -372,12 +369,8 @@ appliquer_ponderations <- function(data,
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
 #' \donttest{
-#'   resultat <- imputer_valeurs(
-#'     data    = donnees_enquete,
-#'     vars    = c("revenu_mensuel", "age"),
-#'     methode = "mediane"
-#'   )
-#'   donnees_propres <- resultat$donnees
+#'   donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
+#'   imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
 #' }
 #' @export
 imputer_valeurs <- function(data,
@@ -482,9 +475,8 @@ imputer_valeurs <- function(data,
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
 #' \donttest{
-#'   resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
-#'   donnees_propres <- resultat$donnees
-#'   cat("Doublons supprimés :", nrow(resultat$rapport))
+#'   donnees <- data.frame(id=c(1,2,2,3), val=c(10,20,20,30))
+#'   supprimer_doublons(donnees, cles="id")
 #' }
 #' @export
 supprimer_doublons <- function(data,
@@ -667,8 +659,8 @@ recoder_variable <- function(data,
 #'   \item{diagnostic}{character — Évaluation de la qualité}
 #' @examples
 #' \donttest{
-#'   resultat <- standardiser_ages(donnees_rgph, "age")
-#'   cat("Indice de Whipple :", resultat$indice_whipple)
+#'   donnees <- data.frame(age = sample(0:80, 200, replace=TRUE))
+#'   standardiser_ages(donnees, var_age="age")
 #' }
 #' @export
 standardiser_ages <- function(data,
@@ -880,19 +872,10 @@ fusion_datasets <- function(liste_data,
 #' @return Une liste mise à jour avec \code{$donnees} et \code{$journal}.
 #' @examples
 #' \donttest{
-#'   # Initialiser le journal
-#'   etape1 <- tracer_flux_traitement(
-#'     data    = donnees_brutes,
-#'     action  = "Import depuis fichier Excel"
-#'   )
-#'   # Ajouter une étape
-#'   etape2 <- tracer_flux_traitement(
-#'     data    = donnees_nettoyees,
-#'     action  = "Nettoyage des libellés",
-#'     journal = etape1$journal
-#'   )
-#'   # Afficher le journal
-#'   print(etape2$journal)
+#'   donnees <- data.frame(id=1:3, val=c(10,20,30))
+#'   e1 <- tracer_flux_traitement(donnees, action="Import")
+#'   e2 <- tracer_flux_traitement(e1$donnees, action="Nettoyage", journal=e1$journal)
+#'   print(e2$journal)
 #' }
 #' @export
 tracer_flux_traitement <- function(data,

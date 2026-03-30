@@ -23,8 +23,12 @@ Calcule un score de qualité composite (0-100) en évaluant
 la complétude, la cohérence, l'unicité et la plausibilité des données.
 }
 \examples{
-\dontrun{
-  qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
-  cat("Score de qualité :", qualite$score_global, "/100")
+\donttest{
+  donnees <- data.frame(
+    id_menage = 1:50,
+    age       = c(sample(20:70, 45, replace = TRUE), rep(NA, 5)),
+    revenu    = c(rnorm(48, 200000, 50000), NA, NA)
+  )
+  valider_qualite_donnees(donnees, vars_cles="id_menage")
 }
 }

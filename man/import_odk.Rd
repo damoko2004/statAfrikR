@@ -45,7 +45,7 @@ l'API REST ou depuis un fichier d'export local (ZIP ou CSV).
 Compatible avec ODK Central 1.x et 2.x.
 }
 \examples{
-\dontrun{
+\donttest{
   # Import depuis export ZIP local
   donnees <- import_odk(source = "data/odk_export_2024.zip")
 

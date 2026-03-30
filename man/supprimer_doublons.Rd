@@ -34,9 +34,8 @@ une ou plusieurs clés d'identification. Produit un rapport des doublons
 détectés.
 }
 \examples{
-\dontrun{
-  resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
-  donnees_propres <- resultat$donnees
-  cat("Doublons supprimés :", nrow(resultat$rapport))
+\donttest{
+  donnees <- data.frame(id=c(1,2,2,3), val=c(10,20,20,30))
+  supprimer_doublons(donnees, cles="id")
 }
 }
