@@ -55,14 +55,14 @@ PNUD (2023). Technical Notes: Calculating the Human Development Indices.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  idh <- calcul_idh(
-    esperance_vie   = 61.2,
-    annees_scol_moy = 5.4,
-    annees_scol_att = 9.8,
-    rnb_habitant    = 2350,
-    annee           = 2023
-  )
-  cat("IDH :", idh$idh, "—", idh$categorie)
-} # }
+idh <- calcul_idh(
+  esperance_vie   = 61.2,
+  annees_scol_moy = 5.4,
+  annees_scol_att = 9.8,
+  rnb_habitant    = 2350,
+  annee           = 2023
+)
+#> IDH 2023 : 0.515 (Faible)
+cat("IDH :", idh$idh)
+#> IDH : 0.515
 ```

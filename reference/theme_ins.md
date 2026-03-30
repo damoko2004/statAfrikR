@@ -45,10 +45,8 @@ Un objet `theme` ggplot2.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  library(ggplot2)
-  ggplot(mtcars, aes(wt, mpg)) +
-    geom_point() +
-    theme_ins()
-} # }
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+    ggplot2::geom_point() + theme_ins()
+}
 ```

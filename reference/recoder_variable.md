@@ -47,17 +47,19 @@ Le tibble avec la variable recodée.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   # Recodage des classes d'âge
   table_age <- data.frame(
     avant = c("15-24", "25-34", "35-49", "50+"),
     apres = c("Jeune", "Adulte", "Adulte", "Senior")
   )
   donnees <- recoder_variable(donnees, "classe_age", table_age)
+#> Error: object 'donnees' not found
   # Recodage avec vecteur nommé
   donnees <- recoder_variable(
     donnees, "sexe",
     table_recodage = c("1" = "Masculin", "2" = "Féminin")
   )
-} # }
+#> Error: object 'donnees' not found
+# }
 ```

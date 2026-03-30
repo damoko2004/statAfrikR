@@ -54,7 +54,7 @@ Un objet `sf` avec les indicateurs calculés par zone.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   carte <- analyse_spatiale(
     data          = donnees_enquete,
     shapefile     = "data/shapefiles/regions.shp",
@@ -62,5 +62,6 @@ if (FALSE) { # \dontrun{
     var_geo_shape = "NOM_REGION",
     indicateurs   = c("taux_pauvrete", "revenu_moyen")
   )
-} # }
+#> Error: object 'donnees_enquete' not found
+# }
 ```

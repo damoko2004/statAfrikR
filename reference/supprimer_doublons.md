@@ -44,9 +44,20 @@ avec `$donnees` et `$rapport`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  resultat <- supprimer_doublons(donnees_enquete, cles = "id_menage")
-  donnees_propres <- resultat$donnees
-  cat("Doublons supprimés :", nrow(resultat$rapport))
-} # }
+# \donttest{
+  donnees <- data.frame(id=c(1,2,2,3), val=c(10,20,20,30))
+  supprimer_doublons(donnees, cles="id")
+#> 1 doublon(s) supprimé(s) sur 4 enregistrements (3 conservés).
+#> $donnees
+#>   id val
+#> 1  1  10
+#> 2  2  20
+#> 3  3  30
+#> 
+#> $rapport
+#>   id val
+#> 2  2  20
+#> 3  2  20
+#> 
+# }
 ```

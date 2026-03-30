@@ -57,15 +57,17 @@ sont stockés dans les attributs du tibble (`attr(., "labels_cspro")`).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   # Import du niveau ménage d'un RGPH
   menages <- import_cspro(
     fichier_dat = "data/rgph_2024.dat",
     fichier_dcf = "data/rgph_2024.dcf",
     niveau      = "MENAGE"
   )
+#> Error in import_cspro(fichier_dat = "data/rgph_2024.dat", fichier_dcf = "data/rgph_2024.dcf",     niveau = "MENAGE"): Fichier .dat introuvable : 'data/rgph_2024.dat'.
 
   # Test sur les 1000 premières lignes
   test <- import_cspro("data/rgph_2024.dat", max_lignes = 1000)
-} # }
+#> Error in import_cspro("data/rgph_2024.dat", max_lignes = 1000): Fichier .dat introuvable : 'data/rgph_2024.dat'.
+# }
 ```

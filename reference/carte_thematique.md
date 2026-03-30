@@ -83,11 +83,12 @@ Un objet `ggplot`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   carte_thematique(
     data_sf      = regions_sf_enrichi,
     var_couleur  = "taux_pauvrete_moyenne",
-    titre        = "Taux de pauvreté par région"
+    titre        = "Taux de pauvrete par region"
   )
-} # }
+#> Error: object 'regions_sf_enrichi' not found
+# }
 ```

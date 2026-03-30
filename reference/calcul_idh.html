@@ -102,16 +102,16 @@ Défaut : "national".</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span>  <span class="va">idh</span> <span class="op">&lt;-</span> <span class="fu">calcul_idh</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    esperance_vie   <span class="op">=</span> <span class="fl">61.2</span>,</span></span>
-<span class="r-in"><span>    annees_scol_moy <span class="op">=</span> <span class="fl">5.4</span>,</span></span>
-<span class="r-in"><span>    annees_scol_att <span class="op">=</span> <span class="fl">9.8</span>,</span></span>
-<span class="r-in"><span>    rnb_habitant    <span class="op">=</span> <span class="fl">2350</span>,</span></span>
-<span class="r-in"><span>    annee           <span class="op">=</span> <span class="fl">2023</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"IDH :"</span>, <span class="va">idh</span><span class="op">$</span><span class="va">idh</span>, <span class="st">"—"</span>, <span class="va">idh</span><span class="op">$</span><span class="va">categorie</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">idh</span> <span class="op">&lt;-</span> <span class="fu">calcul_idh</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  esperance_vie   <span class="op">=</span> <span class="fl">61.2</span>,</span></span>
+<span class="r-in"><span>  annees_scol_moy <span class="op">=</span> <span class="fl">5.4</span>,</span></span>
+<span class="r-in"><span>  annees_scol_att <span class="op">=</span> <span class="fl">9.8</span>,</span></span>
+<span class="r-in"><span>  rnb_habitant    <span class="op">=</span> <span class="fl">2350</span>,</span></span>
+<span class="r-in"><span>  annee           <span class="op">=</span> <span class="fl">2023</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> IDH 2023 : 0.515 (Faible)</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"IDH :"</span>, <span class="va">idh</span><span class="op">$</span><span class="va">idh</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> IDH : 0.515</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

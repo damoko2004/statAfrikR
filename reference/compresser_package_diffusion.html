@@ -103,20 +103,21 @@ README automatique. Défaut : NULL.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="fu">compresser_package_diffusion</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    donnees              <span class="op">=</span> <span class="va">donnees_emop_anon</span>,</span></span>
 <span class="r-in"><span>    repertoire_sortie    <span class="op">=</span> <span class="st">"diffusion/"</span>,</span></span>
 <span class="r-in"><span>    nom_package          <span class="op">=</span> <span class="st">"EMOP_BEN_2023_v1"</span>,</span></span>
-<span class="r-in"><span>    fichiers_supplementaires <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"outputs/rapport.docx"</span>,</span></span>
-<span class="r-in"><span>                                  <span class="st">"outputs/emop_ddi.xml"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    fichiers_supplementaires <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"rapport.docx"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"emop_ddi.xml"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    metadonnees <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      titre       <span class="op">=</span> <span class="st">"EMOP Bénin 2023"</span>,</span></span>
 <span class="r-in"><span>      institution <span class="op">=</span> <span class="st">"INSAE"</span>,</span></span>
 <span class="r-in"><span>      version     <span class="op">=</span> <span class="st">"1.0"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'donnees_emop_anon' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

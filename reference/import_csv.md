@@ -53,8 +53,10 @@ Un tibble.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   donnees <- import_csv("data/prix_marches.csv")
+#> Error in import_csv("data/prix_marches.csv"): Fichier introuvable : 'data/prix_marches.csv'.
   donnees_fr <- import_csv("data/donnees_fr.csv", decimal = ",")
-} # }
+#> Error in import_csv("data/donnees_fr.csv", decimal = ","): Fichier introuvable : 'data/donnees_fr.csv'.
+# }
 ```

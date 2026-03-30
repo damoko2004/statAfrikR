@@ -54,7 +54,7 @@ Chemin du fichier généré (invisible).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   generer_rapport(
     donnees        = resultats_enquete,
     template       = "bulletin_mensuel",
@@ -66,5 +66,6 @@ if (FALSE) { # \dontrun{
       annee       = 2024
     )
   )
-} # }
+#> Error: object 'resultats_enquete' not found
+# }
 ```

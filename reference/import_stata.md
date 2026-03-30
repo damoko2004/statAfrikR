@@ -46,8 +46,10 @@ Un tibble avec attributs de labels si `garder_labels = TRUE`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   eds <- import_stata("data/eds_2021.dta")
+#> Error in import_stata("data/eds_2021.dta"): Fichier Stata introuvable : 'data/eds_2021.dta'.
   eds_facteurs <- import_stata("data/eds_2021.dta", convertir_labels = TRUE)
-} # }
+#> Error in import_stata("data/eds_2021.dta", convertir_labels = TRUE): Fichier Stata introuvable : 'data/eds_2021.dta'.
+# }
 ```

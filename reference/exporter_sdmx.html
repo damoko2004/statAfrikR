@@ -110,16 +110,17 @@ Ex: "INSAE", "INSD". Défaut : "INS".</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="fu">exporter_sdmx</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    data            <span class="op">=</span> <span class="va">indicateurs_regionaux</span>,</span></span>
 <span class="r-in"><span>    flux_donnees    <span class="op">=</span> <span class="st">"BEN_IDH_2023"</span>,</span></span>
 <span class="r-in"><span>    agence          <span class="op">=</span> <span class="st">"INSAE"</span>,</span></span>
 <span class="r-in"><span>    vars_dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>, <span class="st">"annee"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    vars_mesures    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"idh"</span>, <span class="st">"taux_pauvrete"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    fichier_sortie  <span class="op">=</span> <span class="st">"outputs/indicateurs_sdmx.csv"</span></span></span>
+<span class="r-in"><span>    fichier_sortie  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"indicateurs_sdmx.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'indicateurs_regionaux' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

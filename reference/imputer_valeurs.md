@@ -54,12 +54,23 @@ Si `rapport = FALSE` : tibble imputé. Si `rapport = TRUE` : liste avec
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  resultat <- imputer_valeurs(
-    data    = donnees_enquete,
-    vars    = c("revenu_mensuel", "age"),
-    methode = "mediane"
-  )
-  donnees_propres <- resultat$donnees
-} # }
+# \donttest{
+  donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
+  imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
+#>   revenu_mensuel : 1/1 valeurs imputées (méthode : mediane)
+#>   age : 1/1 valeurs imputées (méthode : mediane)
+#> $donnees
+#>   revenu_mensuel  age
+#> 1         150000 25.0
+#> 2         175000 34.0
+#> 3         200000 29.5
+#> 
+#> $rapport
+#> # A tibble: 2 × 6
+#>   variable       methode n_na_avant n_na_apres n_imputes taux_imputation
+#>   <chr>          <chr>        <int>      <int>     <int>           <dbl>
+#> 1 revenu_mensuel mediane          1          0         1               1
+#> 2 age            mediane          1          0         1               1
+#> 
+# }
 ```

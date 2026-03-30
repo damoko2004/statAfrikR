@@ -60,12 +60,25 @@ Un objet `svydesign` du package `survey`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  plan <- appliquer_ponderations(
-    data       = donnees_menages,
-    var_poids  = "poids_final",
-    var_strate = "strate",
-    var_grappe = "grappe_id"
+if (requireNamespace("survey", quietly = TRUE)) {
+  donnees <- data.frame(
+    revenu      = rnorm(50, 200000, 50000),
+    poids_final = runif(50, 0.5, 3),
+    strate      = sample(1:4, 50, replace = TRUE),
+    grappe_id   = sample(1:10, 50, replace = TRUE)
   )
-} # }
+  appliquer_ponderations(donnees,
+    var_poids = "poids_final",
+    var_strate = "strate",
+    var_grappe = "grappe_id")
+}
+#> Plan de sondage créé :
+#>   - Observations : 50
+#>   - Strates : 4
+#>   - Grappes (UPS) : 10
+#> Stratified 1 - level Cluster Sampling design (with replacement)
+#> With (31) clusters.
+#> survey::svydesign(ids = formule_ids, strata = formule_strate, 
+#>     weights = as.formula(paste0("~", var_poids)), fpc = formule_fpc, 
+#>     nest = TRUE, data = data)
 ```

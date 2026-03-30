@@ -105,17 +105,19 @@ sont stockés dans les attributs du tibble (<code>attr(., "labels_cspro")</code>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Import du niveau ménage d'un RGPH</span></span></span>
 <span class="r-in"><span>  <span class="va">menages</span> <span class="op">&lt;-</span> <span class="fu">import_cspro</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    fichier_dat <span class="op">=</span> <span class="st">"data/rgph_2024.dat"</span>,</span></span>
 <span class="r-in"><span>    fichier_dcf <span class="op">=</span> <span class="st">"data/rgph_2024.dcf"</span>,</span></span>
 <span class="r-in"><span>    niveau      <span class="op">=</span> <span class="st">"MENAGE"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in import_cspro(fichier_dat = "data/rgph_2024.dat", fichier_dcf = "data/rgph_2024.dcf",     niveau = "MENAGE"):</span> Fichier .dat introuvable : 'data/rgph_2024.dat'.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Test sur les 1000 premières lignes</span></span></span>
 <span class="r-in"><span>  <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">import_cspro</span><span class="op">(</span><span class="st">"data/rgph_2024.dat"</span>, max_lignes <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in import_cspro("data/rgph_2024.dat", max_lignes = 1000):</span> Fichier .dat introuvable : 'data/rgph_2024.dat'.</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

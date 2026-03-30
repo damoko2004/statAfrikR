@@ -65,7 +65,7 @@ avec `$donnees` et `$rapport`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   resultat <- anonymiser_donnees(
     donnees_enquete,
     vars_supprimer  = c("nom", "prenom", "telephone"),
@@ -73,6 +73,8 @@ if (FALSE) { # \dontrun{
     vars_perturber  = c("revenu_mensuel"),
     vars_generaliser = list(age = 5)
   )
+#> Error: object 'donnees_enquete' not found
   donnees_anon <- resultat$donnees
-} # }
+#> Error: object 'resultat' not found
+# }
 ```

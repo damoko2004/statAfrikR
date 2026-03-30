@@ -106,10 +106,225 @@ Calcule l'indice de Whipple et l'indice de Myers pour évaluer la qualité.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span>  <span class="va">resultat</span> <span class="op">&lt;-</span> <span class="fu">standardiser_ages</span><span class="op">(</span><span class="va">donnees_rgph</span>, <span class="st">"age"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Indice de Whipple :"</span>, <span class="va">resultat</span><span class="op">$</span><span class="va">indice_whipple</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span>  <span class="va">donnees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">80</span>, <span class="fl">200</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">standardiser_ages</span><span class="op">(</span><span class="va">donnees</span>, var_age<span class="op">=</span><span class="st">"age"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> === Diagnostic qualité des âges ===</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Indice de Whipple : 1.143 (Qualité acceptable)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Indice de Myers   : 7.16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $donnees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     age</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43   27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49   78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51   70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54   19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55   40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57   37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58   72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59   22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61   18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62   35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63   41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64   53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65   58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66   29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67   58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69   69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70   46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71   73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72   54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74   13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75   11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77   50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78    9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79   36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81   34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82   33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83   26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84   45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85   30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86   79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87   52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88   23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89   37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90   19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91   74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92   77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93   32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94   35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95   44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96   21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97   43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98   63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101  30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102  31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103  38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105  29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106  53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108  27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110  32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112  53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114  70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115  24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116  73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117  72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118  18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119  78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122  21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123  60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124  19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125  41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126  16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128  16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129  73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130  36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131  44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132  49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133  50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134  73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135  47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136  33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137  57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138  67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139  60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140  32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141  18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142  69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143  29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145  37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147  55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148  74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150  30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151  68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153  63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154  46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155  64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156  40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158  48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159  75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160  21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163  66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164  58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166  37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167  58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168  68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169  41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170  61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171  19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172  33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173  56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174  19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176  26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180  62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181  17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183  39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185  69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186  28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187  67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189  39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190  75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191  73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192  53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193  56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194  26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195  79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196  27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197  14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198  22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199  60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $indice_whipple</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $indice_myers</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $diagnostic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Qualité acceptable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

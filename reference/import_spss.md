@@ -44,7 +44,8 @@ Un tibble.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   mics <- import_spss("data/mics6_enfants.sav")
-} # }
+#> Error in import_spss("data/mics6_enfants.sav"): Fichier SPSS introuvable : 'data/mics6_enfants.sav'.
+# }
 ```

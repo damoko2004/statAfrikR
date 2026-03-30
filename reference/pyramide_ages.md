@@ -80,13 +80,12 @@ Un objet `ggplot`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  pyramide_ages(
-    donnees_rgph,
-    var_age   = "age",
-    var_sexe  = "sexe",
-    var_poids = "poids",
-    titre     = "Pyramide des âges — RGPH 2023"
-  )
-} # }
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
+  pyramide_ages(donnees, var_age="age", var_sexe="sexe")
+}
+#> Warning: No shared levels found between `names(values)` of the manual scale and the
+#> data's fill values.
+#> Warning: No shared levels found between `names(values)` of the manual scale and the
+#> data's fill values.
 ```

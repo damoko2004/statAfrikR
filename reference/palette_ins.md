@@ -27,7 +27,6 @@ Vecteur de codes couleurs hexadécimaux.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  couleurs <- palette_ins(4)
-} # }
+palette_ins(4)
+#> [1] "#1B6CA8" "#E8872A" "#2EAA6E" "#D94F3D"
 ```
