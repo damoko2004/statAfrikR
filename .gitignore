@@ -52,3 +52,7 @@ docs/
 /doc/
 /Meta/
 doc/
+.DS_Store
+**/.DS_Store
+Website/
+*.zip
