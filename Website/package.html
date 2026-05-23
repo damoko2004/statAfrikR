@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="statAfrikR v0.1.0 — Premier package R open source dédié aux INS africains. 40 fonctions, 5 modules, 237 tests. Disponible sur le CRAN.">
+  <meta property="og:title" content="Le package statAfrikR — statAfrikR Foundation">
+  <title>Le package statAfrikR — statAfrikR Foundation</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<nav class="nav" role="navigation"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-mark">S</div><div class="nav-logo-text"><span class="nav-logo-name">statAfrikR</span><span class="nav-logo-sub">Foundation</span></div></a><ul class="nav-links" role="list"><li><a href="foundation.html">La Foundation</a></li><li><a href="gouvernance.html">Gouvernance</a></li><li><a href="package.html" class="active">Package</a></li><li><a href="formation.html">Formation</a></li><li><a href="roadmap.html">Roadmap</a></li><li><a href="communaute.html">Communauté</a></li><li><a href="partenariat.html" class="nav-cta">Devenir partenaire</a></li></ul><div class="nav-lang"><button class="lang-btn active" data-lang="fr">FR</button><button class="lang-btn" data-lang="en">EN</button></div><button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button></div></nav>
+
+<header class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span>›</span><span style="color:rgba(255,255,255,0.7)">Le package</span></nav>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+      <span class="badge badge-green">CRAN v0.1.0</span>
+      <span class="badge" style="background:rgba(156,106,16,0.3);color:#F6C97F;">GPL-3</span>
+      <span class="badge badge-blue"><span class="cran-total-val">375</span>+ téléchargements</span>
+    </div>
+    <h1>Le package statAfrikR</h1>
+    <p class="lead">Premier package R open source dédié aux INS africains — 40 fonctions · 5 modules · 237 tests unitaires</p>
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+      <a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Voir sur le CRAN</a>
+      <a href="https://damoko2004.github.io/statAfrikR/" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://cran.r-project.org/web/packages/statAfrikR/vignettes/demarrage-rapide.html" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Vignette démarrage</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 5 Modules -->
+<section id="modules" aria-labelledby="modules-title">
+  <div class="container">
+    <p class="section-label text-center">Architecture</p>
+    <h2 id="modules-title" class="section-title text-center fade-in">5 modules intégrés — Pipeline end-to-end</h2>
+    <div class="tabs fade-in" role="tablist">
+      <div class="tab-list">
+        <button class="tab-btn" role="tab" aria-selected="true">01 — Collecte</button>
+        <button class="tab-btn" role="tab">02 — Traitement</button>
+        <button class="tab-btn" role="tab">03 — Analyse</button>
+        <button class="tab-btn" role="tab">04 — Visualisation</button>
+        <button class="tab-btn" role="tab">05 — Diffusion</button>
+      </div>
+      <div class="tab-panel" role="tabpanel">
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--pine);margin-bottom:16px;">Import multi-format</h3>
+            <p>Importez vos données depuis n'importe quel format utilisé par les INS africains : Excel, Stata, SPSS, SAS, CSV, KoboToolbox, ODK, CSPro.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_excel()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_kobo()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_stata()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_spss()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_odk()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_cspro()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">import_csv()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">valider_dictionnaire()</code>
+            </div>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier">Copier</button>
+            <pre><span class="code-comment"># Import depuis Excel</span>
+donnees &lt;- <span class="code-fn">import_excel</span>(
+  <span class="code-str">"enquete_menage.xlsx"</span>,
+  feuille = <span class="code-str">"Ménages"</span>,
+  conserver_labels = TRUE
+)
+
+<span class="code-comment"># Import depuis KoboToolbox</span>
+kobo &lt;- <span class="code-fn">import_kobo</span>(
+  url = <span class="code-str">"https://kf.kobotoolbox.org/..."</span>,
+  token = Sys.getenv(<span class="code-str">"KOBO_TOKEN"</span>)
+)</pre>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel">
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--pine);margin-bottom:16px;">Nettoyage et préparation</h3>
+            <p>9 fonctions dédiées au nettoyage, à la vérification de la qualité et à la préparation des bases d'enquête pour l'analyse.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">check_na()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">check_types()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">valider_qualite_donnees()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">nettoyer_libelles()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">imputer_valeurs()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">harmoniser_regions()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">standardiser_ages()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">appliquer_ponderations()</code>
+            </div>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier">Copier</button>
+            <pre><span class="code-comment"># Audit qualité complet</span>
+rapport &lt;- <span class="code-fn">valider_qualite_donnees</span>(
+  donnees,
+  vars_cles = <span class="code-str">"id_menage"</span>
+)
+
+<span class="code-comment"># Pondération complexe</span>
+plan &lt;- <span class="code-fn">appliquer_ponderations</span>(
+  donnees,
+  poids = <span class="code-str">"hhweight"</span>,
+  grappe = <span class="code-str">"grappe"</span>,
+  strate = <span class="code-str">"strate"</span>
+)</pre>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel">
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--pine);margin-bottom:16px;">Indicateurs et modèles</h3>
+            <p>Calcul des indicateurs ODD, indices de pauvreté, inégalités, statistiques descriptives et modèles de régression pondérés.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">stat_descr()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">tab_croisee()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">analyse_regression()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">decomposer_inegalite()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">calcul_idh()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">calcul_ipm()</code>
+            </div>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier">Copier</button>
+            <pre><span class="code-comment"># Indice de Développement Humain</span>
+idh &lt;- <span class="code-fn">calcul_idh</span>(
+  donnees,
+  var_sante = <span class="code-str">"esperance_vie"</span>,
+  var_educ  = <span class="code-str">"scolarisation"</span>,
+  var_revenu = <span class="code-str">"rni_log"</span>
+)
+
+<span class="code-comment"># Indice de Pauvreté Multidimensionnelle</span>
+ipm &lt;- <span class="code-fn">calcul_ipm</span>(donnees,
+  indicateurs = list(sante = c(<span class="code-str">"nutrition"</span>, <span class="code-str">"mortalite"</span>),
+                     educ  = c(<span class="code-str">"scolarite"</span>),
+                     niveau_vie = c(<span class="code-str">"eau"</span>, <span class="code-str">"electricite"</span>)),
+  seuil = 1/3
+)</pre>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel">
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--pine);margin-bottom:16px;">Graphiques institutionnels</h3>
+            <p>Visualisations conformes à la charte graphique des INS africains, pyramides des âges, cartes thématiques et rapports automatisés.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">pyramide_ages()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">graphique_barres()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">carte_thematique()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">theme_ins()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">palette_ins()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">generer_rapport()</code>
+            </div>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier">Copier</button>
+            <pre><span class="code-comment"># Pyramide des âges institutionnelle</span>
+<span class="code-fn">pyramide_ages</span>(donnees,
+  var_age  = <span class="code-str">"age_annee"</span>,
+  var_sexe = <span class="code-str">"sexe"</span>,
+  poids    = <span class="code-str">"hhweight"</span>,
+  titre    = <span class="code-str">"RGPH 2023"</span>
+)
+
+<span class="code-comment"># Rapport Word/PDF automatisé</span>
+<span class="code-fn">generer_rapport</span>(
+  titre = <span class="code-str">"Rapport pauvreté 2023"</span>,
+  sortie_format = <span class="code-str">"word"</span>
+)</pre>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel">
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--pine);margin-bottom:16px;">Publication et archivage</h3>
+            <p>Anonymisation avant diffusion, métadonnées DDI, export SDMX pour les portails régionaux (AFRISTAT, PARIS21, Banque mondiale).</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">anonymiser_donnees()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">generer_metadonnees_ddi()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">exporter_sdmx()</code>
+              <code style="background:var(--sage);color:var(--pine);padding:3px 10px;border-radius:4px;font-size:0.83rem;">compresser_package_diffusion()</code>
+            </div>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier">Copier</button>
+            <pre><span class="code-comment"># Anonymisation avant publication</span>
+anon &lt;- <span class="code-fn">anonymiser_donnees</span>(donnees,
+  vars_supprimer = c(<span class="code-str">"nom"</span>, <span class="code-str">"telephone"</span>),
+  vars_masquer   = c(<span class="code-str">"age"</span>),
+  k = 5
+)
+
+<span class="code-comment"># Export SDMX pour AFRISTAT/Banque mondiale</span>
+<span class="code-fn">exporter_sdmx</span>(donnees_agregees,
+  dsd = <span class="code-str">"AFRISTAT_POVERTY"</span>,
+  pays = <span class="code-str">"NE"</span>
+)</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Référentiel 40 fonctions -->
+<section id="fonctions" style="background:var(--white);" aria-labelledby="fn-title">
+  <div class="container">
+    <p class="section-label text-center">Référentiel complet</p>
+    <h2 id="fn-title" class="section-title text-center fade-in">Les 40 fonctions de statAfrikR v0.1.0</h2>
+    <div class="search-bar fade-in">
+      <input class="search-input" id="fn-search" type="search" placeholder="Rechercher une fonction, un module…" aria-label="Rechercher une fonction">
+    </div>
+    <div class="table-wrap fade-in">
+      <table id="fn-table" role="table">
+        <thead><tr><th>#</th><th>Fonction</th><th>Module</th><th>Description</th><th>Documentation</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><code>import_excel()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import fichiers Excel avec gestion des en-têtes et labels</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>02</td><td><code>import_csv()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import CSV — encodage et séparateur auto-détectés</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>03</td><td><code>import_stata()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import .dta Stata 8 à 18 avec labels préservés</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>04</td><td><code>import_spss()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import .sav SPSS avec labels et codes manquants</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>05</td><td><code>import_sas()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import fichiers SAS (.sas7bdat)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>06</td><td><code>import_kobo()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import via API KoboToolbox (token requis)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>07</td><td><code>import_odk()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import depuis ODK Central</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>08</td><td><code>import_cspro()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Import CSPro (.csdb + .dcf) — format recensements</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>09</td><td><code>valider_dictionnaire()</code></td><td><span class="badge badge-blue">Collecte</span></td><td>Contrôle conformité données / dictionnaire de variables</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>10</td><td><code>check_na()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Audit valeurs manquantes par variable avec seuils d'alerte</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>11</td><td><code>check_types()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Vérification des types de variables</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>12</td><td><code>valider_qualite_donnees()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Score global de qualité (0-100) avec rapport détaillé</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>13</td><td><code>nettoyer_libelles()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Harmonisation des libellés textuels et encodage</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>14</td><td><code>recoder_variable()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Recodage des modalités selon une table de correspondance</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>15</td><td><code>supprimer_doublons()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Détection et suppression des doublons identifiants</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>16</td><td><code>fusion_datasets()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Fusion de plusieurs modules d'enquête sur clé commune</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>17</td><td><code>imputer_valeurs()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Imputation des valeurs manquantes (hot-deck, moyenne, médiane)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>18</td><td><code>harmoniser_regions()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Normalisation nomenclature géographique africaine</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>19</td><td><code>standardiser_ages()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Correction biais de déclaration d'âge (méthode Myers)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>20</td><td><code>appliquer_ponderations()</code></td><td><span class="badge badge-green">Traitement</span></td><td>Plan de sondage complexe stratifié par grappes (package survey)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>21</td><td><code>stat_descr()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Statistiques descriptives pondérées avec intervalles de confiance</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>22</td><td><code>tab_croisee()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Tableaux croisés pondérés avec test chi² et IC 95%</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>23</td><td><code>analyse_regression()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Régression linéaire/logistique pondérée sur plan de sondage</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>24</td><td><code>decomposer_inegalite()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Gini, Theil et décomposition des inégalités par groupe</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>25</td><td><code>calcul_idh()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Indice de Développement Humain — méthode PNUD officielle</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>26</td><td><code>calcul_ipm()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>IPM méthode Alkire-Foster avec décomposition dimensionnelle</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>27</td><td><code>tracer_flux_traitement()</code></td><td><span class="badge badge-amber">Analyse</span></td><td>Journal complet du pipeline de traitement (audit trail)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>28</td><td><code>pyramide_ages()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Pyramide démographique institutionnelle (ggplot2)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>29</td><td><code>graphique_barres()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Graphique barres aux couleurs institutionnelles INS</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>30</td><td><code>graphique_tendance()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Séries temporelles institutionnelles (IPC, prix)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>31</td><td><code>carte_thematique()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Carte choroplèthe par région ou pays (sf)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>32</td><td><code>analyse_spatiale()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Autocorrélation spatiale (indice de Moran)</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>33</td><td><code>theme_ins()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Thème ggplot2 pour charte graphique INS officielle</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>34</td><td><code>palette_ins()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Palettes de couleurs institutionnelles adaptées</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>35</td><td><code>exporter_graphique()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Export PNG/PDF haute résolution pour publication</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>36</td><td><code>generer_rapport()</code></td><td><span class="badge badge-ink">Visualisation</span></td><td>Rapport Word/PDF automatisé — zéro retouche manuelle</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>37</td><td><code>anonymiser_donnees()</code></td><td><span class="badge" style="background:#F3E8FF;color:#6B21A8;">Diffusion</span></td><td>Anonymisation k-anonymat avant diffusion publique</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>38</td><td><code>generer_metadonnees_ddi()</code></td><td><span class="badge" style="background:#F3E8FF;color:#6B21A8;">Diffusion</span></td><td>Métadonnées DDI XML standard pour archivage</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>39</td><td><code>exporter_sdmx()</code></td><td><span class="badge" style="background:#F3E8FF;color:#6B21A8;">Diffusion</span></td><td>Export SDMX pour portails régionaux et Banque mondiale</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+          <tr><td>40</td><td><code>compresser_package_diffusion()</code></td><td><span class="badge" style="background:#F3E8FF;color:#6B21A8;">Diffusion</span></td><td>Package complet données + métadonnées + documentation</td><td><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" style="font-size:0.8rem;">Docs →</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Installation -->
+<section id="installation" aria-labelledby="install-title">
+  <div class="container container-sm">
+    <p class="section-label">Démarrage rapide</p>
+    <h2 id="install-title" class="section-title fade-in">Installation et premier usage</h2>
+    <div class="code-block fade-in">
+      <button class="copy-btn" aria-label="Copier">Copier</button>
+      <pre><span class="code-comment"># Depuis le CRAN (recommandé)</span>
+<span class="code-fn">install.packages</span>(<span class="code-str">"statAfrikR"</span>)
+
+<span class="code-comment"># Depuis GitHub (version dev)</span>
+<span class="code-comment"># install.packages("remotes")</span>
+remotes::<span class="code-fn">install_github</span>(<span class="code-str">"damoko2004/statAfrikR"</span>)
+
+<span class="code-comment"># Charger le package</span>
+<span class="code-fn">library</span>(statAfrikR)
+
+<span class="code-comment"># Vérifier l'installation</span>
+<span class="code-fn">packageVersion</span>(<span class="code-str">'statAfrikR'</span>)  <span class="code-comment"># → '0.1.0'</span>
+
+<span class="code-comment"># Premier usage — pipeline complet</span>
+donnees &lt;- <span class="code-fn">import_excel</span>(<span class="code-str">"mon_enquete.xlsx"</span>)
+<span class="code-fn">check_na</span>(donnees, seuil = 0.1)
+plan    &lt;- <span class="code-fn">appliquer_ponderations</span>(donnees, <span class="code-str">"poids"</span>, <span class="code-str">"grappe"</span>, <span class="code-str">"strate"</span>)
+stats   &lt;- <span class="code-fn">stat_descr</span>(plan, vars = c(<span class="code-str">"depense_menage"</span>, <span class="code-str">"taille_menage"</span>))</pre>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;">
+      <a href="https://cran.r-project.org/web/packages/statAfrikR/vignettes/demarrage-rapide.html" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Lire la vignette complète →</a>
+      <a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="color:var(--slate);border-color:var(--bord);">RDocumentation →</a>
+    </div>
+    <div class="grid-4" style="margin-top:40px;">
+      <div class="stat-card"><div class="stat-num" style="font-size:1.5rem;">R ≥ 4.2.0</div><div class="stat-label">Version R minimale</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.5rem;">RStudio ≥ 2022</div><div class="stat-label">IDE recommandé</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.5rem;">4 Go RAM</div><div class="stat-label">Minimum requis</div></div>
+      <div class="stat-card"><div class="stat-num" style="font-size:1.5rem;">100% Offline</div><div class="stat-label">Après installation</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo" style="text-decoration:none;"><div class="nav-logo-mark">S</div><div class="nav-logo-text"><span class="nav-logo-name">statAfrikR</span><span class="nav-logo-sub">Foundation</span></div></a><p>Fondation panafricaine open source · Loi n°2008-776 du 4 août 2008.</p><p style="margin-top:12px;"><a href="mailto:diamoko@gmail.com" style="color:var(--amber);">diamoko@gmail.com</a></p></div><div class="footer-col"><h4>La Foundation</h4><a href="foundation.html">Vision &amp; Mission</a><a href="gouvernance.html">Gouvernance</a><a href="roadmap.html">Feuille de route</a><a href="financement.html">Modèle économique</a><a href="partenariat.html">Devenir partenaire</a></div><div class="footer-col"><h4>Le package</h4><a href="package.html">Architecture</a><a href="formation.html">Formation 10 jours</a><a href="communaute.html">Communauté</a><a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener">CRAN</a><a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener">Documentation</a></div><div class="footer-col"><h4>Ressources</h4><a href="https://cran.r-project.org/web/packages/statAfrikR/vignettes/demarrage-rapide.html" target="_blank" rel="noopener">Démarrage rapide</a><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener">RDocumentation</a><a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a><a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a><a href="contact.html">Contact</a></div></div><div class="footer-bottom"><span>© 2026 statAfrikR Foundation · GPL-3</span><div class="footer-links"><a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a><a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a><a href="contact.html">Contact</a></div></div></div></footer>
+<div class="org-tooltip" role="tooltip" aria-live="polite"></div>
+<script src="assets/js/main.js"></script><script src="assets/js/stats.js"></script>
+</body></html>

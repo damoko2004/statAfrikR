@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="statAfrikR Foundation — Fondation panafricaine open source pour la statistique publique. Package R dédié aux INS africains. 375+ téléchargements CRAN.">
+  <meta property="og:title" content="statAfrikR Foundation — La statistique africaine open source">
+  <meta property="og:description" content="Premier package R open source dédié aux INS africains. 375 téléchargements en un mois. Foundation en cours de création.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://statafrikr-foundation.org">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>statAfrikR Foundation — La statistique africaine open source</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"statAfrikR Foundation",
+   "url":"https://statafrikr-foundation.org","email":"diamoko@gmail.com",
+   "foundingDate":"2026","description":"Fondation panafricaine open source pour la statistique publique africaine"}
+  </script>
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Accueil statAfrikR Foundation">
+      <div class="nav-logo-mark">S</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">statAfrikR</span>
+        <span class="nav-logo-sub">Foundation</span>
+      </div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="foundation.html">La Foundation</a></li>
+      <li><a href="gouvernance.html">Gouvernance</a></li>
+      <li><a href="package.html">Package</a></li>
+      <li><a href="formation.html">Formation</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+      <li><a href="partenariat.html" class="nav-cta">Devenir partenaire</a></li>
+    </ul>
+    <div class="nav-lang">
+      <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+      <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+<header class="hero" role="banner">
+  <div class="hero-pattern" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" aria-label="Statut">Package CRAN officiel · Avril 2026</div>
+    <h1 data-fr="statAfrikR Foundation" data-en="statAfrikR Foundation">statAfrikR Foundation</h1>
+    <p class="hero-sub" data-fr="Foundation for African Statistical Innovation &amp; Open Data" data-en="Foundation for African Statistical Innovation &amp; Open Data">Foundation for African Statistical Innovation &amp; Open Data</p>
+    <blockquote class="hero-quote" data-fr="&ldquo;statAfrikR est conçu par et pour les statisticiens africains.&rdquo;" data-en="&ldquo;statAfrikR is designed by and for African statisticians.&rdquo;">
+      &ldquo;statAfrikR est conçu par et pour les statisticiens africains.&rdquo;
+    </blockquote>
+    <div class="hero-actions">
+      <a href="package.html" class="btn btn-primary" data-fr="Découvrir statAfrikR" data-en="Discover statAfrikR">Découvrir statAfrikR</a>
+      <a href="partenariat.html" class="btn btn-outline" data-fr="Devenir partenaire INS" data-en="Become an NSO partner">Devenir partenaire INS</a>
+    </div>
+    <div class="hero-stats" role="region" aria-label="Statistiques clés">
+      <div>
+        <div class="hero-stat-num" id="cran-total" data-count="375">375</div>
+        <div class="hero-stat-label" data-fr="Téléchargements CRAN en 1 mois" data-en="CRAN downloads in 1 month">Téléchargements CRAN en 1 mois</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-count="40">40</div>
+        <div class="hero-stat-label" data-fr="Fonctions documentées v0.1.0" data-en="Documented functions v0.1.0">Fonctions documentées v0.1.0</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-count="10">10</div>
+        <div class="hero-stat-label" data-fr="INS partenaires cibles (2028)" data-en="Target NSO partners (2028)">INS partenaires cibles (2028)</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-count="1000">1 000</div>
+        <div class="hero-stat-label" data-fr="Statisticiens à certifier (2028)" data-en="Statisticians to certify (2028)">Statisticiens à certifier (2028)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ── Installation Code ─────────────────────────────────────── -->
+<section aria-labelledby="install-title" style="background:var(--ink-d);padding:48px 0;">
+  <div class="container container-sm">
+    <h2 id="install-title" style="color:var(--white);text-align:center;margin-bottom:8px;" class="fade-in">Installer statAfrikR en 30 secondes</h2>
+    <p style="color:rgba(255,255,255,0.55);text-align:center;margin:0 auto 28px;" class="fade-in">Disponible sur le CRAN officiel · Open source · GPL-3 · Hors ligne</p>
+    <div class="code-block fade-in" role="region" aria-label="Code d'installation R">
+      <button class="copy-btn" aria-label="Copier le code">Copier</button>
+      <pre><span class="code-comment"># Depuis le CRAN (recommandé)</span>
+<span class="code-fn">install.packages</span>(<span class="code-str">"statAfrikR"</span>)
+
+<span class="code-comment"># Charger et vérifier</span>
+<span class="code-fn">library</span>(statAfrikR)
+<span class="code-fn">packageVersion</span>(<span class="code-str">'statAfrikR'</span>)  <span class="code-comment"># → '0.1.0'</span>
+
+<span class="code-comment"># Premier usage — importer une enquête</span>
+donnees &lt;- <span class="code-fn">import_excel</span>(<span class="code-str">"mon_enquete.xlsx"</span>)
+<span class="code-fn">check_na</span>(donnees)</pre>
+    </div>
+    <p style="text-align:center;margin-top:16px;">
+      <a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener" style="color:var(--amber);font-size:0.9rem;">Voir sur le CRAN →</a>
+      &nbsp;&nbsp;
+      <a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5);font-size:0.9rem;">Documentation pkgdown →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── Pourquoi statAfrikR ───────────────────────────────────── -->
+<section aria-labelledby="why-title">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Valeur ajoutée</p>
+      <h2 id="why-title" class="section-title fade-in">Pourquoi statAfrikR est stratégique pour les INS</h2>
+      <p class="section-sub fade-in" style="margin:0 auto 48px;">Six avantages décisifs pour moderniser la production statistique nationale.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">🏛️</div>
+        <h3 class="card-title">Souveraineté numérique</h3>
+        <p class="card-text">Mettre fin à la dépendance aux licences SPSS, SAS et Stata au profit d'un outil open source pérenne, libre et gratuit.</p>
+      </div>
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">🔁</div>
+        <h3 class="card-title">Reproductibilité</h3>
+        <p class="card-text">Chaque analyse devient un script documenté, auditable et réutilisable d'une année sur l'autre, sans perte de savoir-faire.</p>
+      </div>
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">⚡</div>
+        <h3 class="card-title">Productivité</h3>
+        <p class="card-text">Réduction estimée à <strong>60–70%</strong> du temps de traitement des enquêtes ménages, recensements et données administratives.</p>
+      </div>
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">🌍</div>
+        <h3 class="card-title">Harmonisation régionale</h3>
+        <p class="card-text">Base méthodologique commune pour les comparaisons inter-INS au sein de l'UEMOA, de la CEDEAO et de la CEMAC.</p>
+      </div>
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">🎓</div>
+        <h3 class="card-title">Formation intégrée</h3>
+        <p class="card-text">Vignettes pédagogiques, exemples concrets sur données réelles, programme de certification à 3 niveaux.</p>
+      </div>
+      <div class="card fade-in" role="article">
+        <div class="card-icon" aria-hidden="true">📦</div>
+        <h3 class="card-title">Open source complet</h3>
+        <p class="card-text">Licence GPL-3 · CRAN officiel · GitHub · Documentation française · Fonctionnement hors ligne intégral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pipeline ──────────────────────────────────────────────── -->
+<section style="background:var(--white);" aria-labelledby="pipeline-title">
+  <div class="container">
+    <p class="section-label text-center">Architecture technique</p>
+    <h2 id="pipeline-title" class="section-title text-center fade-in">Pipeline statistique complet — 5 modules intégrés</h2>
+    <p class="section-sub text-center fade-in" style="margin:0 auto 40px;">Des données brutes aux livrables publiables et diffusables, en un seul écosystème cohérent.</p>
+    <div class="pipeline" role="list">
+      <div class="pipeline-step fade-in" role="listitem">
+        <div class="pipeline-num">MODULE 01</div>
+        <div class="pipeline-title">Collecte</div>
+        <div class="pipeline-fns">import_excel()<br>import_kobo()<br>import_cspro()<br>import_stata()</div>
+      </div>
+      <div class="pipeline-step fade-in" role="listitem">
+        <div class="pipeline-num">MODULE 02</div>
+        <div class="pipeline-title">Traitement</div>
+        <div class="pipeline-fns">check_na()<br>imputer_valeurs()<br>harmoniser_regions()<br>appliquer_ponderations()</div>
+      </div>
+      <div class="pipeline-step fade-in" role="listitem">
+        <div class="pipeline-num">MODULE 03</div>
+        <div class="pipeline-title">Analyse</div>
+        <div class="pipeline-fns">calcul_idh()<br>calcul_ipm()<br>decomposer_inegalite()<br>tab_croisee()</div>
+      </div>
+      <div class="pipeline-step fade-in" role="listitem">
+        <div class="pipeline-num">MODULE 04</div>
+        <div class="pipeline-title">Visualisation</div>
+        <div class="pipeline-fns">pyramide_ages()<br>carte_thematique()<br>theme_ins()<br>generer_rapport()</div>
+      </div>
+      <div class="pipeline-step fade-in" role="listitem">
+        <div class="pipeline-num">MODULE 05</div>
+        <div class="pipeline-title">Diffusion</div>
+        <div class="pipeline-fns">anonymiser_donnees()<br>generer_metadonnees_ddi()<br>exporter_sdmx()</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;">
+      <a href="package.html" class="btn btn-primary btn-sm">Voir toutes les fonctions</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── CRAN Stats Chart ──────────────────────────────────────── -->
+<section aria-labelledby="stats-title">
+  <div class="container">
+    <div class="text-center">
+      <p class="section-label">Données live</p>
+      <h2 id="stats-title" class="section-title fade-in">375 téléchargements en un mois</h2>
+      <p class="section-sub fade-in" style="margin:0 auto 32px;">Sans budget promotionnel. Source : RStudio CRAN mirror · cranlogs.r-pkg.org</p>
+    </div>
+    <div class="chart-container fade-in" id="cran-chart" aria-label="Graphique des téléchargements CRAN" role="img">
+      <svg viewBox="0 0 700 200" class="bar-chart-svg"><text x="350" y="110" text-anchor="middle" font-family="Arial" font-size="14" fill="#718096">Chargement des statistiques...</text></svg>
+    </div>
+    <div class="stats-grid" style="margin-top:40px;">
+      <div class="stat-card fade-in">
+        <div class="stat-num cran-total-val">375</div>
+        <div class="stat-label">Téléchargements CRAN totaux</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">40</div>
+        <div class="stat-label">Fonctions documentées</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">237</div>
+        <div class="stat-label">Tests unitaires</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num" id="gh-stars">—</div>
+        <div class="stat-label">GitHub stars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Actualités ────────────────────────────────────────────── -->
+<section style="background:var(--white);" aria-labelledby="news-title">
+  <div class="container">
+    <p class="section-label">Dernières actualités</p>
+    <h2 id="news-title" class="section-title fade-in">Suivre l'évolution de statAfrikR</h2>
+    <div class="grid-3" style="margin-top:32px;">
+      <article class="card fade-in">
+        <span class="badge badge-green">Disponible</span>
+        <h3 class="card-title" style="margin-top:12px;">statAfrikR v0.1.0 sur le CRAN</h3>
+        <p class="card-text">Publication officielle le 3 avril 2026. 40 fonctions, 5 modules, 237 tests unitaires. Premier package R open source dédié aux INS africains.</p>
+        <a href="https://cran.r-project.org/web/packages/statAfrikR/news/news.html" target="_blank" rel="noopener" style="font-size:0.85rem;margin-top:12px;display:inline-block;">Voir le changelog →</a>
+      </article>
+      <article class="card fade-in">
+        <span class="badge badge-amber">En cours</span>
+        <h3 class="card-title" style="margin-top:12px;">Création de la statAfrikR Foundation</h3>
+        <p class="card-text">Fonds de dotation en cours de constitution (loi n°2008-776). Gouvernance inspirée de la DuckDB Foundation. Siège dans le premier INS partenaire fondateur.</p>
+        <a href="foundation.html" style="font-size:0.85rem;margin-top:12px;display:inline-block;">En savoir plus →</a>
+      </article>
+      <article class="card fade-in">
+        <span class="badge badge-blue">T3 2026</span>
+        <h3 class="card-title" style="margin-top:12px;">v0.2.0 en développement</h3>
+        <p class="card-text">Prochaine version : Module FGT (pauvreté), Cartographie sf, Tableaux Word/Excel/PDF automatiques, Nouveaux indicateurs ODD. Interface bilingue FR/EN.</p>
+        <a href="roadmap.html" style="font-size:0.85rem;margin-top:12px;display:inline-block;">Voir la roadmap →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Partenariat CTA ───────────────────────────────────────── -->
+<section style="background:var(--ink);padding:80px 0;" aria-labelledby="partner-cta">
+  <div class="container text-center">
+    <p class="section-label" style="color:var(--amber);">Opportunité unique</p>
+    <h2 id="partner-cta" style="color:var(--white);margin-bottom:16px;" class="fade-in">Le siège de la Foundation dans votre INS</h2>
+    <p style="color:rgba(255,255,255,0.6);max-width:56ch;margin:0 auto 32px;" class="fade-in">
+      Le premier Institut National de la Statistique qui signe le protocole de partenariat devient
+      l'Institution Fondatrice officielle de la statAfrikR Foundation — une distinction qui n'appartiendra
+      qu'à un seul INS sur le continent africain.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="fade-in">
+      <a href="partenariat.html" class="btn btn-primary">Devenir partenaire fondateur</a>
+      <a href="contact.html" class="btn btn-outline">Contacter Dikers Amoko</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Références ────────────────────────────────────────────── -->
+<section aria-labelledby="refs-title">
+  <div class="container">
+    <p class="section-label text-center">Références et ressources</p>
+    <h2 id="refs-title" class="section-title text-center fade-in">Toutes les ressources statAfrikR</h2>
+    <div class="grid-4" style="margin-top:32px;">
+      <a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener" class="card" style="text-align:center;text-decoration:none;">
+        <div style="font-size:2rem;margin-bottom:8px;">📦</div>
+        <div class="card-title">CRAN officiel</div>
+        <div class="card-text" style="font-size:0.8rem;">Package & documentation</div>
+      </a>
+      <a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener" class="card" style="text-align:center;text-decoration:none;">
+        <div style="font-size:2rem;margin-bottom:8px;">📖</div>
+        <div class="card-title">Site pkgdown</div>
+        <div class="card-text" style="font-size:0.8rem;">Reference complète</div>
+      </a>
+      <a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener" class="card" style="text-align:center;text-decoration:none;">
+        <div style="font-size:2rem;margin-bottom:8px;">⚙️</div>
+        <div class="card-title">GitHub</div>
+        <div class="card-text" style="font-size:0.8rem;">Code source ouvert</div>
+      </a>
+      <a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener" class="card" style="text-align:center;text-decoration:none;">
+        <div style="font-size:2rem;margin-bottom:8px;">💬</div>
+        <div class="card-title">Discord</div>
+        <div class="card-text" style="font-size:0.8rem;">Communauté active</div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ── Footer ────────────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="nav-logo-mark">S</div>
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">statAfrikR</span>
+            <span class="nav-logo-sub">Foundation</span>
+          </div>
+        </a>
+        <p>Fondation panafricaine open source pour la statistique publique africaine. Fonds de dotation en cours de constitution · Loi n°2008-776 du 4 août 2008.</p>
+        <p style="margin-top:12px;"><a href="mailto:diamoko@gmail.com" style="color:var(--amber);">diamoko@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>La Foundation</h4>
+        <a href="foundation.html">Vision & Mission</a>
+        <a href="gouvernance.html">Gouvernance</a>
+        <a href="roadmap.html">Feuille de route</a>
+        <a href="financement.html">Modèle économique</a>
+        <a href="partenariat.html">Devenir partenaire</a>
+      </div>
+      <div class="footer-col">
+        <h4>Le package</h4>
+        <a href="package.html">Architecture</a>
+        <a href="formation.html">Formation 10 jours</a>
+        <a href="communaute.html">Communauté</a>
+        <a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener">CRAN</a>
+        <a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener">Documentation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Ressources</h4>
+        <a href="https://cran.r-project.org/web/packages/statAfrikR/vignettes/demarrage-rapide.html" target="_blank" rel="noopener">Démarrage rapide</a>
+        <a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener">RDocumentation</a>
+        <a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 statAfrikR Foundation · Fonds de dotation en constitution · GPL-3</span>
+      <div class="footer-links">
+        <a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="org-tooltip" role="tooltip" aria-live="polite"></div>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/stats.js"></script>
+</body>
+</html>

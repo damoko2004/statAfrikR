@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacter la statAfrikR Foundation — Partenariat INS, formation, financement, presse. Dikers Amoko.">
+  <meta property="og:title" content="Contact — statAfrikR Foundation">
+  <meta property="og:description" content="Contacter la statAfrikR Foundation — Partenariat INS, formation, financement, presse. Dikers Amoko.">
+  <title>Contact — statAfrikR Foundation</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-mark">S</div><div class="nav-logo-text"><span class="nav-logo-name">statAfrikR</span><span class="nav-logo-sub">Foundation</span></div></a>
+    <ul class="nav-links" role="list"><li><a href="foundation.html">La Foundation</a></li><li><a href="gouvernance.html">Gouvernance</a></li><li><a href="package.html">Package</a></li><li><a href="formation.html">Formation</a></li><li><a href="roadmap.html">Roadmap</a></li><li><a href="communaute.html">Communauté</a></li><li><a href="partenariat.html" class="nav-cta">Devenir partenaire</a></li></ul>
+    <div class="nav-lang"><button class="lang-btn active" data-lang="fr">FR</button><button class="lang-btn" data-lang="en">EN</button></div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+<main>
+
+<header class="page-hero"><div class="page-hero-inner">
+  <nav class="breadcrumb" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span>›</span><span style="color:rgba(255,255,255,0.7)">Contact</span></nav>
+  <p class="section-label" style="color:var(--amber)">Nous joindre</p>
+  <h1>Contact</h1>
+  <p class="lead">Partenariat INS · Formation · Financement · Presse · Communauté</p>
+</div></header>
+
+<section id="formulaire" aria-labelledby="form-title">
+<div class="container">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+    <div>
+      <p class="section-label">Formulaire de contact</p>
+      <h2 id="form-title" class="section-title fade-in" style="margin-bottom:32px;">Envoyez-nous un message</h2>
+      <form id="contact-form" action="https://formspree.io/f/diamoko" method="POST" novalidate>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label" for="nom">Nom complet *</label><input class="form-input" type="text" id="nom" name="nom" required placeholder="Prénom Nom" aria-required="true"></div>
+          <div class="form-group"><label class="form-label" for="institution">Institution</label><input class="form-input" type="text" id="institution" name="institution" placeholder="INS, Université, Organisation..."></div>
+        </div>
+        <div class="form-group"><label class="form-label" for="email">Email *</label><input class="form-input" type="email" id="email" name="email" required placeholder="prenom.nom@institution.org" aria-required="true"></div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label" for="pays">Pays</label><input class="form-input" type="text" id="pays" name="pays" placeholder="Votre pays"></div>
+          <div class="form-group"><label class="form-label" for="objet">Objet *</label>
+            <select class="form-select" id="objet" name="objet" required aria-required="true">
+              <option value="">Choisir l'objet...</option>
+              <option value="partenariat">Partenariat INS — Héberger la Foundation</option>
+              <option value="formation">Organiser une session de formation</option>
+              <option value="financement">Financement et mécénat</option>
+              <option value="technique">Question technique sur statAfrikR</option>
+              <option value="presse">Presse et communication</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label" for="message">Message *</label><textarea class="form-textarea" id="message" name="message" required placeholder="Décrivez votre demande, vos questions ou le contexte de votre institution..." aria-required="true"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer le message</button>
+        <p style="font-size:0.8rem;color:var(--mist);margin-top:12px;text-align:center;">Ce formulaire utilise Formspree. Vos données ne sont pas partagées avec des tiers.</p>
+      </form>
+    </div>
+    <div style="padding-top:48px;">
+      <div class="card card-sage" style="margin-bottom:24px;">
+        <h3 class="card-title">✉️ Email direct</h3>
+        <p class="card-text">Pour les demandes urgentes ou confidentielles :</p>
+        <a href="mailto:diamoko@gmail.com" style="font-size:1.05rem;font-weight:700;color:var(--pine);margin-top:8px;display:block;">diamoko@gmail.com</a>
+      </div>
+      <div class="card card-skylt" style="margin-bottom:24px;">
+        <h3 class="card-title">💬 Discord (communauté)</h3>
+        <p class="card-text">Pour les questions techniques sur statAfrikR, les retours d'usage et les échanges avec la communauté.</p>
+        <a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top:12px;display:inline-flex;">Rejoindre Discord →</a>
+      </div>
+      <div class="card card-parch">
+        <h3 class="card-title">📦 GitHub</h3>
+        <p class="card-text">Pour les bugs, les demandes de fonctionnalités et les contributions au code.</p>
+        <a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:12px;display:inline-flex;color:var(--slate);border-color:var(--bord);">Ouvrir une Issue →</a>
+      </div>
+      <div style="margin-top:32px;padding:24px;background:var(--ivory);border-radius:var(--radius);border:1px solid var(--bord);">
+        <p style="font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:8px;">Dikers Amoko</p>
+        <p style="font-size:0.85rem;color:var(--mist);">Fondateur de statAfrikR · Statisticien · Data Scientist<br>Auteur du package statAfrikR (CRAN)</p>
+        <a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener" style="font-size:0.82rem;color:var(--pine);margin-top:8px;display:block;">damoko2004.github.io/statAfrikR/</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+<footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo" style="text-decoration:none;"><div class="nav-logo-mark">S</div><div class="nav-logo-text"><span class="nav-logo-name">statAfrikR</span><span class="nav-logo-sub">Foundation</span></div></a><p>Fondation panafricaine open source · Loi n°2008-776 du 4 août 2008.</p><p style="margin-top:12px;"><a href="mailto:diamoko@gmail.com" style="color:var(--amber);">diamoko@gmail.com</a></p></div><div class="footer-col"><h4>La Foundation</h4><a href="foundation.html">Vision &amp; Mission</a><a href="gouvernance.html">Gouvernance</a><a href="roadmap.html">Feuille de route</a><a href="financement.html">Modèle économique</a><a href="partenariat.html">Devenir partenaire</a></div><div class="footer-col"><h4>Le package</h4><a href="package.html">Architecture</a><a href="formation.html">Formation 10 jours</a><a href="communaute.html">Communauté</a><a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener">CRAN</a><a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener">Documentation</a></div><div class="footer-col"><h4>Ressources</h4><a href="https://cran.r-project.org/web/packages/statAfrikR/vignettes/demarrage-rapide.html" target="_blank" rel="noopener">Démarrage rapide</a><a href="https://www.rdocumentation.org/packages/statAfrikR/versions/0.1.0" target="_blank" rel="noopener">RDocumentation</a><a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a><a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a><a href="contact.html">Contact</a></div></div><div class="footer-bottom"><span>© 2026 statAfrikR Foundation · GPL-3</span><div class="footer-links"><a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a><a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a><a href="contact.html">Contact</a></div></div></div></footer><div class="org-tooltip" role="tooltip" aria-live="polite"></div><script src="assets/js/main.js"></script><script src="assets/js/stats.js"></script>
+</body></html>
