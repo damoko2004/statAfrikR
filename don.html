@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Faire un don à la statAfrikR Foundation — Soutenez le développement open source statistique africain. Don déductible des impôts.">
+  <meta property="og:title" content="Faire un don — statAfrikR Foundation">
+  <meta property="og:description" content="Votre don finance le développement open source, les formations gratuites et les certifications pour les statisticiens africains.">
+  <title>Faire un don — statAfrikR Foundation</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav class="nav" role="navigation" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Accueil statAfrikR Foundation">
+      <div class="nav-logo-mark">S</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">statAfrikR</span>
+        <span class="nav-logo-sub">Foundation</span>
+      </div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="foundation.html" data-i18n="nav.fondation">Fondation</a></li>
+      <li><a href="gouvernance.html" data-i18n="nav.gouvernance">Gouvernance</a></li>
+      <li><a href="package.html" data-i18n="nav.package">Package</a></li>
+      <li><a href="formation.html" data-i18n="nav.formation">Formation</a></li>
+      <li><a href="roadmap.html" data-i18n="nav.roadmap">Roadmap</a></li>
+      <li><a href="communaute.html" data-i18n="nav.communaute">Communauté</a></li>
+      <li><a href="don.html" class="nav-don active" data-i18n="nav.don">Faire un don</a></li>
+      <li><a href="partenariat.html" class="nav-cta" data-i18n="nav.partenaire">Devenir partenaire</a></li>
+    </ul>
+    <div class="nav-lang">
+      <button class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
+      <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- Hero don -->
+<header class="page-hero" style="background:linear-gradient(135deg,var(--ink) 60%,var(--pine-d) 100%);">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><span>›</span><span style="color:rgba(255,255,255,0.7)">Faire un don</span></nav>
+    <p class="section-label" style="color:var(--amber)">Soutenir la mission</p>
+    <h1 data-i18n="don.title" style="color:var(--white)">Soutenir la statAfrikR Foundation</h1>
+    <p class="lead" data-i18n="don.sub">Votre don finance le développement open source, les formations gratuites et les certifications pour les statisticiens africains.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- Impact visuel -->
+<section style="background:var(--ink);padding:0 0 0 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="padding:32px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:2rem;font-weight:bold;color:var(--amber);font-family:var(--font-title);">10 €</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:6px;">= 1 vignette pédagogique développée pour un INS africain</div>
+    </div>
+    <div style="padding:32px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:2rem;font-weight:bold;color:var(--amber);font-family:var(--font-title);">25 €</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:6px;">= 1 heure de développement sur statAfrikR ou ses packages</div>
+    </div>
+    <div style="padding:32px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:2rem;font-weight:bold;color:var(--amber);font-family:var(--font-title);">50 €</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:6px;">= 1 statisticien africain certifié niveau 1 statAfrikR</div>
+    </div>
+    <div style="padding:32px 24px;text-align:center;">
+      <div style="font-size:2rem;font-weight:bold;color:var(--amber);font-family:var(--font-title);">150 €</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:6px;">= 1 session de formation pour 1 équipe d'un INS</div>
+    </div>
+  </div>
+</section>
+
+<!-- Formulaire de don -->
+<section id="don" aria-labelledby="don-title">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+      <!-- Sélecteur de montant -->
+      <div>
+        <p class="section-label">Votre contribution</p>
+        <h2 id="don-title" class="section-title fade-in">Choisissez votre montant</h2>
+        <div class="don-grid fade-in" role="group" aria-label="Montants de don">
+          <button class="don-amount" onclick="selectAmount(10, this)" aria-label="Faire un don de 10 euros">
+            <div class="don-amount-num">10 €</div>
+            <div class="don-amount-label">Contributeur</div>
+          </button>
+          <button class="don-amount" onclick="selectAmount(25, this)" aria-label="Faire un don de 25 euros">
+            <div class="don-amount-num">25 €</div>
+            <div class="don-amount-label">Soutien</div>
+          </button>
+          <button class="don-amount selected" onclick="selectAmount(50, this)" aria-label="Faire un don de 50 euros">
+            <div class="don-amount-num">50 €</div>
+            <div class="don-amount-label">Partenaire</div>
+          </button>
+          <button class="don-amount" onclick="selectAmount(150, this)" aria-label="Faire un don de 150 euros">
+            <div class="don-amount-num">150 €</div>
+            <div class="don-amount-label">Bienfaiteur</div>
+          </button>
+        </div>
+
+        <!-- Montant libre -->
+        <div style="margin:16px 0 32px;" class="fade-in">
+          <label style="font-size:0.88rem;font-weight:700;color:var(--ink);display:block;margin-bottom:8px;" for="custom-amount">Ou saisir un montant libre :</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input type="number" id="custom-amount" min="5" placeholder="Montant en €"
+              style="width:150px;padding:10px 14px;border:1px solid var(--bord);border-radius:var(--radius);font-size:1rem;font-family:var(--font-body);outline:none;"
+              oninput="this.closest('section').querySelector('#amount-display').textContent = this.value + ' €'"
+              aria-label="Saisir un montant de don libre">
+            <span style="color:var(--mist);font-size:0.9rem;">minimum 5 €</span>
+          </div>
+        </div>
+
+        <!-- Récapitulatif -->
+        <div class="don-impact fade-in" aria-live="polite">
+          Votre don de <strong id="amount-display">50 €</strong> contribue directement à la certification de statisticiens africains et au développement de statAfrikR.
+        </div>
+
+        <!-- Infos fiscales -->
+        <div style="background:var(--parch);border:1px solid var(--bord);border-radius:var(--radius);padding:16px 20px;margin-top:16px;" class="fade-in">
+          <p style="font-size:0.85rem;color:var(--slate);margin-bottom:6px;">
+            <strong>🧾 Don déductible des impôts</strong><br>
+            En tant que fonds de dotation (loi n°2008-776), vos dons ouvrent droit à une réduction d'impôt de <strong>66%</strong> du montant versé (dans la limite de 20% du revenu imposable).
+          </p>
+          <p style="font-size:0.82rem;color:var(--mist);">Un reçu fiscal vous sera envoyé automatiquement à votre adresse email.</p>
+        </div>
+      </div>
+
+      <!-- Options de paiement -->
+      <div style="padding-top:48px;">
+        <p class="section-label">Finaliser votre don</p>
+        <h3 class="section-title" style="font-size:1.4rem;margin-bottom:24px;">Choisissez votre mode de paiement</h3>
+
+        <!-- HelloAsso (recommandé pour fonds de dotation français) -->
+        <a href="https://www.helloasso.com/associations/statafrikr-foundation/formulaires/1"
+           target="_blank" rel="noopener"
+           class="btn btn-primary"
+           style="width:100%;justify-content:center;margin-bottom:12px;font-size:1rem;padding:16px;"
+           aria-label="Faire un don via HelloAsso">
+          💳 Faire un don via HelloAsso
+        </a>
+        <p style="font-size:0.8rem;color:var(--mist);text-align:center;margin-bottom:24px;">
+          HelloAsso · Paiement sécurisé · 0% de commission · Reçu fiscal automatique
+        </p>
+
+        <!-- Virement bancaire -->
+        <div class="card card-skylt fade-in" style="margin-bottom:16px;">
+          <h4 class="card-title">🏦 Virement bancaire</h4>
+          <p class="card-text" style="font-size:0.85rem;">Pour les dons importants ou les virements depuis l'étranger, contactez-nous pour recevoir nos coordonnées bancaires.</p>
+          <a href="mailto:diamoko@gmail.com?subject=Don statAfrikR Foundation — virement" class="btn btn-outline btn-sm" style="margin-top:12px;color:var(--slate);border-color:var(--bord);display:inline-flex;">Demander les coordonnées →</a>
+        </div>
+
+        <!-- PayPal -->
+        <div class="card card-parch fade-in">
+          <h4 class="card-title">💙 PayPal</h4>
+          <p class="card-text" style="font-size:0.85rem;">Vous préférez PayPal ? Envoyez directement à notre compte.</p>
+          <a href="https://paypal.me/statafrikr" target="_blank" rel="noopener"
+             class="btn btn-outline btn-sm" style="margin-top:12px;color:var(--slate);border-color:var(--bord);display:inline-flex;">Donner via PayPal →</a>
+        </div>
+
+        <!-- Note transparence -->
+        <div style="margin-top:24px;padding:16px;background:var(--ivory);border-radius:var(--radius);border:1px solid var(--bord);font-size:0.82rem;color:var(--mist);">
+          <strong style="color:var(--ink);">🔍 Transparence financière</strong><br>
+          100% de vos dons sont affectés à la mission d'intérêt général : développement du package, formation des statisticiens africains, documentation et gouvernance. Les comptes annuels sont publiés sur ce site.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Pourquoi donner -->
+<section style="background:var(--white);" aria-labelledby="why-title">
+  <div class="container">
+    <p class="section-label text-center">Impact de votre don</p>
+    <h2 id="why-title" class="section-title text-center fade-in">Où va votre contribution</h2>
+    <div class="grid-3" style="margin-top:32px;">
+      <div class="card card-sage fade-in">
+        <div class="card-icon" aria-hidden="true">📦</div>
+        <h3 class="card-title">Développement open source</h3>
+        <p class="card-text">Financement des développeurs qui maintiennent statAfrikR sur le CRAN, ajoutent de nouvelles fonctions et corrigent les bugs.</p>
+        <div style="margin-top:12px;font-size:0.82rem;color:var(--pine);font-weight:700;">≈ 40% des ressources</div>
+      </div>
+      <div class="card card-parch fade-in">
+        <div class="card-icon" aria-hidden="true">🎓</div>
+        <h3 class="card-title">Formation gratuite INS</h3>
+        <p class="card-text">Organisation des sessions de formation intensive pour les équipes des INS africains, y compris dans les pays les moins avancés.</p>
+        <div style="margin-top:12px;font-size:0.82rem;color:var(--amber);font-weight:700;">≈ 35% des ressources</div>
+      </div>
+      <div class="card card-skylt fade-in">
+        <div class="card-icon" aria-hidden="true">🏛️</div>
+        <h3 class="card-title">Gouvernance et coordination</h3>
+        <p class="card-text">Fonctionnement de la Foundation : coordination, documentation, certifications, communication et partenariats institutionnels.</p>
+        <div style="margin-top:12px;font-size:0.82rem;color:var(--ink);font-weight:700;">≈ 25% des ressources</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section style="background:var(--pine);padding:64px 0;" aria-labelledby="cta-don">
+  <div class="container text-center">
+    <h2 id="cta-don" style="color:var(--white);margin-bottom:12px;">Ensemble pour la statistique africaine</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:52ch;margin:0 auto 28px;">
+      375 téléchargements en un mois. La demande est là. Votre don transforme cet élan en infrastructure statistique durable pour l'Afrique.
+    </p>
+    <a href="#don" class="btn btn-amber">Faire un don maintenant</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <div class="nav-logo-mark">S</div>
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">statAfrikR</span>
+            <span class="nav-logo-sub">Foundation</span>
+          </div>
+        </a>
+        <p data-i18n="footer.legal">Fonds de dotation en cours de constitution · Loi n°2008-776 du 4 août 2008.</p>
+        <p style="margin-top:12px;"><a href="mailto:diamoko@gmail.com" style="color:var(--amber);">diamoko@gmail.com</a></p>
+      </div>
+      <div class="footer-col"><h4>La Foundation</h4><a href="foundation.html">Vision &amp; Mission</a><a href="gouvernance.html">Gouvernance</a><a href="roadmap.html">Feuille de route</a><a href="financement.html">Modèle économique</a><a href="partenariat.html">Devenir partenaire</a></div>
+      <div class="footer-col"><h4>Le package</h4><a href="package.html">Architecture</a><a href="formation.html">Formation 10 jours</a><a href="communaute.html">Communauté</a><a href="https://cran.r-project.org/web/packages/statAfrikR/index.html" target="_blank" rel="noopener">CRAN</a><a href="https://damoko2004.github.io/statAfrikR/" target="_blank" rel="noopener">Documentation</a></div>
+      <div class="footer-col"><h4>Soutenir</h4><a href="don.html">Faire un don</a><a href="partenariat.html">Partenariat INS</a><a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">Contribuer au code</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 statAfrikR Foundation · Fonds de dotation en constitution · GPL-3</span>
+      <div class="footer-links">
+        <a href="https://github.com/damoko2004/statAfrikR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/kcfA27Yz" target="_blank" rel="noopener">Discord</a>
+        <a href="don.html">Faire un don</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="org-tooltip" role="tooltip" aria-live="polite"></div>
+<script>
+function selectAmount(val, btn) {
+  document.querySelectorAll('.don-amount').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('amount-display').textContent = val + ' €';
+  document.getElementById('custom-amount').value = '';
+}
+</script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/stats.js"></script>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
