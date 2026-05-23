@@ -57,6 +57,6 @@ Chemin du fichier exporté (invisible).
 #> data's fill values.
 #> Warning: No shared levels found between `names(values)` of the manual scale and the
 #> data's fill values.
-#> Graphique exporté : /tmp/Rtmp7bFlLh/pyramide.png (78.4 Ko)
+#> Graphique exporté : /tmp/RtmpzPOrs2/pyramide.png (78.4 Ko)
 # }
 ```
