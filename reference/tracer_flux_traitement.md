@@ -40,14 +40,14 @@ Une liste mise à jour avec `$donnees` et `$journal`.
 # \donttest{
   donnees <- data.frame(id=1:3, val=c(10,20,30))
   e1 <- tracer_flux_traitement(donnees, action="Import")
-#> [2026-03-30 20:53:03] Import (3 lignes x 2 colonnes)
+#> [2026-05-23 23:04:27] Import (3 lignes x 2 colonnes)
   e2 <- tracer_flux_traitement(e1$donnees, action="Nettoyage", journal=e1$journal)
-#> [2026-03-30 20:53:03] Nettoyage (3 lignes x 2 colonnes)
+#> [2026-05-23 23:04:27] Nettoyage (3 lignes x 2 colonnes)
   print(e2$journal)
 #> # A tibble: 2 × 5
 #>   horodatage          action    n_lignes n_colonnes details
 #>   <chr>               <chr>        <int>      <int> <chr>  
-#> 1 2026-03-30 20:53:03 Import           3          2 NA     
-#> 2 2026-03-30 20:53:03 Nettoyage        3          2 NA     
+#> 1 2026-05-23 23:04:27 Import           3          2 NA     
+#> 2 2026-05-23 23:04:27 Nettoyage        3          2 NA     
 # }
 ```
