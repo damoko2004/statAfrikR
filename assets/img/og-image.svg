@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#1B2B3B"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#grad)"/>
+  <defs>
+    <radialGradient id="grad" cx="70%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#1D4F3A" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1B2B3B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="80" y="80" width="70" height="70" rx="14" fill="#1D4F3A"/>
+  <path d="M100 112 Q100 100 110 100 L132 100 Q144 100 144 112 Q144 124 110 124 Q100 124 100 136 Q100 148 110 148 L132 148 Q144 148 144 136" stroke="#FAFAF8" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <circle cx="156" cy="88" r="8" fill="#9C6A10"/>
+  <text x="170" y="110" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#FFFFFF">statAfrikR Foundation</text>
+  <text x="170" y="150" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)">Foundation for African Statistical Innovation &amp; Open Data</text>
+  <text x="80" y="260" font-family="Georgia, serif" font-size="38" font-style="italic" fill="rgba(255,255,255,0.5)">« statAfrikR est conçu par et pour les statisticiens africains. »</text>
+  <rect x="80" y="330" width="300" height="2" fill="#1D4F3A"/>
+  <text x="80" y="390" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.8)">375+ téléchargements CRAN · 40 fonctions · 5 modules · GPL-3</text>
+  <text x="80" y="430" font-family="Arial, sans-serif" font-size="20" fill="rgba(255,255,255,0.5)">CRAN · GitHub · Discord · statafrikr-foundation.org</text>
+  <rect x="80" y="530" width="200" height="50" rx="8" fill="#1D4F3A"/>
+  <text x="180" y="562" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">Devenir partenaire INS</text>
+</svg>

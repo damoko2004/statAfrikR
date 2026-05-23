@@ -1,0 +1,7 @@
+<svg width="200" height="48" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="statAfrikR Foundation">
+  <rect width="44" height="44" rx="8" x="0" y="2" fill="#1D4F3A"/>
+  <path d="M12 18 Q12 13 17 13 L27 13 Q32 13 32 18 Q32 23 17 23 Q12 23 12 28 Q12 33 17 33 L27 33 Q32 33 32 28" stroke="#FAFAF8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <circle cx="36" cy="12" r="4" fill="#9C6A10"/>
+  <text x="52" y="22" font-family="Georgia, serif" font-size="17" font-weight="bold" fill="#FFFFFF">statAfrikR</text>
+  <text x="52" y="38" font-family="Arial, sans-serif" font-size="10" fill="#9C6A10" letter-spacing="0.12em">FOUNDATION</text>
+</svg>
