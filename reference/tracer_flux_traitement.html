@@ -86,15 +86,15 @@ crée un nouveau journal. Défaut : NULL.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="va">donnees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, val<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu">tracer_flux_traitement</span><span class="op">(</span><span class="va">donnees</span>, action<span class="op">=</span><span class="st">"Import"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [2026-05-29 12:51:16] Import (3 lignes x 2 colonnes)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [2026-05-29 13:26:50] Import (3 lignes x 2 colonnes)</span>
 <span class="r-in"><span>  <span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu">tracer_flux_traitement</span><span class="op">(</span><span class="va">e1</span><span class="op">$</span><span class="va">donnees</span>, action<span class="op">=</span><span class="st">"Nettoyage"</span>, journal<span class="op">=</span><span class="va">e1</span><span class="op">$</span><span class="va">journal</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [2026-05-29 12:51:16] Nettoyage (3 lignes x 2 colonnes)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [2026-05-29 13:26:50] Nettoyage (3 lignes x 2 colonnes)</span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">e2</span><span class="op">$</span><span class="va">journal</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   horodatage          action    n_lignes n_colonnes details</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2026-05-29 12:51:16 Import           3          2 <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2026-05-29 12:51:16 Nettoyage        3          2 <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2026-05-29 13:26:50 Import           3          2 <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2026-05-29 13:26:50 Nettoyage        3          2 <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
