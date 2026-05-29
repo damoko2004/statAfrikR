@@ -490,7 +490,7 @@ carte_pauvrete <- function(sf_obj,
   )
   # Adapter les noms des couleurs aux labels effectifs
   labels_eff   <- levels(sf_obj$.cat_pauvrete)
-  couleurs_eff <- setNames(
+  couleurs_eff <- stats::setNames(
     grDevices::colorRampPalette(
       c("#2166AC", "#67A9CF", "#FDDBC7", "#EF8A62", "#B2182B")
     )(length(labels_eff)),
