@@ -31,8 +31,11 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/fusion_datasets.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/generer_bulletin.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/generer_metadonnees_ddi.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/generer_rapport.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/generer_rapport_enquete.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/generer_rapport_odd.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_barres.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.html</loc></url>
@@ -47,6 +50,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_stata.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/index.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/lister_templates.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.html</loc></url>

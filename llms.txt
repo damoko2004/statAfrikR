@@ -143,10 +143,16 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Exporter des données au format SDMX
 - [`fusion_datasets()`](https://damoko2004.github.io/statAfrikR/reference/fusion_datasets.md)
   : Fusionner plusieurs jeux de données
+- [`generer_bulletin()`](https://damoko2004.github.io/statAfrikR/reference/generer_bulletin.md)
+  : Generer un bulletin statistique periodique
 - [`generer_metadonnees_ddi()`](https://damoko2004.github.io/statAfrikR/reference/generer_metadonnees_ddi.md)
   : Générer une fiche de métadonnées DDI
 - [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md)
   : Générer un rapport statistique officiel
+- [`generer_rapport_enquete()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport_enquete.md)
+  : Generer un rapport d'enquete menage parametre
+- [`generer_rapport_odd()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport_odd.md)
+  : Generer un rapport de suivi des ODD parametre
 - [`graphique_barres()`](https://damoko2004.github.io/statAfrikR/reference/graphique_barres.md)
   : Graphique en barres pondéré
 - [`graphique_fgt()`](https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.md)
@@ -173,6 +179,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Importer un fichier Stata
 - [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md)
   : Imputer les valeurs manquantes
+- [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
+  : Lister les templates de rapport disponibles
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
   : Nettoyer les libellés de variables textuelles
 - [`odd_catalogue()`](https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.md)
