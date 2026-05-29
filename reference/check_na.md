@@ -38,10 +38,8 @@ Un tibble avec les colonnes : `variable`, `n_total`, `n_manquant`,
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   rapport_na <- check_na(donnees_enquete)
-#> Error: object 'donnees_enquete' not found
   rapport_na <- check_na(donnees_enquete, seuil = 0.05, vars = c("age", "revenu"))
-#> Error: object 'donnees_enquete' not found
-# }
+} # }
 ```

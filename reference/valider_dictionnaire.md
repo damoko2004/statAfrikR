@@ -47,15 +47,13 @@ Une liste avec :
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   dico <- data.frame(
     nom_variable = c("age", "sexe", "region"),
     type         = c("numeric", "character", "character"),
     obligatoire  = c(TRUE, TRUE, FALSE)
   )
   resultat <- valider_dictionnaire(donnees, dico)
-#> Error: object 'donnees' not found
   if (!resultat$valide) print(resultat$rapport)
-#> Error: object 'resultat' not found
-# }
+} # }
 ```

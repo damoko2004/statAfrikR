@@ -64,7 +64,7 @@ Chemin du fichier exporté (invisible).
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   exporter_sdmx(
     data            = indicateurs_regionaux,
     flux_donnees    = "BEN_IDH_2023",
@@ -73,6 +73,5 @@ Chemin du fichier exporté (invisible).
     vars_mesures    = c("idh", "taux_pauvrete"),
     fichier_sortie  = file.path(tempdir(), "indicateurs_sdmx.csv")
   )
-#> Error: object 'indicateurs_regionaux' not found
-# }
+} # }
 ```

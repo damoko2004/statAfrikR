@@ -47,31 +47,11 @@ Une liste avec les mesures d'inégalité et leur décomposition.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(
     depense_totale = rnorm(100, 250000, 80000),
     milieu = sample(c("urbain", "rural"), 100, replace = TRUE)
   )
   decomposer_inegalite(donnees, var_revenu="depense_totale", var_groupe="milieu")
-#> === Mesures d'inégalité ===
-#> Gini     : 0.1769
-#> Theil T  : 0.0572
-#> Atkinson : 0.0717
-#> $gini
-#> [1] 0.1769
-#> 
-#> $theil
-#> [1] 0.0572
-#> 
-#> $atkinson
-#> [1] 0.0717
-#> 
-#> $decomposition
-#> # A tibble: 2 × 6
-#>   groupe     n moyenne gini_interne part_pop part_revenu
-#>   <chr>  <int>   <dbl>        <dbl>    <dbl>       <dbl>
-#> 1 urbain    49 230173.        0.168     0.49       0.470
-#> 2 rural     51 249632.        0.181     0.51       0.530
-#> 
-# }
+} # }
 ```

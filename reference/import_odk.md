@@ -61,10 +61,9 @@ Un tibble contenant les soumissions du formulaire.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Import depuis export ZIP local
   donnees <- import_odk(source = "data/odk_export_2024.zip")
-#> Error in import_odk(source = "data/odk_export_2024.zip"): Fichier ODK introuvable : 'data/odk_export_2024.zip'.
 
   # Import depuis API ODK Central
   Sys.setenv(ODK_EMAIL = "admin@ins.org", ODK_PASSWORD = "motdepasse")
@@ -73,8 +72,5 @@ Un tibble contenant les soumissions du formulaire.
     projet_id     = 1,
     formulaire_id = "enquete_menage_2024"
   )
-#> Connexion à ODK Central (projet: 1)...
-#> Error in value[[3L]](cond): Échec de l'authentification ODK Central.
-#> Vérifiez l'email, le mot de passe et l'URL du serveur.
-# }
+} # }
 ```

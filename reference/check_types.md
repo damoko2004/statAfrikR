@@ -30,8 +30,7 @@ Un tibble avec les anomalies détectées : `variable`, `type_actuel`,
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   anomalies <- check_types(donnees_enquete)
-#> Error: object 'donnees_enquete' not found
-# }
+} # }
 ```

@@ -35,8 +35,7 @@ Un tibble.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- import_sas("data/enquete_emploi.sas7bdat")
-#> Error in import_sas("data/enquete_emploi.sas7bdat"): Fichier SAS introuvable : 'data/enquete_emploi.sas7bdat'.
-# }
+} # }
 ```

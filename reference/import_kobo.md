@@ -57,10 +57,9 @@ Un tibble avec les colonnes du formulaire. L'attribut
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Import depuis fichier XLS local
   donnees <- import_kobo(source = "data/enquete_2024.xls")
-#> Error in import_kobo(source = "data/enquete_2024.xls"): Fichier KoboToolbox introuvable : 'data/enquete_2024.xls'.
 
   # Import depuis API KoboToolbox
   Sys.setenv(KOBO_TOKEN = "mon_token_secret")
@@ -69,9 +68,5 @@ Un tibble avec les colonnes du formulaire. L'attribut
     uid    = "aXmNk7pQrS",
     langue = "French (fr)"
   )
-#> Connexion à l'API KoboToolbox (uid: aXmNk7pQrS)...
-#> Error in value[[3L]](cond): Échec de la connexion à l'API KoboToolbox.
-#> Vérifiez l'URL, le token et la connectivité réseau.
-#> Erreur : HTTP 404 Not Found.
-# }
+} # }
 ```

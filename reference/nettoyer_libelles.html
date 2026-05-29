@@ -105,16 +105,10 @@ Défaut : FALSE.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="va">donnees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" nord "</span>,<span class="st">"SUD"</span><span class="op">)</span>, commune <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cotonou "</span>,<span class="st">" parakou"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">nettoyer_libelles</span><span class="op">(</span><span class="va">donnees</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>, <span class="st">"commune"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Nettoyage effectué sur 2 variable(s) :</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   - region : 2 valeur(s) modifiée(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   - commune : 2 valeur(s) modifiée(s)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   region commune</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Nord Cotonou</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Sud Parakou</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

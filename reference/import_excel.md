@@ -60,20 +60,14 @@ Un tibble si une seule feuille, une liste de tibbles si
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Import de la première feuille
   donnees <- import_excel("data/enquete_menage.xlsx")
-#> Error in import_excel("data/enquete_menage.xlsx"): Fichier introuvable : 'data/enquete_menage.xlsx'.
-#> Vérifiez le chemin et l'extension (.xlsx ou .xls).
 
   # Import d'une feuille spécifique
   menages <- import_excel("data/emop_2024.xlsx", feuille = "Menages")
-#> Error in import_excel("data/emop_2024.xlsx", feuille = "Menages"): Fichier introuvable : 'data/emop_2024.xlsx'.
-#> Vérifiez le chemin et l'extension (.xlsx ou .xls).
 
   # Import de toutes les feuilles
   toutes <- import_excel("data/rapport.xlsx", feuille = NULL)
-#> Error in import_excel("data/rapport.xlsx", feuille = NULL): Fichier introuvable : 'data/rapport.xlsx'.
-#> Vérifiez le chemin et l'extension (.xlsx ou .xls).
-# }
+} # }
 ```

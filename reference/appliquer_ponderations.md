@@ -77,7 +77,7 @@ if (requireNamespace("survey", quietly = TRUE)) {
 #>   - Strates : 4
 #>   - Grappes (UPS) : 10
 #> Stratified 1 - level Cluster Sampling design (with replacement)
-#> With (31) clusters.
+#> With (30) clusters.
 #> survey::svydesign(ids = formule_ids, strata = formule_strate, 
 #>     weights = as.formula(paste0("~", var_poids)), fpc = formule_fpc, 
 #>     nest = TRUE, data = data)

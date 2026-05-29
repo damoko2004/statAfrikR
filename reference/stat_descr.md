@@ -52,14 +52,8 @@ IC95.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(age=c(25,34,45), revenu=c(150000,200000,180000))
   stat_descr(donnees, vars=c("age","revenu"))
-#> # A tibble: 2 × 11
-#>   variable     n  moyenne mediane ecart_type       q1      q3   min   max ic_bas
-#>   <chr>    <int>    <dbl>   <dbl>      <dbl>    <dbl>   <dbl> <dbl> <dbl>  <dbl>
-#> 1 age          3     34.7      34       10.0     29.5  3.95e1 2.5e1 4.5e1 2.33e1
-#> 2 revenu       3 176667.   180000    25166.  165000    1.9 e5 1.5e5 2  e5 1.48e5
-#> # ℹ 1 more variable: ic_haut <dbl>
-# }
+} # }
 ```

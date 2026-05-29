@@ -57,7 +57,7 @@ Chemin de l'archive ZIP (invisible).
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   compresser_package_diffusion(
     donnees              = donnees_emop_anon,
     repertoire_sortie    = "diffusion/",
@@ -70,6 +70,5 @@ Chemin de l'archive ZIP (invisible).
       version     = "1.0"
     )
   )
-#> Error: object 'donnees_emop_anon' not found
-# }
+} # }
 ```

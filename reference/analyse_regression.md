@@ -47,19 +47,12 @@ coefficients avec IC et p-valeurs.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(
     revenu = rnorm(100, 200000, 50000),
     age    = sample(20:65, 100, replace=TRUE),
     sexe   = sample(c("H","F"), 100, replace=TRUE)
   )
   analyse_regression(revenu ~ age + sexe, donnees)
-#> R² = 0.0283
-#> # A tibble: 3 × 6
-#>   terme       estimateur  ic_bas ic_haut p_valeur significatif
-#>   <chr>            <dbl>   <dbl>   <dbl>    <dbl> <chr>       
-#> 1 (Intercept)    173854. 135209. 212499.    0     "***"       
-#> 2 age               614.   -249.   1477.    0.161 ""          
-#> 3 sexeH            8566. -12697.  29829.    0.426 ""          
-# }
+} # }
 ```

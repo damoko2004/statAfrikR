@@ -107,6 +107,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Anonymiser un jeu de données
 - [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md)
   : Appliquer les pondérations d'enquête
+- [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
+  : Calcul des indices de pauvrete FGT
 - [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md)
   : Calculer l'Indice de Développement Humain (IDH)
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
@@ -119,8 +121,12 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Vérifier les types de variables
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
+- [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
+  : Decomposer les indices FGT par sous-groupe
 - [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
   : Décomposer les inégalités
+- [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
+  : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
   : Exporter un graphique en haute résolution
 - [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md)
@@ -133,6 +139,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Générer un rapport statistique officiel
 - [`graphique_barres()`](https://damoko2004.github.io/statAfrikR/reference/graphique_barres.md)
   : Graphique en barres pondéré
+- [`graphique_fgt()`](https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.md)
+  : Graphique des indices FGT
 - [`graphique_tendance()`](https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.md)
   : Graphique de tendance temporelle
 - [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
@@ -171,6 +179,12 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Détecter et supprimer les doublons
 - [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
   : Tableau croisé pondéré avec intervalles de confiance
+- [`tableau_croise_ins()`](https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.md)
+  : Tableau croise pondere - format institutionnel INS
+- [`tableau_descriptif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.md)
+  : Tableau de statistiques descriptives institutionnel
+- [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
+  : Tableau institutionnel des indices FGT
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
   : Thème ggplot2 officiel INS
 - [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)

@@ -97,21 +97,19 @@ d'une fusion horizontale. Défaut : c("_1", "_2").</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Empilement de deux vagues d'enquête</span></span></span>
 <span class="r-in"><span>  <span class="va">donnees_total</span> <span class="op">&lt;-</span> <span class="fu">fusion_datasets</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    liste_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>vague1 <span class="op">=</span> <span class="va">emop_2022</span>, vague2 <span class="op">=</span> <span class="va">emop_2023</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    type       <span class="op">=</span> <span class="st">"vertical"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'emop_2022' not found</span>
 <span class="r-in"><span>  <span class="co"># Jointure ménages + individus</span></span></span>
 <span class="r-in"><span>  <span class="va">donnees_merged</span> <span class="op">&lt;-</span> <span class="fu">fusion_datasets</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    liste_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>menages <span class="op">=</span> <span class="va">df_menages</span>, individus <span class="op">=</span> <span class="va">df_individus</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    type       <span class="op">=</span> <span class="st">"horizontal"</span>,</span></span>
 <span class="r-in"><span>    cle        <span class="op">=</span> <span class="st">"id_menage"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'df_menages' not found</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

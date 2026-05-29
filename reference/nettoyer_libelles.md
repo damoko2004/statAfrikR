@@ -55,14 +55,8 @@ Un tibble avec les variables textuelles nettoyées.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
   nettoyer_libelles(donnees, vars = c("region", "commune"))
-#> Nettoyage effectué sur 2 variable(s) :
-#>   - region : 2 valeur(s) modifiée(s)
-#>   - commune : 2 valeur(s) modifiée(s)
-#>   region commune
-#> 1   Nord Cotonou
-#> 2    Sud Parakou
-# }
+} # }
 ```

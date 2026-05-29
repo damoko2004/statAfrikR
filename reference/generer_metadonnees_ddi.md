@@ -65,7 +65,7 @@ Chemin du fichier généré (invisible).
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   generer_metadonnees_ddi(
     data        = donnees_emop,
     titre       = "Enquête Modulaire sur les Conditions de Vie — 2023",
@@ -74,6 +74,5 @@ Chemin du fichier généré (invisible).
     institution = "INSAE",
     fichier_sortie = file.path(tempdir(), "emop_2023_ddi.xml")
   )
-#> Error: object 'donnees_emop' not found
-# }
+} # }
 ```

@@ -49,19 +49,17 @@ Un tibble fusionné.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Empilement de deux vagues d'enquête
   donnees_total <- fusion_datasets(
     liste_data = list(vague1 = emop_2022, vague2 = emop_2023),
     type       = "vertical"
   )
-#> Error: object 'emop_2022' not found
   # Jointure ménages + individus
   donnees_merged <- fusion_datasets(
     liste_data = list(menages = df_menages, individus = df_individus),
     type       = "horizontal",
     cle        = "id_menage"
   )
-#> Error: object 'df_menages' not found
-# }
+} # }
 ```

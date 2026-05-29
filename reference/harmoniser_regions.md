@@ -56,13 +56,8 @@ standardisées.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(region = c("Littoral","Atlantique","Borgou"))
   harmoniser_regions(donnees, var_region = "region", pays = "BJ")
-#> Harmonisation : 100% des valeurs standardisées.
-#>       region region_std
-#> 1   Littoral   Littoral
-#> 2 Atlantique Atlantique
-#> 3     Borgou     Borgou
-# }
+} # }
 ```

@@ -49,14 +49,9 @@ Chemin du fichier exporté (invisible).
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
   p <- pyramide_ages(donnees, "age", "sexe")
   exporter_graphique(p, file.path(tempdir(), "pyramide.png"))
-#> Warning: No shared levels found between `names(values)` of the manual scale and the
-#> data's fill values.
-#> Warning: No shared levels found between `names(values)` of the manual scale and the
-#> data's fill values.
-#> Graphique exporté : /tmp/Rtmppb6hII/pyramide.png (78.4 Ko)
-# }
+} # }
 ```
