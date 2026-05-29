@@ -195,7 +195,7 @@ test_that("calcul_fgt() : variable inexistante => erreur claire", {
 test_that("calcul_fgt() : variable non numérique => erreur", {
   expect_error(
     calcul_fgt(menages_test, "region", SEUIL_TEST),
-    regexp = "num\u00e9rique"
+    regexp = "numerique"
   )
 })
 
