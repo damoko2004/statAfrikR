@@ -1,0 +1,62 @@
+---
+title: "Bulletin Statistique"
+subtitle: "`r params$pays` — `r params$periode`"
+date: "`r params$date_gen`"
+params:
+  indicateurs: NULL
+  periode: ""
+  pays: ""
+  date_gen: ""
+output:
+  html_document:
+    toc: false
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+library(statAfrikR)
+library(ggplot2)
+ind   <- params$indicateurs
+pays  <- params$pays
+per   <- params$periode
+```
+
+---
+
+## Tableau de bord — `r pays` | `r per`
+
+```{r tableau_bord}
+knitr::kable(ind,
+             col.names = c("Indicateur","Valeur","Unite",
+                           names(ind)[seq(4,ncol(ind))])[seq_len(ncol(ind))],
+             digits = 2,
+             caption = paste0("Indicateurs cles — ", pays, " — ", per))
+```
+
+---
+
+```{r graphique_bulletin, fig.height=4, fig.cap="Comparaison des indicateurs"}
+if ("valeur" %in% names(ind) && "indicateur" %in% names(ind)) {
+  ind_plot <- ind
+  ind_plot$indicateur <- factor(ind_plot$indicateur,
+                                 levels = ind_plot$indicateur[
+                                   order(ind_plot$valeur)])
+  ggplot(ind_plot, aes(x = indicateur, y = valeur)) +
+    geom_col(fill = "#1B4965", alpha = 0.88, width = 0.65) +
+    geom_text(aes(label = paste0(round(valeur, 1), " ", unite)),
+              hjust = -0.1, size = 3.2, color = "#1E293B") +
+    coord_flip() +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.2))) +
+    labs(title = paste0("Indicateurs cles — ", per),
+         x = NULL, y = NULL,
+         caption = paste0("Source : statAfrikR | ", pays)) +
+    theme_minimal(base_size = 11) +
+    theme(plot.title = element_text(face = "bold", color = "#0F2742"),
+          panel.grid.major.y = element_blank())
+}
+```
+
+---
+
+*Bulletin produit avec statAfrikR — Date : `r params$date_gen`*

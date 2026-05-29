@@ -1,0 +1,106 @@
+---
+title: "`r params$meta$titre`"
+subtitle: "`r params$meta$pays` — `r params$meta$annee`"
+date: "`r params$meta$date_gen`"
+author: "`r params$meta$auteur`"
+params:
+  donnees: NULL
+  meta: NULL
+  vars_analyse: NULL
+  var_poids: NULL
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                       fig.width = 8, fig.height = 5)
+library(statAfrikR)
+library(ggplot2)
+donnees      <- params$donnees
+meta         <- params$meta
+vars_analyse <- params$vars_analyse
+var_poids    <- params$var_poids
+```
+
+---
+
+## 1. Presentation
+
+**Pays :** `r meta$pays`  
+**Annee de reference :** `r meta$annee`  
+**Source :** `r meta$source`  
+**Date de production :** `r meta$date_gen`  
+**Produit avec :** statAfrikR — https://cran.r-project.org/package=statAfrikR
+
+---
+
+## 2. Apercu des donnees
+
+```{r apercu}
+knitr::kable(head(donnees[, seq_len(min(6, ncol(donnees)))], 6),
+             caption = "Extrait des donnees (6 premieres lignes)")
+```
+
+**Nombre d'observations :** `r nrow(donnees)`  
+**Nombre de variables :** `r ncol(donnees)`
+
+---
+
+## 3. Statistiques descriptives
+
+```{r stats_desc, results='asis'}
+if (length(vars_analyse) > 0) {
+  res <- tableau_descriptif(donnees, vars = vars_analyse,
+                             poids = var_poids,
+                             stats = c("n","moyenne","mediane",
+                                       "ecart_type","min","max"))
+  knitr::kable(res, digits = 2,
+               caption = "Statistiques descriptives des variables cles")
+} else {
+  cat("Aucune variable numerique disponible.\n")
+}
+```
+
+---
+
+## 4. Indicateurs cles
+
+```{r indicateurs}
+vars_num <- vars_analyse[seq_len(min(4, length(vars_analyse)))]
+if (length(vars_num) > 0) {
+  res2 <- tableau_descriptif(donnees, vars = vars_num,
+                              poids = var_poids,
+                              stats = c("n","moyenne","ic"))
+  knitr::kable(res2, digits = 2,
+               caption = "Indicateurs cles avec intervalles de confiance 95%")
+}
+```
+
+---
+
+## 5. Graphiques
+
+```{r graphique, fig.cap="Distribution des variables cles"}
+if (length(vars_analyse) >= 1) {
+  v <- vars_analyse[1]
+  x <- donnees[[v]][!is.na(donnees[[v]])]
+  df_plot <- data.frame(valeur = x)
+  ggplot(df_plot, aes(x = valeur)) +
+    geom_histogram(fill = "#1B4965", color = "white",
+                   bins = 30, alpha = 0.85) +
+    labs(title = paste0("Distribution : ", v),
+         x = v, y = "Frequence",
+         caption = paste0("Source : ", meta$source)) +
+    theme_minimal(base_size = 11) +
+    theme(plot.title = element_text(face = "bold", color = "#0F2742"))
+}
+```
+
+---
+
+*Rapport genere avec statAfrikR v`r packageVersion("statAfrikR")`*  
+*statAfrikR Foundation — https://cran.r-project.org/package=statAfrikR*

@@ -1,0 +1,90 @@
+---
+title: "Rapport de Suivi des ODD"
+subtitle: "`r params$pays` — `r params$annee`"
+date: "`r params$date_gen`"
+params:
+  tab_odd: NULL
+  resultats: NULL
+  pays: ""
+  annee: 2026
+  cibles: NULL
+  date_gen: ""
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE,
+                       fig.width=8, fig.height=5)
+library(statAfrikR)
+library(ggplot2)
+tab  <- params$tab_odd
+pays <- params$pays
+annee <- params$annee
+```
+
+---
+
+## Presentation
+
+**Pays :** `r pays`  
+**Annee :** `r annee`  
+**Indicateurs suivis :** `r nrow(tab)`  
+**Date de production :** `r params$date_gen`  
+**Reference :** Nations Unies — Agenda 2030
+
+---
+
+## Tableau de suivi des indicateurs ODD
+
+```{r tableau_odd}
+tab_display <- tab[, intersect(c("code_odd","indicateur","valeur","unite",
+                                   "cible","ecart_cible","n_obs"), names(tab))]
+knitr::kable(tab_display, digits = 2,
+             caption = paste0("Indicateurs ODD — ", pays, " — ", annee))
+```
+
+---
+
+## Graphique de progression
+
+```{r graphique_odd, fig.cap="Valeurs des indicateurs ODD"}
+if (nrow(tab) > 0 && "valeur" %in% names(tab)) {
+  tab_plot <- tab
+  tab_plot$label_ind <- paste0(tab_plot$code_odd, "\n",
+                                 tab_plot$indicateur)
+  tab_plot$label_ind <- factor(tab_plot$label_ind,
+                                 levels = tab_plot$label_ind[
+                                   order(tab_plot$valeur)])
+
+  g <- ggplot(tab_plot, aes(x = label_ind, y = valeur)) +
+    geom_col(fill = "#1B4965", alpha = 0.85, width = 0.7) +
+    geom_text(aes(label = paste0(round(valeur,1), " ", unite)),
+              hjust = -0.1, size = 3, color = "#1E293B") +
+    coord_flip() +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
+    labs(title = paste0("Indicateurs ODD — ", pays, " — ", annee),
+         x = NULL, y = "Valeur",
+         caption = "Source : statAfrikR Foundation") +
+    theme_minimal(base_size = 10) +
+    theme(plot.title = element_text(face="bold", color="#0F2742"),
+          panel.grid.major.y = element_blank())
+
+  if (!is.null(params$cibles) && "cible" %in% names(tab_plot)) {
+    g <- g + geom_point(aes(y = cible), color = "#B8872F",
+                         size = 3, shape = 18, na.rm = TRUE) +
+      annotate("text", x = 0.5, y = max(tab_plot$valeur, na.rm=TRUE) * 0.5,
+               label = "◆ Cible 2030", color = "#B8872F", size = 3)
+  }
+  print(g)
+}
+```
+
+---
+
+*Rapport genere avec statAfrikR v`r packageVersion("statAfrikR")`*  
+*Conforme au cadre de suivi ODD — Nations Unies / PARIS21*
