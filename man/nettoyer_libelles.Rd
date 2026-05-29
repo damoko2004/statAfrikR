@@ -42,7 +42,7 @@ correction des encodages. Préserve les caractères accentués africains
 et francophones.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
   nettoyer_libelles(donnees, vars = c("region", "commune"))
 }

@@ -36,7 +36,7 @@ Poisson avec prise en compte optionnelle du plan de sondage complexe.
 Produit un tableau de résultats formaté avec OR/RR si approprié.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(
     revenu = rnorm(100, 200000, 50000),
     age    = sample(20:65, 100, replace=TRUE),

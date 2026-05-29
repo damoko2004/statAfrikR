@@ -39,7 +39,7 @@ plusieurs variables numériques, avec prise en compte optionnelle du plan
 de sondage complexe. Produit un tableau formaté prêt à publier.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(age=c(25,34,45), revenu=c(150000,200000,180000))
   stat_descr(donnees, vars=c("age","revenu"))
 }

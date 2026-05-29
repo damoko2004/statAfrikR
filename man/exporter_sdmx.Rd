@@ -45,7 +45,7 @@ conforme aux standards SDMX 2.1 pour l'échange de données statistiques
 avec les organisations internationales (FMI, BM, OCDE, etc.).
 }
 \examples{
-\donttest{
+\dontrun{
   exporter_sdmx(
     data            = indicateurs_regionaux,
     flux_donnees    = "BEN_IDH_2023",

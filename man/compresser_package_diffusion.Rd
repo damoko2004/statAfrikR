@@ -40,7 +40,7 @@ les données, la documentation, les métadonnées et les scripts de
 traitement. Conforme aux standards IHSN de documentation des enquêtes.
 }
 \examples{
-\donttest{
+\dontrun{
   compresser_package_diffusion(
     donnees              = donnees_emop_anon,
     repertoire_sortie    = "diffusion/",

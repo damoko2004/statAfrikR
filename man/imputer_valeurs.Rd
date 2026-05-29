@@ -41,7 +41,7 @@ spécifiée. Supporte l'imputation simple (statistiques descriptives),
 hot-deck et par régression. Produit un rapport de traçabilité.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
   imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
 }

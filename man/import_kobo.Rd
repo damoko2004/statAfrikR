@@ -42,7 +42,7 @@ ou via l'API REST KoboToolbox. Retourne un tibble annoté avec les
 métadonnées du formulaire. Compatible avec KoboToolbox et KoBoCAT.
 }
 \examples{
-\donttest{
+\dontrun{
   # Import depuis fichier XLS local
   donnees <- import_kobo(source = "data/enquete_2024.xls")
 

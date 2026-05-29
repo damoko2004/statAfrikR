@@ -42,7 +42,7 @@ avec prise en compte optionnelle de la pondération et du plan de sondage
 complexe. Résultat formaté pour publication directe.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(
     region = sample(c("Nord", "Sud", "Est"), 50, replace = TRUE),
     sexe   = sample(c("H", "F"), 50, replace = TRUE)

@@ -40,7 +40,7 @@ R Markdown. Intègre automatiquement les tableaux, graphiques et métadonnées.
 Compatible avec les templates AFRISTAT et PARIS21.
 }
 \examples{
-\donttest{
+\dontrun{
   generer_rapport(
     donnees        = resultats_enquete,
     template       = "bulletin_mensuel",

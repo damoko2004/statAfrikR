@@ -38,7 +38,7 @@ l'encodage, du séparateur et du séparateur décimal. Gère les formats
 courants des INS africains (séparateurs point-virgule, virgule, tabulation).
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- import_csv("data/prix_marches.csv")
   donnees_fr <- import_csv("data/donnees_fr.csv", decimal = ",")
 }

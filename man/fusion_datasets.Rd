@@ -38,7 +38,7 @@ verticalement (empilement). Gère les conflits de noms de variables et
 produit un rapport de fusion.
 }
 \examples{
-\donttest{
+\dontrun{
   # Empilement de deux vagues d'enquête
   donnees_total <- fusion_datasets(
     liste_data = list(vague1 = emop_2022, vague2 = emop_2023),

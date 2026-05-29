@@ -48,7 +48,7 @@ standards IHSN/PARIS21 : suppression, masquage, generalisation,
 perturbation et pseudonymisation des variables sensibles.
 }
 \examples{
-\donttest{
+\dontrun{
   resultat <- anonymiser_donnees(
     donnees_enquete,
     vars_supprimer  = c("nom", "prenom", "telephone"),

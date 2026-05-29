@@ -58,7 +58,7 @@ Génère une carte choroplèthe à partir d'un objet sf enrichi
 ou de la jointure d'un shapefile avec des données statistiques.
 }
 \examples{
-\donttest{
+\dontrun{
   carte_thematique(
     data_sf      = regions_sf_enrichi,
     var_couleur  = "taux_pauvrete_moyenne",

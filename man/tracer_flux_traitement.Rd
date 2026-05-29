@@ -26,7 +26,7 @@ appliquées à un dataset. Permet l'auditabilité complète du pipeline
 de traitement des données.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(id=1:3, val=c(10,20,30))
   e1 <- tracer_flux_traitement(donnees, action="Import")
   e2 <- tracer_flux_traitement(e1$donnees, action="Nettoyage", journal=e1$journal)

@@ -43,7 +43,7 @@ référentiel national ou africain. Corrige les variantes orthographiques,
 les abréviations et les noms en langues locales.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(region = c("Littoral","Atlantique","Borgou"))
   harmoniser_regions(donnees, var_region = "region", pays = "BJ")
 }

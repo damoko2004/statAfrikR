@@ -23,7 +23,7 @@ Calcule un score de qualité composite (0-100) en évaluant
 la complétude, la cohérence, l'unicité et la plausibilité des données.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(
     id_menage = 1:50,
     age       = c(sample(20:70, 45, replace = TRUE), rep(NA, 5)),

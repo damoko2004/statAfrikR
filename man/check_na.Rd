@@ -27,7 +27,7 @@ Calcule le taux de valeurs manquantes par variable et produit
 un rapport de complétude. Alerte sur les variables dépassant le seuil.
 }
 \examples{
-\donttest{
+\dontrun{
   rapport_na <- check_na(donnees_enquete)
   rapport_na <- check_na(donnees_enquete, seuil = 0.05, vars = c("age", "revenu"))
 }

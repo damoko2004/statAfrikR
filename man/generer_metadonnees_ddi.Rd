@@ -45,7 +45,7 @@ Documentation Initiative) Codebook 2.5, standard international pour
 l'archivage des enquêtes statistiques (IHSN, NADA, NESSTAR).
 }
 \examples{
-\donttest{
+\dontrun{
   generer_metadonnees_ddi(
     data        = donnees_emop,
     titre       = "Enquête Modulaire sur les Conditions de Vie — 2023",

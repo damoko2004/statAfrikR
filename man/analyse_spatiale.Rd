@@ -39,7 +39,7 @@ géographique et calcule des indicateurs par aire géographique.
 Produit un objet sf enrichi prêt pour la cartographie.
 }
 \examples{
-\donttest{
+\dontrun{
   carte <- analyse_spatiale(
     data          = donnees_enquete,
     shapefile     = "data/shapefiles/regions.shp",

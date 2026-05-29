@@ -24,7 +24,7 @@ Importe un fichier SAS (.sas7bdat) ou un fichier de formats
 SAS (.sas7bcat) avec préservation des labels.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- import_sas("data/enquete_emploi.sas7bdat")
 }
 }

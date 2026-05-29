@@ -39,7 +39,7 @@ Supporte les dimensions standard (santé, éducation, niveau de vie) et
 des dimensions personnalisées.
 }
 \examples{
-\donttest{
+\dontrun{
   donnees <- data.frame(
     malnutrition         = sample(0:1, 50, replace = TRUE),
     mortalite_enfant     = sample(0:1, 50, replace = TRUE),

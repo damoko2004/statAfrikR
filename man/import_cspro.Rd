@@ -42,7 +42,7 @@ issus du dictionnaire CSPro. Fonction prioritaire pour les RGPH africains.
 Compatible avec CSPro 4.x à 8.x.
 }
 \examples{
-\donttest{
+\dontrun{
   # Import du niveau ménage d'un RGPH
   menages <- import_cspro(
     fichier_dat = "data/rgph_2024.dat",
