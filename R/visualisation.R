@@ -595,7 +595,7 @@ graphique_tendance <- function(data,
 #' @param na_couleur character — Couleur pour les NA. Défaut : "#cccccc".
 #' @return Un objet \code{ggplot}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   carte_thematique(
 #'     data_sf      = regions_sf_enrichi,
 #'     var_couleur  = "taux_pauvrete_moyenne",
@@ -707,7 +707,7 @@ carte_thematique <- function(data_sf        = NULL,
 #' @param fond character — Couleur de fond. Défaut : "white".
 #' @return Chemin du fichier exporté (invisible).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(age=sample(0:80,100,replace=TRUE), sexe=sample(c("H","F"),100,replace=TRUE))
 #'   p <- pyramide_ages(donnees, "age", "sexe")
 #'   exporter_graphique(p, file.path(tempdir(), "pyramide.png"))

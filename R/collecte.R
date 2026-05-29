@@ -28,7 +28,7 @@
 #' @return Un tibble si une seule feuille, une liste de tibbles si
 #'   \code{feuille = NULL}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Import de la première feuille
 #'   donnees <- import_excel("data/enquete_menage.xlsx")
 #'
@@ -118,7 +118,7 @@ import_excel <- function(chemin,
 #' @param verbose logical — Afficher les messages. Défaut : TRUE.
 #' @return Un tibble.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- import_csv("data/prix_marches.csv")
 #'   donnees_fr <- import_csv("data/donnees_fr.csv", decimal = ",")
 #' }
@@ -193,7 +193,7 @@ import_csv <- function(chemin,
 #' @param verbose logical — Afficher les messages. Défaut : TRUE.
 #' @return Un tibble avec attributs de labels si \code{garder_labels = TRUE}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   eds <- import_stata("data/eds_2021.dta")
 #'   eds_facteurs <- import_stata("data/eds_2021.dta", convertir_labels = TRUE)
 #' }
@@ -254,7 +254,7 @@ import_stata <- function(chemin,
 #' @param verbose logical — Afficher les messages. Défaut : TRUE.
 #' @return Un tibble.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   mics <- import_spss("data/mics6_enfants.sav")
 #' }
 #' @export
@@ -309,7 +309,7 @@ import_spss <- function(chemin,
 #' @param verbose logical — Afficher les messages. Défaut : TRUE.
 #' @return Un tibble.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- import_sas("data/enquete_emploi.sas7bdat")
 #' }
 #' @export
@@ -369,7 +369,7 @@ import_sas <- function(chemin,
 #' @return Un tibble avec une colonne par variable CSPro. Les labels de valeurs
 #'   sont stockés dans les attributs du tibble (\code{attr(., "labels_cspro")}).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Import du niveau ménage d'un RGPH
 #'   menages <- import_cspro(
 #'     fichier_dat = "data/rgph_2024.dat",
@@ -476,7 +476,7 @@ import_cspro <- function(fichier_dat,
 #' @return Un tibble avec les colonnes du formulaire. L'attribut
 #'   \code{attr(., "metadonnees_kobo")} contient le dictionnaire des variables.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Import depuis fichier XLS local
 #'   donnees <- import_kobo(source = "data/enquete_2024.xls")
 #'
@@ -562,7 +562,7 @@ import_kobo <- function(source,
 #' @param verbose logical — Afficher les messages. Défaut : TRUE.
 #' @return Un tibble contenant les soumissions du formulaire.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Import depuis export ZIP local
 #'   donnees <- import_odk(source = "data/odk_export_2024.zip")
 #'
@@ -647,7 +647,7 @@ import_odk <- function(source,
 #' @return Un tibble avec les colonnes : \code{variable}, \code{n_total},
 #'   \code{n_manquant}, \code{taux_na}, \code{statut}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   rapport_na <- check_na(donnees_enquete)
 #'   rapport_na <- check_na(donnees_enquete, seuil = 0.05, vars = c("age", "revenu"))
 #' }
@@ -714,7 +714,7 @@ check_na <- function(data,
 #' @return Un tibble avec les anomalies détectées :
 #'   \code{variable}, \code{type_actuel}, \code{type_attendu}, \code{probleme}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   anomalies <- check_types(donnees_enquete)
 #' }
 #' @export
@@ -832,7 +832,7 @@ check_types <- function(data, dictionnaire = NULL) {
 #'   \item{rapport}{data.frame — Détail des anomalies}
 #'   \item{score_qualite}{numeric — Score de 0 à 100}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   dico <- data.frame(
 #'     nom_variable = c("age", "sexe", "region"),
 #'     type         = c("numeric", "character", "character"),

@@ -23,7 +23,7 @@
 #' @return Tibble ou flextable avec : n, moyenne, médiane, écart-type,
 #'   min, max, IC95.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(age=c(25,34,45), revenu=c(150000,200000,180000))
 #'   stat_descr(donnees, vars=c("age","revenu"))
 #' }
@@ -187,7 +187,7 @@ stat_descr <- function(data,
 #'   Défaut : "flextable".
 #' @return Tibble ou flextable du tableau croisé.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(
 #'     region = sample(c("Nord", "Sud", "Est"), 50, replace = TRUE),
 #'     sexe   = sample(c("H", "F"), 50, replace = TRUE)
@@ -336,7 +336,7 @@ tab_croisee <- function(data,
 #' @return Selon format_sortie : liste complète, tibble ou flextable des
 #'   coefficients avec IC et p-valeurs.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(
 #'     revenu = rnorm(100, 200000, 50000),
 #'     age    = sample(20:65, 100, replace=TRUE),
@@ -463,7 +463,7 @@ analyse_regression <- function(formule,
 #'   Défaut : \code{list(moyenne = mean, n = length)}.
 #' @return Un objet \code{sf} avec les indicateurs calculés par zone.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   carte <- analyse_spatiale(
 #'     data          = donnees_enquete,
 #'     shapefile     = "data/shapefiles/regions.shp",
@@ -689,7 +689,7 @@ calcul_idh <- function(esperance_vie,
 #' Alkire, S. & Foster, J. (2011). Counting and multidimensional poverty
 #' measurement. Journal of Public Economics, 95(7-8), 476-487.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(
 #'     malnutrition         = sample(0:1, 50, replace = TRUE),
 #'     mortalite_enfant     = sample(0:1, 50, replace = TRUE),
@@ -863,7 +863,7 @@ calcul_ipm <- function(data,
 #'   Défaut : "all".
 #' @return Une liste avec les mesures d'inégalité et leur décomposition.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(
 #'     depense_totale = rnorm(100, 250000, 80000),
 #'     milieu = sample(c("urbain", "rural"), 100, replace = TRUE)
@@ -964,7 +964,7 @@ decomposer_inegalite <- function(data,
 #'   Défaut : NULL.
 #' @return Une liste avec \code{score_global} et le détail par dimension.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(
 #'     id_menage = 1:50,
 #'     age       = c(sample(20:70, 45, replace = TRUE), rep(NA, 5)),

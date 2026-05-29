@@ -26,7 +26,7 @@
 #' @param encodage character — Encodage cible. Défaut : "UTF-8".
 #' @return Un tibble avec les variables textuelles nettoyées.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
 #'   nettoyer_libelles(donnees, vars = c("region", "commune"))
 #' }
@@ -131,7 +131,7 @@ nettoyer_libelles <- function(data,
 #' @return Le tibble avec une colonne \code{var_sortie} ajoutée contenant
 #'   les régions standardisées.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(region = c("Littoral","Atlantique","Borgou"))
 #'   harmoniser_regions(donnees, var_region = "region", pays = "BJ")
 #' }
@@ -368,7 +368,7 @@ appliquer_ponderations <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble imputé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
 #'   imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
 #' }
@@ -474,7 +474,7 @@ imputer_valeurs <- function(data,
 #' @return Si \code{rapport = FALSE} : tibble dédupliqué.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(id=c(1,2,2,3), val=c(10,20,20,30))
 #'   supprimer_doublons(donnees, cles="id")
 #' }
@@ -566,7 +566,7 @@ supprimer_doublons <- function(data,
 #'   table de recodage. Défaut : TRUE.
 #' @return Le tibble avec la variable recodée.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Recodage des classes d'âge
 #'   table_age <- data.frame(
 #'     avant = c("15-24", "25-34", "35-49", "50+"),
@@ -658,7 +658,7 @@ recoder_variable <- function(data,
 #'   \item{indice_myers}{numeric — Indice de Myers (0 = parfait)}
 #'   \item{diagnostic}{character — Évaluation de la qualité}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(age = sample(0:80, 200, replace=TRUE))
 #'   standardiser_ages(donnees, var_age="age")
 #' }
@@ -761,7 +761,7 @@ standardiser_ages <- function(data,
 #'   d'une fusion horizontale. Défaut : c("_1", "_2").
 #' @return Un tibble fusionné.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Empilement de deux vagues d'enquête
 #'   donnees_total <- fusion_datasets(
 #'     liste_data = list(vague1 = emop_2022, vague2 = emop_2023),
@@ -871,7 +871,7 @@ fusion_datasets <- function(liste_data,
 #'   (ex: paramètres utilisés). Défaut : NULL.
 #' @return Une liste mise à jour avec \code{$donnees} et \code{$journal}.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   donnees <- data.frame(id=1:3, val=c(10,20,30))
 #'   e1 <- tracer_flux_traitement(donnees, action="Import")
 #'   e2 <- tracer_flux_traitement(e1$donnees, action="Nettoyage", journal=e1$journal)

@@ -467,7 +467,7 @@ tableau_fgt <- function(fgt_obj,
 #' @return Objet \code{ggplot2}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   set.seed(42)
 #'   menages <- data.frame(
 #'     depense_pc = c(rexp(70, 1/150000), rexp(30, 1/400000)),
