@@ -68,6 +68,10 @@
   : Imputer les valeurs manquantes
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
   : Nettoyer les libellés de variables textuelles
+- [`odd_catalogue()`](https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.md)
+  : Catalogue des indicateurs ODD pour les INS africains
+- [`odd_indicateur()`](https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.md)
+  : Calculer un indicateur ODD
 - [`palette_ins()`](https://damoko2004.github.io/statAfrikR/reference/palette_ins.md)
   : Palette de couleurs INS
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
@@ -88,6 +92,8 @@
   : Tableau de statistiques descriptives institutionnel
 - [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
   : Tableau institutionnel des indices FGT
+- [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
+  : Tableau de suivi des indicateurs ODD
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
   : Thème ggplot2 officiel INS
 - [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)
