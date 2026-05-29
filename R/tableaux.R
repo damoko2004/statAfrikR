@@ -439,7 +439,7 @@ exporter_excel_ins <- function(tableaux,
     if ("mediane" %in% stats) {
       q           <- survey::svyquantile(f, svy, quantiles = 0.5,
                                           na.rm = TRUE)
-      res$mediane <- round(as.numeric(q[[1]]), 3)
+      res$mediane <- round(as.numeric(q[[1]])[1], 3)
     }
     if ("ecart_type" %in% stats) {
       vr             <- survey::svyvar(f, svy, na.rm = TRUE)
