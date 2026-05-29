@@ -113,6 +113,16 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer l'Indice de Développement Humain (IDH)
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
   : Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
+- [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
+  : Carte choroplethe institutionnelle
+- [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
+  : Exporter une carte
+- [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md)
+  : Importer un fichier geographique
+- [`carte_joindre()`](https://damoko2004.github.io/statAfrikR/reference/carte_joindre.md)
+  : Joindre des donnees statistiques a un objet sf
+- [`carte_pauvrete()`](https://damoko2004.github.io/statAfrikR/reference/carte_pauvrete.md)
+  : Carte thematique de la pauvrete
 - [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md)
   : Carte thématique choroplèthe
 - [`check_na()`](https://damoko2004.github.io/statAfrikR/reference/check_na.md)
