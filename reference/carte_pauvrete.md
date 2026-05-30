@@ -1,9 +1,9 @@
-# Carte thematique de la pauvrete
+# Carte thematique de la pauvrete (FGT0)
 
-Surcouche de
+Specialisation de
 [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
-specialisee pour la cartographie des indices de pauvrete (FGT0, FGT1,
-FGT2). Utilise une symbologie standardisee AFRISTAT/Banque mondiale.
+pour les indices de pauvrete. Symbologie standardisee AFRISTAT/Banque
+mondiale avec seuil d'alerte.
 
 ## Usage
 
@@ -12,10 +12,9 @@ carte_pauvrete(
   sf_obj,
   var_fgt0,
   seuil_alerte = 0.5,
+  col_label = NULL,
   titre = NULL,
-  source = NULL,
-  afficher_valeurs = FALSE,
-  var_label = NULL
+  source = NULL
 )
 ```
 
@@ -23,16 +22,19 @@ carte_pauvrete(
 
 - sf_obj:
 
-  sf – Objet geographique enrichi avec les taux de pauvrete
+  sf – Objet sf avec taux de pauvrete
 
 - var_fgt0:
 
-  character – Variable du taux de pauvrete (FGT0, en proportion ou
-  pourcentage)
+  character – Variable de taux de pauvrete
 
 - seuil_alerte:
 
-  numeric – Seuil d'alerte (zones en rouge). Defaut : 0.5 (50%)
+  numeric – Seuil d'alerte. Defaut : 0.5
+
+- col_label:
+
+  character ou NULL – Variable de label. Defaut : NULL
 
 - titre:
 
@@ -40,16 +42,7 @@ carte_pauvrete(
 
 - source:
 
-  character ou NULL – Note source. Defaut : NULL
-
-- afficher_valeurs:
-
-  logical – Afficher les valeurs sur la carte. Defaut : FALSE
-
-- var_label:
-
-  character ou NULL – Variable a utiliser comme etiquette (nom de la
-  zone). Defaut : NULL
+  character ou NULL – Source. Defaut : NULL
 
 ## Value
 
@@ -58,10 +51,21 @@ Un objet `ggplot2`
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  carte_pauvrete(regions_enrichi,
-                 var_fgt0 = "taux_pauvrete",
-                 seuil_alerte = 0.5,
-                 titre = "Incidence de la pauvrete par region 2026")
-} # }
+rca <- carte_zones("rca")
+n <- nrow(rca)
+stats <- data.frame(
+  prefecture    = rca$prefecture,
+  taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+                    55.4, 48.7, 51.2, 62.3, 58.9,
+                    28.4, 42.1, 52.8, 63.7, 59.4,
+                    44.6, 70.5)[seq_len(n)]
+)
+sf_enr <- carte_joindre(rca, stats, "prefecture", "prefecture")
+#> Jointure : 17/17 zones appariees (100%)
+sf_enr$taux_prop <- sf_enr$taux_pauvrete / 100
+carte_pauvrete(sf_enr, var_fgt0 = "taux_prop",
+               source = "Donnees simulees")
+#> Coordinate system already present.
+#> ℹ Adding new coordinate system, which will replace the existing one.
+
 ```

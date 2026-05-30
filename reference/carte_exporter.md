@@ -1,7 +1,6 @@
-# Exporter une carte
+# Exporter une carte en fichier image
 
-Exporte un objet ggplot2 (carte) en PNG, PDF ou SVG avec resolution et
-dimensions optimisees pour les rapports INS.
+Exporte un objet ggplot2 en PNG, PDF ou SVG.
 
 ## Usage
 
@@ -13,12 +12,11 @@ carte_exporter(carte, chemin, largeur = 20, hauteur = 15, resolution = 300L)
 
 - carte:
 
-  ggplot2 – Objet ggplot a exporter
+  ggplot – Objet ggplot2
 
 - chemin:
 
-  character – Chemin du fichier de sortie (extension determinant le
-  format : .png, .pdf, .svg)
+  character – Chemin de sortie (.png, .pdf, .svg)
 
 - largeur:
 
@@ -30,17 +28,17 @@ carte_exporter(carte, chemin, largeur = 20, hauteur = 15, resolution = 300L)
 
 - resolution:
 
-  integer – Resolution en DPI (PNG uniquement). Defaut : 300L
+  integer – Resolution DPI (PNG). Defaut : 300L
 
 ## Value
 
-Chemin du fichier cree (invisible)
+Chemin du fichier (invisible)
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
-  g <- carte_choroplethe(sf_enrichi, var = "taux_pauvrete")
-  carte_exporter(g, file.path(tempdir(), "carte_pauvrete.png"))
+  g <- carte_choroplethe(sf_enrichi, "taux_pauvrete")
+  carte_exporter(g, file.path(tempdir(), "carte.png"))
 } # }
 ```

@@ -1,8 +1,8 @@
-# Joindre des donnees statistiques a un objet sf
+# Joindre des donnees statistiques a un fond de carte
 
-Effectue la jointure entre un objet sf et un data.frame statistique sur
-une cle administrative commune. Signale les zones non appariees et
-propose un diagnostic de correspondance.
+Joint un objet sf avec un data.frame statistique. Normalise
+automatiquement les cles pour eviter les erreurs de correspondance dues
+aux accents, casses et espaces.
 
 ## Usage
 
@@ -21,45 +21,51 @@ carte_joindre(
 
 - sf_obj:
 
-  sf – Objet geographique (resultat de
-  [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md)
-  ou tout objet sf valide)
+  sf – Objet geographique (depuis
+  [`carte_zones()`](https://damoko2004.github.io/statAfrikR/reference/carte_zones.md)
+  ou
+  [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md))
 
 - data:
 
-  data.frame ou tibble – Donnees statistiques a joindre
+  data.frame – Donnees statistiques
 
 - cle_geo:
 
-  character – Nom de la variable cle dans `sf_obj`
+  character – Variable cle dans `sf_obj`
 
 - cle_data:
 
-  character – Nom de la variable cle dans `data`. Si NULL, utilise
-  `cle_geo`. Defaut : NULL
+  character – Variable cle dans `data`. Si NULL, utilise `cle_geo`.
+  Defaut : NULL
 
 - type:
 
-  character – Type de jointure : `"gauche"` (toutes les zones geo
-  conservees) ou `"interne"` (seulement les zones appariees). Defaut :
-  "gauche"
+  character – `"gauche"` (toutes zones conservees) ou `"interne"` (zones
+  appariees uniquement). Defaut : "gauche"
 
 - normaliser:
 
-  logical – Normaliser les cles (majuscules, suppression accents et
-  espaces) avant jointure. Defaut : TRUE
+  logical – Normaliser les cles (recommande). Defaut : TRUE
 
 ## Value
 
-Un objet `sf` enrichi avec les donnees statistiques
+Un objet `sf` enrichi
 
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  regions_sf <- carte_import("data/regions.shp")
-  stats      <- data.frame(region = c("Nord", "Sud"), taux = c(0.42, 0.31))
-  enrichi    <- carte_joindre(regions_sf, stats,
-                              cle_geo = "NOM_REGION", cle_data = "region")
-} # }
+# Avec les fonds de cartes integres
+rca <- carte_zones("rca")
+stats <- data.frame(
+  prefecture    = rca$prefecture,
+  taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+                    55.4, 48.7, 51.2, 62.3, 58.9,
+                    28.4, 42.1, 52.8, 63.7, 59.4,
+                    44.6, 70.5)[seq_len(nrow(rca))]
+)
+sf_enrichi <- carte_joindre(rca, stats,
+                             cle_geo  = "prefecture",
+                             cle_data = "prefecture")
+#> Jointure : 17/17 zones appariees (100%)
 ```

@@ -114,17 +114,19 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
   : Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
 - [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
-  : Carte choroplethe institutionnelle
+  : Carte choroplethe statistique institutionnelle
 - [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
-  : Exporter une carte
+  : Exporter une carte en fichier image
 - [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md)
   : Importer un fichier geographique
 - [`carte_joindre()`](https://damoko2004.github.io/statAfrikR/reference/carte_joindre.md)
-  : Joindre des donnees statistiques a un objet sf
+  : Joindre des donnees statistiques a un fond de carte
 - [`carte_pauvrete()`](https://damoko2004.github.io/statAfrikR/reference/carte_pauvrete.md)
-  : Carte thematique de la pauvrete
+  : Carte thematique de la pauvrete (FGT0)
 - [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md)
   : Carte thématique choroplèthe
+- [`carte_zones()`](https://damoko2004.github.io/statAfrikR/reference/carte_zones.md)
+  : Charger un fond de carte africain integre
 - [`check_na()`](https://damoko2004.github.io/statAfrikR/reference/check_na.md)
   : Détecter les valeurs manquantes
 - [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)
@@ -193,6 +195,24 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Pyramide des âges
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
   : Recoder une variable
+- [`saf_cameroun_departements`](https://damoko2004.github.io/statAfrikR/reference/saf_cameroun_departements.md)
+  : Departements du Cameroun
+- [`saf_cedeao`](https://damoko2004.github.io/statAfrikR/reference/saf_cedeao.md)
+  : Zone CEDEAO – 15 pays membres
+- [`saf_cemac`](https://damoko2004.github.io/statAfrikR/reference/saf_cemac.md)
+  : Zone CEMAC – 6 pays membres
+- [`saf_eau`](https://damoko2004.github.io/statAfrikR/reference/saf_eau.md)
+  : Zone EAC – Afrique de l'Est
+- [`saf_pays_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_pays_afrique.md)
+  : Pays africains – fond de carte integre
+- [`saf_rca_prefectures`](https://damoko2004.github.io/statAfrikR/reference/saf_rca_prefectures.md)
+  : Prefectures de la Republique Centrafricaine
+- [`saf_sadc`](https://damoko2004.github.io/statAfrikR/reference/saf_sadc.md)
+  : Zone SADC – Afrique Australe
+- [`saf_senegal_regions`](https://damoko2004.github.io/statAfrikR/reference/saf_senegal_regions.md)
+  : Regions du Senegal
+- [`saf_subdivisions_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_subdivisions_afrique.md)
+  : Subdivisions de niveau 1 – tous les pays africains
 - [`standardiser_ages()`](https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.md)
   : Standardiser les âges déclarés
 - [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)
