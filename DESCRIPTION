@@ -58,3 +58,4 @@ Packaged: 2026-03-18 14:58:34 UTC; dickersamoko
 Author: Dikers Amoko [aut, cre]
 Maintainer: Dikers Amoko <diamoko@gmail.com>
 LazyData: true
+LazyDataCompression: xz
