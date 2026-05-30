@@ -1,0 +1,328 @@
+---
+title: "Procedure de mise a jour annuelle"
+subtitle: "Fonds de cartes africains embarques dans statAfrikR"
+author: "Dikers Amoko — statAfrikR Foundation"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    latex_engine: xelatex
+    fig_caption: true
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage{xcolor}
+  - \definecolor{navy}{HTML}{0F2742}
+  - \definecolor{petrol}{HTML}{1B4965}
+  - \definecolor{gold}{HTML}{B8872F}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyhead[L]{\textcolor{petrol}{\small statAfrikR Foundation}}
+  - \fancyhead[R]{\textcolor{petrol}{\small Procedure de mise a jour geodata}}
+  - \fancyfoot[C]{\thepage}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE,
+                       comment = "#>", highlight = TRUE)
+```
+
+\newpage
+
+# Introduction
+
+## Objectif
+
+Ce document decrit la procedure annuelle de verification et de mise a jour
+des fonds de cartes geographiques africains embarques dans le package R
+**statAfrikR**.
+
+Les donnees geographiques sont stockees dans le repertoire `data/` du package
+sous forme de fichiers `.rda` compresses. Elles proviennent de deux sources :
+
+- **Natural Earth** (`rnaturalearth`) : contours nationaux et subdivisions
+  de niveau 1 pour 43 des 54 pays africains
+- **GADM** (`geodata`) : complement pour les 11 pays non couverts par
+  Natural Earth
+
+## Frequence recommandee
+
+| Action | Frequence | Responsable |
+|--------|-----------|-------------|
+| Verification de mise a jour | **1 fois par an** (janvier) | Mainteneur |
+| Mise a jour si changement detecte | Selon besoin | Mainteneur |
+| Republication CRAN | Apres mise a jour | Mainteneur |
+
+## Principe de detection des changements
+
+Le script utilise un systeme de **hachages MD5** (via le package `digest`)
+pour detecter si les donnees ont change depuis la derniere generation.
+Si aucun changement n'est detecte, **aucune action n'est necessaire** et
+le script se termine sans modifier les fichiers.
+
+---
+
+# Pre-requis
+
+## Packages necessaires
+
+Avant de lancer la procedure, verifier que les packages suivants sont
+installes. Cette installation n'est necessaire qu'une seule fois.
+
+```{r packages}
+# Installation des packages requis (une seule fois)
+install.packages(c(
+  "sf",                  # operations geographiques
+  "rnaturalearth",       # fonds de cartes Natural Earth
+  "rnaturalearthdata",   # donnees Natural Earth basse resolution
+  "geodata",             # fonds de cartes GADM (complement)
+  "dplyr",               # manipulation de donnees
+  "usethis",             # sauvegarde des datasets R
+  "digest"               # calcul des hachages MD5
+))
+```
+
+## Structure du projet
+
+```
+statAfrikR/
+├── R/
+│   ├── cartographie.R       # fonctions carte_zones(), carte_choroplethe()...
+│   └── data.R               # documentation des datasets
+├── data/                    # datasets embarques (.rda)
+│   ├── saf_pays_afrique.rda
+│   ├── saf_cemac.rda
+│   ├── saf_cedeao.rda
+│   ├── saf_eau.rda
+│   ├── saf_sadc.rda
+│   ├── saf_rca_prefectures.rda
+│   └── saf_subdivisions_afrique.rda
+└── data-raw/                # scripts de generation (non embarques)
+    ├── create_geodata.R     # script principal
+    └── .geodata_hashes.rds  # hachages MD5 (detection de changements)
+```
+
+---
+
+# Procedure de mise a jour
+
+## Etape 1 — Preparation
+
+Ouvrir RStudio et se placer dans le projet statAfrikR.
+
+```{r preparation}
+# Verifier le repertoire de travail
+getwd()
+# Doit afficher : .../statAfrikR
+
+# Si necessaire, naviguer vers le projet
+setwd("~/statAfrikR")
+
+# Mettre a jour les packages sources
+update.packages(c("rnaturalearth", "rnaturalearthdata", "geodata"),
+                ask = FALSE)
+```
+
+## Etape 2 — Verification des changements
+
+C'est l'etape cle : le script detecte automatiquement si une mise a jour
+est necessaire avant de toucher aux donnees.
+
+```{r verification}
+# Lancer le script de verification et de mise a jour
+# Le script :
+#   1. Telecharge les nouvelles donnees Natural Earth et GADM
+#   2. Compare avec les hachages MD5 des donnees existantes
+#   3. Met a jour UNIQUEMENT les datasets qui ont change
+#   4. Ne fait RIEN si aucun changement n'est detecte
+
+source("data-raw/create_geodata.R")
+```
+
+### Interpretation des messages
+
+**Aucun changement :**
+```
+ETAPE 4 : Sauvegarde...
+  AUCUNE MISE A JOUR NECESSAIRE.
+  Tous les fonds de cartes sont a jour.
+```
+**Action : Rien a faire.** La procedure est terminee.
+
+---
+
+**Changement detecte :**
+```
+ETAPE 1 : Pays africains (Natural Earth)...
+  CHANGEMENT DETECTE — mise a jour saf_pays_afrique
+ETAPE 4 : Sauvegarde...
+  Datasets a mettre a jour : saf_pays_afrique, saf_cemac, saf_cedeao
+```
+**Action : Continuer avec les etapes 3 a 6.**
+
+## Etape 3 — Verification apres mise a jour
+
+Apres une mise a jour, verifier la coherence des donnees.
+
+```{r verification_post}
+# Recharger le package avec les nouvelles donnees
+devtools::load_all()
+
+# Verifier les comptages
+cat("Pays africains      :", nrow(carte_zones("afrique")), "\n")
+cat("CEMAC               :", nrow(carte_zones("cemac")),   "\n")
+cat("CEDEAO              :", nrow(carte_zones("cedeao")),  "\n")
+cat("RCA prefectures     :", nrow(carte_zones("rca")),     "\n")
+cat("Total subdivisions  :",
+    nrow(carte_zones("subdivisions")), "\n")
+
+# Tester une carte rapide
+rca <- carte_zones("rca")
+cat("Test carte RCA      : OK si", nrow(rca), "= 17\n")
+```
+
+**Valeurs de reference attendues :**
+
+| Dataset | Valeur attendue |
+|---------|----------------|
+| Pays africains | 54 |
+| CEMAC | 6 |
+| CEDEAO | 15 |
+| RCA prefectures | 17 |
+| Total subdivisions | >= 700 |
+
+## Etape 4 — Mise a jour de la documentation
+
+Si de nouvelles subdivisions sont apparues (nouveau pays, nouveau decoupage),
+mettre a jour `R/data.R` si necessaire.
+
+```{r documentation}
+# Regenerer la documentation roxygen
+devtools::document()
+
+# Verifier la documentation generee
+?saf_pays_afrique
+?saf_subdivisions_afrique
+```
+
+## Etape 5 — Verification CRAN
+
+Avant de publier, verifier que le package reste conforme aux regles CRAN.
+
+```{r check_cran}
+# Check complet --as-cran
+devtools::check(args = "--as-cran")
+
+# Resultat attendu :
+# 0 errors | 0 warnings | 0 notes
+```
+
+Si le check echoue, ne pas publier avant d'avoir corrige les erreurs.
+
+## Etape 6 — Mise a jour de la version et publication
+
+```{r publication}
+# 6a. Mettre a jour le numero de version dans DESCRIPTION
+# Convention :
+#   - Changement mineur (correction contours) : X.Y.Z -> X.Y.(Z+1)
+#   - Changement majeur (nouveau pays, redecoupage) : X.Y.Z -> X.(Y+1).0
+desc::desc_set_version("0.2.1")  # adapter selon l'ampleur du changement
+
+# 6b. Mettre a jour NEWS.md
+# Ajouter une entree :
+# ## statAfrikR 0.2.1
+# ### Donnees geographiques
+# - Mise a jour des fonds de cartes (Natural Earth vX.X, GADM vX.X)
+# - [details des changements detectes]
+
+# 6c. Validation finale
+devtools::check(args = "--as-cran")
+
+# 6d. Commit et push
+# Dans le Terminal :
+# git add data/ DESCRIPTION NEWS.md man/
+# git commit -m "data: mise a jour geodata AAAA — [details]"
+# git push origin main
+
+# 6e. Soumission CRAN
+devtools::submit_cran()
+```
+
+---
+
+# Gestion des cas particuliers
+
+## Pays sans donnees de subdivisions
+
+Certains pays africains n'ont pas de donnees de subdivisions disponibles
+dans Natural Earth ni dans GADM. Le script les signale comme `N/A` mais
+ne bloque pas la generation.
+
+```
+N/A [GADM] STP — Sao Tome and Principe (non disponible)
+N/A [GADM] CPV — Cabo Verde (non disponible)
+```
+
+Pour ces pays, seul le contour national est disponible via `saf_pays_afrique`.
+
+## Sahara Occidental (ESH)
+
+Le Sahara Occidental est un territoire au statut politique dispute.
+Il est volontairement **exclu** des subdivisions de niveau 1 dans statAfrikR.
+Son contour national reste present dans `saf_pays_afrique`.
+
+## Nouveau pays africain
+
+En cas d'independance d'un nouveau pays africain :
+
+```{r nouveau_pays}
+# 1. Ajouter le code ISO3 dans les vecteurs de zones si applicable
+# 2. Relancer source("data-raw/create_geodata.R")
+# 3. Mettre a jour R/data.R avec la documentation du nouveau dataset
+# 4. Incrementer la version mineure (X.Y.0 -> X.(Y+1).0)
+```
+
+## Erreur de telechargement GADM
+
+Si le serveur GADM est indisponible :
+
+```{r erreur_gadm}
+# Le script continue sans GADM et utilise uniquement Natural Earth
+# Un message N/A est affiche pour les pays manquants
+# La mise a jour peut etre relancee ulterieurement
+
+# Verifier la disponibilite de GADM
+tryCatch(
+  geodata::gadm("CAF", level = 0, path = tempdir()),
+  error = function(e) message("GADM indisponible : ", e$message)
+)
+```
+
+---
+
+# Journal des mises a jour
+
+Tenir ce journal a jour apres chaque mise a jour effectuee.
+
+| Date | Version | Source | Changements | Mainteneur |
+|------|---------|--------|-------------|------------|
+| 2026-03-18 | 0.1.0 | NE 5.1.2 | Creation initiale | D. Amoko |
+| 2026-05-30 | 0.2.0 | NE 5.1.2 + GADM 4.1 | Ajout GADM, 761 subdivisions | D. Amoko |
+| *a remplir* | *0.2.1* | *a verifier* | *a documenter* | *D. Amoko* |
+
+---
+
+# Contacts et support
+
+| Role | Nom | Contact |
+|------|-----|---------|
+| Mainteneur principal | Dikers Amoko | diamoko@gmail.com |
+| GitHub | statAfrikR | github.com/damoko2004/statAfrikR |
+| CRAN | statAfrikR | cran.r-project.org/package=statAfrikR |
+| Discord | Communaute | discord.gg/kcfA27Yz |
+
+---
+
+*Document produit avec statAfrikR — statAfrikR Foundation — `r format(Sys.Date(), "%Y")`*
