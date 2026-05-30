@@ -1,34 +1,118 @@
 # =============================================================================
-# statAfrikR - Module Cartographie
-# Cartographie statistique pour les INS africains
-# Construit au-dessus de sf (Suggests) et ggplot2 (Imports)
-# Objectif : couvrir les 5 usages SIG prioritaires des INS africains
+# statAfrikR - Module Cartographie v2
+# Fonds de cartes africains embarques - aucune dependance externe requise
+# sf en Imports - ggplot2 en Imports - zero package supplementaire
 # =============================================================================
 
+# Variables globales
+utils::globalVariables(c(
+  ".classe", ".cat_pauvrete", ".lon", ".lat",
+  "pays", "pays_fr", "iso3", "prefecture"
+))
+
+# Zones regionales disponibles dans statAfrikR
+.ZONES_DISPONIBLES <- c(
+  "afrique"      = "saf_pays_afrique",
+  "cemac"        = "saf_cemac",
+  "cedeao"       = "saf_cedeao",
+  "eau"          = "saf_eau",
+  "sadc"         = "saf_sadc",
+  "rca"          = "saf_rca_prefectures",
+  "subdivisions" = "saf_subdivisions_afrique"
+)
+
 # =============================================================================
-# 1. IMPORT DE DONNEES GEOGRAPHIQUES
+# 1. ACCES AUX FONDS DE CARTES EMBARQUES
+# =============================================================================
+
+#' @title Charger un fond de carte africain integre
+#' @description Charge un fond de carte geographique directement integre
+#'   dans statAfrikR. Aucun package supplementaire requis.
+#'
+#' @param zone character -- Zone geographique :
+#'   \code{"afrique"} (54 pays), \code{"cemac"} (6 pays),
+#'   \code{"cedeao"} (15 pays), \code{"eau"} (Afrique de l'Est),
+#'   \code{"sadc"} (Afrique Australe),
+#'   \code{"rca"} (17 prefectures RCA).
+#'   Defaut : "afrique"
+#' @param pays character ou NULL -- Filtrer par noms de pays (colonne
+#'   \code{pays}) ou codes ISO3 (colonne \code{iso3}). Defaut : NULL
+#'
+#' @return Un objet \code{sf} pret a l'emploi
+#'
+#' @examples
+#' # Tous les pays africains
+#' afrique <- carte_zones("afrique")
+#'
+#' # Zone CEMAC uniquement
+#' cemac <- carte_zones("cemac")
+#'
+#' # Prefectures de la RCA
+#' rca <- carte_zones("rca")
+#'
+#' # Filtrer : Cameroun + Centrafrique uniquement
+#' sous_zone <- carte_zones("afrique", pays = c("CMR", "CAF"))
+#'
+#' @export
+carte_zones <- function(zone = c("afrique", "cemac", "cedeao", "eau", "sadc", "rca", "subdivisions"),
+                         pays = NULL) {
+
+  zone <- match.arg(zone)
+
+  # Charger le dataset embarque
+  nom_data <- .ZONES_DISPONIBLES[[zone]]
+  sf_obj   <- tryCatch(
+    get(nom_data, envir = asNamespace("statAfrikR")),
+    error = function(e) {
+      rlang::abort(paste0(
+        "Fond de carte '", zone, "' introuvable.\n",
+        "Reinstallez statAfrikR : install.packages('statAfrikR')"
+      ))
+    }
+  )
+
+  # Filtre optionnel par pays ou ISO3
+  if (!is.null(pays)) {
+    if ("iso3" %in% names(sf_obj)) {
+      idx <- sf_obj$iso3 %in% pays | sf_obj$pays %in% pays
+    } else {
+      idx <- sf_obj$prefecture %in% pays
+    }
+    if (!any(idx)) {
+      rlang::warn(paste0(
+        "Aucune zone ne correspond au filtre : ",
+        paste(pays, collapse = ", "), ".\n",
+        "Valeurs disponibles : ",
+        paste(head(
+          if ("iso3" %in% names(sf_obj)) sf_obj$iso3
+          else sf_obj$prefecture, 10
+        ), collapse = ", ")
+      ))
+    }
+    sf_obj <- sf_obj[idx, ]
+  }
+
+  sf_obj
+}
+
+# =============================================================================
+# 2. IMPORT DE FICHIERS GEOGRAPHIQUES EXTERNES
 # =============================================================================
 
 #' @title Importer un fichier geographique
-#' @description Importe un fichier geographique (shapefile, GeoJSON,
-#'   GeoPackage) et retourne un objet \code{sf} normalise avec
-#'   validation du CRS et rapport des entites chargees.
+#' @description Importe un fichier geographique externe (shapefile, GeoJSON,
+#'   GeoPackage) fourni par l'utilisateur ou l'INS.
 #'
-#' @param chemin character -- Chemin vers le fichier geographique
-#'   (.shp, .geojson, .gpkg, .json)
-#' @param crs integer -- Code EPSG du systeme de coordonnees cible.
-#'   Defaut : 4326 (WGS 84)
-#' @param couche character ou NULL -- Nom de la couche (GeoPackage
-#'   multi-couches). Defaut : NULL (premiere couche)
-#' @param simplifier logical -- Simplifier la geometrie pour reduire
-#'   le temps de rendu (tolerance = 0.001 degres). Defaut : FALSE
+#' @param chemin character -- Chemin vers le fichier (.shp, .geojson, .gpkg)
+#' @param crs integer -- Code EPSG cible. Defaut : 4326 (WGS 84)
+#' @param couche character ou NULL -- Couche GeoPackage. Defaut : NULL
+#' @param simplifier logical -- Simplifier la geometrie. Defaut : FALSE
 #'
-#' @return Un objet \code{sf} normalise
+#' @return Un objet \code{sf}
 #'
 #' @examples
 #' \dontrun{
-#'   regions <- carte_import("data/regions.shp")
-#'   communes <- carte_import("data/communes.geojson", crs = 32632)
+#'   regions <- carte_import("data/regions_enquete.shp")
 #' }
 #'
 #' @export
@@ -37,22 +121,14 @@ carte_import <- function(chemin,
                           couche     = NULL,
                           simplifier = FALSE) {
 
-  .verifier_package("sf", "carte_import")
-
   if (!file.exists(chemin)) {
-    rlang::abort(paste0("Fichier introuvable : '", chemin, "'."))
-  }
-
-  ext <- tolower(tools::file_ext(chemin))
-  exts_supportees <- c("shp", "geojson", "json", "gpkg", "kml")
-  if (!ext %in% exts_supportees) {
-    rlang::warn(paste0(
-      "Extension '.", ext, "' inhabituelle. ",
-      "Formats recommandes : ", paste(exts_supportees, collapse = ", ")
+    rlang::abort(paste0(
+      "Fichier introuvable : '", chemin, "'.\n",
+      "Verifiez le chemin ou utilisez carte_zones() pour les ",
+      "fonds de cartes integres dans statAfrikR."
     ))
   }
 
-  # Import
   args_read <- list(dsn = chemin, quiet = TRUE)
   if (!is.null(couche)) args_read$layer <- couche
 
@@ -60,82 +136,72 @@ carte_import <- function(chemin,
     do.call(sf::st_read, args_read),
     error = function(e) {
       rlang::abort(paste0(
-        "Echec du chargement de '", basename(chemin), "' : ",
-        conditionMessage(e)
+        "Impossible de lire '", basename(chemin), "'.\n",
+        "Formats supportes : .shp, .geojson, .gpkg, .kml\n",
+        "Detail : ", conditionMessage(e)
       ))
     }
   )
 
-  n_ent    <- nrow(sf_obj)
   crs_orig <- sf::st_crs(sf_obj)$epsg
 
-  # Reprojection si necessaire
   if (!is.na(crs_orig) && crs_orig != crs) {
     sf_obj <- sf::st_transform(sf_obj, crs = crs)
   } else if (is.na(crs_orig)) {
     rlang::warn(paste0(
       "CRS non detecte dans '", basename(chemin), "'. ",
-      "Attribution de EPSG:", crs, " (a verifier)."
+      "Attribution de EPSG:", crs, "."
     ))
     sf_obj <- sf::st_set_crs(sf_obj, crs)
   }
 
-  # Simplification optionnelle
+  invalides <- sum(!sf::st_is_valid(sf_obj), na.rm = TRUE)
+  if (invalides > 0) sf_obj <- sf::st_make_valid(sf_obj)
+
   if (simplifier) {
-    sf_obj <- sf::st_simplify(sf_obj, dTolerance = 0.001,
+    sf_obj <- sf::st_simplify(sf_obj, dTolerance = 0.01,
                                preserveTopology = TRUE)
   }
 
-  # Valider les geometries
-  invalides <- sum(!sf::st_is_valid(sf_obj), na.rm = TRUE)
-  if (invalides > 0) {
-    rlang::warn(paste0(
-      invalides, " geometrie(s) invalide(s) detectee(s). ",
-      "Correction automatique appliquee."
-    ))
-    sf_obj <- sf::st_make_valid(sf_obj)
-  }
-
-  message("Fichier charge : ", basename(chemin))
-  message("  Entites     : ", n_ent)
-  message("  CRS         : EPSG:", crs)
-  message("  Variables   : ",
-          paste(names(sf_obj)[names(sf_obj) != "geometry"],
-                collapse = ", "))
-
+  message("Fichier charge : ", nrow(sf_obj), " entites | EPSG:", crs)
   sf_obj
 }
 
 # =============================================================================
-# 2. JOINTURE STATISTIQUE / GEOGRAPHIQUE
+# 3. JOINTURE STATISTIQUE / GEOGRAPHIQUE
 # =============================================================================
 
-#' @title Joindre des donnees statistiques a un objet sf
-#' @description Effectue la jointure entre un objet sf et un data.frame
-#'   statistique sur une cle administrative commune. Signale les zones
-#'   non appariees et propose un diagnostic de correspondance.
+#' @title Joindre des donnees statistiques a un fond de carte
+#' @description Joint un objet sf avec un data.frame statistique.
+#'   Normalise automatiquement les cles pour eviter les erreurs de
+#'   correspondance dues aux accents, casses et espaces.
 #'
-#' @param sf_obj sf -- Objet geographique (resultat de \code{carte_import()}
-#'   ou tout objet sf valide)
-#' @param data data.frame ou tibble -- Donnees statistiques a joindre
-#' @param cle_geo character -- Nom de la variable cle dans \code{sf_obj}
-#' @param cle_data character -- Nom de la variable cle dans \code{data}.
+#' @param sf_obj sf -- Objet geographique (depuis \code{carte_zones()} ou
+#'   \code{carte_import()})
+#' @param data data.frame -- Donnees statistiques
+#' @param cle_geo character -- Variable cle dans \code{sf_obj}
+#' @param cle_data character -- Variable cle dans \code{data}.
 #'   Si NULL, utilise \code{cle_geo}. Defaut : NULL
-#' @param type character -- Type de jointure : \code{"gauche"} (toutes
-#'   les zones geo conservees) ou \code{"interne"} (seulement les zones
-#'   appariees). Defaut : "gauche"
-#' @param normaliser logical -- Normaliser les cles (majuscules, suppression
-#'   accents et espaces) avant jointure. Defaut : TRUE
+#' @param type character -- \code{"gauche"} (toutes zones conservees) ou
+#'   \code{"interne"} (zones appariees uniquement). Defaut : "gauche"
+#' @param normaliser logical -- Normaliser les cles (recommande).
+#'   Defaut : TRUE
 #'
-#' @return Un objet \code{sf} enrichi avec les donnees statistiques
+#' @return Un objet \code{sf} enrichi
 #'
 #' @examples
-#' \dontrun{
-#'   regions_sf <- carte_import("data/regions.shp")
-#'   stats      <- data.frame(region = c("Nord", "Sud"), taux = c(0.42, 0.31))
-#'   enrichi    <- carte_joindre(regions_sf, stats,
-#'                               cle_geo = "NOM_REGION", cle_data = "region")
-#' }
+#' # Avec les fonds de cartes integres
+#' rca <- carte_zones("rca")
+#' stats <- data.frame(
+#'   prefecture    = rca$prefecture,
+#'   taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+#'                     55.4, 48.7, 51.2, 62.3, 58.9,
+#'                     28.4, 42.1, 52.8, 63.7, 59.4,
+#'                     44.6, 70.5)[seq_len(nrow(rca))]
+#' )
+#' sf_enrichi <- carte_joindre(rca, stats,
+#'                              cle_geo  = "prefecture",
+#'                              cle_data = "prefecture")
 #'
 #' @export
 carte_joindre <- function(sf_obj,
@@ -145,10 +211,11 @@ carte_joindre <- function(sf_obj,
                            type       = c("gauche", "interne"),
                            normaliser = TRUE) {
 
-  .verifier_package("sf", "carte_joindre")
-
   if (!inherits(sf_obj, "sf")) {
-    rlang::abort("`sf_obj` doit etre un objet sf.")
+    rlang::abort(paste0(
+      "`sf_obj` doit etre un objet sf.\n",
+      "Utilisez carte_zones() ou carte_import() pour creer un objet sf."
+    ))
   }
   if (!is.data.frame(data)) {
     rlang::abort("`data` doit etre un data.frame ou tibble.")
@@ -172,105 +239,84 @@ carte_joindre <- function(sf_obj,
 
   type <- match.arg(type)
 
-  # Normalisation des cles
-  .norm <- function(x) {
-    x <- toupper(trimws(as.character(x)))
-    x <- gsub("[^A-Z0-9]", "_", x)
-    x
-  }
+  # Normalisation : majuscules + alphanum seulement
+  .norm <- function(x) gsub("[^A-Z0-9]", "_", toupper(trimws(x)))
 
-  sf_cles   <- if (normaliser) .norm(sf_obj[[cle_geo]])   else as.character(sf_obj[[cle_geo]])
-  data_cles <- if (normaliser) .norm(data[[cle_data]])    else as.character(data[[cle_data]])
+  sf_tmp  <- sf_obj
+  dat_tmp <- data
+  sf_tmp$.cle  <- if (normaliser) .norm(sf_obj[[cle_geo]])   else as.character(sf_obj[[cle_geo]])
+  dat_tmp$.cle <- if (normaliser) .norm(data[[cle_data]])    else as.character(data[[cle_data]])
 
-  # Diagnostic d'appariement
-  non_app_geo  <- setdiff(sf_cles, data_cles)
-  non_app_data <- setdiff(data_cles, sf_cles)
+  non_app_geo  <- setdiff(sf_tmp$.cle, dat_tmp$.cle)
+  non_app_data <- setdiff(dat_tmp$.cle, sf_tmp$.cle)
 
   if (length(non_app_geo) > 0) {
     rlang::warn(paste0(
-      length(non_app_geo), " zone(s) geo sans correspondance dans les donnees : ",
-      paste(head(non_app_geo, 5), collapse = ", "),
-      if (length(non_app_geo) > 5) paste0(" ... (", length(non_app_geo) - 5, " de plus)")
+      length(non_app_geo), " zone(s) sans donnees : ",
+      paste(head(non_app_geo, 3), collapse = ", "),
+      if (length(non_app_geo) > 3)
+        paste0(" ... +", length(non_app_geo)-3),
+      "\nCes zones apparaitront en gris sur la carte."
     ))
   }
 
-  if (length(non_app_data) > 0) {
-    rlang::warn(paste0(
-      length(non_app_data), " valeur(s) dans les donnees sans zone geo : ",
-      paste(head(non_app_data, 5), collapse = ", ")
-    ))
-  }
-
-  # Jointure
-  sf_tmp   <- sf_obj
-  dat_tmp  <- data
-  sf_tmp$.cle_norm   <- sf_cles
-  dat_tmp$.cle_norm  <- data_cles
-
-  if (type == "gauche") {
-    result <- merge(sf_tmp, dat_tmp, by = ".cle_norm", all.x = TRUE)
+  result <- if (type == "gauche") {
+    merge(sf_tmp, dat_tmp, by = ".cle", all.x = TRUE)
   } else {
-    result <- merge(sf_tmp, dat_tmp, by = ".cle_norm", all = FALSE)
+    merge(sf_tmp, dat_tmp, by = ".cle", all = FALSE)
   }
 
-  result$.cle_norm <- NULL
+  result$.cle <- NULL
+  result <- sf::st_as_sf(result)
 
-  # Dupliquer la col cle_data si elle porte un nom different de cle_geo
-  if (paste0(cle_data, ".y") %in% names(result)) {
-    result[[paste0(cle_data, ".y")]] <- NULL
-  }
-  if (paste0(cle_data, ".x") %in% names(result)) {
-    names(result)[names(result) == paste0(cle_data, ".x")] <- cle_data
-  }
-
-  n_app <- sum(!is.na(result[[cle_geo]]))
-  message("Jointure effectuee : ", n_app, "/", nrow(sf_obj),
-          " zones appariees (", round(n_app / nrow(sf_obj) * 100, 1), "%)")
+  n_app <- nrow(result) - length(non_app_geo)
+  message("Jointure : ", n_app, "/", nrow(sf_obj), " zones appariees (",
+          round(n_app/nrow(sf_obj)*100, 0), "%)")
 
   result
 }
 
 # =============================================================================
-# 3. CARTE CHOROPLETHE
+# 4. CARTE CHOROPLETHE INSTITUTIONNELLE
 # =============================================================================
 
-#' @title Carte choroplethe institutionnelle
-#' @description Produit une carte choroplethe a partir d'un objet sf,
-#'   avec choix de la methode de discretisation et de la palette.
-#'   Retourne un objet ggplot2 pret a l'emploi.
+#' @title Carte choroplethe statistique institutionnelle
+#' @description Produit une carte choroplethe professionnelle. Utilise
+#'   uniquement ggplot2 (deja installe avec statAfrikR) et sf.
+#'   Gestion automatique des labels pour les petits pays.
 #'
-#' @param sf_obj sf -- Objet geographique enrichi (resultat de
-#'   \code{carte_joindre()} ou tout objet sf avec attributs statistiques)
-#' @param var character -- Nom de la variable numerique a cartographier
-#' @param titre character ou NULL -- Titre de la carte. Defaut : NULL
+#' @param sf_obj sf -- Objet sf enrichi (depuis \code{carte_joindre()})
+#' @param var character -- Variable numerique a cartographier
+#' @param titre character ou NULL -- Titre. Defaut : NULL
 #' @param sous_titre character ou NULL -- Sous-titre. Defaut : NULL
 #' @param legende character ou NULL -- Titre de la legende. Defaut : NULL
-#' @param palette character -- Palette de couleur ColorBrewer :
-#'   \code{"Blues"}, \code{"Reds"}, \code{"YlOrRd"}, \code{"YlGnBu"},
-#'   \code{"RdYlGn"} (divergente). Defaut : "Blues"
-#' @param n_classes integer -- Nombre de classes (3 a 9).
-#'   Defaut : 5L
-#' @param methode character -- Methode de discretisation :
-#'   \code{"quantile"}, \code{"jenks"}, \code{"egal"}, \code{"sd"}.
-#'   Defaut : "quantile"
+#' @param palette character -- Palette : \code{"pauvrete"} (jaune-rouge),
+#'   \code{"developpement"} (rouge-vert), \code{"eau"} (bleu clair-fonce),
+#'   \code{"neutre"} (gris-bleu). Defaut : "pauvrete"
+#' @param n_classes integer -- Nombre de classes (2-9). Defaut : 5L
+#' @param methode character -- Discretisation : \code{"quantile"},
+#'   \code{"jenks"}, \code{"egal"}, \code{"sd"}. Defaut : "quantile"
+#' @param col_label character ou NULL -- Variable a afficher comme label
+#'   sur chaque zone. Defaut : NULL
 #' @param inverser logical -- Inverser la palette. Defaut : FALSE
-#' @param fond character -- Couleur de fond de la carte.
-#'   Defaut : \code{"#EEF4F8"}
-#' @param na_couleur character -- Couleur des zones sans donnees.
-#'   Defaut : \code{"#D9E4EC"}
 #' @param source character ou NULL -- Note de source. Defaut : NULL
 #'
 #' @return Un objet \code{ggplot2}
 #'
 #' @examples
-#' \dontrun{
-#'   sf_enrichi <- carte_joindre(regions_sf, stats_pauvrete,
-#'                               cle_geo = "NOM_REGION",
-#'                               cle_data = "region")
-#'   carte_choroplethe(sf_enrichi, var = "taux_pauvrete",
-#'                     titre = "Taux de pauvrete par region",
-#'                     methode = "quantile")
-#' }
+#' rca <- carte_zones("rca")
+#' n <- nrow(rca)
+#' stats <- data.frame(
+#'   prefecture    = rca$prefecture,
+#'   taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+#'                     55.4, 48.7, 51.2, 62.3, 58.9,
+#'                     28.4, 42.1, 52.8, 63.7, 59.4,
+#'                     44.6, 70.5)[seq_len(n)]
+#' )
+#' sf_enr <- carte_joindre(rca, stats, "prefecture", "prefecture")
+#' carte_choroplethe(sf_enr, "taux_pauvrete",
+#'                   titre = "Pauvrete en RCA",
+#'                   source = "Donnees simulees")
 #'
 #' @export
 carte_choroplethe <- function(sf_obj,
@@ -278,178 +324,219 @@ carte_choroplethe <- function(sf_obj,
                                titre      = NULL,
                                sous_titre = NULL,
                                legende    = NULL,
-                               palette    = "Blues",
+                               palette    = c("pauvrete", "developpement",
+                                              "eau", "neutre"),
                                n_classes  = 5L,
                                methode    = c("quantile", "jenks",
                                               "egal", "sd"),
+                               col_label  = NULL,
                                inverser   = FALSE,
-                               fond       = "#EEF4F8",
-                               na_couleur = "#D9E4EC",
                                source     = NULL) {
 
-  .verifier_package("sf", "carte_choroplethe")
-
   if (!inherits(sf_obj, "sf")) {
-    rlang::abort("`sf_obj` doit etre un objet sf.")
+    rlang::abort(paste0(
+      "`sf_obj` doit etre un objet sf.\n",
+      "Utilisez carte_joindre() pour enrichir un fond de carte."
+    ))
   }
   if (!var %in% names(sf_obj)) {
     rlang::abort(paste0(
-      "Variable '", var, "' absente de l'objet sf.\n",
+      "Variable '", var, "' absente.\n",
       "Variables disponibles : ",
       paste(names(sf_obj)[names(sf_obj) != "geometry"], collapse = ", ")
     ))
   }
   if (!is.numeric(sf_obj[[var]])) {
-    rlang::abort(paste0("'", var, "' doit etre numerique."))
+    rlang::abort(paste0(
+      "'", var, "' doit etre numerique.\n",
+      "Convertissez avec : sf_obj$", var, " <- as.numeric(sf_obj$", var, ")"
+    ))
   }
 
+  palette <- match.arg(palette)
+  methode <- match.arg(methode)
   n_classes <- as.integer(n_classes)
   if (n_classes < 2L || n_classes > 9L) {
     rlang::abort("`n_classes` doit etre entre 2 et 9.")
   }
 
-  methode <- match.arg(methode)
-
   valeurs <- sf_obj[[var]]
-  valeurs_ok <- valeurs[!is.na(valeurs)]
+  v_ok    <- valeurs[!is.na(valeurs)]
 
-  if (length(valeurs_ok) == 0) {
-    rlang::abort(paste0("Aucune valeur non-NA dans '", var, "'."))
-  }
-
-  # Discretisation
-  bornes <- switch(methode,
-    "quantile" = stats::quantile(valeurs_ok,
-                                  probs = seq(0, 1, length.out = n_classes + 1),
-                                  na.rm = TRUE),
-    "egal"     = seq(min(valeurs_ok), max(valeurs_ok),
-                     length.out = n_classes + 1),
-    "sd"       = {
-      m  <- mean(valeurs_ok)
-      s  <- stats::sd(valeurs_ok)
-      c(min(valeurs_ok),
-        m - 2*s, m - s, m, m + s, m + 2*s,
-        max(valeurs_ok))
-    },
-    "jenks"    = .jenks_breaks(valeurs_ok, n_classes)
-  )
-
-  bornes <- unique(sort(bornes))
-  if (length(bornes) < 3) {
-    rlang::warn("Trop peu de valeurs distinctes \u2014 passage en methode 'egal'.")
-    bornes <- seq(min(valeurs_ok), max(valeurs_ok),
-                  length.out = n_classes + 1)
-    bornes <- unique(sort(bornes))
-  }
-
-  sf_obj$.classe <- cut(valeurs, breaks = bornes, include.lowest = TRUE,
-                         right = TRUE)
-
-  # Palette
-  palettes_dispo <- c("Blues", "Reds", "Greens", "Oranges", "Purples",
-                       "YlOrRd", "YlGnBu", "RdYlGn", "BrBG", "PuOr")
-  if (!palette %in% palettes_dispo) {
-    rlang::warn(paste0(
-      "Palette '", palette, "' inconnue. Utilisation de 'Blues'."
+  if (length(v_ok) == 0) {
+    rlang::abort(paste0(
+      "Aucune valeur non-manquante dans '", var, "'.\n",
+      "Verifiez la jointure avec carte_joindre()."
     ))
-    palette <- "Blues"
   }
 
-  n_classes_eff <- length(levels(sf_obj$.classe))
-  couleurs <- grDevices::colorRampPalette(
-    if (palette == "Blues")   c("#EFF6FF", "#1D4ED8")
-    else if (palette == "Reds") c("#FEF2F2", "#DC2626")
-    else if (palette == "YlOrRd") c("#FFFFCC", "#BD0026")
-    else if (palette == "YlGnBu") c("#FFFFD9", "#253494")
-    else if (palette == "RdYlGn") c("#D73027", "#FFFFBF", "#1A9850")
-    else c("#EFF6FF", "#1D4ED8")
-  )(n_classes_eff)
+  # Palettes statAfrikR
+  pal_couleurs <- switch(palette,
+    "pauvrete"      = c("#FFF7BC","#FEE391","#FEC44F",
+                         "#FE9929","#EC7014","#CC4C02","#8C2D04"),
+    "developpement" = c("#BD0026","#F03B20","#FD8D3C",
+                         "#FECC5C","#FFFFB2","#C7E9B4","#1D9A60"),
+    "eau"           = c("#EFF8FB","#C6E2F0","#86C5DA",
+                         "#43A2CA","#0868AC","#084081"),
+    "neutre"        = c("#F7FAFC","#DCE8F0","#B3CFE0",
+                         "#7EAFC5","#4D8FAC","#1B4965")
+  )
+  if (inverser) pal_couleurs <- rev(pal_couleurs)
 
-  if (inverser) couleurs <- rev(couleurs)
+  # Echelle adaptee aux donnees reelles
+  vmin <- floor(min(v_ok)  / max(1, diff(range(v_ok)) / 20)) *
+    max(1, diff(range(v_ok)) / 20)
+  vmax <- ceiling(max(v_ok) / max(1, diff(range(v_ok)) / 20)) *
+    max(1, diff(range(v_ok)) / 20)
 
-  # Graphique
+  couleurs_interp <- grDevices::colorRampPalette(pal_couleurs)(256)
+  breaks_legende  <- pretty(c(vmin, vmax), n = 5)
+
+  # Graphique de base
   g <- ggplot2::ggplot(sf_obj) +
     ggplot2::geom_sf(
-      ggplot2::aes(fill = .data$.classe),
-      color = "white", linewidth = 0.3
+      ggplot2::aes(fill = .data[[var]]),
+      color     = "white",
+      linewidth = 0.35
     ) +
-    ggplot2::scale_fill_manual(
-      values   = couleurs,
-      na.value = na_couleur,
+    ggplot2::scale_fill_gradientn(
+      colors   = couleurs_interp,
+      limits   = c(vmin, vmax),
+      breaks   = breaks_legende,
+      labels   = function(x) format(x, big.mark = " ", scientific = FALSE),
+      na.value = "#D9E4EC",
       name     = if (!is.null(legende)) legende else var,
-      drop     = FALSE
+      guide    = ggplot2::guide_colorbar(
+        barheight      = ggplot2::unit(6, "cm"),
+        barwidth       = ggplot2::unit(0.45, "cm"),
+        title.position = "top",
+        title.hjust    = 0.5
+      )
     ) +
     ggplot2::coord_sf() +
     ggplot2::theme_void(base_size = 11) +
     ggplot2::theme(
-      plot.background  = ggplot2::element_rect(fill = fond, color = NA),
+      plot.background  = ggplot2::element_rect(fill = "#F0F7FF",
+                                                color = NA),
       plot.title       = ggplot2::element_text(
-        face = "bold", color = "#0F2742", size = 13, hjust = 0
+        size = 13, face = "bold", color = "#0F2742",
+        margin = ggplot2::margin(b = 4)
       ),
       plot.subtitle    = ggplot2::element_text(
-        color = "#475569", size = 10, hjust = 0
+        size = 9, color = "#475569",
+        margin = ggplot2::margin(b = 8)
       ),
       plot.caption     = ggplot2::element_text(
-        color = "#64748B", size = 8, hjust = 1
+        size = 7.5, color = "#94A3B8", hjust = 1,
+        margin = ggplot2::margin(t = 8)
       ),
       legend.position  = "right",
       legend.title     = ggplot2::element_text(
-        face = "bold", color = "#1E293B", size = 9
+        face = "bold", size = 9, color = "#1E293B"
       ),
-      legend.text      = ggplot2::element_text(color = "#475569", size = 8),
-      plot.margin      = ggplot2::margin(10, 10, 10, 10)
+      legend.text      = ggplot2::element_text(
+        size = 8, color = "#475569"
+      ),
+      plot.margin      = ggplot2::margin(10, 15, 10, 10)
     ) +
     ggplot2::labs(
       title    = titre,
       subtitle = sous_titre,
-      caption  = if (!is.null(source)) paste0("Source : ", source)
-                 else "statAfrikR"
+      caption  = if (!is.null(source))
+        paste0("Source : ", source, " | statAfrikR")
+      else "statAfrikR Foundation"
     )
+
+  # Labels internes (ggplot2 natif \u2014 sans ggrepel)
+  if (!is.null(col_label) && col_label %in% names(sf_obj)) {
+    centroides  <- suppressWarnings(sf::st_centroid(sf_obj))
+    coords      <- sf::st_coordinates(centroides)
+    aire        <- as.numeric(sf::st_area(sf_obj))
+    seuil_petit <- stats::quantile(aire, probs = 0.25)
+
+    df_labels <- data.frame(
+      X      = coords[, 1],
+      Y      = coords[, 2],
+      label  = as.character(sf_obj[[col_label]]),
+      petit  = aire < seuil_petit
+    )
+
+    # Grands polygones : label centr\u00e9
+    g <- g + ggplot2::geom_text(
+      data = df_labels[!df_labels$petit, ],
+      ggplot2::aes(x = .data$X, y = .data$Y, label = .data$label),
+      size = 2.5, color = "#1E293B", fontface = "bold",
+      check_overlap = TRUE
+    )
+
+    # Petits polygones : label offset + segment
+    if (any(df_labels$petit)) {
+      df_petits <- df_labels[df_labels$petit, ]
+      df_petits$Xend <- df_petits$X + (df_petits$X - mean(df_labels$X)) * 0.5
+      df_petits$Yend <- df_petits$Y + (df_petits$Y - mean(df_labels$Y)) * 0.5
+
+      g <- g +
+        ggplot2::geom_segment(
+          data = df_petits,
+          ggplot2::aes(x = .data$X, y = .data$Y,
+                       xend = .data$Xend, yend = .data$Yend),
+          color = "#64748B", linewidth = 0.35
+        ) +
+        ggplot2::geom_label(
+          data = df_petits,
+          ggplot2::aes(x = .data$Xend, y = .data$Yend,
+                       label = .data$label),
+          size = 2.2, fill = "white", alpha = 0.85,
+          label.size = 0.1,
+          label.padding = ggplot2::unit(0.1, "lines"),
+          color = "#1E293B", fontface = "bold"
+        )
+    }
+  }
 
   g
 }
 
 # =============================================================================
-# 4. CARTE PAUVRETE
+# 5. CARTE PAUVRETE SPECIALISEE
 # =============================================================================
 
-#' @title Carte thematique de la pauvrete
-#' @description Surcouche de \code{carte_choroplethe()} specialisee pour
-#'   la cartographie des indices de pauvrete (FGT0, FGT1, FGT2).
-#'   Utilise une symbologie standardisee AFRISTAT/Banque mondiale.
+#' @title Carte thematique de la pauvrete (FGT0)
+#' @description Specialisation de \code{carte_choroplethe()} pour les
+#'   indices de pauvrete. Symbologie standardisee AFRISTAT/Banque mondiale
+#'   avec seuil d'alerte.
 #'
-#' @param sf_obj sf -- Objet geographique enrichi avec les taux de pauvrete
-#' @param var_fgt0 character -- Variable du taux de pauvrete (FGT0, en
-#'   proportion ou pourcentage)
-#' @param seuil_alerte numeric -- Seuil d'alerte (zones en rouge).
-#'   Defaut : 0.5 (50%)
+#' @param sf_obj sf -- Objet sf avec taux de pauvrete
+#' @param var_fgt0 character -- Variable de taux de pauvrete
+#' @param seuil_alerte numeric -- Seuil d'alerte. Defaut : 0.5
+#' @param col_label character ou NULL -- Variable de label. Defaut : NULL
 #' @param titre character ou NULL -- Titre. Defaut : titre automatique
-#' @param source character ou NULL -- Note source. Defaut : NULL
-#' @param afficher_valeurs logical -- Afficher les valeurs sur la carte.
-#'   Defaut : FALSE
-#' @param var_label character ou NULL -- Variable a utiliser comme etiquette
-#'   (nom de la zone). Defaut : NULL
+#' @param source character ou NULL -- Source. Defaut : NULL
 #'
 #' @return Un objet \code{ggplot2}
 #'
 #' @examples
-#' \dontrun{
-#'   carte_pauvrete(regions_enrichi,
-#'                  var_fgt0 = "taux_pauvrete",
-#'                  seuil_alerte = 0.5,
-#'                  titre = "Incidence de la pauvrete par region 2026")
-#' }
+#' rca <- carte_zones("rca")
+#' n <- nrow(rca)
+#' stats <- data.frame(
+#'   prefecture    = rca$prefecture,
+#'   taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+#'                     55.4, 48.7, 51.2, 62.3, 58.9,
+#'                     28.4, 42.1, 52.8, 63.7, 59.4,
+#'                     44.6, 70.5)[seq_len(n)]
+#' )
+#' sf_enr <- carte_joindre(rca, stats, "prefecture", "prefecture")
+#' sf_enr$taux_prop <- sf_enr$taux_pauvrete / 100
+#' carte_pauvrete(sf_enr, var_fgt0 = "taux_prop",
+#'                source = "Donnees simulees")
 #'
 #' @export
 carte_pauvrete <- function(sf_obj,
                             var_fgt0,
-                            seuil_alerte   = 0.5,
-                            titre          = NULL,
-                            source         = NULL,
-                            afficher_valeurs = FALSE,
-                            var_label      = NULL) {
-
-  .verifier_package("sf", "carte_pauvrete")
+                            seuil_alerte = 0.5,
+                            col_label    = NULL,
+                            titre        = NULL,
+                            source       = NULL) {
 
   if (!inherits(sf_obj, "sf")) {
     rlang::abort("`sf_obj` doit etre un objet sf.")
@@ -459,123 +546,67 @@ carte_pauvrete <- function(sf_obj,
   }
 
   val <- sf_obj[[var_fgt0]]
-
-  # Normaliser en proportion si en pourcentage
   if (max(val, na.rm = TRUE) > 1.5) {
     sf_obj[[var_fgt0]] <- val / 100
-    val <- sf_obj[[var_fgt0]]
-    rlang::warn(paste0(
-      "'", var_fgt0, "' semble en pourcentage (max > 1.5). ",
-      "Division par 100 appliquee."
+    rlang::inform(paste0(
+      "'", var_fgt0, "' convertie de % en proportion (division par 100)."
     ))
   }
 
-  # Categorisation avec seuil d'alerte
-  sf_obj$.cat_pauvrete <- cut(
-    val,
-    breaks         = c(-Inf, 0.2, 0.35, seuil_alerte, 0.65, Inf),
-    labels         = c("< 20%", "20-35%",
-                       paste0("35-", round(seuil_alerte * 100), "%"),
-                       paste0(round(seuil_alerte * 100), "-65%"),
-                       "> 65%"),
-    include.lowest = TRUE
-  )
-
-  couleurs_pauv <- c(
-    "< 20%"  = "#2166AC",
-    "20-35%" = "#67A9CF",
-    "35-50%" = "#FDDBC7",
-    "50-65%" = "#EF8A62",
-    "> 65%"  = "#B2182B"
-  )
-  # Adapter les noms des couleurs aux labels effectifs
-  labels_eff   <- levels(sf_obj$.cat_pauvrete)
-  couleurs_eff <- stats::setNames(
-    grDevices::colorRampPalette(
-      c("#2166AC", "#67A9CF", "#FDDBC7", "#EF8A62", "#B2182B")
-    )(length(labels_eff)),
-    labels_eff
-  )
-
   if (is.null(titre)) {
-    titre <- paste0("Incidence de la pauvrete (FGT0) -- seuil alerte ",
+    titre <- paste0("Incidence de la pauvrete (FGT0) \u2014 seuil alerte ",
                     round(seuil_alerte * 100), "%")
   }
 
-  g <- ggplot2::ggplot(sf_obj) +
+  carte_choroplethe(
+    sf_obj    = sf_obj,
+    var       = var_fgt0,
+    titre     = titre,
+    legende   = "Taux de pauvrete",
+    palette   = "pauvrete",
+    methode   = "quantile",
+    col_label = col_label,
+    source    = source
+  ) +
     ggplot2::geom_sf(
-      ggplot2::aes(fill = .data$.cat_pauvrete),
-      color = "white", linewidth = 0.4
+      data      = sf_obj[!is.na(sf_obj[[var_fgt0]]) &
+                           sf_obj[[var_fgt0]] >= seuil_alerte, ],
+      fill      = NA,
+      color     = "#DC2626",
+      linewidth = 1.2
     ) +
-    ggplot2::scale_fill_manual(
-      values   = couleurs_eff,
-      na.value = "#D9E4EC",
-      name     = "Taux de pauvrete",
-      drop     = FALSE
-    ) +
-    ggplot2::coord_sf() +
-    ggplot2::theme_void(base_size = 11) +
-    ggplot2::theme(
-      plot.background = ggplot2::element_rect(fill = "#EEF4F8", color = NA),
-      plot.title      = ggplot2::element_text(
-        face = "bold", color = "#0F2742", size = 13, hjust = 0
-      ),
-      plot.caption    = ggplot2::element_text(
-        color = "#64748B", size = 8, hjust = 1
-      ),
-      legend.position = "right",
-      legend.title    = ggplot2::element_text(
-        face = "bold", color = "#1E293B", size = 9
-      ),
-      plot.margin     = ggplot2::margin(10, 10, 10, 10)
-    ) +
-    ggplot2::labs(
-      title   = titre,
-      caption = if (!is.null(source)) paste0("Source : ", source)
-                else "statAfrikR | FGT Foster, Greer & Thorbecke (1984)"
+    ggplot2::annotate(
+      "text",
+      x = -Inf, y = Inf,
+      label    = paste0("Zone d'alerte : taux >= ",
+                        round(seuil_alerte * 100), "%"),
+      color    = "#DC2626",
+      size     = 2.8,
+      hjust    = -0.05,
+      vjust    = 1.5,
+      fontface = "italic"
     )
-
-  # Etiquettes optionnelles
-  if (afficher_valeurs && !is.null(var_label) &&
-      var_label %in% names(sf_obj)) {
-    centroides <- suppressWarnings(sf::st_centroid(sf_obj))
-    coords     <- sf::st_coordinates(centroides)
-    sf_obj$.lon <- coords[, 1]
-    sf_obj$.lat <- coords[, 2]
-
-    g <- g + ggplot2::geom_text(
-      data = as.data.frame(sf_obj),
-      ggplot2::aes(x = .data$.lon, y = .data$.lat,
-                   label = .data[[var_label]]),
-      size = 2.5, color = "#1E293B", fontface = "bold"
-    )
-  }
-
-  g
 }
 
 # =============================================================================
-# 5. EXPORT DE CARTE
+# 6. EXPORT
 # =============================================================================
 
-#' @title Exporter une carte
-#' @description Exporte un objet ggplot2 (carte) en PNG, PDF ou SVG
-#'   avec resolution et dimensions optimisees pour les rapports INS.
+#' @title Exporter une carte en fichier image
+#' @description Exporte un objet ggplot2 en PNG, PDF ou SVG.
 #'
-#' @param carte ggplot2 -- Objet ggplot a exporter
-#' @param chemin character -- Chemin du fichier de sortie (extension
-#'   determinant le format : .png, .pdf, .svg)
+#' @param carte ggplot -- Objet ggplot2
+#' @param chemin character -- Chemin de sortie (.png, .pdf, .svg)
 #' @param largeur numeric -- Largeur en cm. Defaut : 20
 #' @param hauteur numeric -- Hauteur en cm. Defaut : 15
-#' @param resolution integer -- Resolution en DPI (PNG uniquement).
-#'   Defaut : 300L
+#' @param resolution integer -- Resolution DPI (PNG). Defaut : 300L
 #'
-#' @return Chemin du fichier cree (invisible)
+#' @return Chemin du fichier (invisible)
 #'
 #' @examples
 #' \dontrun{
-#'   g <- carte_choroplethe(sf_enrichi, var = "taux_pauvrete")
-#'   carte_exporter(g, file.path(tempdir(), "carte_pauvrete.png"))
+#'   g <- carte_choroplethe(sf_enrichi, "taux_pauvrete")
+#'   carte_exporter(g, file.path(tempdir(), "carte.png"))
 #' }
 #'
 #' @export
@@ -586,18 +617,24 @@ carte_exporter <- function(carte,
                             resolution = 300L) {
 
   if (!inherits(carte, "ggplot")) {
-    rlang::abort("`carte` doit etre un objet ggplot2.")
-  }
-  if (!is.character(chemin) || nchar(chemin) == 0) {
-    rlang::abort("`chemin` doit etre un chemin valide.")
+    rlang::abort(paste0(
+      "`carte` doit etre un objet ggplot2.\n",
+      "Utilisez carte_choroplethe() ou carte_pauvrete() pour creer une carte."
+    ))
   }
   if (!dir.exists(dirname(chemin))) {
-    rlang::abort(paste0("Repertoire inexistant : ", dirname(chemin)))
+    rlang::abort(paste0(
+      "Repertoire inexistant : ", dirname(chemin), "\n",
+      "Creez-le avec : dir.create('", dirname(chemin), "', recursive=TRUE)"
+    ))
   }
 
   ext <- tolower(tools::file_ext(chemin))
   if (!ext %in% c("png", "pdf", "svg")) {
-    rlang::abort("Format non supporte. Utilisez .png, .pdf ou .svg.")
+    rlang::abort(paste0(
+      "Format '.", ext, "' non supporte.\n",
+      "Utilisez : .png (rapports), .pdf (impression), .svg (web)"
+    ))
   }
 
   ggplot2::ggsave(
@@ -609,8 +646,7 @@ carte_exporter <- function(carte,
     dpi      = if (ext == "png") resolution else 72L
   )
 
-  message("Carte exportee : ", chemin,
-          " (", largeur, "x", hauteur, " cm)")
+  message("Carte exportee : ", chemin)
   invisible(chemin)
 }
 
@@ -620,24 +656,13 @@ carte_exporter <- function(carte,
 
 #' @keywords internal
 .jenks_breaks <- function(x, n) {
-  # Implementation simplifiee de Jenks Natural Breaks
-  # Pour une implementation complete, utiliser classInt::classIntervals()
   x_sort <- sort(x[!is.na(x)])
-  n_vals  <- length(x_sort)
-
-  if (n_vals <= n) {
-    return(unique(c(min(x_sort) - 1e-10, x_sort)))
-  }
-
-  # Algorithme Jenks simplifie (Fisher-Jenks)
-  idx <- round(seq(1, n_vals, length.out = n + 1))
-  idx <- unique(pmax(1L, pmin(n_vals, as.integer(idx))))
+  n_vals <- length(x_sort)
+  if (n_vals <= n) return(unique(c(min(x_sort) - 1e-10, x_sort)))
+  idx    <- round(seq(1, n_vals, length.out = n + 1))
+  idx    <- unique(pmax(1L, pmin(n_vals, as.integer(idx))))
   bornes <- unique(c(x_sort[1] - 1e-10, x_sort[idx]))
-
-  if (length(bornes) < 3) {
-    bornes <- seq(min(x_sort), max(x_sort), length.out = n + 1)
-    bornes[1] <- bornes[1] - 1e-10
-  }
-
+  if (length(bornes) < 3)
+    bornes <- seq(min(x_sort) - 1e-10, max(x_sort), length.out = n + 1)
   bornes
 }

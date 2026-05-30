@@ -7,30 +7,24 @@
 carte_import(chemin, crs = 4326L, couche = NULL, simplifier = FALSE)
 }
 \arguments{
-\item{chemin}{character -- Chemin vers le fichier geographique
-(.shp, .geojson, .gpkg, .json)}
+\item{chemin}{character -- Chemin vers le fichier (.shp, .geojson, .gpkg)}
 
-\item{crs}{integer -- Code EPSG du systeme de coordonnees cible.
-Defaut : 4326 (WGS 84)}
+\item{crs}{integer -- Code EPSG cible. Defaut : 4326 (WGS 84)}
 
-\item{couche}{character ou NULL -- Nom de la couche (GeoPackage
-multi-couches). Defaut : NULL (premiere couche)}
+\item{couche}{character ou NULL -- Couche GeoPackage. Defaut : NULL}
 
-\item{simplifier}{logical -- Simplifier la geometrie pour reduire
-le temps de rendu (tolerance = 0.001 degres). Defaut : FALSE}
+\item{simplifier}{logical -- Simplifier la geometrie. Defaut : FALSE}
 }
 \value{
-Un objet \code{sf} normalise
+Un objet \code{sf}
 }
 \description{
-Importe un fichier geographique (shapefile, GeoJSON,
-GeoPackage) et retourne un objet \code{sf} normalise avec
-validation du CRS et rapport des entites chargees.
+Importe un fichier geographique externe (shapefile, GeoJSON,
+GeoPackage) fourni par l'utilisateur ou l'INS.
 }
 \examples{
 \dontrun{
-  regions <- carte_import("data/regions.shp")
-  communes <- carte_import("data/communes.geojson", crs = 32632)
+  regions <- carte_import("data/regions_enquete.shp")
 }
 
 }

@@ -2,34 +2,31 @@
 % Please edit documentation in R/cartographie.R
 \name{carte_exporter}
 \alias{carte_exporter}
-\title{Exporter une carte}
+\title{Exporter une carte en fichier image}
 \usage{
 carte_exporter(carte, chemin, largeur = 20, hauteur = 15, resolution = 300L)
 }
 \arguments{
-\item{carte}{ggplot2 -- Objet ggplot a exporter}
+\item{carte}{ggplot -- Objet ggplot2}
 
-\item{chemin}{character -- Chemin du fichier de sortie (extension
-determinant le format : .png, .pdf, .svg)}
+\item{chemin}{character -- Chemin de sortie (.png, .pdf, .svg)}
 
 \item{largeur}{numeric -- Largeur en cm. Defaut : 20}
 
 \item{hauteur}{numeric -- Hauteur en cm. Defaut : 15}
 
-\item{resolution}{integer -- Resolution en DPI (PNG uniquement).
-Defaut : 300L}
+\item{resolution}{integer -- Resolution DPI (PNG). Defaut : 300L}
 }
 \value{
-Chemin du fichier cree (invisible)
+Chemin du fichier (invisible)
 }
 \description{
-Exporte un objet ggplot2 (carte) en PNG, PDF ou SVG
-avec resolution et dimensions optimisees pour les rapports INS.
+Exporte un objet ggplot2 en PNG, PDF ou SVG.
 }
 \examples{
 \dontrun{
-  g <- carte_choroplethe(sf_enrichi, var = "taux_pauvrete")
-  carte_exporter(g, file.path(tempdir(), "carte_pauvrete.png"))
+  g <- carte_choroplethe(sf_enrichi, "taux_pauvrete")
+  carte_exporter(g, file.path(tempdir(), "carte.png"))
 }
 
 }

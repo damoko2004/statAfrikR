@@ -2,51 +2,51 @@
 % Please edit documentation in R/cartographie.R
 \name{carte_pauvrete}
 \alias{carte_pauvrete}
-\title{Carte thematique de la pauvrete}
+\title{Carte thematique de la pauvrete (FGT0)}
 \usage{
 carte_pauvrete(
   sf_obj,
   var_fgt0,
   seuil_alerte = 0.5,
+  col_label = NULL,
   titre = NULL,
-  source = NULL,
-  afficher_valeurs = FALSE,
-  var_label = NULL
+  source = NULL
 )
 }
 \arguments{
-\item{sf_obj}{sf -- Objet geographique enrichi avec les taux de pauvrete}
+\item{sf_obj}{sf -- Objet sf avec taux de pauvrete}
 
-\item{var_fgt0}{character -- Variable du taux de pauvrete (FGT0, en
-proportion ou pourcentage)}
+\item{var_fgt0}{character -- Variable de taux de pauvrete}
 
-\item{seuil_alerte}{numeric -- Seuil d'alerte (zones en rouge).
-Defaut : 0.5 (50\%)}
+\item{seuil_alerte}{numeric -- Seuil d'alerte. Defaut : 0.5}
+
+\item{col_label}{character ou NULL -- Variable de label. Defaut : NULL}
 
 \item{titre}{character ou NULL -- Titre. Defaut : titre automatique}
 
-\item{source}{character ou NULL -- Note source. Defaut : NULL}
-
-\item{afficher_valeurs}{logical -- Afficher les valeurs sur la carte.
-Defaut : FALSE}
-
-\item{var_label}{character ou NULL -- Variable a utiliser comme etiquette
-(nom de la zone). Defaut : NULL}
+\item{source}{character ou NULL -- Source. Defaut : NULL}
 }
 \value{
 Un objet \code{ggplot2}
 }
 \description{
-Surcouche de \code{carte_choroplethe()} specialisee pour
-la cartographie des indices de pauvrete (FGT0, FGT1, FGT2).
-Utilise une symbologie standardisee AFRISTAT/Banque mondiale.
+Specialisation de \code{carte_choroplethe()} pour les
+indices de pauvrete. Symbologie standardisee AFRISTAT/Banque mondiale
+avec seuil d'alerte.
 }
 \examples{
-\dontrun{
-  carte_pauvrete(regions_enrichi,
-                 var_fgt0 = "taux_pauvrete",
-                 seuil_alerte = 0.5,
-                 titre = "Incidence de la pauvrete par region 2026")
-}
+rca <- carte_zones("rca")
+n <- nrow(rca)
+stats <- data.frame(
+  prefecture    = rca$prefecture,
+  taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+                    55.4, 48.7, 51.2, 62.3, 58.9,
+                    28.4, 42.1, 52.8, 63.7, 59.4,
+                    44.6, 70.5)[seq_len(n)]
+)
+sf_enr <- carte_joindre(rca, stats, "prefecture", "prefecture")
+sf_enr$taux_prop <- sf_enr$taux_pauvrete / 100
+carte_pauvrete(sf_enr, var_fgt0 = "taux_prop",
+               source = "Donnees simulees")
 
 }

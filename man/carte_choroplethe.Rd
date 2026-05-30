@@ -2,7 +2,7 @@
 % Please edit documentation in R/cartographie.R
 \name{carte_choroplethe}
 \alias{carte_choroplethe}
-\title{Carte choroplethe institutionnelle}
+\title{Carte choroplethe statistique institutionnelle}
 \usage{
 carte_choroplethe(
   sf_obj,
@@ -10,45 +10,38 @@ carte_choroplethe(
   titre = NULL,
   sous_titre = NULL,
   legende = NULL,
-  palette = "Blues",
+  palette = c("pauvrete", "developpement", "eau", "neutre"),
   n_classes = 5L,
   methode = c("quantile", "jenks", "egal", "sd"),
+  col_label = NULL,
   inverser = FALSE,
-  fond = "#EEF4F8",
-  na_couleur = "#D9E4EC",
   source = NULL
 )
 }
 \arguments{
-\item{sf_obj}{sf -- Objet geographique enrichi (resultat de
-\code{carte_joindre()} ou tout objet sf avec attributs statistiques)}
+\item{sf_obj}{sf -- Objet sf enrichi (depuis \code{carte_joindre()})}
 
-\item{var}{character -- Nom de la variable numerique a cartographier}
+\item{var}{character -- Variable numerique a cartographier}
 
-\item{titre}{character ou NULL -- Titre de la carte. Defaut : NULL}
+\item{titre}{character ou NULL -- Titre. Defaut : NULL}
 
 \item{sous_titre}{character ou NULL -- Sous-titre. Defaut : NULL}
 
 \item{legende}{character ou NULL -- Titre de la legende. Defaut : NULL}
 
-\item{palette}{character -- Palette de couleur ColorBrewer :
-\code{"Blues"}, \code{"Reds"}, \code{"YlOrRd"}, \code{"YlGnBu"},
-\code{"RdYlGn"} (divergente). Defaut : "Blues"}
+\item{palette}{character -- Palette : \code{"pauvrete"} (jaune-rouge),
+\code{"developpement"} (rouge-vert), \code{"eau"} (bleu clair-fonce),
+\code{"neutre"} (gris-bleu). Defaut : "pauvrete"}
 
-\item{n_classes}{integer -- Nombre de classes (3 a 9).
-Defaut : 5L}
+\item{n_classes}{integer -- Nombre de classes (2-9). Defaut : 5L}
 
-\item{methode}{character -- Methode de discretisation :
-\code{"quantile"}, \code{"jenks"}, \code{"egal"}, \code{"sd"}.
-Defaut : "quantile"}
+\item{methode}{character -- Discretisation : \code{"quantile"},
+\code{"jenks"}, \code{"egal"}, \code{"sd"}. Defaut : "quantile"}
+
+\item{col_label}{character ou NULL -- Variable a afficher comme label
+sur chaque zone. Defaut : NULL}
 
 \item{inverser}{logical -- Inverser la palette. Defaut : FALSE}
-
-\item{fond}{character -- Couleur de fond de la carte.
-Defaut : \code{"#EEF4F8"}}
-
-\item{na_couleur}{character -- Couleur des zones sans donnees.
-Defaut : \code{"#D9E4EC"}}
 
 \item{source}{character ou NULL -- Note de source. Defaut : NULL}
 }
@@ -56,18 +49,23 @@ Defaut : \code{"#D9E4EC"}}
 Un objet \code{ggplot2}
 }
 \description{
-Produit une carte choroplethe a partir d'un objet sf,
-avec choix de la methode de discretisation et de la palette.
-Retourne un objet ggplot2 pret a l'emploi.
+Produit une carte choroplethe professionnelle. Utilise
+uniquement ggplot2 (deja installe avec statAfrikR) et sf.
+Gestion automatique des labels pour les petits pays.
 }
 \examples{
-\dontrun{
-  sf_enrichi <- carte_joindre(regions_sf, stats_pauvrete,
-                              cle_geo = "NOM_REGION",
-                              cle_data = "region")
-  carte_choroplethe(sf_enrichi, var = "taux_pauvrete",
-                    titre = "Taux de pauvrete par region",
-                    methode = "quantile")
-}
+rca <- carte_zones("rca")
+n <- nrow(rca)
+stats <- data.frame(
+  prefecture    = rca$prefecture,
+  taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+                    55.4, 48.7, 51.2, 62.3, 58.9,
+                    28.4, 42.1, 52.8, 63.7, 59.4,
+                    44.6, 70.5)[seq_len(n)]
+)
+sf_enr <- carte_joindre(rca, stats, "prefecture", "prefecture")
+carte_choroplethe(sf_enr, "taux_pauvrete",
+                  titre = "Pauvrete en RCA",
+                  source = "Donnees simulees")
 
 }

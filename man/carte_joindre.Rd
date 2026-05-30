@@ -2,7 +2,7 @@
 % Please edit documentation in R/cartographie.R
 \name{carte_joindre}
 \alias{carte_joindre}
-\title{Joindre des donnees statistiques a un objet sf}
+\title{Joindre des donnees statistiques a un fond de carte}
 \usage{
 carte_joindre(
   sf_obj,
@@ -14,37 +14,42 @@ carte_joindre(
 )
 }
 \arguments{
-\item{sf_obj}{sf -- Objet geographique (resultat de \code{carte_import()}
-ou tout objet sf valide)}
+\item{sf_obj}{sf -- Objet geographique (depuis \code{carte_zones()} ou
+\code{carte_import()})}
 
-\item{data}{data.frame ou tibble -- Donnees statistiques a joindre}
+\item{data}{data.frame -- Donnees statistiques}
 
-\item{cle_geo}{character -- Nom de la variable cle dans \code{sf_obj}}
+\item{cle_geo}{character -- Variable cle dans \code{sf_obj}}
 
-\item{cle_data}{character -- Nom de la variable cle dans \code{data}.
+\item{cle_data}{character -- Variable cle dans \code{data}.
 Si NULL, utilise \code{cle_geo}. Defaut : NULL}
 
-\item{type}{character -- Type de jointure : \code{"gauche"} (toutes
-les zones geo conservees) ou \code{"interne"} (seulement les zones
-appariees). Defaut : "gauche"}
+\item{type}{character -- \code{"gauche"} (toutes zones conservees) ou
+\code{"interne"} (zones appariees uniquement). Defaut : "gauche"}
 
-\item{normaliser}{logical -- Normaliser les cles (majuscules, suppression
-accents et espaces) avant jointure. Defaut : TRUE}
+\item{normaliser}{logical -- Normaliser les cles (recommande).
+Defaut : TRUE}
 }
 \value{
-Un objet \code{sf} enrichi avec les donnees statistiques
+Un objet \code{sf} enrichi
 }
 \description{
-Effectue la jointure entre un objet sf et un data.frame
-statistique sur une cle administrative commune. Signale les zones
-non appariees et propose un diagnostic de correspondance.
+Joint un objet sf avec un data.frame statistique.
+Normalise automatiquement les cles pour eviter les erreurs de
+correspondance dues aux accents, casses et espaces.
 }
 \examples{
-\dontrun{
-  regions_sf <- carte_import("data/regions.shp")
-  stats      <- data.frame(region = c("Nord", "Sud"), taux = c(0.42, 0.31))
-  enrichi    <- carte_joindre(regions_sf, stats,
-                              cle_geo = "NOM_REGION", cle_data = "region")
-}
+# Avec les fonds de cartes integres
+rca <- carte_zones("rca")
+stats <- data.frame(
+  prefecture    = rca$prefecture,
+  taux_pauvrete = c(74.2, 71.8, 68.5, 65.3, 72.1,
+                    55.4, 48.7, 51.2, 62.3, 58.9,
+                    28.4, 42.1, 52.8, 63.7, 59.4,
+                    44.6, 70.5)[seq_len(nrow(rca))]
+)
+sf_enrichi <- carte_joindre(rca, stats,
+                             cle_geo  = "prefecture",
+                             cle_data = "prefecture")
 
 }
