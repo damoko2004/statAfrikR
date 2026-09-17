@@ -27,6 +27,10 @@ utils::globalVariables(c(
 #'   Defaut : NULL
 #' @param var_annee character ou NULL -- Variable annee. Defaut : NULL
 #' @param pays character -- Nom du pays pour les titres. Defaut : "Pays"
+#' @param titre character ou NULL -- Titre principal du dashboard.
+#'   Defaut : 'Tableau de bord - <pays>'
+#' @param sous_titre character ou NULL -- Sous-titre du dashboard.
+#'   Defaut : 'Indicateurs de bien-etre - <pays> - statAfrikR v0.2.0'
 #' @param port integer -- Port Shiny. Defaut : 3838L
 #' @param lancer logical -- Lancer l'app (TRUE) ou retourner l'objet
 #'   shinyApp (FALSE). Defaut : TRUE
