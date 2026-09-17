@@ -105,6 +105,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Analyse de régression
 - [`analyse_spatiale()`](https://damoko2004.github.io/statAfrikR/reference/analyse_spatiale.md)
   : Analyse spatiale — jointure et indicateurs par zone
+- [`analyser_non_reponse()`](https://damoko2004.github.io/statAfrikR/reference/analyser_non_reponse.md)
+  : Analyser la non-reponse
 - [`anemie()`](https://damoko2004.github.io/statAfrikR/reference/anemie.md)
   : Calculer la prevalence de l'anemie
 - [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md)
@@ -115,6 +117,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer l'indice d'autonomisation des femmes
 - [`bonheur_declare()`](https://damoko2004.github.io/statAfrikR/reference/bonheur_declare.md)
   : Calculer la part de population se declarant heureuse
+- [`calcul_deff()`](https://damoko2004.github.io/statAfrikR/reference/calcul_deff.md)
+  : Calculer l'effet de plan (DEFF)
 - [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
   : Calcul des indices de pauvrete FGT
 - [`calcul_gini()`](https://damoko2004.github.io/statAfrikR/reference/calcul_gini.md)
@@ -127,6 +131,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer un IPM national personnalise
 - [`calculer_deflateur()`](https://damoko2004.github.io/statAfrikR/reference/calculer_deflateur.md)
   : Calculer et appliquer le deflateur du PIB
+- [`calibrer_poids()`](https://damoko2004.github.io/statAfrikR/reference/calibrer_poids.md)
+  : Calibrer les poids de sondage
 - [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
   : Carte choroplethe statistique institutionnelle
 - [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
@@ -157,6 +163,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer la confiance dans les institutions
 - [`courbe_lorenz()`](https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.md)
   : Tracer la courbe de Lorenz
+- [`creer_design()`](https://damoko2004.github.io/statAfrikR/reference/creer_design.md)
+  : Creer un objet design d'enquete complexe
 - [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
   : Decomposer les indices FGT par sous-groupe
 - [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
@@ -256,6 +264,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer la couverture de protection sociale
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
+- [`rapport_qualite_sondage()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.md)
+  : Produire un rapport de qualite du plan de sondage
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
   : Recoder une variable
 - [`retard_croissance()`](https://damoko2004.github.io/statAfrikR/reference/retard_croissance.md)
@@ -336,6 +346,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer la couverture vaccinale
 - [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
   : Valider la cohérence données / dictionnaire
+- [`valider_poids()`](https://damoko2004.github.io/statAfrikR/reference/valider_poids.md)
+  : Valider les poids de sondage
 - [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)
   : Valider la qualité globale d'un jeu de données
 - [`violence_basee_genre()`](https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.md)
