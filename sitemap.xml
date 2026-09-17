@@ -21,6 +21,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_idh.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_ipm_national.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/calculer_deflateur.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/carte_exporter.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/carte_import.html</loc></url>
@@ -32,6 +33,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/check_na.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/check_types.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.html</loc></url>
@@ -96,8 +98,10 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/statAfrikR-package.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/stat_descr.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/suivre_revisions_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tab_croisee.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.html</loc></url>
@@ -108,6 +112,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_odd.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_sante.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/taux_activite.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/taux_croissance.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/taux_emploi.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/taux_sous_utilisation.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/theme_ins.html</loc></url>

@@ -26,6 +26,8 @@
   : Calculer l'Indice de Pauvrete Multidimensionnelle (IPM)
 - [`calcul_ipm_national()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm_national.md)
   : Calculer un IPM national personnalise
+- [`calculer_deflateur()`](https://damoko2004.github.io/statAfrikR/reference/calculer_deflateur.md)
+  : Calculer et appliquer le deflateur du PIB
 - [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
   : Carte choroplethe statistique institutionnelle
 - [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
@@ -48,6 +50,8 @@
   : Vérifier les types de variables
 - [`comparer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.md)
   : Comparer l'IPM global et l'IPM national
+- [`comparer_pib()`](https://damoko2004.github.io/statAfrikR/reference/comparer_pib.md)
+  : Comparer le PIB entre sources (INS vs UNSD vs BM vs FMI)
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
 - [`courbe_lorenz()`](https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.md)
@@ -175,10 +179,14 @@
   : Standardiser les âges déclarés
 - [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)
   : Statistiques descriptives pondérées
+- [`suivre_revisions_pib()`](https://damoko2004.github.io/statAfrikR/reference/suivre_revisions_pib.md)
+  : Suivre les revisions du PIB
 - [`supprimer_doublons()`](https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.md)
   : Détecter et supprimer les doublons
 - [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
   : Tableau croisé pondéré avec intervalles de confiance
+- [`tableau_bord_pib()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.md)
+  : Tableau de bord des comptes nationaux
 - [`tableau_croise_ins()`](https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.md)
   : Tableau croise pondere - format institutionnel INS
 - [`tableau_descriptif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.md)
@@ -199,6 +207,8 @@
   : Tableau de bord des indicateurs de sante
 - [`taux_activite()`](https://damoko2004.github.io/statAfrikR/reference/taux_activite.md)
   : Calculer le taux d'activite
+- [`taux_croissance()`](https://damoko2004.github.io/statAfrikR/reference/taux_croissance.md)
+  : Calculer les taux de croissance du PIB et contributions
 - [`taux_emploi()`](https://damoko2004.github.io/statAfrikR/reference/taux_emploi.md)
   : Calculer le taux d'emploi
 - [`taux_sous_utilisation()`](https://damoko2004.github.io/statAfrikR/reference/taux_sous_utilisation.md)
