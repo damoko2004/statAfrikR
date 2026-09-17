@@ -16,6 +16,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/autonomisation_femmes.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/bonheur_declare.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_gini.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_idh.html</loc></url>
@@ -35,6 +36,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/confiance_institutions.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.html</loc></url>
@@ -81,6 +83,8 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/parite_education.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/part_quintile.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/perception_economique.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/privations_ressenties.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/protection_sociale.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/recoder_variable.html</loc></url>
@@ -94,6 +98,9 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_sadc.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_senegal_regions.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_subdivisions_afrique.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/sante_mentale.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/satisfaction_vie.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/sentiment_securite.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/sous_emploi_temps.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/statAfrikR-package.html</loc></url>
@@ -101,6 +108,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/suivre_revisions_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tab_croisee.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_bien_etre_subjectif.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.html</loc></url>

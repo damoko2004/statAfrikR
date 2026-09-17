@@ -16,6 +16,8 @@
   : Appliquer les pondérations d'enquête
 - [`autonomisation_femmes()`](https://damoko2004.github.io/statAfrikR/reference/autonomisation_femmes.md)
   : Calculer l'indice d'autonomisation des femmes
+- [`bonheur_declare()`](https://damoko2004.github.io/statAfrikR/reference/bonheur_declare.md)
+  : Calculer la part de population se declarant heureuse
 - [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
   : Calcul des indices de pauvrete FGT
 - [`calcul_gini()`](https://damoko2004.github.io/statAfrikR/reference/calcul_gini.md)
@@ -54,6 +56,8 @@
   : Comparer le PIB entre sources (INS vs UNSD vs BM vs FMI)
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
+- [`confiance_institutions()`](https://damoko2004.github.io/statAfrikR/reference/confiance_institutions.md)
+  : Calculer la confiance dans les institutions
 - [`courbe_lorenz()`](https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.md)
   : Tracer la courbe de Lorenz
 - [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
@@ -147,6 +151,10 @@
   : Calculer les parts de revenu par quintile ou decile
 - [`pauvrete_travail()`](https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.md)
   : Calculer le taux de pauvrete au travail (working poor)
+- [`perception_economique()`](https://damoko2004.github.io/statAfrikR/reference/perception_economique.md)
+  : Calculer la perception de la situation economique
+- [`privations_ressenties()`](https://damoko2004.github.io/statAfrikR/reference/privations_ressenties.md)
+  : Calculer le score de privations ressenties
 - [`protection_sociale()`](https://damoko2004.github.io/statAfrikR/reference/protection_sociale.md)
   : Calculer la couverture de protection sociale
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
@@ -173,6 +181,12 @@
   : Regions du Senegal
 - [`saf_subdivisions_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_subdivisions_afrique.md)
   : Subdivisions de niveau 1 – tous les pays africains
+- [`sante_mentale()`](https://damoko2004.github.io/statAfrikR/reference/sante_mentale.md)
+  : Calculer les indicateurs de sante mentale
+- [`satisfaction_vie()`](https://damoko2004.github.io/statAfrikR/reference/satisfaction_vie.md)
+  : Calculer le score de satisfaction dans la vie
+- [`sentiment_securite()`](https://damoko2004.github.io/statAfrikR/reference/sentiment_securite.md)
+  : Calculer le sentiment de securite
 - [`sous_emploi_temps()`](https://damoko2004.github.io/statAfrikR/reference/sous_emploi_temps.md)
   : Calculer le taux de sous-emploi en temps de travail
 - [`standardiser_ages()`](https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.md)
@@ -185,6 +199,8 @@
   : Détecter et supprimer les doublons
 - [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
   : Tableau croisé pondéré avec intervalles de confiance
+- [`tableau_bien_etre_subjectif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bien_etre_subjectif.md)
+  : Tableau de bord du bien-etre subjectif
 - [`tableau_bord_pib()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.md)
   : Tableau de bord des comptes nationaux
 - [`tableau_croise_ins()`](https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.md)
