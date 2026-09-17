@@ -545,7 +545,7 @@ theil <- decomposer_theil
 
 #' @title Calculer l'indice d'Atkinson
 #' @description L'indice d'Atkinson est une mesure d'inegalite parametrique
-#'   dont le parametre epsilon refl\u00e8te l'aversion \u00e0 l'inegalite de la societe.
+#'   dont le parametre epsilon reflete l aversion a l'inegalite de la societe.
 #'   Epsilon = 0 : indifference ; Epsilon = 1 : forte aversion.
 #'
 #' @param donnees data.frame -- Donnees menages
