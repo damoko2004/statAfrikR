@@ -15,6 +15,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/anemie.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/autonomisation_femmes.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_gini.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_idh.html</loc></url>
@@ -53,6 +54,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/handicap_prevalence.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_cspro.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_csv.html</loc></url>
@@ -68,11 +70,13 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/indice_palma.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/lister_templates.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/palette_ins.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/parite_education.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/part_quintile.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/protection_sociale.html</loc></url>
@@ -97,6 +101,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_genre.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_inegalites.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_marche_travail.html</loc></url>
@@ -111,5 +116,6 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/vaccination.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.html</loc></url>
 </urlset>
 

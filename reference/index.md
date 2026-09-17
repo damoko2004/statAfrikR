@@ -14,6 +14,8 @@
   : Anonymiser un jeu de données
 - [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md)
   : Appliquer les pondérations d'enquête
+- [`autonomisation_femmes()`](https://damoko2004.github.io/statAfrikR/reference/autonomisation_femmes.md)
+  : Calculer l'indice d'autonomisation des femmes
 - [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
   : Calcul des indices de pauvrete FGT
 - [`calcul_gini()`](https://damoko2004.github.io/statAfrikR/reference/calcul_gini.md)
@@ -91,6 +93,8 @@
   : Graphique des contributions IPM
 - [`graphique_tendance()`](https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.md)
   : Graphique de tendance temporelle
+- [`handicap_prevalence()`](https://damoko2004.github.io/statAfrikR/reference/handicap_prevalence.md)
+  : Calculer la prevalence du handicap
 - [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
   : Harmoniser les noms de régions/provinces
 - [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md)
@@ -121,6 +125,8 @@
   : Calculer le taux d'insuffisance ponderale
 - [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
   : Lister les templates de rapport disponibles
+- [`mariage_precoce()`](https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.md)
+  : Calculer le taux de mariage precoce
 - [`mortalite_5ans()`](https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.md)
   : Calculer le taux de mortalite des enfants de moins de 5 ans
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
@@ -131,6 +137,8 @@
   : Calculer un indicateur ODD
 - [`palette_ins()`](https://damoko2004.github.io/statAfrikR/reference/palette_ins.md)
   : Palette de couleurs INS
+- [`parite_education()`](https://damoko2004.github.io/statAfrikR/reference/parite_education.md)
+  : Calculer l'indice de parite filles/garcons en education
 - [`part_quintile()`](https://damoko2004.github.io/statAfrikR/reference/part_quintile.md)
   : Calculer les parts de revenu par quintile ou decile
 - [`pauvrete_travail()`](https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.md)
@@ -177,6 +185,8 @@
   : Tableau de statistiques descriptives institutionnel
 - [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
   : Tableau institutionnel des indices FGT
+- [`tableau_genre()`](https://damoko2004.github.io/statAfrikR/reference/tableau_genre.md)
+  : Tableau de bord des indicateurs de genre et d'inclusion
 - [`tableau_inegalites()`](https://damoko2004.github.io/statAfrikR/reference/tableau_inegalites.md)
   : Tableau de bord des inegalites
 - [`tableau_ipm()`](https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.md)
@@ -205,3 +215,5 @@
   : Valider la cohérence données / dictionnaire
 - [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)
   : Valider la qualité globale d'un jeu de données
+- [`violence_basee_genre()`](https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.md)
+  : Calculer la prevalence des violences basees sur le genre
