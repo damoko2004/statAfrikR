@@ -184,6 +184,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer le taux d'emploi informel
 - [`emploi_vulnerable()`](https://damoko2004.github.io/statAfrikR/reference/emploi_vulnerable.md)
   : Calculer le taux d'emploi vulnerable
+- [`exporter_code_dashboard()`](https://damoko2004.github.io/statAfrikR/reference/exporter_code_dashboard.md)
+  : Exporter le code source complet du dashboard
 - [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
   : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
