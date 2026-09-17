@@ -4,8 +4,6 @@
 # Zero code Shiny requis pour l'utilisateur final
 # =============================================================================
 
-
-#' @importFrom stats rbinom rnorm runif
 utils::globalVariables(c(
   "input", "output", "session", "reactive", "observe",
   "renderUI", "renderPlot", "renderTable", "renderText",
@@ -169,8 +167,8 @@ lancer_dashboard <- function(donnees     = NULL,
   if ("conso_pc" %in% names(donnees) &&
       "seuil_pauv" %in% names(donnees)) {
     ind$fgt <- tryCatch(suppressMessages(
-      calcul_fgt(data = donnees, var_depense = "conso_pc",
-                 seuil_pauvrete = 171000, poids = var_poids,
+      calcul_fgt(donnees, var_depense = "conso_pc",
+                 var_seuil = "seuil_pauv", poids = var_poids,
                  sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
   }
@@ -419,9 +417,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_pauvrete <- function(ind) {
-  if (is.null(ind$fgt)) return('<p style="color:#94A3B8;font-size:13px;">Donnees FGT non disponibles.</p>')
-
-  fgt <- ind$fgt
+  if (is.null(ind$fgt)) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Fournissez var_depense et var_seuil.</p>')
   fgt <- ind$fgt
   paste0(
     '<div class="kpi-grid">',
@@ -443,9 +441,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_ipm <- function(ind) {
-  if (is.null(ind$ipm)) return('<p style="color:#94A3B8;font-size:13px;">Donnees IPM non disponibles.</p>')
-
-
+  if (is.null(ind$ipm)) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees IPM non disponibles.</p>')
   ipm <- ind$ipm
   paste0(
     '<div class="kpi-grid">',
@@ -467,9 +465,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_inegalites <- function(ind) {
-  if (is.null(ind$gini)) return('<p style="color:#94A3B8;font-size:13px;">Donnees inegalites non disponibles.</p>')
-
-
+  if (is.null(ind$gini)) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees inegalites non disponibles.</p>')
   g <- ind$gini
   paste0(
     '<div class="kpi-grid">',
@@ -483,9 +481,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_sante <- function(ind) {
-  if (is.null(ind$stunting)) return('<p style="color:#94A3B8;font-size:13px;">Donnees sante non disponibles.</p>')
-
-
+  if (is.null(ind$stunting)) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees sante non disponibles.</p>')
   s <- ind$stunting
   paste0(
     '<div class="kpi-grid">',
@@ -517,17 +515,17 @@ lancer_dashboard <- function(donnees     = NULL,
       paste0(ind$informel$taux_pct, "%"),
       "OIT 2013", "#EA580C"))
   }
-  if (length(cards) == 0) return('<p style="color:#94A3B8;font-size:13px;">Donnees emploi non disponibles.</p>')
-
-
+  if (length(cards) == 0) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees emploi non disponibles.</p>')
   paste0('<div class="kpi-grid">', paste(cards, collapse = ""), '</div>')
 }
 
 #' @keywords internal
 .shiny_section_genre <- function(ind) {
-  if (is.null(ind$mariage)) return('<p style="color:#94A3B8;font-size:13px;">Donnees genre non disponibles.</p>')
-
-
+  if (is.null(ind$mariage)) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees genre non disponibles.</p>')
   m <- ind$mariage
   paste0(
     '<div class="kpi-grid">',
@@ -556,9 +554,9 @@ lancer_dashboard <- function(donnees     = NULL,
       paste0(ind$bonheur$taux_pct, "%"),
       "Tres heureux ou heureux", "#16A34A"))
   }
-  if (length(cards) == 0) return('<p style="color:#94A3B8;font-size:13px;">Donnees bien-etre non disponibles.</p>')
-
-
+  if (length(cards) == 0) return(
+    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
+    'Donnees bien-etre subjectif non disponibles.</p>')
   paste0('<div class="kpi-grid">', paste(cards, collapse = ""), '</div>')
 }
 
@@ -577,5 +575,233 @@ lancer_dashboard <- function(donnees     = NULL,
   ui_html <- .build_ui(pays, indicateurs)
   writeLines(as.character(ui_html), chemin)
   message("Dashboard exporte : ", chemin)
+  invisible(chemin)
+}
+
+# =============================================================================
+# EXPORT CODE SOURCE DU DASHBOARD
+# =============================================================================
+
+#' @title Exporter le code source complet du dashboard
+#' @description Genere un fichier R autonome et entierement commente que
+#'   l'agent INS peut ouvrir, modifier et relancer librement. Contient
+#'   l'integralite du code du dashboard avec des sections clairement
+#'   identifiees pour la personnalisation : titres, couleurs, indicateurs,
+#'   filtres, sections.
+#'
+#' @param chemin character -- Chemin du fichier R a generer.
+#'   Defaut : "dashboard_statAfrikR.R"
+#' @param pays character -- Nom du pays pre-rempli. Defaut : "Pays"
+#' @param titre character ou NULL -- Titre pre-rempli. Defaut : NULL
+#' @param sous_titre character ou NULL -- Sous-titre pre-rempli.
+#'   Defaut : NULL
+#' @param var_poids character ou NULL -- Variable poids pre-remplie.
+#'   Defaut : NULL
+#' @param var_region character ou NULL -- Variable region pre-remplie.
+#'   Defaut : NULL
+#' @param var_milieu character ou NULL -- Variable milieu pre-remplie.
+#'   Defaut : NULL
+#'
+#' @return Invisible : chemin du fichier genere
+#'
+#' @examples
+#' \dontrun{
+#'   # Generer le code source personnalisable
+#'   exporter_code_dashboard(
+#'     chemin     = "mon_dashboard_rca.R",
+#'     pays       = "Republique Centrafricaine",
+#'     titre      = "Tableau de bord - Enquete EHCVM 2022",
+#'     sous_titre = "Indicateurs bien-etre - INS RCA",
+#'     var_poids  = "poids_sondage",
+#'     var_region = "prefecture",
+#'     var_milieu = "milieu"
+#'   )
+#'   # Ouvrir le fichier genere dans RStudio
+#'   file.edit("mon_dashboard_rca.R")
+#' }
+#'
+#' @export
+exporter_code_dashboard <- function(chemin      = "dashboard_statAfrikR.R",
+                                     pays        = "Pays",
+                                     titre       = NULL,
+                                     sous_titre  = NULL,
+                                     var_poids   = NULL,
+                                     var_region  = NULL,
+                                     var_milieu  = NULL) {
+
+  if (is.null(titre))     titre     <- paste0("Tableau de bord - ", pays)
+  if (is.null(sous_titre)) sous_titre <- paste0(
+    "Indicateurs de bien-etre - ", pays, " - statAfrikR v0.2.0")
+  if (is.null(var_poids))  var_poids  <- "poids_sondage"
+  if (is.null(var_region)) var_region <- "region"
+  if (is.null(var_milieu)) var_milieu <- "milieu"
+
+  code <- paste0(
+'# =============================================================================
+# DASHBOARD statAfrikR - ', pays, '
+# Genere automatiquement par statAfrikR::exporter_code_dashboard()
+# Vous pouvez modifier ce fichier librement et le relancer.
+# =============================================================================
+
+library(statAfrikR)
+
+# =============================================================================
+# SECTION 1 - VOS DONNEES
+# Remplacez cette ligne par le chargement de vos propres donnees
+# Exemples :
+#   donnees <- read.csv("enquete_menages.csv")
+#   donnees <- haven::read_dta("ehcvm_2022.dta")
+#   donnees <- readRDS("donnees_enquete.rds")
+# =============================================================================
+
+donnees <- NULL  # <- Remplacez par vos donnees
+
+# =============================================================================
+# SECTION 2 - PARAMETRES DU DASHBOARD
+# Modifiez ces parametres selon votre enquete
+# =============================================================================
+
+PAYS        <- "', pays, '"
+TITRE       <- "', titre, '"
+SOUS_TITRE  <- "', sous_titre, '"
+
+# Variables de votre jeu de donnees
+VAR_POIDS   <- "', var_poids, '"   # Variable poids de sondage
+VAR_REGION  <- "', var_region, '"  # Variable region / prefecture
+VAR_MILIEU  <- "', var_milieu, '"  # Variable milieu (urbain/rural)
+VAR_ANNEE   <- NULL                # Variable annee (si panel, sinon NULL)
+PORT        <- 3838L               # Port Shiny (modifiable si conflit)
+
+# =============================================================================
+# SECTION 3 - LANCER LE DASHBOARD
+# Executez cette section pour ouvrir le dashboard dans votre navigateur
+# =============================================================================
+
+lancer_dashboard(
+  donnees    = donnees,
+  var_poids  = VAR_POIDS,
+  var_region = VAR_REGION,
+  var_milieu = VAR_MILIEU,
+  var_annee  = VAR_ANNEE,
+  pays       = PAYS,
+  titre      = TITRE,
+  sous_titre = SOUS_TITRE,
+  port       = PORT,
+  lancer     = TRUE
+)
+
+# =============================================================================
+# SECTION 4 - EXPORT HTML STATIQUE (sans Shiny)
+# Pour partager le dashboard sans que le destinataire ait R installe
+# =============================================================================
+
+# lancer_dashboard(
+#   donnees     = donnees,
+#   var_poids   = VAR_POIDS,
+#   var_region  = VAR_REGION,
+#   var_milieu  = VAR_MILIEU,
+#   pays        = PAYS,
+#   titre       = TITRE,
+#   sous_titre  = SOUS_TITRE,
+#   export_html = paste0("dashboard_", PAYS, "_2024.html")
+# )
+
+# =============================================================================
+# SECTION 5 - INDICATEURS INDIVIDUELS
+# Vous pouvez aussi calculer et afficher les indicateurs un par un
+# =============================================================================
+
+# --- Pauvrete FGT ---
+# res_fgt <- calcul_fgt(donnees,
+#   var_depense    = "consommation_pc",
+#   seuil_pauvrete = 171000,
+#   poids          = VAR_POIDS,
+#   sous_groupes   = c(VAR_REGION, VAR_MILIEU)
+# )
+# print(res_fgt)
+# graphique_fgt(res_fgt)
+
+# --- IPM Alkire-Foster ---
+# res_ipm <- calcul_ipm(donnees,
+#   var_nutrition      = "malnutrition",
+#   var_mortalite_inf  = "mortalite_enf",
+#   var_annees_scol    = "scol_adulte",
+#   var_scolarisation  = "scol_enfants",
+#   var_electricite    = "electricite",
+#   var_eau            = "eau_potable",
+#   var_assainissement = "assainissement",
+#   var_combustible    = "combustible",
+#   var_logement       = "logement",
+#   var_actifs         = "actifs_menage",
+#   poids              = VAR_POIDS
+# )
+# print(res_ipm)
+# graphique_ipm(res_ipm)
+# tableau_ipm(res_ipm, pays = PAYS, annee = 2024L)
+
+# --- Inegalites ---
+# res_gini <- calcul_gini(donnees, "consommation_pc", poids = VAR_POIDS)
+# courbe_lorenz(donnees, "consommation_pc", poids = VAR_POIDS)
+
+# --- Sante & Nutrition ---
+# res_stunting <- retard_croissance(donnees,
+#   var_taille_age_z = "haz_score", poids = VAR_POIDS)
+# res_vaccin <- vaccination(donnees,
+#   vars_vaccins = c(DTC3 = "dtc3", Rougeole = "rougeole"),
+#   poids = VAR_POIDS)
+
+# --- Emploi ---
+# res_activite <- taux_activite(donnees, "actif", poids = VAR_POIDS)
+# res_informel <- emploi_informel(donnees, "emploi_informel",
+#   poids = VAR_POIDS)
+
+# --- Genre ---
+# res_mariage <- mariage_precoce(donnees, "marie_avant_18",
+#   poids = VAR_POIDS)
+# res_isp <- parite_education(donnees, "scolarise", "sexe",
+#   poids = VAR_POIDS)
+
+# --- Bien-etre subjectif ---
+# res_satisf <- satisfaction_vie(donnees, "satisfaction_vie",
+#   poids = VAR_POIDS)
+
+# =============================================================================
+# SECTION 6 - CARTOGRAPHIE
+# Produire des cartes des indicateurs par region
+# =============================================================================
+
+# carte_pauvrete(donnees,
+#   var_depense    = "consommation_pc",
+#   seuil_pauvrete = 171000,
+#   var_region     = VAR_REGION,
+#   poids          = VAR_POIDS,
+#   pays           = PAYS
+# )
+
+# =============================================================================
+# SECTION 7 - RAPPORTS AUTOMATIQUES
+# Generer des rapports Word ou HTML
+# =============================================================================
+
+# generer_rapport_enquete(
+#   donnees  = donnees,
+#   poids    = VAR_POIDS,
+#   region   = VAR_REGION,
+#   pays     = PAYS,
+#   annee    = 2024L,
+#   format   = "word",   # "html", "pdf", "word"
+#   chemin   = paste0("rapport_", PAYS, "_2024.docx")
+# )
+
+# =============================================================================
+# FIN DU FICHIER
+# Documentation complete : https://statafrikr.org/
+# Support : diamoko@gmail.com | Discord : discord.gg/kcfA27Yz
+# =============================================================================
+')
+
+  writeLines(code, chemin)
+  message("Code dashboard exporte : ", chemin)
+  message("Ouvrez ce fichier dans RStudio et modifiez la SECTION 1 et 2.")
   invisible(chemin)
 }
