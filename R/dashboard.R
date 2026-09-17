@@ -168,7 +168,7 @@ lancer_dashboard <- function(donnees     = NULL,
       "seuil_pauv" %in% names(donnees)) {
     ind$fgt <- tryCatch(suppressMessages(
       calcul_fgt(donnees, var_depense = "conso_pc",
-                 var_seuil = "seuil_pauv", poids = var_poids,
+                 seuil_pauvrete = 171000, poids = var_poids,
                  sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
   }
@@ -417,9 +417,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_pauvrete <- function(ind) {
-  if (is.null(ind$fgt)) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Fournissez var_depense et var_seuil.</p>')
+  if (is.null(ind$fgt)) return('<p style="color:#94A3B8;font-size:13px;">Donnees FGT non disponibles.</p>')
+
+
   fgt <- ind$fgt
   paste0(
     '<div class="kpi-grid">',
