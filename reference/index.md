@@ -12,6 +12,8 @@
   : Appliquer les pondérations d'enquête
 - [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
   : Calcul des indices de pauvrete FGT
+- [`calcul_gini()`](https://damoko2004.github.io/statAfrikR/reference/calcul_gini.md)
+  : Calculer le coefficient de Gini
 - [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md)
   : Calculer l'Indice de Développement Humain (IDH)
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
@@ -42,12 +44,17 @@
   : Comparer l'IPM global et l'IPM national
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
+- [`courbe_lorenz()`](https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.md)
+  : Tracer la courbe de Lorenz
 - [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
   : Decomposer les indices FGT par sous-groupe
 - [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
   : Décomposer les inégalités
 - [`decomposer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_ipm.md)
   : Decomposer l'IPM par sous-groupe
+- [`decomposer_theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
+  [`theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
+  : Decomposer les inegalites selon l'indice de Theil
 - [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
   : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
@@ -94,6 +101,12 @@
   : Importer un fichier Stata
 - [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md)
   : Imputer les valeurs manquantes
+- [`indice_atkinson()`](https://damoko2004.github.io/statAfrikR/reference/indice_atkinson.md)
+  [`atkinson()`](https://damoko2004.github.io/statAfrikR/reference/indice_atkinson.md)
+  : Calculer l'indice d'Atkinson
+- [`indice_palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
+  [`palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
+  : Calculer l'indice de Palma
 - [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
   : Lister les templates de rapport disponibles
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
@@ -104,6 +117,8 @@
   : Calculer un indicateur ODD
 - [`palette_ins()`](https://damoko2004.github.io/statAfrikR/reference/palette_ins.md)
   : Palette de couleurs INS
+- [`part_quintile()`](https://damoko2004.github.io/statAfrikR/reference/part_quintile.md)
+  : Calculer les parts de revenu par quintile ou decile
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
@@ -140,6 +155,8 @@
   : Tableau de statistiques descriptives institutionnel
 - [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
   : Tableau institutionnel des indices FGT
+- [`tableau_inegalites()`](https://damoko2004.github.io/statAfrikR/reference/tableau_inegalites.md)
+  : Tableau de bord des inegalites
 - [`tableau_ipm()`](https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.md)
   : Tableau institutionnel IPM
 - [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
