@@ -242,6 +242,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer l'indice de Palma
 - [`insuffisance_ponderale()`](https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.md)
   : Calculer le taux d'insuffisance ponderale
+- [`lancer_dashboard()`](https://damoko2004.github.io/statAfrikR/reference/lancer_dashboard.md)
+  : Lancer le tableau de bord interactif statAfrikR
 - [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
   : Lister les templates de rapport disponibles
 - [`mariage_precoce()`](https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.md)
