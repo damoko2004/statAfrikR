@@ -176,6 +176,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - [`decomposer_theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
   [`theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
   : Decomposer les inegalites selon l'indice de Theil
+- [`detecter_ecarts_geo()`](https://damoko2004.github.io/statAfrikR/reference/detecter_ecarts_geo.md)
+  : Detecter les zones non appariees entre deux sources
 - [`emaciation()`](https://damoko2004.github.io/statAfrikR/reference/emaciation.md)
   : Calculer le taux d'emaciation (wasting)
 - [`emploi_informel()`](https://damoko2004.github.io/statAfrikR/reference/emploi_informel.md)
@@ -212,6 +214,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer la prevalence du handicap
 - [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
   : Harmoniser les noms de régions/provinces
+- [`harmoniser_zones()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_zones.md)
+  : Harmoniser les noms de zones geographiques
 - [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md)
   : Importer des données CSPro
 - [`import_csv()`](https://damoko2004.github.io/statAfrikR/reference/import_csv.md)
@@ -242,6 +246,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Lister les templates de rapport disponibles
 - [`mariage_precoce()`](https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.md)
   : Calculer le taux de mariage precoce
+- [`migrer_nomenclature()`](https://damoko2004.github.io/statAfrikR/reference/migrer_nomenclature.md)
+  : Migrer d'une nomenclature geographique vers une autre
 - [`mortalite_5ans()`](https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.md)
   : Calculer le taux de mortalite des enfants de moins de 5 ans
 - [`myers()`](https://damoko2004.github.io/statAfrikR/reference/myers.md)
@@ -270,6 +276,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Construire et tracer la pyramide des ages
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
+- [`rapport_harmonisation()`](https://damoko2004.github.io/statAfrikR/reference/rapport_harmonisation.md)
+  : Produire un rapport d'harmonisation geographique
 - [`rapport_qualite_demo()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_demo.md)
   : Produire un rapport de qualite des donnees demographiques
 - [`rapport_qualite_sondage()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.md)
@@ -316,6 +324,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Détecter et supprimer les doublons
 - [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
   : Tableau croisé pondéré avec intervalles de confiance
+- [`table_concordance()`](https://damoko2004.github.io/statAfrikR/reference/table_concordance.md)
+  : Creer une table de concordance entre nomenclatures geographiques
 - [`tableau_bien_etre_subjectif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bien_etre_subjectif.md)
   : Tableau de bord du bien-etre subjectif
 - [`tableau_bord_pib()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.md)
@@ -354,6 +364,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Calculer la prevalence du travail des enfants
 - [`vaccination()`](https://damoko2004.github.io/statAfrikR/reference/vaccination.md)
   : Calculer la couverture vaccinale
+- [`valider_coherence_geo()`](https://damoko2004.github.io/statAfrikR/reference/valider_coherence_geo.md)
+  : Valider la coherence de la couverture geographique
 - [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
   : Valider la cohérence données / dictionnaire
 - [`valider_poids()`](https://damoko2004.github.io/statAfrikR/reference/valider_poids.md)

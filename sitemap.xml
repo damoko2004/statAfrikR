@@ -47,6 +47,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/detecter_ecarts_geo.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/emaciation.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/emploi_informel.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/emploi_vulnerable.html</loc></url>
@@ -65,6 +66,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/handicap_prevalence.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/harmoniser_zones.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_cspro.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_csv.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/import_excel.html</loc></url>
@@ -80,6 +82,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/lister_templates.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/migrer_nomenclature.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/myers.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.html</loc></url>
@@ -94,6 +97,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/protection_sociale.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_age.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/rapport_harmonisation.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_demo.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/ratio_masculinite.html</loc></url>
@@ -118,6 +122,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/suivre_revisions_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tab_croisee.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/table_concordance.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_bien_etre_subjectif.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.html</loc></url>
@@ -137,6 +142,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/travail_enfants.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/vaccination.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_coherence_geo.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_poids.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.html</loc></url>
