@@ -424,7 +424,7 @@ pyramide_age <- function(donnees,
 # =============================================================================
 
 #' @title Verifier la coherence demographique des donnees
-#' @description Detecte les incoh\u00e9rences courantes dans les donn\u00e9es
+#' @description Detecte les incoherences courantes dans les donnees
 #'   demographiques : age mere < age enfant, dates d'evenements
 #'   incoherentes, ages impossibles, sex-ratio aberrants, etc.
 #'
