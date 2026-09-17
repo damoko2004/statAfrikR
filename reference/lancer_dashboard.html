@@ -61,6 +61,8 @@ Compatible EHCVM, DHS, MICS, EFT.</p>
 <span>  var_milieu <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  var_annee <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pays <span class="op">=</span> <span class="st">"Pays"</span>,</span>
+<span>  titre <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sous_titre <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  port <span class="op">=</span> <span class="fl">3838L</span>,</span>
 <span>  lancer <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  export_html <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -97,6 +99,16 @@ Defaut : NULL</p></dd>
 
 <dt id="arg-pays">pays<a class="anchor" aria-label="anchor" href="#arg-pays"></a></dt>
 <dd><p>character – Nom du pays pour les titres. Defaut : "Pays"</p></dd>
+
+
+<dt id="arg-titre">titre<a class="anchor" aria-label="anchor" href="#arg-titre"></a></dt>
+<dd><p>character ou NULL – Titre principal du dashboard.
+Defaut : 'Tableau de bord - <pays>'</pays></p></dd>
+
+
+<dt id="arg-sous-titre">sous_titre<a class="anchor" aria-label="anchor" href="#arg-sous-titre"></a></dt>
+<dd><p>character ou NULL – Sous-titre du dashboard.
+Defaut : 'Indicateurs de bien-etre - <pays> - statAfrikR v0.2.0'</pays></p></dd>
 
 
 <dt id="arg-port">port<a class="anchor" aria-label="anchor" href="#arg-port"></a></dt>

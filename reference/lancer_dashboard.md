@@ -15,6 +15,8 @@ lancer_dashboard(
   var_milieu = NULL,
   var_annee = NULL,
   pays = "Pays",
+  titre = NULL,
+  sous_titre = NULL,
   port = 3838L,
   lancer = TRUE,
   export_html = NULL
@@ -47,6 +49,16 @@ lancer_dashboard(
 - pays:
 
   character – Nom du pays pour les titres. Defaut : "Pays"
+
+- titre:
+
+  character ou NULL – Titre principal du dashboard. Defaut : 'Tableau de
+  bord - '
+
+- sous_titre:
+
+  character ou NULL – Sous-titre du dashboard. Defaut : 'Indicateurs de
+  bien-etre - - statAfrikR v0.2.0'
 
 - port:
 
