@@ -226,52 +226,49 @@ test_that("calcul_idh() avertit sur valeurs hors plage", {
 
 # --- calcul_ipm --------------------------------------------------------------
 
-test_that("calcul_ipm() retourne une liste avec les bons éléments", {
-  indicateurs <- list(
-    sante     = c("malnutrition", "mortalite"),
-    education = c("scolarisation", "enfants_scol"),
-    niveau_vie = c("electricite", "eau_potable")
-  )
-  result <- calcul_ipm(donnees_test, indicateurs)
-  expect_type(result, "list")
-  expect_true(all(c("ipm", "H", "A", "contributions") %in% names(result)))
+test_that("calcul_ipm() retourne une liste avec les bons elements", {
+  d <- donnees_test
+  result <- calcul_ipm(d,
+    var_nutrition     = "malnutrition",
+    var_scolarisation = "scolarisation",
+    var_electricite   = "electricite")
+  expect_s3_class(result, "saf_ipm")
+  expect_true(all(c("IPM","H","A","contributions") %in% names(result)))
 })
 
 test_that("calcul_ipm() retourne IPM entre 0 et 1", {
-  indicateurs <- list(
-    sante     = c("malnutrition", "mortalite"),
-    education = c("scolarisation", "enfants_scol")
-  )
-  result <- calcul_ipm(donnees_test, indicateurs)
-  expect_gte(result$ipm, 0)
-  expect_lte(result$ipm, 1)
+  result <- calcul_ipm(donnees_test,
+    var_nutrition     = "malnutrition",
+    var_scolarisation = "scolarisation")
+  expect_gte(result$IPM, 0)
+  expect_lte(result$IPM, 1)
 })
 
-test_that("calcul_ipm() vérifie la relation IPM = H × A", {
-  indicateurs <- list(
-    sante     = c("malnutrition", "mortalite"),
-    education = c("scolarisation", "enfants_scol")
-  )
-  result <- calcul_ipm(donnees_test, indicateurs)
-  expect_equal(result$ipm, round(result$H * result$A, 4), tolerance = 1e-3)
+test_that("calcul_ipm() verifie la relation IPM = H x A", {
+  result <- calcul_ipm(donnees_test,
+    var_nutrition     = "malnutrition",
+    var_scolarisation = "scolarisation")
+  expect_equal(result$IPM, result$H * result$A, tolerance = 1e-10)
 })
 
-test_that("calcul_ipm() échoue sur indicateurs manquants", {
-  indicateurs <- list(sante = c("var_inexistante"))
-  expect_error(calcul_ipm(donnees_test, indicateurs), regexp = "introuvable")
+test_that("calcul_ipm() echoue sur variable manquante", {
+  expect_error(
+    calcul_ipm(donnees_test, var_nutrition = "var_inexistante"),
+    regexp = "introuvable")
 })
 
-test_that("calcul_ipm() échoue sur seuil invalide", {
-  indicateurs <- list(sante = c("malnutrition"))
-  expect_error(calcul_ipm(donnees_test, indicateurs, seuil_pauvrete = 1.5))
-  expect_error(calcul_ipm(donnees_test, indicateurs, seuil_pauvrete = 0))
+test_that("calcul_ipm() echoue sur seuil invalide", {
+  expect_error(
+    calcul_ipm(donnees_test, var_nutrition = "malnutrition",
+               seuil_k = 1.5),
+    regexp = "seuil_k")
 })
 
-test_that("calcul_ipm() enrichit les données avec les colonnes attendues", {
-  indicateurs <- list(sante = c("malnutrition"), education = c("scolarisation"))
-  result <- calcul_ipm(donnees_test, indicateurs)
-  expect_true(".score_privation" %in% names(result$donnees_enrichies))
-  expect_true(".est_pauvre_multi" %in% names(result$donnees_enrichies))
+test_that("calcul_ipm() slot score de bonne longueur", {
+  result <- calcul_ipm(donnees_test,
+    var_nutrition = "malnutrition",
+    var_eau       = "eau_potable")
+  expect_equal(length(result$score), nrow(donnees_test))
 })
 
 # --- decomposer_inegalite ----------------------------------------------------

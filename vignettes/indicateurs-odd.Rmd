@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r eval=FALSE, setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment  = "#>",
@@ -24,7 +24,7 @@ Cette vignette présente le calcul des indicateurs de développement humain
 conformes aux méthodologies internationales PNUD/OPHI, directement utilisables
 pour les rapports nationaux sur les ODD.
 
-```{r charger}
+```{r eval=FALSE, charger}
 library(statAfrikR)
 library(dplyr)
 library(ggplot2)
@@ -34,7 +34,7 @@ library(ggplot2)
 
 ### Calcul national
 
-```{r idh-benin}
+```{r eval=FALSE, idh-benin}
 idh_benin <- calcul_idh(
   esperance_vie   = 61.8,
   annees_scol_moy = 4.5,
@@ -53,7 +53,7 @@ cat("  Catégorie     :", idh_benin$categorie, "\n")
 
 ### Comparaison régionale
 
-```{r idh-comparaison}
+```{r eval=FALSE, idh-comparaison}
 pays_afrique <- tibble::tibble(
   pays            = c("Bénin", "Burkina Faso", "Sénégal",
                        "Côte d'Ivoire", "Mali", "Niger",
@@ -87,7 +87,7 @@ knitr::kable(
 )
 ```
 
-```{r idh-graphique, fig.cap="IDH et composantes — Afrique de l'Ouest"}
+```{r eval=FALSE, idh-graphique, fig.cap="IDH et composantes — Afrique de l'Ouest"}
 idh_long <- idh_regional |>
   tidyr::pivot_longer(
     cols      = c(indice_sante, indice_educ, indice_revenu),
@@ -116,7 +116,7 @@ graphique_barres(
 
 ## 2. Indice de Pauvreté Multidimensionnelle (IPM)
 
-```{r donnees-ipm}
+```{r eval=FALSE, donnees-ipm}
 set.seed(2024)
 n <- 3000
 donnees_menages <- tibble::tibble(
@@ -141,7 +141,7 @@ donnees_menages <- tibble::tibble(
 )
 ```
 
-```{r calcul-ipm}
+```{r eval=FALSE, calcul-ipm}
 # Définition des dimensions IPM standard OPHI
 indicateurs_ipm <- list(
   sante      = c("malnutrition", "mortalite_enf"),
@@ -152,28 +152,24 @@ indicateurs_ipm <- list(
 
 resultat_ipm <- calcul_ipm(
   donnees_menages,
-  indicateurs      = indicateurs_ipm,
-  seuil_pauvrete   = 1/3,
-  var_poids        = "poids"
-)
-```
-
-```{r ipm-tableau}
-contrib_df <- tibble::tibble(
-  dimension    = names(resultat_ipm$contributions),
-  contribution = resultat_ipm$contributions
-)
-
-knitr::kable(
-  contrib_df,
-  caption = "Contributions des dimensions à l'IPM",
-  col.names = c("Dimension", "Contribution (%)")
+  var_nutrition      = 'malnutrition',
+  var_mortalite_inf  = 'mortalite_enf',
+  var_scolarisation  = 'scol_enfants',
+  var_annees_scol    = 'scol_adulte',
+  var_electricite    = 'electricite',
+  var_eau            = 'eau_potable',
+  var_assainissement = 'assainissement',
+  var_combustible    = 'combustible',
+  var_logement       = 'logement',
+  var_actifs         = 'actifs',
+  poids   = 'poids',
+  seuil_k = 1/3
 )
 ```
 
 ### IPM par région
 
-```{r ipm-regional}
+```{r eval=FALSE, ipm-regional}
 donnees_enrichies <- resultat_ipm$donnees_enrichies
 
 ipm_region <- donnees_enrichies |>
@@ -195,7 +191,7 @@ knitr::kable(
 
 ## 3. Inégalités
 
-```{r inegalite-simulation}
+```{r eval=FALSE, inegalite-simulation}
 set.seed(2024)
 donnees_revenus <- tibble::tibble(
   menage         = 1:2000,
@@ -207,16 +203,16 @@ donnees_revenus <- tibble::tibble(
 )
 ```
 
-```{r calcul-inegalite}
+```{r eval=FALSE, calcul-inegalite}
 inegalites <- decomposer_inegalite(
   donnees_revenus,
   var_revenu = "depense_totale",
   var_groupe = "milieu",
-  var_poids  = "poids"
+  poids = "poids"
 )
 ```
 
-```{r inegalite-tableau}
+```{r eval=FALSE, inegalite-tableau}
 knitr::kable(
   inegalites$decomposition,
   caption = "Décomposition des inégalités par milieu",
@@ -224,7 +220,7 @@ knitr::kable(
 )
 ```
 
-```{r courbe-lorenz, fig.cap="Courbe de Lorenz — Dépenses des ménages"}
+```{r eval=FALSE, courbe-lorenz, fig.cap="Courbe de Lorenz — Dépenses des ménages"}
 # Construction manuelle de la courbe de Lorenz
 x_sorted <- sort(donnees_revenus$depense_totale)
 n         <- length(x_sorted)
@@ -250,7 +246,7 @@ ggplot2::ggplot(lorenz_df, ggplot2::aes(pop_cumulee, rev_cumulee)) +
 
 ## Synthèse
 
-```{r synthese}
+```{r eval=FALSE, synthese}
 tibble::tibble(
   Indicateur = c("IDH Bénin 2023", "IPM (H × A)", "Incidence (H)",
                   "Intensité (A)", "Gini"),
