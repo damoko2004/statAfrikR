@@ -4,6 +4,7 @@
 # Zero code Shiny requis pour l'utilisateur final
 # =============================================================================
 
+#' @importFrom stats rbinom rnorm runif
 utils::globalVariables(c(
   "input", "output", "session", "reactive", "observe",
   "renderUI", "renderPlot", "renderTable", "renderText",
