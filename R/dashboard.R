@@ -53,6 +53,8 @@ lancer_dashboard <- function(donnees     = NULL,
                               var_milieu  = NULL,
                               var_annee   = NULL,
                               pays        = "Pays",
+                              titre       = NULL,
+                              sous_titre  = NULL,
                               port        = 3838L,
                               lancer      = TRUE,
                               export_html = NULL) {
@@ -70,6 +72,8 @@ lancer_dashboard <- function(donnees     = NULL,
     var_region <- "region"
     var_milieu <- "milieu"
     if (pays == "Pays") pays <- "Centrafrique (demonstration)"
+  if (is.null(titre))     titre     <- paste0("Tableau de bord - ", pays)
+  if (is.null(sous_titre)) sous_titre <- paste0("Indicateurs de bien-etre - ", pays, " - statAfrikR v0.2.0")
     message("Chargement des donnees de demonstration...")
   }
 
@@ -94,11 +98,11 @@ lancer_dashboard <- function(donnees     = NULL,
   message("  ", length(indicateurs$.meta$modules), " modules calcules.")
 
   if (!is.null(export_html)) {
-    .exporter_html_dashboard(indicateurs, pays, export_html)
+    .exporter_html_dashboard(indicateurs, pays, export_html, titre, sous_titre)
     return(invisible(NULL))
   }
 
-  ui     <- .build_ui(pays, indicateurs)
+  ui     <- .build_ui(pays, indicateurs, titre, sous_titre)
   server <- .build_server(indicateurs, donnees, var_poids,
                            var_region, var_milieu)
   app    <- shiny::shinyApp(ui = ui, server = server)
@@ -165,26 +169,26 @@ lancer_dashboard <- function(donnees     = NULL,
   sous_g <- sous_g[!sapply(sous_g, is.null) &
                      sous_g %in% names(donnees)]
 
-  if ("conso_pc" %in% names(donnees) &&
-      "seuil_pauv" %in% names(donnees)) {
+  if (any(c("conso_par_tete","conso_pc") %in% names(donnees))) {
+
     ind$fgt <- tryCatch(suppressMessages(
-      calcul_fgt(donnees, var_depense = "conso_pc",
+      calcul_fgt(donnees, var_depense = if("conso_par_tete" %in% names(donnees)) "conso_par_tete" else "conso_pc",
                  seuil_pauvrete = 171000, poids = var_poids,
                  sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
   }
 
   vars_ipm_map <- list(
-    var_nutrition      = "haz",
+    var_nutrition      = "haz_score",
     var_mortalite_inf  = "mortalite_enf",
     var_annees_scol    = "scol_adulte",
     var_scolarisation  = "scol_enfants",
-    var_combustible    = "combustible",
+    var_combustible    = "combustible_sol",
     var_assainissement = "assainissement",
     var_eau            = "eau_potable",
     var_electricite    = "electricite",
-    var_logement       = "logement",
-    var_actifs         = "actifs_men"
+    var_logement       = "logement_adeq",
+    var_actifs         = "actifs_base"
   )
   vars_dispo <- Filter(function(v) v %in% names(donnees), vars_ipm_map)
   if (length(vars_dispo) >= 3L) {
@@ -194,13 +198,13 @@ lancer_dashboard <- function(donnees     = NULL,
                          error = function(e) NULL)
   }
 
-  if ("conso_pc" %in% names(donnees)) {
+  if (any(c("conso_par_tete","conso_pc") %in% names(donnees))) {
     ind$gini <- tryCatch(suppressMessages(
-      calcul_gini(donnees, "conso_pc", poids = var_poids,
+      calcul_gini(donnees, if("conso_par_tete" %in% names(donnees)) "conso_par_tete" else "conso_pc", poids = var_poids,
                    sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
     ind$quintiles <- tryCatch(suppressMessages(
-      part_quintile(donnees, "conso_pc", poids = var_poids)
+      part_quintile(donnees, if("conso_par_tete" %in% names(donnees)) "conso_par_tete" else "conso_pc", poids = var_poids)
     ), error = function(e) NULL)
   }
 
@@ -210,28 +214,28 @@ lancer_dashboard <- function(donnees     = NULL,
                     sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
   }
-  if ("informel" %in% names(donnees)) {
+  if ("emploi_informel" %in% names(donnees)) {
     ind$informel <- tryCatch(suppressMessages(
-      emploi_informel(donnees, "informel", poids = var_poids)
+      emploi_informel(donnees, "emploi_informel", poids = var_poids)
     ), error = function(e) NULL)
   }
 
-  if ("stunting" %in% names(donnees)) {
+  if ("haz_score" %in% names(donnees)) {
     ind$stunting <- tryCatch(suppressMessages(
-      retard_croissance(donnees, var_taille_age_z = "stunting",
+      retard_croissance(donnees, var_taille_age_z = "haz_score",
                          poids = var_poids)
     ), error = function(e) NULL)
   }
 
-  if ("marie_18" %in% names(donnees)) {
+  if ("marie_avant_18" %in% names(donnees)) {
     ind$mariage <- tryCatch(suppressMessages(
-      mariage_precoce(donnees, "marie_18", poids = var_poids)
+      mariage_precoce(donnees, "marie_avant_18", poids = var_poids)
     ), error = function(e) NULL)
   }
 
-  if ("satisfaction" %in% names(donnees)) {
+  if (any(c("satisfaction_vie","satisfaction") %in% names(donnees))) {
     ind$satisfaction <- tryCatch(suppressMessages(
-      satisfaction_vie(donnees, "satisfaction", poids = var_poids,
+      satisfaction_vie(donnees, if("satisfaction_vie" %in% names(donnees)) "satisfaction_vie" else "satisfaction", poids = var_poids,
                         sous_groupes = if (length(sous_g)>0) sous_g else NULL)
     ), error = function(e) NULL)
   }
@@ -269,7 +273,7 @@ lancer_dashboard <- function(donnees     = NULL,
 }
 
 #' @keywords internal
-.build_ui <- function(pays, indicateurs) {
+.build_ui <- function(pays, indicateurs, titre = NULL, sous_titre = NULL) {
   nav_items <- list(
     list(id="accueil",    icon="Home",    label="Accueil"),
     list(id="pauvrete",   icon="Chart",   label="Pauvrete"),
@@ -283,7 +287,7 @@ lancer_dashboard <- function(donnees     = NULL,
   )
   nav_html <- paste(sapply(nav_items, function(it) {
     sprintf(
-      '<div class="nav-item" id="nav-%s" onclick="showSection(\"%s\")">%s</div>',
+      '<div class="nav-item" id="nav-%s" onclick="showSection(\'%s\')">%s</div>',
       it$id, it$id, it$label
     )
   }), collapse = "\n")
@@ -337,7 +341,11 @@ lancer_dashboard <- function(donnees     = NULL,
     nav_html,
     '</div>',
     '<div class="main">',
-    '<div class="topbar">',
+    '<div style="background:var(--navy);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:95;box-shadow:0 2px 8px rgba(0,0,0,.18);">',
+    '<div><div style="font-size:18px;font-weight:800;color:#fff;">', titre, '</div>',
+    '<div style="font-size:11px;color:#A0C4D8;font-style:italic;">', sous_titre, '</div></div>',
+    '</div>',
+    '<div class="topbar" style="position:sticky;top:57px;z-index:90;">',
     '<div class="topbar-title" id="page-title">Accueil</div>',
     '<span style="font-size:11px;color:var(--gray);">',
     indicateurs$.meta$n_obs, ' obs. | ', pays, '</span>',
@@ -360,29 +368,29 @@ lancer_dashboard <- function(donnees     = NULL,
     'Modules disponibles : <strong>', modules_list, '</strong></p>',
     '</div>',  # sec-accueil
     '<div class="section" id="sec-pauvrete">',
-    .shiny_section_pauvrete(indicateurs),
+    paste0(.shiny_section_pauvrete(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-ipm">',
-    .shiny_section_ipm(indicateurs),
+    paste0(.shiny_section_ipm(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-inegalites">',
-    .shiny_section_inegalites(indicateurs),
+    paste0(.shiny_section_inegalites(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-sante">',
-    .shiny_section_sante(indicateurs),
+    paste0(.shiny_section_sante(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-emploi">',
-    .shiny_section_emploi(indicateurs),
+    paste0(.shiny_section_emploi(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-genre">',
-    .shiny_section_genre(indicateurs),
+    paste0(.shiny_section_genre(indicateurs), collapse=''),
     '</div>',
     '<div class="section" id="sec-pib">',
     '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
     'Module PIB : utilisez comparer_pib() et tableau_bord_pib().</p>',
     '</div>',
     '<div class="section" id="sec-bienetre">',
-    .shiny_section_bienetre(indicateurs),
+    paste0(.shiny_section_bienetre(indicateurs), collapse=''),
     '</div>',
     '</div>',  # content
     '</div>',  # main
@@ -421,17 +429,17 @@ lancer_dashboard <- function(donnees     = NULL,
   if (is.null(ind$fgt)) return('<p style="color:#94A3B8;font-size:13px;">Donnees FGT non disponibles.</p>')
 
 
-  fgt <- ind$fgt
+  fgt <- ind$fgt$national
   paste0(
     '<div class="kpi-grid">',
     .kpi_card("FGT0 - Incidence",
-              paste0(round(fgt$FGT0 * 100, 1), "%"),
+              paste0(round(fgt$fgt0 * 100, 1), "%"),
               "Population sous le seuil national", "#DC2626"),
     .kpi_card("FGT1 - Profondeur",
-              paste0(round(fgt$FGT1 * 100, 1), "%"),
+              paste0(round(fgt$fgt1 * 100, 1), "%"),
               "Intensite moyenne de la pauvrete", "#EA580C"),
     .kpi_card("FGT2 - Severite",
-              paste0(round(fgt$FGT2 * 100, 1), "%"),
+              paste0(round(fgt$fgt2 * 100, 1), "%"),
               "Inegalite parmi les pauvres", "#7C3AED"),
     .kpi_card("N observations",
               format(fgt$n_obs, big.mark = " "),
@@ -442,9 +450,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_ipm <- function(ind) {
-  if (is.null(ind$ipm)) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees IPM non disponibles.</p>')
+  if (is.null(ind$ipm)) return('<p style="color:#94A3B8;font-size:13px;">Donnees IPM non disponibles.</p>')
+
+
   ipm <- ind$ipm
   paste0(
     '<div class="kpi-grid">',
@@ -466,9 +474,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_inegalites <- function(ind) {
-  if (is.null(ind$gini)) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees inegalites non disponibles.</p>')
+  if (is.null(ind$gini)) return('<p style="color:#94A3B8;font-size:13px;">Donnees inegalites non disponibles.</p>')
+
+
   g <- ind$gini
   paste0(
     '<div class="kpi-grid">',
@@ -482,9 +490,9 @@ lancer_dashboard <- function(donnees     = NULL,
 
 #' @keywords internal
 .shiny_section_sante <- function(ind) {
-  if (is.null(ind$stunting)) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees sante non disponibles.</p>')
+  if (is.null(ind$stunting)) return('<p style="color:#94A3B8;font-size:13px;">Donnees sante non disponibles.</p>')
+
+
   s <- ind$stunting
   paste0(
     '<div class="kpi-grid">',
@@ -516,17 +524,17 @@ lancer_dashboard <- function(donnees     = NULL,
       paste0(ind$informel$taux_pct, "%"),
       "OIT 2013", "#EA580C"))
   }
-  if (length(cards) == 0) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees emploi non disponibles.</p>')
+  if (length(cards) == 0) return('<p style="color:#94A3B8;font-size:13px;">Donnees emploi non disponibles.</p>')
+
+
   paste0('<div class="kpi-grid">', paste(cards, collapse = ""), '</div>')
 }
 
 #' @keywords internal
 .shiny_section_genre <- function(ind) {
-  if (is.null(ind$mariage)) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees genre non disponibles.</p>')
+  if (is.null(ind$mariage)) return('<p style="color:#94A3B8;font-size:13px;">Donnees genre non disponibles.</p>')
+
+
   m <- ind$mariage
   paste0(
     '<div class="kpi-grid">',
@@ -555,9 +563,9 @@ lancer_dashboard <- function(donnees     = NULL,
       paste0(ind$bonheur$taux_pct, "%"),
       "Tres heureux ou heureux", "#16A34A"))
   }
-  if (length(cards) == 0) return(
-    '<p style="color:#94A3B8;padding:20px;font-size:13px;">',
-    'Donnees bien-etre subjectif non disponibles.</p>')
+  if (length(cards) == 0) return('<p style="color:#94A3B8;font-size:13px;">Donnees bien-etre non disponibles.</p>')
+
+
   paste0('<div class="kpi-grid">', paste(cards, collapse = ""), '</div>')
 }
 
@@ -572,8 +580,8 @@ lancer_dashboard <- function(donnees     = NULL,
 }
 
 #' @keywords internal
-.exporter_html_dashboard <- function(indicateurs, pays, chemin) {
-  ui_html <- .build_ui(pays, indicateurs)
+.exporter_html_dashboard <- function(indicateurs, pays, chemin, titre = NULL, sous_titre = NULL) {
+  ui_html <- .build_ui(pays, indicateurs, titre, sous_titre)
   writeLines(as.character(ui_html), chemin)
   message("Dashboard exporte : ", chemin)
   invisible(chemin)
@@ -731,8 +739,8 @@ lancer_dashboard(
 #   var_electricite    = "electricite",
 #   var_eau            = "eau_potable",
 #   var_assainissement = "assainissement",
-#   var_combustible    = "combustible",
-#   var_logement       = "logement",
+#   var_combustible    = "combustible_sol",
+#   var_logement       = "logement_adeq",
 #   var_actifs         = "actifs_menage",
 #   poids              = VAR_POIDS
 # )
@@ -741,7 +749,7 @@ lancer_dashboard(
 # tableau_ipm(res_ipm, pays = PAYS, annee = 2024L)
 
 # --- Inegalites ---
-# res_gini <- calcul_gini(donnees, "consommation_pc", poids = VAR_POIDS)
+      calcul_gini(donnees, if("conso_par_tete" %in% names(donnees)) "conso_par_tete" else "conso_pc", poids = var_poids,
 # courbe_lorenz(donnees, "consommation_pc", poids = VAR_POIDS)
 
 # --- Sante & Nutrition ---
@@ -763,7 +771,7 @@ lancer_dashboard(
 #   poids = VAR_POIDS)
 
 # --- Bien-etre subjectif ---
-# res_satisf <- satisfaction_vie(donnees, "satisfaction_vie",
+      satisfaction_vie(donnees, if("satisfaction_vie" %in% names(donnees)) "satisfaction_vie" else "satisfaction", poids = var_poids,
 #   poids = VAR_POIDS)
 
 # =============================================================================
