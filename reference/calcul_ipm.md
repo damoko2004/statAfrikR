@@ -1,74 +1,165 @@
-# Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
+# Calculer l'Indice de Pauvrete Multidimensionnelle (IPM)
 
-Calcule l'IPM selon la méthodologie OPHI/PNUD (Alkire-Foster). Supporte
-les dimensions standard (santé, éducation, niveau de vie) et des
-dimensions personnalisées.
+Calcule l'IPM standard PNUD/OPHI selon la methode Alkire-Foster (2011).
+L'IPM = H x A, ou H est l'incidence (proportion de menages
+multidimensionnellement pauvres) et A l'intensite moyenne de privation
+parmi les pauvres.
 
 ## Usage
 
 ``` r
 calcul_ipm(
-  data,
-  indicateurs,
-  poids_dimensions = NULL,
-  seuil_pauvrete = 1/3,
-  var_poids = NULL
+  donnees,
+  var_nutrition = NULL,
+  var_mortalite_inf = NULL,
+  var_annees_scol = NULL,
+  var_scolarisation = NULL,
+  var_combustible = NULL,
+  var_assainissement = NULL,
+  var_eau = NULL,
+  var_electricite = NULL,
+  var_logement = NULL,
+  var_actifs = NULL,
+  poids = NULL,
+  seuil_k = 1/3,
+  ic = FALSE,
+  n_bootstrap = 200L
 )
 ```
 
 ## Arguments
 
-- data:
+- donnees:
 
-  data.frame ou tibble — Données individuelles ou ménages
+  data.frame – Donnees menages
 
-- indicateurs:
+- var_nutrition:
 
-  list — Liste nommée des indicateurs par dimension. Chaque élément est
-  un vecteur de noms de variables (0/1 : 1 = privation). Ex:
-  `list(sante = c("malnutrition", "mortalite_enfant"), ...)`
+  character ou NULL – Variable nutrition (1 = prive, 0 = non prive).
+  Defaut : NULL
 
-- poids_dimensions:
+- var_mortalite_inf:
 
-  numeric ou NULL — Poids de chaque dimension (doit sommer à 1). Si
-  NULL, poids égaux. Défaut : NULL.
+  character ou NULL – Deces d'enfant dans le menage (1 = oui). Defaut :
+  NULL
 
-- seuil_pauvrete:
+- var_annees_scol:
 
-  numeric — Seuil de privation pour être considéré
-  multidimensionnellement pauvre (entre 0 et 1). Défaut : 1/3.
+  character ou NULL – Aucun membre \>= 6 ans ayant complete 6 ans de
+  scolarite (1 = prive). Defaut : NULL
 
-- var_poids:
+- var_scolarisation:
 
-  character ou NULL — Variable de pondération. Défaut : NULL.
+  character ou NULL – Enfant non scolarise dans le menage (1 = prive).
+  Defaut : NULL
+
+- var_combustible:
+
+  character ou NULL – Combustible solide pour la cuisine (1 = prive).
+  Defaut : NULL
+
+- var_assainissement:
+
+  character ou NULL – Assainissement non ameliore (1 = prive). Defaut :
+  NULL
+
+- var_eau:
+
+  character ou NULL – Eau non potable (1 = prive). Defaut : NULL
+
+- var_electricite:
+
+  character ou NULL – Sans electricite (1 = prive). Defaut : NULL
+
+- var_logement:
+
+  character ou NULL – Logement inadequat (1 = prive). Defaut : NULL
+
+- var_actifs:
+
+  character ou NULL – Pas d'actifs de base (1 = prive). Defaut : NULL
+
+- poids:
+
+  character ou NULL – Variable de ponderation. Defaut : NULL (poids
+  egaux)
+
+- seuil_k:
+
+  numeric – Seuil de pauvrete multidimensionnelle (proportion de
+  privations). Defaut : 1/3
+
+- ic:
+
+  logical – Calculer les intervalles de confiance (bootstrap). Defaut :
+  FALSE
+
+- n_bootstrap:
+
+  integer – Nombre de replications bootstrap. Defaut : 200L
 
 ## Value
 
-Une liste avec : `ipm`, `H` (incidence), `A` (intensité),
-`contributions` par dimension, `donnees_enrichies`.
+Un objet de classe `saf_ipm` contenant : `IPM`, `H`, `A`,
+`contributions`, `n_obs`, `seuil_k`, `methode`
 
 ## References
 
 Alkire, S. & Foster, J. (2011). Counting and multidimensional poverty
-measurement. Journal of Public Economics, 95(7-8), 476-487.
+measurement. *Journal of Public Economics*, 95(7-8), 476-487.
+[doi:10.1016/j.jpubeco.2010.11.006](https://doi.org/10.1016/j.jpubeco.2010.11.006)
 
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  donnees <- data.frame(
-    malnutrition         = sample(0:1, 50, replace = TRUE),
-    mortalite_enfant     = sample(0:1, 50, replace = TRUE),
-    annees_scolarisation = sample(0:1, 50, replace = TRUE),
-    enfants_scolarises   = sample(0:1, 50, replace = TRUE),
-    electricite          = sample(0:1, 50, replace = TRUE),
-    eau_potable          = sample(0:1, 50, replace = TRUE)
-  )
-  indicateurs <- list(
-    sante      = c("malnutrition", "mortalite_enfant"),
-    education  = c("annees_scolarisation", "enfants_scolarises"),
-    niveau_vie = c("electricite", "eau_potable")
-  )
-  calcul_ipm(donnees, indicateurs)
-} # }
+set.seed(42)
+n <- 200
+menages <- data.frame(
+  nutrition      = rbinom(n, 1, 0.35),
+  mortalite_inf  = rbinom(n, 1, 0.12),
+  annees_scol    = rbinom(n, 1, 0.40),
+  scolarisation  = rbinom(n, 1, 0.28),
+  combustible    = rbinom(n, 1, 0.55),
+  assainissement = rbinom(n, 1, 0.48),
+  eau            = rbinom(n, 1, 0.38),
+  electricite    = rbinom(n, 1, 0.62),
+  logement       = rbinom(n, 1, 0.42),
+  actifs         = rbinom(n, 1, 0.30),
+  poids          = runif(n, 0.8, 1.3)
+)
+res <- calcul_ipm(menages,
+  var_nutrition      = "nutrition",
+  var_mortalite_inf  = "mortalite_inf",
+  var_annees_scol    = "annees_scol",
+  var_scolarisation  = "scolarisation",
+  var_combustible    = "combustible",
+  var_assainissement = "assainissement",
+  var_eau            = "eau",
+  var_electricite    = "electricite",
+  var_logement       = "logement",
+  var_actifs         = "actifs",
+  poids              = "poids"
+)
+print(res)
+#> 
+#> === Indice de Pauvrete Multidimensionnelle (IPM) ===
+#> Methode    : Alkire-Foster (2011) 
+#> Seuil k    : 33.3 %
+#> N obs      : 200 
+#> 
+#>   IPM = 0.2735  (H x A)
+#>   H   = 60.0% (incidence)
+#>   A   = 45.6% (intensite)
+#> 
+#> Contributions par indicateur :
+#>   nutrition            [Sante          ]  20.2%
+#>   mortalite_inf        [Sante          ]   6.9%
+#>   annees_scol          [Education      ]  19.2%
+#>   scolarisation        [Education      ]  14.5%
+#>   combustible          [Niveau de vie  ]   7.6%
+#>   assainissement       [Niveau de vie  ]   6.6%
+#>   eau                  [Niveau de vie  ]   5.2%
+#>   electricite          [Niveau de vie  ]   8.9%
+#>   logement             [Niveau de vie  ]   5.0%
+#>   actifs               [Niveau de vie  ]   5.8%
 ```

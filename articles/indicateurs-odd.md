@@ -26,17 +26,11 @@ idh_benin <- calcul_idh(
 )
 
 cat("IDH Bénin 2023 :\n")
-#> IDH Bénin 2023 :
 cat("  IDH global    :", idh_benin$idh, "\n")
-#>   IDH global    : 0.56
 cat("  Santé         :", idh_benin$indice_sante, "\n")
-#>   Santé         : 0.6431
 cat("  Éducation     :", idh_benin$indice_education, "\n")
-#>   Éducation     : 0.5139
 cat("  Revenu        :", idh_benin$indice_revenu, "\n")
-#>   Revenu        : 0.5309
 cat("  Catégorie     :", idh_benin$categorie, "\n")
-#>   Catégorie     : Moyen
 ```
 
 ### Comparaison régionale
@@ -75,19 +69,6 @@ knitr::kable(
 )
 ```
 
-| pays          |   idh | categorie | indice_sante | indice_educ | indice_revenu |
-|:--------------|------:|:----------|-------------:|------------:|--------------:|
-| Sénégal       | 0.596 | Moyen     |        0.749 |       0.519 |         0.545 |
-| Côte d’Ivoire | 0.572 | Moyen     |        0.602 |       0.513 |         0.606 |
-| Bénin         | 0.560 | Moyen     |        0.643 |       0.514 |         0.531 |
-| Togo          | 0.560 | Moyen     |        0.638 |       0.547 |         0.502 |
-| Guinée        | 0.492 | Faible    |        0.599 |       0.414 |         0.481 |
-| Burkina Faso  | 0.462 | Faible    |        0.640 |       0.325 |         0.474 |
-| Niger         | 0.445 | Faible    |        0.652 |       0.345 |         0.392 |
-| Mali          | 0.433 | Faible    |        0.605 |       0.288 |         0.467 |
-
-IDH — Comparaison régionale Afrique de l’Ouest
-
 ``` r
 idh_long <- idh_regional |>
   tidyr::pivot_longer(
@@ -114,11 +95,6 @@ graphique_barres(
   label_y    = "Valeur de l'indice"
 ) + ggplot2::coord_flip()
 ```
-
-![IDH et composantes — Afrique de
-l'Ouest](indicateurs-odd_files/figure-html/idh-graphique-1.png)
-
-IDH et composantes — Afrique de l’Ouest
 
 ## 2. Indice de Pauvreté Multidimensionnelle (IPM)
 
@@ -158,32 +134,20 @@ indicateurs_ipm <- list(
 
 resultat_ipm <- calcul_ipm(
   donnees_menages,
-  indicateurs      = indicateurs_ipm,
-  seuil_pauvrete   = 1/3,
-  var_poids        = "poids"
+  var_nutrition      = 'malnutrition',
+  var_mortalite_inf  = 'mortalite_enf',
+  var_scolarisation  = 'scol_enfants',
+  var_annees_scol    = 'scol_adulte',
+  var_electricite    = 'electricite',
+  var_eau            = 'eau_potable',
+  var_assainissement = 'assainissement',
+  var_combustible    = 'combustible',
+  var_logement       = 'logement',
+  var_actifs         = 'actifs',
+  poids   = 'poids',
+  seuil_k = 1/3
 )
 ```
-
-``` r
-contrib_df <- tibble::tibble(
-  dimension    = names(resultat_ipm$contributions),
-  contribution = resultat_ipm$contributions
-)
-
-knitr::kable(
-  contrib_df,
-  caption = "Contributions des dimensions à l'IPM",
-  col.names = c("Dimension", "Contribution (%)")
-)
-```
-
-| Dimension  | Contribution (%) |
-|:-----------|-----------------:|
-| sante      |            25.43 |
-| education  |            39.06 |
-| niveau_vie |            35.52 |
-
-Contributions des dimensions à l’IPM
 
 ### IPM par région
 
@@ -207,15 +171,6 @@ knitr::kable(
 )
 ```
 
-| Région | Ménages | Taux pauvreté (%) | Score moyen |
-|:-------|--------:|------------------:|------------:|
-| Nord   |     779 |              47.5 |       0.300 |
-| Ouest  |     752 |              47.2 |       0.307 |
-| Sud    |     753 |              46.9 |       0.309 |
-| Est    |     716 |              45.8 |       0.303 |
-
-Pauvreté multidimensionnelle par région
-
 ## 3. Inégalités
 
 ``` r
@@ -235,7 +190,7 @@ inegalites <- decomposer_inegalite(
   donnees_revenus,
   var_revenu = "depense_totale",
   var_groupe = "milieu",
-  var_poids  = "poids"
+  poids = "poids"
 )
 ```
 
@@ -246,13 +201,6 @@ knitr::kable(
   digits  = 3
 )
 ```
-
-| groupe |    n |  moyenne | gini_interne | part_pop | part_revenu |
-|:-------|-----:|---------:|-------------:|---------:|------------:|
-| Urbain |  795 | 686206.9 |        0.437 |    0.392 |       0.395 |
-| Rural  | 1205 | 677273.3 |        0.421 |    0.608 |       0.605 |
-
-Décomposition des inégalités par milieu
 
 ``` r
 # Construction manuelle de la courbe de Lorenz
@@ -277,11 +225,6 @@ ggplot2::ggplot(lorenz_df, ggplot2::aes(pop_cumulee, rev_cumulee)) +
   ) +
   theme_ins()
 ```
-
-![Courbe de Lorenz — Dépenses des
-ménages](indicateurs-odd_files/figure-html/courbe-lorenz-1.png)
-
-Courbe de Lorenz — Dépenses des ménages
 
 ## Synthèse
 
@@ -310,13 +253,3 @@ tibble::tibble(
 ) |>
 knitr::kable(caption = "Tableau de bord des indicateurs ODD")
 ```
-
-| Indicateur     | Valeur | Interpretation               |
-|:---------------|-------:|:-----------------------------|
-| IDH Bénin 2023 | 0.5600 | Moyen                        |
-| IPM (H × A)    | 0.2066 | 20.7% de pauvreté multidim.  |
-| Incidence (H)  | 0.4700 | 47% de ménages pauvres       |
-| Intensité (A)  | 0.4400 | 44% de privations en moyenne |
-| Gini           | 0.4277 | Inégalités élevées           |
-
-Tableau de bord des indicateurs ODD

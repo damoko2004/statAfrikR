@@ -81,7 +81,7 @@ donnees <- imputer_valeurs(
 ``` r
 plan <- appliquer_ponderations(
   data       = donnees,
-  var_poids  = "poids_final",
+  poids = "poids_final",
   var_strate = "strate",
   var_grappe = "grappe_id"
 )
@@ -118,7 +118,7 @@ p <- pyramide_ages(
   donnees,
   var_age   = "age",
   var_sexe  = "sexe",
-  var_poids = "poids_final",
+  poids = "poids_final",
   titre     = "Pyramide des âges — Enquête 2023"
 )
 print(p)

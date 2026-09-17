@@ -42,9 +42,7 @@ donnees_eds <- tibble::tibble(
 )
 
 cat("Ménages :", nrow(donnees_eds), "\n")
-#> Ménages : 5000
 cat("Régions :", length(unique(donnees_eds$region)), "\n")
-#> Régions : 8
 ```
 
 ## 2. Validation de la qualité
@@ -81,9 +79,63 @@ etape <- tracer_flux_traitement(
 ``` r
 plan <- appliquer_ponderations(
   data       = donnees_eds,
-  var_poids  = "poids_final",
-  var_strate = "strate",
-  var_grappe = "grappe"
+  poids = "poids_final",
+  "Harmonisation des régions"
+)
+```
+
+## 4. Plan de sondage complexe
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees_eds,
+  poids = "poids_final",
+  "Harmonisation des régions"
+)
+```
+
+## 4. Plan de sondage complexe
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees_eds,
+  poids = "poids_final",
+  "Harmonisation des régions"
+)
+```
+
+## 4. Plan de sondage complexe
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees_eds,
+  poids = "poids_final",
+  "Harmonisation des régions"
+)
+```
+
+## 4. Plan de sondage complexe
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees_eds,
+  poids = "poids_final",
+  "Harmonisation des régions"
+)
+```
+
+## 4. Plan de sondage complexe
+
+``` r
+plan <- appliquer_ponderations(
+  data       = donnees_eds,
+  poids = "poids_final",
+plan <- survey::svydesign(
+  ids     = ~grappe,
+  strata  = ~strate,
+  weights = ~poids_final,
+  data    = donnees_eds
+)
 )
 ```
 
@@ -97,14 +149,6 @@ stats <- stat_descr(
 )
 knitr::kable(stats, caption = "Statistiques descriptives pondérées")
 ```
-
-| variable       |    n |   moyenne |  mediane | ecart_type |       q1 |      q3 |   min |     max |    ic_bas |   ic_haut |
-|:---------------|-----:|----------:|---------:|-----------:|---------:|--------:|------:|--------:|----------:|----------:|
-| depense_totale | 5000 | 855550.30 | 844604.8 |  407179.89 | 565935.4 | 1135515 |  3.42 | 2244946 | 843108.95 | 867991.65 |
-| taille_menage  | 5000 |      4.82 |      5.0 |       2.28 |      3.0 |       6 |  1.00 |      12 |      4.75 |      4.89 |
-| age_chef       | 5000 |     50.23 |     50.0 |      14.81 |     38.0 |      63 | 25.00 |      75 |     49.77 |     50.69 |
-
-Statistiques descriptives pondérées
 
 ## 6. Tableaux croisés
 
@@ -122,27 +166,6 @@ knitr::kable(
 )
 ```
 
-| milieu | region_std | proportion | pourcentage | effectif |
-|:-------|:-----------|-----------:|------------:|---------:|
-| Rural  | Alibori    |  0.6015392 |        60.2 | 690.6449 |
-| Urbain | Alibori    |  0.3984608 |        39.8 | 457.4846 |
-| Rural  | Atacora    |  0.5741637 |        57.4 | 646.5168 |
-| Urbain | Atacora    |  0.4258363 |        42.6 | 479.4978 |
-| Rural  | Atlantique |  0.6109632 |        61.1 | 660.5620 |
-| Urbain | Atlantique |  0.3890368 |        38.9 | 420.6193 |
-| Rural  | Borgou     |  0.5826774 |        58.3 | 649.6789 |
-| Urbain | Borgou     |  0.4173226 |        41.7 | 465.3101 |
-| Rural  | Collines   |  0.5995166 |        60.0 | 656.0013 |
-| Urbain | Collines   |  0.4004834 |        40.0 | 438.2158 |
-| Rural  | Couffo     |  0.6094196 |        60.9 | 717.5268 |
-| Urbain | Couffo     |  0.3905804 |        39.1 | 459.8670 |
-| Rural  | Donga      |  0.6176964 |        61.8 | 674.2354 |
-| Urbain | Donga      |  0.3823036 |        38.2 | 417.2966 |
-| Rural  | Littoral   |  0.5818214 |        58.2 | 683.9561 |
-| Urbain | Littoral   |  0.4181786 |        41.8 | 491.5869 |
-
-Répartition par milieu et région (%)
-
 ## 7. Calcul des indicateurs de pauvreté
 
 ``` r
@@ -155,8 +178,8 @@ indicateurs_ipm <- list(
 resultat_ipm <- calcul_ipm(
   donnees_eds,
   indicateurs_ipm,
-  seuil_pauvrete = 1/3,
-  var_poids      = "poids_final"
+  seuil_k = 1/3,
+  poids = "poids_final"
 )
 ```
 
@@ -167,23 +190,15 @@ inegalites <- decomposer_inegalite(
   donnees_eds,
   var_revenu = "depense_totale",
   var_groupe = "milieu",
-  var_poids  = "poids_final"
+  poids = "poids_final"
 )
 
 cat("Indice de Gini :", inegalites$gini, "\n")
-#> Indice de Gini : 0.2704
 knitr::kable(
   inegalites$decomposition,
   caption = "Décomposition des inégalités par milieu"
 )
 ```
-
-| groupe |    n |  moyenne | gini_interne | part_pop | part_revenu |
-|:-------|-----:|---------:|-------------:|---------:|------------:|
-| Rural  | 3005 | 852312.3 |       0.2710 |   0.5971 |      0.5948 |
-| Urbain | 1995 | 860348.6 |       0.2694 |   0.4029 |      0.4052 |
-
-Décomposition des inégalités par milieu
 
 ## 9. Visualisation
 
@@ -193,16 +208,11 @@ pyramide_ages(
   donnees_eds,
   var_age   = "age_chef",
   var_sexe  = "sexe_chef",
-  var_poids = "poids_final",
+  poids = "poids_final",
   titre     = "Pyramide des âges — Chefs de ménage",
   largeur_classe = 10L
 )
 ```
-
-![Pyramide des âges des chefs de
-ménage](enquete-ponderee_files/figure-html/pyramide-1.png)
-
-Pyramide des âges des chefs de ménage
 
 ``` r
 stats_region <- stat_descr(
@@ -224,11 +234,6 @@ graphique_barres(
 ) + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 ```
 
-![Dépense moyenne par
-région](enquete-ponderee_files/figure-html/barres-1.png)
-
-Dépense moyenne par région
-
 ## 10. Régression
 
 ``` r
@@ -246,16 +251,6 @@ knitr::kable(
   caption = "Déterminants de la dépense des ménages"
 )
 ```
-
-| terme         | estimateur |  ic_bas | ic_haut | p_valeur | significatif |
-|:--------------|-----------:|--------:|--------:|---------:|:-------------|
-| (Intercept)   |    13.5214 | 13.4267 | 13.6161 |   0.0000 | \*\*\*       |
-| age_chef      |    -0.0016 | -0.0031 | -0.0002 |   0.0269 | \*           |
-| taille_menage |     0.0046 | -0.0047 |  0.0139 |   0.3302 |              |
-| electricite   |     0.0196 | -0.0230 |  0.0622 |   0.3667 |              |
-| acces_eau     |    -0.0003 | -0.0447 |  0.0441 |   0.9894 |              |
-
-Déterminants de la dépense des ménages
 
 ## 11. Export et diffusion
 

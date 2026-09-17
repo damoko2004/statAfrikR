@@ -15,13 +15,17 @@
 - [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md)
   : Calculer l'Indice de Développement Humain (IDH)
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
-  : Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
+  : Calculer l'Indice de Pauvrete Multidimensionnelle (IPM)
+- [`calcul_ipm_national()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm_national.md)
+  : Calculer un IPM national personnalise
 - [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
   : Carte choroplethe statistique institutionnelle
 - [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
   : Exporter une carte en fichier image
 - [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md)
   : Importer un fichier geographique
+- [`carte_ipm()`](https://damoko2004.github.io/statAfrikR/reference/carte_ipm.md)
+  : Carte des privations IPM par zone
 - [`carte_joindre()`](https://damoko2004.github.io/statAfrikR/reference/carte_joindre.md)
   : Joindre des donnees statistiques a un fond de carte
 - [`carte_pauvrete()`](https://damoko2004.github.io/statAfrikR/reference/carte_pauvrete.md)
@@ -34,12 +38,16 @@
   : Détecter les valeurs manquantes
 - [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)
   : Vérifier les types de variables
+- [`comparer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.md)
+  : Comparer l'IPM global et l'IPM national
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
 - [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
   : Decomposer les indices FGT par sous-groupe
 - [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
   : Décomposer les inégalités
+- [`decomposer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_ipm.md)
+  : Decomposer l'IPM par sous-groupe
 - [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
   : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
@@ -62,6 +70,8 @@
   : Graphique en barres pondéré
 - [`graphique_fgt()`](https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.md)
   : Graphique des indices FGT
+- [`graphique_ipm()`](https://damoko2004.github.io/statAfrikR/reference/graphique_ipm.md)
+  : Graphique des contributions IPM
 - [`graphique_tendance()`](https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.md)
   : Graphique de tendance temporelle
 - [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
@@ -130,6 +140,8 @@
   : Tableau de statistiques descriptives institutionnel
 - [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
   : Tableau institutionnel des indices FGT
+- [`tableau_ipm()`](https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.md)
+  : Tableau institutionnel IPM
 - [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
   : Tableau de suivi des indicateurs ODD
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
