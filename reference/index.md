@@ -61,6 +61,10 @@
   : Decomposer les inegalites selon l'indice de Theil
 - [`emaciation()`](https://damoko2004.github.io/statAfrikR/reference/emaciation.md)
   : Calculer le taux d'emaciation (wasting)
+- [`emploi_informel()`](https://damoko2004.github.io/statAfrikR/reference/emploi_informel.md)
+  : Calculer le taux d'emploi informel
+- [`emploi_vulnerable()`](https://damoko2004.github.io/statAfrikR/reference/emploi_vulnerable.md)
+  : Calculer le taux d'emploi vulnerable
 - [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
   : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
@@ -129,6 +133,10 @@
   : Palette de couleurs INS
 - [`part_quintile()`](https://damoko2004.github.io/statAfrikR/reference/part_quintile.md)
   : Calculer les parts de revenu par quintile ou decile
+- [`pauvrete_travail()`](https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.md)
+  : Calculer le taux de pauvrete au travail (working poor)
+- [`protection_sociale()`](https://damoko2004.github.io/statAfrikR/reference/protection_sociale.md)
+  : Calculer la couverture de protection sociale
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
@@ -153,6 +161,8 @@
   : Regions du Senegal
 - [`saf_subdivisions_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_subdivisions_afrique.md)
   : Subdivisions de niveau 1 – tous les pays africains
+- [`sous_emploi_temps()`](https://damoko2004.github.io/statAfrikR/reference/sous_emploi_temps.md)
+  : Calculer le taux de sous-emploi en temps de travail
 - [`standardiser_ages()`](https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.md)
   : Standardiser les âges déclarés
 - [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)
@@ -171,14 +181,24 @@
   : Tableau de bord des inegalites
 - [`tableau_ipm()`](https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.md)
   : Tableau institutionnel IPM
+- [`tableau_marche_travail()`](https://damoko2004.github.io/statAfrikR/reference/tableau_marche_travail.md)
+  : Tableau de bord du marche du travail
 - [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
   : Tableau de suivi des indicateurs ODD
 - [`tableau_sante()`](https://damoko2004.github.io/statAfrikR/reference/tableau_sante.md)
   : Tableau de bord des indicateurs de sante
+- [`taux_activite()`](https://damoko2004.github.io/statAfrikR/reference/taux_activite.md)
+  : Calculer le taux d'activite
+- [`taux_emploi()`](https://damoko2004.github.io/statAfrikR/reference/taux_emploi.md)
+  : Calculer le taux d'emploi
+- [`taux_sous_utilisation()`](https://damoko2004.github.io/statAfrikR/reference/taux_sous_utilisation.md)
+  : Calculer le taux de sous-utilisation composite de la main-d'oeuvre
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
   : Thème ggplot2 officiel INS
 - [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)
   : Tracer le flux de traitement
+- [`travail_enfants()`](https://damoko2004.github.io/statAfrikR/reference/travail_enfants.md)
+  : Calculer la prevalence du travail des enfants
 - [`vaccination()`](https://damoko2004.github.io/statAfrikR/reference/vaccination.md)
   : Calculer la couverture vaccinale
 - [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
