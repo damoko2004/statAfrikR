@@ -99,10 +99,14 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 
 ## All functions
 
+- [`accouchements_assistes()`](https://damoko2004.github.io/statAfrikR/reference/accouchements_assistes.md)
+  : Calculer le taux d'accouchements assistes
 - [`analyse_regression()`](https://damoko2004.github.io/statAfrikR/reference/analyse_regression.md)
   : Analyse de régression
 - [`analyse_spatiale()`](https://damoko2004.github.io/statAfrikR/reference/analyse_spatiale.md)
   : Analyse spatiale — jointure et indicateurs par zone
+- [`anemie()`](https://damoko2004.github.io/statAfrikR/reference/anemie.md)
+  : Calculer la prevalence de l'anemie
 - [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md)
   : Anonymiser un jeu de données
 - [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md)
@@ -152,6 +156,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - [`decomposer_theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
   [`theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
   : Decomposer les inegalites selon l'indice de Theil
+- [`emaciation()`](https://damoko2004.github.io/statAfrikR/reference/emaciation.md)
+  : Calculer le taux d'emaciation (wasting)
 - [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
   : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
@@ -204,8 +210,12 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - [`indice_palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
   [`palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
   : Calculer l'indice de Palma
+- [`insuffisance_ponderale()`](https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.md)
+  : Calculer le taux d'insuffisance ponderale
 - [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
   : Lister les templates de rapport disponibles
+- [`mortalite_5ans()`](https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.md)
+  : Calculer le taux de mortalite des enfants de moins de 5 ans
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
   : Nettoyer les libellés de variables textuelles
 - [`odd_catalogue()`](https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.md)
@@ -220,6 +230,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Pyramide des âges
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
   : Recoder une variable
+- [`retard_croissance()`](https://damoko2004.github.io/statAfrikR/reference/retard_croissance.md)
+  : Calculer le taux de retard de croissance (stunting)
 - [`saf_cameroun_departements`](https://damoko2004.github.io/statAfrikR/reference/saf_cameroun_departements.md)
   : Departements du Cameroun
 - [`saf_cedeao`](https://damoko2004.github.io/statAfrikR/reference/saf_cedeao.md)
@@ -258,10 +270,14 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Tableau institutionnel IPM
 - [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
   : Tableau de suivi des indicateurs ODD
+- [`tableau_sante()`](https://damoko2004.github.io/statAfrikR/reference/tableau_sante.md)
+  : Tableau de bord des indicateurs de sante
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
   : Thème ggplot2 officiel INS
 - [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)
   : Tracer le flux de traitement
+- [`vaccination()`](https://damoko2004.github.io/statAfrikR/reference/vaccination.md)
+  : Calculer la couverture vaccinale
 - [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
   : Valider la cohérence données / dictionnaire
 - [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)

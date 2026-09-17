@@ -9,8 +9,10 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/authors.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/index.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/news/index.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/accouchements_assistes.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/analyse_regression.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/analyse_spatiale.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/anemie.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.html</loc></url>
@@ -35,6 +37,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/emaciation.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.html</loc></url>
@@ -61,7 +64,9 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/index.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/indice_atkinson.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/indice_palma.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/lister_templates.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.html</loc></url>
@@ -69,6 +74,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/part_quintile.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/recoder_variable.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/retard_croissance.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_cameroun_departements.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_cedeao.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_cemac.html</loc></url>
@@ -89,8 +95,10 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_inegalites.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_odd.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/tableau_sante.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/theme_ins.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/vaccination.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.html</loc></url>
 </urlset>
