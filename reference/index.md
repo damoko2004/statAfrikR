@@ -56,6 +56,8 @@
   : Détecter les valeurs manquantes
 - [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)
   : Vérifier les types de variables
+- [`coherence_demo()`](https://damoko2004.github.io/statAfrikR/reference/coherence_demo.md)
+  : Verifier la coherence demographique des donnees
 - [`comparer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.md)
   : Comparer l'IPM global et l'IPM national
 - [`comparer_pib()`](https://damoko2004.github.io/statAfrikR/reference/comparer_pib.md)
@@ -145,6 +147,8 @@
   : Calculer le taux de mariage precoce
 - [`mortalite_5ans()`](https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.md)
   : Calculer le taux de mortalite des enfants de moins de 5 ans
+- [`myers()`](https://damoko2004.github.io/statAfrikR/reference/myers.md)
+  : Calculer l'indice de Myers (attraction sur tous les chiffres)
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
   : Nettoyer les libellés de variables textuelles
 - [`odd_catalogue()`](https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.md)
@@ -165,10 +169,16 @@
   : Calculer le score de privations ressenties
 - [`protection_sociale()`](https://damoko2004.github.io/statAfrikR/reference/protection_sociale.md)
   : Calculer la couverture de protection sociale
+- [`pyramide_age()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_age.md)
+  : Construire et tracer la pyramide des ages
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
+- [`rapport_qualite_demo()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_demo.md)
+  : Produire un rapport de qualite des donnees demographiques
 - [`rapport_qualite_sondage()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.md)
   : Produire un rapport de qualite du plan de sondage
+- [`ratio_masculinite()`](https://damoko2004.github.io/statAfrikR/reference/ratio_masculinite.md)
+  : Calculer le rapport de masculinite par groupe d'age
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
   : Recoder une variable
 - [`retard_croissance()`](https://damoko2004.github.io/statAfrikR/reference/retard_croissance.md)
@@ -255,3 +265,5 @@
   : Valider la qualité globale d'un jeu de données
 - [`violence_basee_genre()`](https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.md)
   : Calculer la prevalence des violences basees sur le genre
+- [`whipple()`](https://damoko2004.github.io/statAfrikR/reference/whipple.md)
+  : Calculer l'indice de Whipple

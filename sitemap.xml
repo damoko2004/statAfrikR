@@ -36,6 +36,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/carte_zones.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/check_na.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/check_types.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/coherence_demo.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/comparer_pib.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.html</loc></url>
@@ -80,6 +81,7 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/lister_templates.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/myers.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.html</loc></url>
@@ -90,8 +92,11 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/perception_economique.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/privations_ressenties.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/protection_sociale.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_age.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_demo.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/ratio_masculinite.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/recoder_variable.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/retard_croissance.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/saf_cameroun_departements.html</loc></url>
@@ -136,5 +141,6 @@
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_poids.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.html</loc></url>
 <url><loc>https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.html</loc></url>
+<url><loc>https://damoko2004.github.io/statAfrikR/reference/whipple.html</loc></url>
 </urlset>
 
