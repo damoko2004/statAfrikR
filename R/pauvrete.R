@@ -190,10 +190,23 @@ calcul_fgt <- function(data,
         res
       })
       out <- dplyr::bind_rows(tabs)
-      dplyr::select(out,
-                    dplyr::all_of(".groupe"),
-                    dplyr::all_of(".modalite"),
-                    dplyr::everything())
+      # --- Avertissements precision statistique INS ---
+      for (i in seq_len(nrow(out))) {
+        n_sg <- if ("n_obs" %in% names(out)) out$n_obs[i] else NA_integer_
+        if (!is.na(n_sg) && n_sg < 30L) {
+          rlang::warn(paste0("[Precision] ", out$.groupe[i], "=", out$.modalite[i],
+            " : n=", n_sg, " < 30 -- estimation peu fiable."))
+        }
+        if ("fgt0" %in% names(out) && "fgt0_ic_haut" %in% names(out) &&
+            !is.na(out$fgt0[i]) && out$fgt0[i] > 0) {
+          se_approx <- (out$fgt0_ic_haut[i] - out$fgt0_ic_bas[i]) / (2*1.96)
+          cv <- se_approx / out$fgt0[i] * 100
+          if (cv > 33) rlang::warn(paste0("[Precision] ", out$.groupe[i],
+            "=", out$.modalite[i], " : CV=", round(cv,1), "% > 33%."))
+        }
+      }
+      dplyr::select(out, dplyr::all_of(".groupe"),
+                    dplyr::all_of(".modalite"), dplyr::everything())
     })
     names(res_sg) <- sous_groupes
   }
