@@ -2,7 +2,9 @@
 
 ## Authors
 
-- **Dikers Amoko**. Author, maintainer.
+- **Dikers Amoko**. Author, maintainer, contributor.
+
+- **Josue Honore Dasse**. Contributor.
 
 ## Citation
 
