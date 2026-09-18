@@ -275,8 +275,8 @@ valider_statistique_ins <- function(donnees,
   message("[ 6/10] Controle confidentialite...")
   vars_cat <- names(donnees)[sapply(donnees, function(x)
     is.character(x) || is.factor(x))]
-  vars_cat_filt <- vars_cat[sapply(vars_cat, function(v)
-    length(unique(donnees[[v]])) <= nrow(donnees) * 0.5)]
+  vars_cat_filt <- vars_cat[as.logical(sapply(vars_cat, function(v)
+    length(unique(donnees[[v]])) <= nrow(donnees) * 0.5))]
 
   alertes_conf <- sapply(vars_cat_filt, function(v) {
     eff <- table(donnees[[v]])
