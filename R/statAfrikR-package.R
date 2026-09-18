@@ -34,4 +34,35 @@ utils::globalVariables(c(
   ":="
 ))
 
+
+# =============================================================================
+# NOTE METHODOLOGIQUE — INTERVALLES DE CONFIANCE (IC)
+# =============================================================================
+#
+# statAfrikR utilise deux methodes de calcul des IC selon le contexte :
+#
+# 1. IC WILSON (methode exacte binomiale)
+#    Utilise pour : proportions simples (sante, emploi, genre, bien-etre)
+#    Formule : IC = (p + z^2/2n +/- z*sqrt(p(1-p)/n + z^2/4n^2)) / (1 + z^2/n)
+#    Quand : echantillon simple ou poids uniformes
+#    Avantage : robuste meme pour p proche de 0 ou 1
+#    Limite : ne tient pas compte du plan de sondage complexe
+#
+# 2. IC SURVEY (linearisation de Taylor)
+#    Utilise pour : estimations FGT, Gini via creer_design() + survey::svydesign
+#    Formule : SE = sqrt(Var_Taylor), IC = estimation +/- z * SE
+#    Quand : plan complexe avec strates, grappes, poids differentiels
+#    Avantage : tient compte de la structure du plan de sondage (DEFF)
+#    Recommande : pour toute publication officielle INS
+#
+# RECOMMANDATION INS :
+#   - Analyses exploratoires et sous-groupes : IC Wilson acceptable
+#   - Publications officielles : utiliser creer_design() + survey::svydesign
+#     pour obtenir des IC bases sur la variance de Taylor
+#   - Toujours indiquer la methode IC dans les notes methodologiques
+#
+# Reference : Lumley T. (2010). Complex Surveys. Wiley.
+#             Cochran W.G. (1977). Sampling Techniques. Wiley.
+# =============================================================================
+
 NULL

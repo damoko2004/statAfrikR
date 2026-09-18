@@ -171,6 +171,9 @@ generer_rapport <- function(donnees,
 #'   (proportion de l'écart-type). Défaut : 0.05.
 #' @param graine integer — Graine aléatoire. Défaut : 42.
 #' @param rapport logical — Produire un rapport d'anonymisation. Défaut : TRUE.
+#' @param seuil_cellule integer -- Seuil de confidentialite : les cellules
+#'   avec effectif < seuil_cellule declenchent un avertissement.
+#'   Defaut : 5L. Configurable selon la politique de l'INS.
 #' @return Si \code{rapport = FALSE} : tibble anonymisé.
 #'   Si \code{rapport = TRUE} : liste avec \code{$donnees} et \code{$rapport}.
 #' @examples

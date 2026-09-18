@@ -41,7 +41,10 @@ Defaut : NULL}
 \item{alpha}{numeric -- Parametre de sensibilite : 0, 1, 2 ou vecteur.
 Defaut : \code{c(0, 1, 2)}}
 
-\item{ic}{logical -- Calculer les intervalles de confiance a 95\%.
+\item{ic}{logical -- Calculer les IC 95\%. Defaut : TRUE.
+Methode : Wilson (echantillon simple) ou Taylor via \code{creer_design()}
+pour plans complexes. Pour publications officielles INS, privilegier
+la variance de Taylor : \code{calcul_fgt(creer_design(donnees, ...), ...)}.
 Defaut : TRUE}
 
 \item{na.rm}{logical -- Exclure les valeurs manquantes. Defaut : TRUE}

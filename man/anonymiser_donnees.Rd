@@ -12,6 +12,7 @@ anonymiser_donnees(
   vars_generaliser = NULL,
   niveau_bruit = 0.05,
   graine = 42L,
+  seuil_cellule = 5L,
   rapport = TRUE
 )
 }
@@ -35,6 +36,10 @@ Défaut : NULL.}
 (proportion de l'écart-type). Défaut : 0.05.}
 
 \item{graine}{integer — Graine aléatoire. Défaut : 42.}
+
+\item{seuil_cellule}{integer -- Seuil de confidentialite : les cellules
+avec effectif < seuil_cellule declenchent un avertissement.
+Defaut : 5L. Configurable selon la politique de l'INS.}
 
 \item{rapport}{logical — Produire un rapport d'anonymisation. Défaut : TRUE.}
 }
