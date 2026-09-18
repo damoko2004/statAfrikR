@@ -4,20 +4,23 @@
 \name{statAfrikR-package}
 \alias{statAfrikR}
 \alias{statAfrikR-package}
-\title{statAfrikR: Statistical Tools for African National Statistics Institutes}
+\title{statAfrikR — Outils statistiques pour les INS africains}
 \description{
-A comprehensive statistical toolbox for National Statistics Institutes (INS) in Africa. Provides functions for survey data import ('KoboToolbox', 'ODK', 'CSPro', 'Excel', 'Stata', 'SPSS'), data processing and validation, weighted statistical analysis (descriptive statistics, cross-tabulations, regression, Human Development Index (HDI), Multidimensional Poverty Index (MPI) following Alkire and Foster (2011) \doi{10.1093/oep/gpr051}, inequalities), visualization (age pyramids, thematic maps, official charts) and dissemination ('SDMX' export, 'DDI' metadata, anonymization, Word/PDF reports). Designed to work in resource-constrained environments, offline and in French.
+Boite a outils statistique complete pour les Instituts
+Nationaux de Statistique (INS) d'Afrique.
 }
 \seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/damoko2004/statAfrikR}
-  \item Report bugs at \url{https://github.com/damoko2004/statAfrikR/issues}
-}
-
+Site web : \url{https://statafrikr.org/}
+GitHub : \url{https://github.com/damoko2004/statAfrikR}
+Discord : \url{https://discord.gg/kcfA27Yz}
 }
 \author{
-\strong{Maintainer}: Dikers Amoko \email{diamoko@gmail.com}
+\strong{Maintainer}: Dikers Amoko \email{diamoko@gmail.com} [contributor]
+
+Other contributors:
+\itemize{
+  \item Josue Honore Dasse \email{josue.h.dasse@gmail.com} [contributor]
+}
 
 }
 \keyword{internal}

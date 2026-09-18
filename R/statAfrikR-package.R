@@ -1,4 +1,10 @@
 # -*- coding: UTF-8 -*-
+#' @title statAfrikR — Outils statistiques pour les INS africains
+#' @description Boite a outils statistique complete pour les Instituts
+#'   Nationaux de Statistique (INS) d'Afrique.
+#' @seealso Site web : \url{https://statafrikr.org/}
+#'   GitHub : \url{https://github.com/damoko2004/statAfrikR}
+#'   Discord : \url{https://discord.gg/kcfA27Yz}
 #' @keywords internal
 "_PACKAGE"
 

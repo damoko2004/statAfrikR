@@ -31,7 +31,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Language: fr
-URL: https://github.com/damoko2004/statAfrikR
+URL: https://statafrikr.org/, https://github.com/damoko2004/statAfrikR
 BugReports: https://github.com/damoko2004/statAfrikR/issues
 Depends: R (>= 4.2.0)
 Imports: 
