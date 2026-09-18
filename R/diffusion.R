@@ -192,8 +192,8 @@ anonymiser_donnees <- function(data,
                                 vars_generaliser = NULL,
                                 niveau_bruit     = 0.05,
                                 graine           = 42L,
+                                seuil_cellule    = 5L,
                                 rapport          = TRUE) {
-
   if (!is.data.frame(data)) {
     rlang::abort("`data` doit \u00eatre un data.frame ou tibble.")
   }
@@ -311,6 +311,32 @@ anonymiser_donnees <- function(data,
     }
     message("G\u00e9n\u00e9ralis\u00e9es : ",
             paste(names(vars_generaliser), collapse = ", "))
+  }
+
+  # --- Controle de confidentialite (INS) ---
+  # Detecter les cellules avec effectif < seuil_cellule
+  vars_cat <- names(data_anon)[sapply(data_anon, function(x)
+    is.character(x) || is.factor(x))]
+  alertes_conf <- list()
+  for (v in vars_cat) {
+    # Ignorer variables a haute cardinalite (identifiants)
+    if (length(unique(data_anon[[v]])) > nrow(data_anon) * 0.5) next
+    effectifs <- table(data_anon[[v]])
+    petites <- effectifs[effectifs > 0 & effectifs < seuil_cellule]
+    if (length(petites) > 0) {
+      alertes_conf[[v]] <- petites
+      rlang::warn(paste0(
+        "[Confidentialite] Variable '", v, "' : ",
+        length(petites), " cellule(s) avec n < ", seuil_cellule,
+        " (", paste(names(petites), "=", as.integer(petites),
+        collapse=", "), ").",
+        " Envisagez la suppression ou la fusion de categories."
+      ))
+    }
+  }
+  if (length(alertes_conf) == 0) {
+    message("[Confidentialite] Aucune cellule < ", seuil_cellule,
+            " detectee. OK.")
   }
 
   # Rapport d'anonymisation
