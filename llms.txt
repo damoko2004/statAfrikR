@@ -376,6 +376,8 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Valider les poids de sondage
 - [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)
   : Valider la qualité globale d'un jeu de données
+- [`valider_statistique_ins()`](https://damoko2004.github.io/statAfrikR/reference/valider_statistique_ins.md)
+  : Valider la qualite statistique d'une enquete (INS Validation Suite)
 - [`violence_basee_genre()`](https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.md)
   : Calculer la prevalence des violences basees sur le genre
 - [`whipple()`](https://damoko2004.github.io/statAfrikR/reference/whipple.md)
