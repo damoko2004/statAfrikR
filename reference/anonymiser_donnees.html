@@ -59,6 +59,7 @@ perturbation et pseudonymisation des variables sensibles.</p>
 <span>  vars_generaliser <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  niveau_bruit <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  graine <span class="op">=</span> <span class="fl">42L</span>,</span>
+<span>  seuil_cellule <span class="op">=</span> <span class="fl">5L</span>,</span>
 <span>  rapport <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -99,6 +100,12 @@ Défaut : NULL.</p></dd>
 
 <dt id="arg-graine">graine<a class="anchor" aria-label="anchor" href="#arg-graine"></a></dt>
 <dd><p>integer — Graine aléatoire. Défaut : 42.</p></dd>
+
+
+<dt id="arg-seuil-cellule">seuil_cellule<a class="anchor" aria-label="anchor" href="#arg-seuil-cellule"></a></dt>
+<dd><p>integer – Seuil de confidentialite : les cellules
+avec effectif &lt; seuil_cellule declenchent un avertissement.
+Defaut : 5L. Configurable selon la politique de l'INS.</p></dd>
 
 
 <dt id="arg-rapport">rapport<a class="anchor" aria-label="anchor" href="#arg-rapport"></a></dt>

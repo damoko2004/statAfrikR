@@ -63,7 +63,12 @@ calcul_fgt(
 
 - ic:
 
-  logical – Calculer les intervalles de confiance a 95%. Defaut : TRUE
+  logical – Calculer les IC 95%. Defaut : TRUE. Methode : Wilson
+  (echantillon simple) ou Taylor via
+  [`creer_design()`](https://damoko2004.github.io/statAfrikR/reference/creer_design.md)
+  pour plans complexes. Pour publications officielles INS, privilegier
+  la variance de Taylor : `calcul_fgt(creer_design(donnees, ...), ...)`.
+  Defaut : TRUE
 
 - na.rm:
 

@@ -15,6 +15,7 @@ anonymiser_donnees(
   vars_generaliser = NULL,
   niveau_bruit = 0.05,
   graine = 42L,
+  seuil_cellule = 5L,
   rapport = TRUE
 )
 ```
@@ -52,6 +53,12 @@ anonymiser_donnees(
 - graine:
 
   integer — Graine aléatoire. Défaut : 42.
+
+- seuil_cellule:
+
+  integer – Seuil de confidentialite : les cellules avec effectif \<
+  seuil_cellule declenchent un avertissement. Defaut : 5L. Configurable
+  selon la politique de l'INS.
 
 - rapport:
 
