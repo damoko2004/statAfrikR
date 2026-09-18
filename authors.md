@@ -13,12 +13,12 @@ Source:
 
 Amoko D (2026). *statAfrikR: Statistical Tools for African National
 Statistics Institutes*. R package version 0.2.0,
-<https://github.com/damoko2004/statAfrikR>.
+<https://statafrikr.org/>.
 
     @Manual{,
       title = {statAfrikR: Statistical Tools for African National Statistics Institutes},
       author = {Dikers Amoko},
       year = {2026},
       note = {R package version 0.2.0},
-      url = {https://github.com/damoko2004/statAfrikR},
+      url = {https://statafrikr.org/},
     }
