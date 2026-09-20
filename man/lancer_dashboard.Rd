@@ -36,10 +36,10 @@ Defaut : NULL}
 \item{pays}{character -- Nom du pays pour les titres. Defaut : "Pays"}
 
 \item{titre}{character ou NULL -- Titre principal du dashboard.
-Defaut : 'Tableau de bord - \if{html}{\out{<pays>}}'}
+Defaut : "Tableau de bord - NOM_DU_PAYS" (nom du pays en parametre)}
 
 \item{sous_titre}{character ou NULL -- Sous-titre du dashboard.
-Defaut : 'Indicateurs de bien-etre - \if{html}{\out{<pays>}} - statAfrikR v0.2.0'}
+Defaut : "Indicateurs de bien-etre - NOM_DU_PAYS - statAfrikR v0.2.0"}
 
 \item{port}{integer -- Port Shiny. Defaut : 3838L}
 

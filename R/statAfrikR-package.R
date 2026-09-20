@@ -4,7 +4,7 @@
 #'   Nationaux de Statistique (INS) d'Afrique.
 #' @seealso Site web : \url{https://statafrikr.org/}
 #'   GitHub : \url{https://github.com/damoko2004/statAfrikR}
-#'   Discord : \url{https://discord.gg/kcfA27Yz}
+#'   Discord : \url{https://discord.com/invite/kcfA27Yz}
 #' @keywords internal
 "_PACKAGE"
 
