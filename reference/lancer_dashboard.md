@@ -52,13 +52,13 @@ lancer_dashboard(
 
 - titre:
 
-  character ou NULL – Titre principal du dashboard. Defaut : 'Tableau de
-  bord - '
+  character ou NULL – Titre principal du dashboard. Defaut : "Tableau de
+  bord - NOM_DU_PAYS" (nom du pays en parametre)
 
 - sous_titre:
 
-  character ou NULL – Sous-titre du dashboard. Defaut : 'Indicateurs de
-  bien-etre - - statAfrikR v0.2.0'
+  character ou NULL – Sous-titre du dashboard. Defaut : "Indicateurs de
+  bien-etre - NOM_DU_PAYS - statAfrikR v0.2.0"
 
 - port:
 
