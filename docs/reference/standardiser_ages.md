@@ -64,7 +64,7 @@ Une liste avec :
 
 ``` r
 if (FALSE) { # \dontrun{
-  resultat <- standardiser_ages(donnees_rgph, "age")
-  cat("Indice de Whipple :", resultat$indice_whipple)
+  donnees <- data.frame(age = sample(0:80, 200, replace=TRUE))
+  standardiser_ages(donnees, var_age="age")
 } # }
 ```

@@ -32,7 +32,11 @@ Une liste avec `score_global` et le détail par dimension.
 
 ``` r
 if (FALSE) { # \dontrun{
-  qualite <- valider_qualite_donnees(donnees_enquete, vars_cles = "id_menage")
-  cat("Score de qualité :", qualite$score_global, "/100")
+  donnees <- data.frame(
+    id_menage = 1:50,
+    age       = c(sample(20:70, 45, replace = TRUE), rep(NA, 5)),
+    revenu    = c(rnorm(48, 200000, 50000), NA, NA)
+  )
+  valider_qualite_donnees(donnees, vars_cles="id_menage")
 } # }
 ```

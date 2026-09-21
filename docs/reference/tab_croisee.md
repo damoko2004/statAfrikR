@@ -59,9 +59,10 @@ Tibble ou flextable du tableau croisé.
 
 ``` r
 if (FALSE) { # \dontrun{
-  # Tableau simple
+  donnees <- data.frame(
+    region = sample(c("Nord", "Sud", "Est"), 50, replace = TRUE),
+    sexe   = sample(c("H", "F"), 50, replace = TRUE)
+  )
   tab_croisee(donnees, "region", "sexe")
-  # Avec plan de sondage
-  tab_croisee(plan_sondage, "quintile", "region")
 } # }
 ```

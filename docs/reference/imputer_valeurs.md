@@ -55,11 +55,7 @@ Si `rapport = FALSE` : tibble imputé. Si `rapport = TRUE` : liste avec
 
 ``` r
 if (FALSE) { # \dontrun{
-  resultat <- imputer_valeurs(
-    data    = donnees_enquete,
-    vars    = c("revenu_mensuel", "age"),
-    methode = "mediane"
-  )
-  donnees_propres <- resultat$donnees
+  donnees <- data.frame(revenu_mensuel=c(150000,NA,200000), age=c(25,34,NA))
+  imputer_valeurs(donnees, vars=c("revenu_mensuel","age"), methode="mediane")
 } # }
 ```

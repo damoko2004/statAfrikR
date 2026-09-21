@@ -62,8 +62,8 @@ if (FALSE) { # \dontrun{
     donnees              = donnees_emop_anon,
     repertoire_sortie    = "diffusion/",
     nom_package          = "EMOP_BEN_2023_v1",
-    fichiers_supplementaires = c("outputs/rapport.docx",
-                                  "outputs/emop_ddi.xml"),
+    fichiers_supplementaires = c(file.path(tempdir(), "rapport.docx"),
+                                  file.path(tempdir(), "emop_ddi.xml")),
     metadonnees = list(
       titre       = "EMOP Bénin 2023",
       institution = "INSAE",

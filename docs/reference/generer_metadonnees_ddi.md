@@ -72,7 +72,7 @@ if (FALSE) { # \dontrun{
     pays        = "Bénin",
     annee       = 2023,
     institution = "INSAE",
-    fichier_sortie = "outputs/emop_2023_ddi.xml"
+    fichier_sortie = file.path(tempdir(), "emop_2023_ddi.xml")
   )
 } # }
 ```

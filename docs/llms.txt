@@ -86,7 +86,7 @@ GPL-3.0 © Dikers Amoko
 
 ## 💬 Communauté
 
-[![Discord](https://img.shields.io/discord/1482000033158135920?color=00C853&label=Discord&logo=discord&logoColor=white)](https://discord.gg/x9u5sXQB2V)
+[![Discord](https://img.shields.io/discord/1482000033158135920?color=00C853&label=Discord&logo=discord&logoColor=white)](https://discord.com/invite/x9u5sXQB2V)
 
 Rejoins la communauté officielle **statAfrikR** sur Discord !
 
@@ -95,50 +95,133 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
 - 📊 Support technique et entraide
 - 🎓 Formations et ressources
 
-👉 [Rejoindre le serveur Discord](https://discord.gg/x9u5sXQB2V)
+👉 [Rejoindre le serveur Discord](https://discord.com/invite/x9u5sXQB2V)
 
 # Index du paquet
 
 ## Toutes les fonctions
 
+- [`accouchements_assistes()`](https://damoko2004.github.io/statAfrikR/reference/accouchements_assistes.md)
+  : Calculer le taux d'accouchements assistes
 - [`analyse_regression()`](https://damoko2004.github.io/statAfrikR/reference/analyse_regression.md)
   : Analyse de régression
 - [`analyse_spatiale()`](https://damoko2004.github.io/statAfrikR/reference/analyse_spatiale.md)
   : Analyse spatiale — jointure et indicateurs par zone
+- [`analyser_non_reponse()`](https://damoko2004.github.io/statAfrikR/reference/analyser_non_reponse.md)
+  : Analyser la non-reponse
+- [`anemie()`](https://damoko2004.github.io/statAfrikR/reference/anemie.md)
+  : Calculer la prevalence de l'anemie
 - [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md)
   : Anonymiser un jeu de données
 - [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md)
   : Appliquer les pondérations d'enquête
+- [`autonomisation_femmes()`](https://damoko2004.github.io/statAfrikR/reference/autonomisation_femmes.md)
+  : Calculer l'indice d'autonomisation des femmes
+- [`bonheur_declare()`](https://damoko2004.github.io/statAfrikR/reference/bonheur_declare.md)
+  : Calculer la part de population se declarant heureuse
+- [`calcul_deff()`](https://damoko2004.github.io/statAfrikR/reference/calcul_deff.md)
+  : Calculer l'effet de plan (DEFF)
+- [`calcul_fgt()`](https://damoko2004.github.io/statAfrikR/reference/calcul_fgt.md)
+  : Calcul des indices de pauvrete FGT
+- [`calcul_gini()`](https://damoko2004.github.io/statAfrikR/reference/calcul_gini.md)
+  : Calculer le coefficient de Gini
 - [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md)
   : Calculer l'Indice de Développement Humain (IDH)
 - [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md)
-  : Calculer l'Indice de Pauvreté Multidimensionnelle (IPM)
+  : Calculer l'Indice de Pauvrete Multidimensionnelle (IPM)
+- [`calcul_ipm_national()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm_national.md)
+  : Calculer un IPM national personnalise
+- [`calculer_deflateur()`](https://damoko2004.github.io/statAfrikR/reference/calculer_deflateur.md)
+  : Calculer et appliquer le deflateur du PIB
+- [`calibrer_poids()`](https://damoko2004.github.io/statAfrikR/reference/calibrer_poids.md)
+  : Calibrer les poids de sondage
+- [`carte_choroplethe()`](https://damoko2004.github.io/statAfrikR/reference/carte_choroplethe.md)
+  : Carte choroplethe statistique institutionnelle
+- [`carte_exporter()`](https://damoko2004.github.io/statAfrikR/reference/carte_exporter.md)
+  : Exporter une carte en fichier image
+- [`carte_import()`](https://damoko2004.github.io/statAfrikR/reference/carte_import.md)
+  : Importer un fichier geographique
+- [`carte_ipm()`](https://damoko2004.github.io/statAfrikR/reference/carte_ipm.md)
+  : Carte des privations IPM par zone
+- [`carte_joindre()`](https://damoko2004.github.io/statAfrikR/reference/carte_joindre.md)
+  : Joindre des donnees statistiques a un fond de carte
+- [`carte_pauvrete()`](https://damoko2004.github.io/statAfrikR/reference/carte_pauvrete.md)
+  : Carte thematique de la pauvrete (FGT0)
 - [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md)
   : Carte thématique choroplèthe
+- [`carte_zones()`](https://damoko2004.github.io/statAfrikR/reference/carte_zones.md)
+  : Charger un fond de carte africain integre
+- [`catalogue_indicateurs()`](https://damoko2004.github.io/statAfrikR/reference/catalogue_indicateurs.md)
+  : Consulter le catalogue des indicateurs statistiques
 - [`check_na()`](https://damoko2004.github.io/statAfrikR/reference/check_na.md)
   : Détecter les valeurs manquantes
 - [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)
   : Vérifier les types de variables
+- [`coherence_demo()`](https://damoko2004.github.io/statAfrikR/reference/coherence_demo.md)
+  : Verifier la coherence demographique des donnees
+- [`comparer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/comparer_ipm.md)
+  : Comparer l'IPM global et l'IPM national
+- [`comparer_pib()`](https://damoko2004.github.io/statAfrikR/reference/comparer_pib.md)
+  : Comparer le PIB entre sources (INS vs UNSD vs BM vs FMI)
 - [`compresser_package_diffusion()`](https://damoko2004.github.io/statAfrikR/reference/compresser_package_diffusion.md)
   : Compresser un package de diffusion
+- [`confiance_institutions()`](https://damoko2004.github.io/statAfrikR/reference/confiance_institutions.md)
+  : Calculer la confiance dans les institutions
+- [`courbe_lorenz()`](https://damoko2004.github.io/statAfrikR/reference/courbe_lorenz.md)
+  : Tracer la courbe de Lorenz
+- [`creer_design()`](https://damoko2004.github.io/statAfrikR/reference/creer_design.md)
+  : Creer un objet design d'enquete complexe
+- [`decomposer_fgt()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_fgt.md)
+  : Decomposer les indices FGT par sous-groupe
 - [`decomposer_inegalite()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_inegalite.md)
   : Décomposer les inégalités
+- [`decomposer_ipm()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_ipm.md)
+  : Decomposer l'IPM par sous-groupe
+- [`decomposer_theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
+  [`theil()`](https://damoko2004.github.io/statAfrikR/reference/decomposer_theil.md)
+  : Decomposer les inegalites selon l'indice de Theil
+- [`detecter_ecarts_geo()`](https://damoko2004.github.io/statAfrikR/reference/detecter_ecarts_geo.md)
+  : Detecter les zones non appariees entre deux sources
+- [`emaciation()`](https://damoko2004.github.io/statAfrikR/reference/emaciation.md)
+  : Calculer le taux d'emaciation (wasting)
+- [`emploi_informel()`](https://damoko2004.github.io/statAfrikR/reference/emploi_informel.md)
+  : Calculer le taux d'emploi informel
+- [`emploi_vulnerable()`](https://damoko2004.github.io/statAfrikR/reference/emploi_vulnerable.md)
+  : Calculer le taux d'emploi vulnerable
+- [`exporter_code_dashboard()`](https://damoko2004.github.io/statAfrikR/reference/exporter_code_dashboard.md)
+  : Exporter le code source complet du dashboard
+- [`exporter_excel_ins()`](https://damoko2004.github.io/statAfrikR/reference/exporter_excel_ins.md)
+  : Export Excel institutionnel multi-feuilles
 - [`exporter_graphique()`](https://damoko2004.github.io/statAfrikR/reference/exporter_graphique.md)
   : Exporter un graphique en haute résolution
 - [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md)
   : Exporter des données au format SDMX
 - [`fusion_datasets()`](https://damoko2004.github.io/statAfrikR/reference/fusion_datasets.md)
   : Fusionner plusieurs jeux de données
+- [`generer_bulletin()`](https://damoko2004.github.io/statAfrikR/reference/generer_bulletin.md)
+  : Generer un bulletin statistique periodique
 - [`generer_metadonnees_ddi()`](https://damoko2004.github.io/statAfrikR/reference/generer_metadonnees_ddi.md)
   : Générer une fiche de métadonnées DDI
 - [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md)
   : Générer un rapport statistique officiel
+- [`generer_rapport_enquete()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport_enquete.md)
+  : Generer un rapport d'enquete menage parametre
+- [`generer_rapport_odd()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport_odd.md)
+  : Generer un rapport de suivi des ODD parametre
 - [`graphique_barres()`](https://damoko2004.github.io/statAfrikR/reference/graphique_barres.md)
   : Graphique en barres pondéré
+- [`graphique_fgt()`](https://damoko2004.github.io/statAfrikR/reference/graphique_fgt.md)
+  : Graphique des indices FGT
+- [`graphique_ipm()`](https://damoko2004.github.io/statAfrikR/reference/graphique_ipm.md)
+  : Graphique des contributions IPM
 - [`graphique_tendance()`](https://damoko2004.github.io/statAfrikR/reference/graphique_tendance.md)
   : Graphique de tendance temporelle
+- [`handicap_prevalence()`](https://damoko2004.github.io/statAfrikR/reference/handicap_prevalence.md)
+  : Calculer la prevalence du handicap
 - [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)
   : Harmoniser les noms de régions/provinces
+- [`harmoniser_zones()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_zones.md)
+  : Harmoniser les noms de zones geographiques
 - [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md)
   : Importer des données CSPro
 - [`import_csv()`](https://damoko2004.github.io/statAfrikR/reference/import_csv.md)
@@ -157,40 +240,162 @@ Rejoins la communauté officielle **statAfrikR** sur Discord !
   : Importer un fichier Stata
 - [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md)
   : Imputer les valeurs manquantes
+- [`indice_atkinson()`](https://damoko2004.github.io/statAfrikR/reference/indice_atkinson.md)
+  [`atkinson()`](https://damoko2004.github.io/statAfrikR/reference/indice_atkinson.md)
+  : Calculer l'indice d'Atkinson
+- [`indice_palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
+  [`palma()`](https://damoko2004.github.io/statAfrikR/reference/indice_palma.md)
+  : Calculer l'indice de Palma
+- [`insuffisance_ponderale()`](https://damoko2004.github.io/statAfrikR/reference/insuffisance_ponderale.md)
+  : Calculer le taux d'insuffisance ponderale
+- [`lancer_dashboard()`](https://damoko2004.github.io/statAfrikR/reference/lancer_dashboard.md)
+  : Lancer le tableau de bord interactif statAfrikR
+- [`lister_templates()`](https://damoko2004.github.io/statAfrikR/reference/lister_templates.md)
+  : Lister les templates de rapport disponibles
+- [`mariage_precoce()`](https://damoko2004.github.io/statAfrikR/reference/mariage_precoce.md)
+  : Calculer le taux de mariage precoce
+- [`migrer_nomenclature()`](https://damoko2004.github.io/statAfrikR/reference/migrer_nomenclature.md)
+  : Migrer d'une nomenclature geographique vers une autre
+- [`mortalite_5ans()`](https://damoko2004.github.io/statAfrikR/reference/mortalite_5ans.md)
+  : Calculer le taux de mortalite des enfants de moins de 5 ans
+- [`myers()`](https://damoko2004.github.io/statAfrikR/reference/myers.md)
+  : Calculer l'indice de Myers (attraction sur tous les chiffres)
 - [`nettoyer_libelles()`](https://damoko2004.github.io/statAfrikR/reference/nettoyer_libelles.md)
   : Nettoyer les libellés de variables textuelles
+- [`odd_catalogue()`](https://damoko2004.github.io/statAfrikR/reference/odd_catalogue.md)
+  : Catalogue des indicateurs ODD pour les INS africains
+- [`odd_indicateur()`](https://damoko2004.github.io/statAfrikR/reference/odd_indicateur.md)
+  : Calculer un indicateur ODD
 - [`palette_ins()`](https://damoko2004.github.io/statAfrikR/reference/palette_ins.md)
   : Palette de couleurs INS
+- [`parite_education()`](https://damoko2004.github.io/statAfrikR/reference/parite_education.md)
+  : Calculer l'indice de parite filles/garcons en education
+- [`part_quintile()`](https://damoko2004.github.io/statAfrikR/reference/part_quintile.md)
+  : Calculer les parts de revenu par quintile ou decile
+- [`pauvrete_travail()`](https://damoko2004.github.io/statAfrikR/reference/pauvrete_travail.md)
+  : Calculer le taux de pauvrete au travail (working poor)
+- [`perception_economique()`](https://damoko2004.github.io/statAfrikR/reference/perception_economique.md)
+  : Calculer la perception de la situation economique
+- [`privations_ressenties()`](https://damoko2004.github.io/statAfrikR/reference/privations_ressenties.md)
+  : Calculer le score de privations ressenties
+- [`protection_sociale()`](https://damoko2004.github.io/statAfrikR/reference/protection_sociale.md)
+  : Calculer la couverture de protection sociale
+- [`pyramide_age()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_age.md)
+  : Construire et tracer la pyramide des ages
 - [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md)
   : Pyramide des âges
+- [`rapport_harmonisation()`](https://damoko2004.github.io/statAfrikR/reference/rapport_harmonisation.md)
+  : Produire un rapport d'harmonisation geographique
+- [`rapport_qualite_demo()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_demo.md)
+  : Produire un rapport de qualite des donnees demographiques
+- [`rapport_qualite_sondage()`](https://damoko2004.github.io/statAfrikR/reference/rapport_qualite_sondage.md)
+  : Produire un rapport de qualite du plan de sondage
+- [`ratio_masculinite()`](https://damoko2004.github.io/statAfrikR/reference/ratio_masculinite.md)
+  : Calculer le rapport de masculinite par groupe d'age
 - [`recoder_variable()`](https://damoko2004.github.io/statAfrikR/reference/recoder_variable.md)
   : Recoder une variable
+- [`retard_croissance()`](https://damoko2004.github.io/statAfrikR/reference/retard_croissance.md)
+  : Calculer le taux de retard de croissance (stunting)
+- [`saf_cameroun_departements`](https://damoko2004.github.io/statAfrikR/reference/saf_cameroun_departements.md)
+  : Departements du Cameroun
+- [`saf_cedeao`](https://damoko2004.github.io/statAfrikR/reference/saf_cedeao.md)
+  : Zone CEDEAO – 15 pays membres
+- [`saf_cemac`](https://damoko2004.github.io/statAfrikR/reference/saf_cemac.md)
+  : Zone CEMAC – 6 pays membres
+- [`saf_eau`](https://damoko2004.github.io/statAfrikR/reference/saf_eau.md)
+  : Zone EAC – Afrique de l'Est
+- [`saf_pays_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_pays_afrique.md)
+  : Pays africains – fond de carte integre
+- [`saf_rca_prefectures`](https://damoko2004.github.io/statAfrikR/reference/saf_rca_prefectures.md)
+  : Prefectures de la Republique Centrafricaine
+- [`saf_sadc`](https://damoko2004.github.io/statAfrikR/reference/saf_sadc.md)
+  : Zone SADC – Afrique Australe
+- [`saf_senegal_regions`](https://damoko2004.github.io/statAfrikR/reference/saf_senegal_regions.md)
+  : Regions du Senegal
+- [`saf_subdivisions_afrique`](https://damoko2004.github.io/statAfrikR/reference/saf_subdivisions_afrique.md)
+  : Subdivisions de niveau 1 – tous les pays africains
+- [`sante_mentale()`](https://damoko2004.github.io/statAfrikR/reference/sante_mentale.md)
+  : Calculer les indicateurs de sante mentale
+- [`satisfaction_vie()`](https://damoko2004.github.io/statAfrikR/reference/satisfaction_vie.md)
+  : Calculer le score de satisfaction dans la vie
+- [`sentiment_securite()`](https://damoko2004.github.io/statAfrikR/reference/sentiment_securite.md)
+  : Calculer le sentiment de securite
+- [`sous_emploi_temps()`](https://damoko2004.github.io/statAfrikR/reference/sous_emploi_temps.md)
+  : Calculer le taux de sous-emploi en temps de travail
 - [`standardiser_ages()`](https://damoko2004.github.io/statAfrikR/reference/standardiser_ages.md)
   : Standardiser les âges déclarés
 - [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)
   : Statistiques descriptives pondérées
+- [`suivre_revisions_pib()`](https://damoko2004.github.io/statAfrikR/reference/suivre_revisions_pib.md)
+  : Suivre les revisions du PIB
 - [`supprimer_doublons()`](https://damoko2004.github.io/statAfrikR/reference/supprimer_doublons.md)
   : Détecter et supprimer les doublons
 - [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md)
   : Tableau croisé pondéré avec intervalles de confiance
+- [`table_concordance()`](https://damoko2004.github.io/statAfrikR/reference/table_concordance.md)
+  : Creer une table de concordance entre nomenclatures geographiques
+- [`tableau_bien_etre_subjectif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bien_etre_subjectif.md)
+  : Tableau de bord du bien-etre subjectif
+- [`tableau_bord_pib()`](https://damoko2004.github.io/statAfrikR/reference/tableau_bord_pib.md)
+  : Tableau de bord des comptes nationaux
+- [`tableau_croise_ins()`](https://damoko2004.github.io/statAfrikR/reference/tableau_croise_ins.md)
+  : Tableau croise pondere - format institutionnel INS
+- [`tableau_descriptif()`](https://damoko2004.github.io/statAfrikR/reference/tableau_descriptif.md)
+  : Tableau de statistiques descriptives institutionnel
+- [`tableau_fgt()`](https://damoko2004.github.io/statAfrikR/reference/tableau_fgt.md)
+  : Tableau institutionnel des indices FGT
+- [`tableau_genre()`](https://damoko2004.github.io/statAfrikR/reference/tableau_genre.md)
+  : Tableau de bord des indicateurs de genre et d'inclusion
+- [`tableau_inegalites()`](https://damoko2004.github.io/statAfrikR/reference/tableau_inegalites.md)
+  : Tableau de bord des inegalites
+- [`tableau_ipm()`](https://damoko2004.github.io/statAfrikR/reference/tableau_ipm.md)
+  : Tableau institutionnel IPM
+- [`tableau_marche_travail()`](https://damoko2004.github.io/statAfrikR/reference/tableau_marche_travail.md)
+  : Tableau de bord du marche du travail
+- [`tableau_odd()`](https://damoko2004.github.io/statAfrikR/reference/tableau_odd.md)
+  : Tableau de suivi des indicateurs ODD
+- [`tableau_sante()`](https://damoko2004.github.io/statAfrikR/reference/tableau_sante.md)
+  : Tableau de bord des indicateurs de sante
+- [`taux_activite()`](https://damoko2004.github.io/statAfrikR/reference/taux_activite.md)
+  : Calculer le taux d'activite
+- [`taux_croissance()`](https://damoko2004.github.io/statAfrikR/reference/taux_croissance.md)
+  : Calculer les taux de croissance du PIB et contributions
+- [`taux_emploi()`](https://damoko2004.github.io/statAfrikR/reference/taux_emploi.md)
+  : Calculer le taux d'emploi
+- [`taux_sous_utilisation()`](https://damoko2004.github.io/statAfrikR/reference/taux_sous_utilisation.md)
+  : Calculer le taux de sous-utilisation composite de la main-d'oeuvre
 - [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)
   : Thème ggplot2 officiel INS
 - [`tracer_flux_traitement()`](https://damoko2004.github.io/statAfrikR/reference/tracer_flux_traitement.md)
   : Tracer le flux de traitement
+- [`travail_enfants()`](https://damoko2004.github.io/statAfrikR/reference/travail_enfants.md)
+  : Calculer la prevalence du travail des enfants
+- [`vaccination()`](https://damoko2004.github.io/statAfrikR/reference/vaccination.md)
+  : Calculer la couverture vaccinale
+- [`valider_coherence_geo()`](https://damoko2004.github.io/statAfrikR/reference/valider_coherence_geo.md)
+  : Valider la coherence de la couverture geographique
 - [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md)
   : Valider la cohérence données / dictionnaire
+- [`valider_poids()`](https://damoko2004.github.io/statAfrikR/reference/valider_poids.md)
+  : Valider les poids de sondage
 - [`valider_qualite_donnees()`](https://damoko2004.github.io/statAfrikR/reference/valider_qualite_donnees.md)
   : Valider la qualité globale d'un jeu de données
+- [`valider_statistique_ins()`](https://damoko2004.github.io/statAfrikR/reference/valider_statistique_ins.md)
+  : Valider la qualite statistique d'une enquete (INS Validation Suite)
+- [`violence_basee_genre()`](https://damoko2004.github.io/statAfrikR/reference/violence_basee_genre.md)
+  : Calculer la prevalence des violences basees sur le genre
+- [`whipple()`](https://damoko2004.github.io/statAfrikR/reference/whipple.md)
+  : Calculer l'indice de Whipple
 
 # Articles
 
 ### Tous les articles
 
-- [Démarrage rapide avec
-  statAfrikR](https://damoko2004.github.io/statAfrikR/articles/01-demarrage-rapide.md):
-- [Analyse d'une enquête pondérée
-  complète](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.md):
-- [Calcul des indicateurs ODD : IDH, IPM et
-  inégalités](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.md):
 - [🏆
   Contributeurs](https://damoko2004.github.io/statAfrikR/articles/contributeurs.md):
+- [Démarrage rapide avec
+  statAfrikR](https://damoko2004.github.io/statAfrikR/articles/demarrage-rapide.md):
+- [Analyse d'une enquête pondérée
+  complète](https://damoko2004.github.io/statAfrikR/articles/enquete-ponderee.md):
+- [Calcul des indicateurs ODD : IDH, IPM et
+  inégalités](https://damoko2004.github.io/statAfrikR/articles/indicateurs-odd.md):

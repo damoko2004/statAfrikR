@@ -56,11 +56,7 @@ Un tibble avec les variables textuelles nettoyées.
 
 ``` r
 if (FALSE) { # \dontrun{
-  donnees_propres <- nettoyer_libelles(donnees_enquete)
-  donnees_propres <- nettoyer_libelles(
-    donnees_enquete,
-    vars  = c("region", "commune"),
-    casse = "majuscule"
-  )
+  donnees <- data.frame(region = c(" nord ","SUD"), commune = c("Cotonou "," parakou"))
+  nettoyer_libelles(donnees, vars = c("region", "commune"))
 } # }
 ```

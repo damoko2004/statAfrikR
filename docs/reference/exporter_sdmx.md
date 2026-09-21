@@ -71,7 +71,7 @@ if (FALSE) { # \dontrun{
     agence          = "INSAE",
     vars_dimensions = c("region", "annee"),
     vars_mesures    = c("idh", "taux_pauvrete"),
-    fichier_sortie  = "outputs/indicateurs_sdmx.csv"
+    fichier_sortie  = file.path(tempdir(), "indicateurs_sdmx.csv")
   )
 } # }
 ```

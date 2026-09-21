@@ -57,10 +57,7 @@ standardisées.
 
 ``` r
 if (FALSE) { # \dontrun{
-  donnees <- harmoniser_regions(
-    data       = donnees_enquete,
-    var_region = "region",
-    pays       = "BJ"
-  )
+  donnees <- data.frame(region = c("Littoral","Atlantique","Borgou"))
+  harmoniser_regions(donnees, var_region = "region", pays = "BJ")
 } # }
 ```

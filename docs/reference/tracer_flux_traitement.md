@@ -38,18 +38,9 @@ Une liste mise à jour avec `$donnees` et `$journal`.
 
 ``` r
 if (FALSE) { # \dontrun{
-  # Initialiser le journal
-  etape1 <- tracer_flux_traitement(
-    data    = donnees_brutes,
-    action  = "Import depuis fichier Excel"
-  )
-  # Ajouter une étape
-  etape2 <- tracer_flux_traitement(
-    data    = donnees_nettoyees,
-    action  = "Nettoyage des libellés",
-    journal = etape1$journal
-  )
-  # Afficher le journal
-  print(etape2$journal)
+  donnees <- data.frame(id=1:3, val=c(10,20,30))
+  e1 <- tracer_flux_traitement(donnees, action="Import")
+  e2 <- tracer_flux_traitement(e1$donnees, action="Nettoyage", journal=e1$journal)
+  print(e2$journal)
 } # }
 ```
