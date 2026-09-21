@@ -52,6 +52,8 @@
   : Carte thématique choroplèthe
 - [`carte_zones()`](https://damoko2004.github.io/statAfrikR/reference/carte_zones.md)
   : Charger un fond de carte africain integre
+- [`catalogue_indicateurs()`](https://damoko2004.github.io/statAfrikR/reference/catalogue_indicateurs.md)
+  : Consulter le catalogue des indicateurs statistiques
 - [`check_na()`](https://damoko2004.github.io/statAfrikR/reference/check_na.md)
   : Détecter les valeurs manquantes
 - [`check_types()`](https://damoko2004.github.io/statAfrikR/reference/check_types.md)

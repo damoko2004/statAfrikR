@@ -7,7 +7,7 @@ Statistique (INS) d'Afrique.
 
 Site web : <https://statafrikr.org/> GitHub :
 <https://github.com/damoko2004/statAfrikR> Discord :
-<https://discord.gg/kcfA27Yz>
+<https://discord.com/invite/kcfA27Yz>
 
 ## Author
 
