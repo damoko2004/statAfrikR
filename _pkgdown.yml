@@ -1,21 +1,24 @@
 url: https://damoko2004.github.io/statAfrikR/
-
 authors:
   Dikers Amoko:
-    href: "mailto:diamoko@gmail.com"
+    href: mailto:diamoko@gmail.com
   Josue Honore Dasse:
-    href: "mailto:josue.h.dasse@gmail.com"
-
+    href: mailto:josue.h.dasse@gmail.com
 template:
   bootstrap: 5
-
 navbar:
   structure:
-    left: [intro, reference, articles, contributors]
-    right: [discord, github]
+    left:
+    - intro
+    - reference
+    - articles
+    - contributors
+    right:
+    - discord
+    - github
   components:
     contributors:
-      text: "🏆 Contributeurs"
+      text: "\U0001F3C6 Contributeurs"
       href: articles/contributeurs.html
     discord:
       icon: fab fa-discord
@@ -25,17 +28,16 @@ navbar:
       icon: fab fa-github
       href: https://github.com/damoko2004/statAfrikR
       aria-label: GitHub
-
 home:
   links:
-  - text: "💬 Rejoindre la communauté Discord"
+  - text: "\U0001F4AC Rejoindre la communauté Discord"
     href: https://discord.com/invite/kcfA27Yz
-  - text: "🌍 AFRISTAT"
+  - text: "\U0001F30D AFRISTAT"
     href: https://afristat.org
-
 footer:
   structure:
     left: developed_by
     right: built_with
   components:
-    developed_by: "Développé pour les INS africains · [Discord](https://discord.com/invite/kcfA27Yz)"
+    developed_by: Développé pour les INS africains · [Discord](https://discord.com/invite/kcfA27Yz)
+

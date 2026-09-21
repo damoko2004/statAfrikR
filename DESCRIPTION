@@ -31,7 +31,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Language: fr
-URL: https://statafrikr.org/, https://github.com/damoko2004/statAfrikR
+URL: https://statafrikr.org/, https://github.com/damoko2004/statAfrikR, https://damoko2004.github.io/statAfrikR/
 BugReports: https://github.com/damoko2004/statAfrikR/issues
 Depends: R (>= 4.2.0)
 Imports: 
@@ -65,7 +65,5 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 NeedsCompilation: no
 Packaged: 2026-09-18 16:08:28 UTC; statAfrikR
-Author: Dikers Amoko [aut, cre]
-Maintainer: Dikers Amoko <diamoko@gmail.com>
 LazyData: true
 LazyDataCompression: xz
