@@ -2,9 +2,9 @@
 
 ## 👨‍💻 Équipe Core
 
-| Nom          | Rôle                | Pays       |
-|--------------|---------------------|------------|
-| Dikers Amoko | Auteur & Mainteneur | 🌍 Afrique |
+| Nom          | Rôle                | Pays                   |
+|--------------|---------------------|------------------------|
+| Dikers Amoko | Auteur & Mainteneur | 🌍 Afrique · 🇫🇷 France |
 
 ## 🌍 Communauté
 
