@@ -2,9 +2,10 @@
 
 ## Authors
 
-- **Dikers Amoko**. Author, maintainer, contributor.
+- **[Dikers Amoko](mailto:diamoko@gmail.com)**. Author, maintainer,
+  contributor.
 
-- **Josue Honore Dasse**. Contributor.
+- **[Josue Honore Dasse](mailto:josue.h.dasse@gmail.com)**. Contributor.
 
 ## Citation
 
