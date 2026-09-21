@@ -11,7 +11,7 @@ vignette: >
 
 | Nom | Rôle | Pays |
 |-----|------|------|
-| Dikers Amoko | Auteur & Mainteneur | 🌍 Afrique |
+| Dikers Amoko | Auteur & Mainteneur | 🌍 Afrique · 🇫🇷 France |
 
 ## 🌍 Communauté
 
