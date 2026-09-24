@@ -1,6 +1,6 @@
 Package: statAfrikR
 Title: Statistical Tools for African National Statistics Institutes
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person(
       given   = "Dikers",
