@@ -3,6 +3,9 @@
 Package R open source pour les Instituts Nationaux de Statistique (INS)
 africains.
 
+> **v0.2.0** · 54 pays · 888 subdivisions · 135+ fonctions · 1 220+
+> téléchargements CRAN · 100% hors ligne
+
 ## Objectif
 
 **statAfrikR** couvre l’ensemble du cycle de la donnée statistique :
@@ -13,7 +16,6 @@ multilinguisme, ressources IT contraintes).
 ## Installation
 
 ``` r
-
 # Version stable depuis le CRAN
 install.packages("statAfrikR")
 
@@ -24,18 +26,17 @@ remotes::install_github("damoko2004/statAfrikR")
 
 ## Modules
 
-| Module | Fonctions clés | Statut |
-|----|----|----|
-| 📥 Collecte | [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md), [`import_kobo()`](https://damoko2004.github.io/statAfrikR/reference/import_kobo.md), [`import_excel()`](https://damoko2004.github.io/statAfrikR/reference/import_excel.md), [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md) | 🔧 En développement |
-| 🔧 Traitement | [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md), [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md), [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md) | 🔧 En développement |
-| 📊 Analyse | [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md), [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md), [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md), [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md) | 🔧 En développement |
-| 🗺️ Visualisation | [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md), [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md), [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md) | 🔧 En développement |
-| 📄 Diffusion | [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md), [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md), [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md) | 🔧 En développement |
+| Module           | Fonctions clés                                                                                                                                                                                                                                                                                                                                                           | Statut              |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| 📥 Collecte      | [`import_cspro()`](https://damoko2004.github.io/statAfrikR/reference/import_cspro.md), [`import_kobo()`](https://damoko2004.github.io/statAfrikR/reference/import_kobo.md), [`import_excel()`](https://damoko2004.github.io/statAfrikR/reference/import_excel.md), [`valider_dictionnaire()`](https://damoko2004.github.io/statAfrikR/reference/valider_dictionnaire.md) | 🔧 En développement |
+| 🔧 Traitement    | [`appliquer_ponderations()`](https://damoko2004.github.io/statAfrikR/reference/appliquer_ponderations.md), [`imputer_valeurs()`](https://damoko2004.github.io/statAfrikR/reference/imputer_valeurs.md), [`harmoniser_regions()`](https://damoko2004.github.io/statAfrikR/reference/harmoniser_regions.md)                                                                | 🔧 En développement |
+| 📊 Analyse       | [`tab_croisee()`](https://damoko2004.github.io/statAfrikR/reference/tab_croisee.md), [`calcul_idh()`](https://damoko2004.github.io/statAfrikR/reference/calcul_idh.md), [`calcul_ipm()`](https://damoko2004.github.io/statAfrikR/reference/calcul_ipm.md), [`stat_descr()`](https://damoko2004.github.io/statAfrikR/reference/stat_descr.md)                             | 🔧 En développement |
+| 🗺️ Visualisation | [`carte_thematique()`](https://damoko2004.github.io/statAfrikR/reference/carte_thematique.md), [`pyramide_ages()`](https://damoko2004.github.io/statAfrikR/reference/pyramide_ages.md), [`theme_ins()`](https://damoko2004.github.io/statAfrikR/reference/theme_ins.md)                                                                                                  | 🔧 En développement |
+| 📄 Diffusion     | [`generer_rapport()`](https://damoko2004.github.io/statAfrikR/reference/generer_rapport.md), [`anonymiser_donnees()`](https://damoko2004.github.io/statAfrikR/reference/anonymiser_donnees.md), [`exporter_sdmx()`](https://damoko2004.github.io/statAfrikR/reference/exporter_sdmx.md)                                                                                  | 🔧 En développement |
 
 ## Exemple rapide
 
 ``` r
-
 library(statAfrikR)
 
 # Vérifier la qualité des données
