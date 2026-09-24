@@ -57,3 +57,39 @@ Indice de Pauvrete Multidimensionnelle — Centrafrique — 2026
 
 Indicateur
 ```
+
+Valeur
+
+Description
+
+IPM (H x A)
+
+0.3859
+
+Indice de Pauvrete Multidimensionnelle
+
+H - Incidence
+
+55.64%
+
+Proportion de menages multidimensionnellement pauvres
+
+A - Intensite
+
+69.37%
+
+Intensite moyenne de privation parmi les pauvres
+
+N observations
+
+200
+
+Taille de l'echantillon analyse
+
+N pauvres MPI
+
+111
+
+Menages avec score \>= 33%
+
+Methode : Alkire-Foster (2011) \| Seuil k = 33% \| statAfrikR Foundation
