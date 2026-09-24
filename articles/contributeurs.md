@@ -2,9 +2,9 @@
 
 ## 👨‍💻 Équipe Core
 
-| Nom                | Rôle                                                   | Pays                         |
-|--------------------|--------------------------------------------------------|------------------------------|
-| Dikers Amoko       | Auteur & Mainteneur                                    | 🌍 Afrique · 🇫🇷 France       |
+| Nom | Rôle | Pays |
+|----|----|----|
+| Dikers Amoko | Auteur & Mainteneur | 🌍 Afrique · 🇫🇷 France |
 | Josué Honoré Dasse | Contributeur — Validation institutionnelle & Audit INS | 🇨🇫 Centrafrique · 🌍 Afrique |
 
 ## 🌍 Communauté
