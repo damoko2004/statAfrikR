@@ -7,6 +7,7 @@ humain conformes aux méthodologies internationales PNUD/OPHI,
 directement utilisables pour les rapports nationaux sur les ODD.
 
 ``` r
+
 library(statAfrikR)
 library(dplyr)
 library(ggplot2)
@@ -17,6 +18,7 @@ library(ggplot2)
 ### Calcul national
 
 ``` r
+
 idh_benin <- calcul_idh(
   esperance_vie   = 61.8,
   annees_scol_moy = 4.5,
@@ -36,6 +38,7 @@ cat("  Catégorie     :", idh_benin$categorie, "\n")
 ### Comparaison régionale
 
 ``` r
+
 pays_afrique <- tibble::tibble(
   pays            = c("Bénin", "Burkina Faso", "Sénégal",
                        "Côte d'Ivoire", "Mali", "Niger",
@@ -70,6 +73,7 @@ knitr::kable(
 ```
 
 ``` r
+
 idh_long <- idh_regional |>
   tidyr::pivot_longer(
     cols      = c(indice_sante, indice_educ, indice_revenu),
@@ -99,6 +103,7 @@ graphique_barres(
 ## 2. Indice de Pauvreté Multidimensionnelle (IPM)
 
 ``` r
+
 set.seed(2024)
 n <- 3000
 donnees_menages <- tibble::tibble(
@@ -124,6 +129,7 @@ donnees_menages <- tibble::tibble(
 ```
 
 ``` r
+
 # Définition des dimensions IPM standard OPHI
 indicateurs_ipm <- list(
   sante      = c("malnutrition", "mortalite_enf"),
@@ -152,6 +158,7 @@ resultat_ipm <- calcul_ipm(
 ### IPM par région
 
 ``` r
+
 donnees_enrichies <- resultat_ipm$donnees_enrichies
 
 ipm_region <- donnees_enrichies |>
@@ -174,6 +181,7 @@ knitr::kable(
 ## 3. Inégalités
 
 ``` r
+
 set.seed(2024)
 donnees_revenus <- tibble::tibble(
   menage         = 1:2000,
@@ -186,6 +194,7 @@ donnees_revenus <- tibble::tibble(
 ```
 
 ``` r
+
 inegalites <- decomposer_inegalite(
   donnees_revenus,
   var_revenu = "depense_totale",
@@ -195,6 +204,7 @@ inegalites <- decomposer_inegalite(
 ```
 
 ``` r
+
 knitr::kable(
   inegalites$decomposition,
   caption = "Décomposition des inégalités par milieu",
@@ -203,6 +213,7 @@ knitr::kable(
 ```
 
 ``` r
+
 # Construction manuelle de la courbe de Lorenz
 x_sorted <- sort(donnees_revenus$depense_totale)
 n         <- length(x_sorted)
@@ -229,6 +240,7 @@ ggplot2::ggplot(lorenz_df, ggplot2::aes(pop_cumulee, rev_cumulee)) +
 ## Synthèse
 
 ``` r
+
 tibble::tibble(
   Indicateur = c("IDH Bénin 2023", "IPM (H × A)", "Incidence (H)",
                   "Intensité (A)", "Gini"),
