@@ -165,9 +165,11 @@ generer_rapport_enquete <- function(donnees,
   message("  Pays      : ", meta_complete$pays)
   message("  Fichier   : ", basename(chemin_output))
 
+  tmp_rmd <- file.path(tempdir(), basename(template_rmd))
+  file.copy(template_rmd, tmp_rmd, overwrite = TRUE)
   tryCatch({
     rmarkdown::render(
-      input         = template_rmd,
+      input         = tmp_rmd,
       output_format = output_format,
       output_file   = chemin_output,
       params        = params_rmd,
@@ -282,9 +284,11 @@ generer_bulletin <- function(indicateurs,
   message("  Periode : ", periode)
   message("  Format  : ", sortie)
 
+  tmp_rmd <- file.path(tempdir(), basename(template_rmd))
+  file.copy(template_rmd, tmp_rmd, overwrite = TRUE)
   tryCatch({
     rmarkdown::render(
-      input         = template_rmd,
+      input         = tmp_rmd,
       output_format = output_format,
       output_file   = chemin_output,
       params        = params_rmd,
@@ -407,9 +411,11 @@ generer_rapport_odd <- function(resultats_odd,
   message("  Annee      : ", annee)
   message("  Indicateurs: ", length(resultats_odd))
 
+  tmp_rmd <- file.path(tempdir(), basename(template_rmd))
+  file.copy(template_rmd, tmp_rmd, overwrite = TRUE)
   tryCatch({
     rmarkdown::render(
-      input         = template_rmd,
+      input         = tmp_rmd,
       output_format = output_format,
       output_file   = chemin_output,
       params        = params_rmd,
