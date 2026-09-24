@@ -3,6 +3,9 @@
 Package R open source pour les Instituts Nationaux de Statistique (INS)
 africains.
 
+> **v0.2.0** · 54 pays · 888 subdivisions · 135+ fonctions · 1 220+
+> téléchargements CRAN · 100% hors ligne
+
 ## Objectif
 
 **statAfrikR** couvre l’ensemble du cycle de la donnée statistique :
@@ -68,11 +71,11 @@ Ce package tient compte de :
 
 - 🌐 [Site de documentation](https://damoko2004.github.io/statAfrikR/)
 - 📖 [Vignette : Démarrage
-  rapide](https://damoko2004.github.io/statAfrikR/articles/01-demarrage-rapide.html)
+  rapide](https://damoko2004.github.io/statAfrikR/articles/demarrage-rapide.html)
 - 📊 [Vignette : Enquête
-  pondérée](https://damoko2004.github.io/statAfrikR/articles/02-enquete-ponderee.html)
+  pondérée](https://damoko2004.github.io/statAfrikR/articles/enquete-ponderee.html)
 - 📐 [Vignette : Indicateurs
-  ODD](https://damoko2004.github.io/statAfrikR/articles/03-indicateurs-odd.html)
+  ODD](https://damoko2004.github.io/statAfrikR/articles/indicateurs-odd.html)
 
 ## Contribuer
 

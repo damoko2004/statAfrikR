@@ -1,3 +1,15 @@
+# statAfrikR 0.2.1
+
+*Publié sur le CRAN le 24 septembre 2026*
+
+## Corrections CRAN
+
+* `generer_rapport_enquete()`, `generer_bulletin()`, `generer_rapport_odd()` :
+  copie du template Rmd dans `tempdir()` avant `rmarkdown::render()`
+  (conformité CRAN policy — écriture hors librairie utilisateur)
+* URLs vignettes corrigées dans `README.md` (suppression préfixes `01-` `02-` `03-`)
+* Version incrémentée de 0.2.0 à 0.2.1
+
 # statAfrikR News
 
 ## statAfrikR 0.2.0 (2026-09-18)
