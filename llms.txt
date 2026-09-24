@@ -3,9 +3,6 @@
 Package R open source pour les Instituts Nationaux de Statistique (INS)
 africains.
 
-> **v0.2.0** · 54 pays · 888 subdivisions · 135+ fonctions · 1 220+
-> téléchargements CRAN · 100% hors ligne
-
 ## Objectif
 
 **statAfrikR** couvre l’ensemble du cycle de la donnée statistique :
