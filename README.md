@@ -3,9 +3,13 @@
 <!-- badges: start -->
 [![R CMD Check](https://github.com/damoko2004/statAfrikR/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/damoko2004/statAfrikR/actions/workflows/R-CMD-check.yml)
 [![Codecov](https://app.codecov.io/gh/damoko2004/statAfrikR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/damoko2004/statAfrikR)
+[![CRAN](https://www.r-pkg.org/badges/version/statAfrikR)](https://cran.r-project.org/package=statAfrikR)
+[![Downloads](https://cranlogs.r-pkg.org/badges/statAfrikR)](https://cran.r-project.org/package=statAfrikR)
 <!-- badges: end -->
 
 Package R open source pour les Instituts Nationaux de Statistique (INS) africains.
+
+> **v0.2.0** · 54 pays · 888 subdivisions · 135+ fonctions · 1 220+ téléchargements CRAN · 100% hors ligne
 
 ## Objectif
 
