@@ -130,7 +130,7 @@ valider_statistique_ins(donnees,
 #> ------------------------------------------------------------
 #>   PASS : 10 | WARN : 1 | FAIL : 0
 #>   STATUT GLOBAL : A VERIFIER
-#>   Duree : 0.00800000000000267s
+#>   Duree : 0.0160000000000053s
 #> ============================================================
 #> 
 #> 
@@ -139,5 +139,5 @@ valider_statistique_ins(donnees,
 #>   Annee  : 2024 
 #>   Statut : A VERIFIER 
 #>   PASS   : 10 | WARN : 1 | FAIL : 0 
-#>   Duree  : 0.008 s
+#>   Duree  : 0.016 s
 ```

@@ -7,7 +7,6 @@ Démographique et de Santé (EDS) ou d’une Enquête sur les Conditions de
 Vie (EMOP/EMICOV), avec pondération complexe (strates + grappes).
 
 ``` r
-
 library(statAfrikR)
 library(dplyr)
 ```
@@ -15,7 +14,6 @@ library(dplyr)
 ## 1. Données simulées d’une enquête ménages
 
 ``` r
-
 set.seed(2024)
 n <- 5000
 
@@ -50,7 +48,6 @@ cat("Régions :", length(unique(donnees_eds$region)), "\n")
 ## 2. Validation de la qualité
 
 ``` r
-
 qualite <- valider_qualite_donnees(
   donnees_eds,
   vars_cles = "id_menage",
@@ -61,7 +58,6 @@ qualite <- valider_qualite_donnees(
 ## 3. Nettoyage et harmonisation
 
 ``` r
-
 # Harmonisation des régions
 donnees_eds <- harmoniser_regions(
   donnees_eds,
@@ -81,7 +77,6 @@ etape <- tracer_flux_traitement(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -92,7 +87,6 @@ plan <- appliquer_ponderations(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -103,7 +97,6 @@ plan <- appliquer_ponderations(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -114,7 +107,6 @@ plan <- appliquer_ponderations(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -125,7 +117,6 @@ plan <- appliquer_ponderations(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -136,7 +127,6 @@ plan <- appliquer_ponderations(
 ## 4. Plan de sondage complexe
 
 ``` r
-
 plan <- appliquer_ponderations(
   data       = donnees_eds,
   poids = "poids_final",
@@ -152,7 +142,6 @@ plan <- survey::svydesign(
 ## 5. Statistiques descriptives pondérées
 
 ``` r
-
 stats <- stat_descr(
   plan,
   vars = c("depense_totale", "taille_menage", "age_chef"),
@@ -164,7 +153,6 @@ knitr::kable(stats, caption = "Statistiques descriptives pondérées")
 ## 6. Tableaux croisés
 
 ``` r
-
 tab <- tab_croisee(
   plan,
   var_ligne   = "milieu",
@@ -181,7 +169,6 @@ knitr::kable(
 ## 7. Calcul des indicateurs de pauvreté
 
 ``` r
-
 indicateurs_ipm <- list(
   sante      = c("acces_eau"),
   education  = c("scolarisation"),
@@ -199,7 +186,6 @@ resultat_ipm <- calcul_ipm(
 ## 8. Mesures d’inégalité
 
 ``` r
-
 inegalites <- decomposer_inegalite(
   donnees_eds,
   var_revenu = "depense_totale",
@@ -217,7 +203,6 @@ knitr::kable(
 ## 9. Visualisation
 
 ``` r
-
 library(ggplot2)
 pyramide_ages(
   donnees_eds,
@@ -230,7 +215,6 @@ pyramide_ages(
 ```
 
 ``` r
-
 stats_region <- stat_descr(
   donnees_eds,
   vars   = "depense_totale",
@@ -253,7 +237,6 @@ graphique_barres(
 ## 10. Régression
 
 ``` r
-
 # Déterminants de la dépense
 modele <- analyse_regression(
   log(depense_totale) ~ age_chef + taille_menage + electricite + acces_eau,
@@ -272,7 +255,6 @@ knitr::kable(
 ## 11. Export et diffusion
 
 ``` r
-
 # Anonymisation
 donnees_anon <- anonymiser_donnees(
   donnees_eds,
